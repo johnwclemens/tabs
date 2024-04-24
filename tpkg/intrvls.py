@@ -37,6 +37,7 @@ class Intonation(object):
         self.centKs = []
         self.ivalKs = []
         self.ck2ikm = {} # self.set_ck2ikm()
+        self.ckmap  = {} # self.reset_ckmap() # freq ratio in cents to ival counts and data
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'B♭♭':('D♯', 'E♭'), 'E♭♭':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
         self.COFM   = self.COFMA | self.COFMB
@@ -84,6 +85,59 @@ class Intonation(object):
         if e == 1 and len(n) > 1:
             m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
         return n, m
+    ####################################################################################################################################################################################################
+    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
+#        ckm = {}
+#        for ck in self.centKs:
+#            ckm[ck] = {'Count': 0}
+#        return ckm
+
+    def dmpCkmap(self):
+        ks = []   ;   x = 13   ;   w = f'^{x}'   ;   o = '|'
+        for k, v in self.ckmap.items():
+            ks.append(f'{k:3} {v["Count"]}')
+        slog(f'{7*W}{fmtl(ks, w=w, s=o)}', p=0)
+    ####################################################################################################################################################################################################
+    def checkIvals(self):
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
+        slog(f'BGN checkIvals() {self.csv=}', p=0, f=ff)
+        msgs, ws = [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
+        keys = list(list(self.ckmap.values())[0].keys())
+        slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, w=ws, s=mm, d=Z)}', p=0, f=ff)
+        for i, (ck, cv) in enumerate(self.ckmap.items()):
+            msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
+            for k, v in cv.items():
+                msg += f'{fmtf(v, 7)}{mm}' if k in ("Cents", "Freq", "Wavln") else f'{fmtg(v, 6)}{mm}' if k=="DCent" else f'{fmtl(v, s=W):11}{mm}' if k=="Abc" else f'{v:2}{mm}' if k in ("Count", "Idx") else f'{v:5}{mm}' if k=="Note" else f'{v:3}{mm}' if k=="Ival" else f'{v:6}{mm}'
+            msg += f']{nn}]'   ;   msgs.append(msg)
+        msgs = '\n'.join(msgs)
+        slog(f'{msgs}', p=0, f=ff)
+        slog(f'END checkIvals() {self.csv=}', p=0, f=ff)
+
+    def checkIvals2(self):
+        self.dmpCkmap()
+        keys = list(self.ckmap.keys())
+        for k in keys:
+            if self.ckmap[k]["Count"] > 0: self.checkIvals2A(k)
+
+    def checkIvals2A(self, key):
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.9f'  ;  vv = f'7.3f'  ;  uu = f'^{x}'
+        rs = []   ;   blnk = x*W   ;   fk = 'Freq'
+        fv = self.ckmap[key][fk]
+        for i, (ck, cv) in enumerate(self.ckmap.items()):
+            for k2, v2 in cv.items():
+                if k2 == fk:
+                    v  = cv[fk] / fv
+                    rs.append(f'{v:{ww}}')
+                    break
+            else:
+                rs.append(blnk)
+            if rs and i==len(self.ckmap)-1:   slog(f'{fv:{vv}}{fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
+    ########################################################################################################################################################################################################
+    def dmpDataTableLine(self, w=10, n=24):
+        c = '-'   ;   nn, mm, t = (Y, Y, Y) if self.csv else (Z, W, '|')
+        col = f'{c * (w-1)}'
+        cols = t.join([ col for _ in range(n) ])
+        slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if self.csv else 1)
     ####################################################################################################################################################################################################
     def addFmtRs(self, a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
         assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)

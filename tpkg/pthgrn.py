@@ -264,12 +264,6 @@ class Pthgrn(ivls.Intonation):
             self.dmpCkMap(     k, u=u,  o=o,   dbg=dbg)
         self.ckmap = self.reset_ckmap() # todo call this once @ end of dmpMaps()
     ####################################################################################################################################################################################################
-    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
-#        ckm = {}
-#        for ck in self.centKs:
-#            ckm[ck] = {'Count': 0}
-#        return ckm
-
     def dmpCks2Iks(self, x=13):
         mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
@@ -391,53 +385,41 @@ class Pthgrn(ivls.Intonation):
         c = ckmap[ck]['Cents']   ;   assert c == self.r2cents(a**ca/b**cb),  f'{c=} {self.r2cents(a**ca/b**cb)=}'
         d = ckmap[ck]['DCent']   ;   assert d == self.k2dCent(c),            f'{d=} {self.k2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i
+    ####################################################################################################################################################################################################
+    def fIvals(self, data, i):
+        mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
+        for j, d in enumerate(data): # j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
+            if   j==0:  fd.append(f'{d:x}')                  # j
+            elif j==1:  fd.append(f'{d:4}')                  # j*100
+            elif j==6:  fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
+            elif j==8:  fd.append(f'*{mm}{d:2}   ')          # c`
+            elif j==12: fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d
+            elif j==14: fd.append(f'*{mm}{d:2}')             # c`
+            elif j in (5, 11): fd.append(f'@{mm}{d:4}{mm}:') # k k
+            elif j in (7, 13): fd.append(f'={mm}{d:5.3f}')   # e e
+            elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
+        return fd
 
-    def checkIvals(self):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
-        slog(f'BGN checkIvals() {self.csv=}', p=0, f=ff)
-        msgs, ws = [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
-        keys = list(list(self.ckmap.values())[0].keys())
-        slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, w=ws, s=mm, d=Z)}', p=0, f=ff)
-        for i, (ck, cv) in enumerate(self.ckmap.items()):
-            msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
-            for k, v in cv.items():
-                msg += f'{fmtf(v, 7)}{mm}' if k in ("Cents", "Freq", "Wavln") else f'{fmtg(v, 6)}{mm}' if k=="DCent" else f'{fmtl(v, s=W):11}{mm}' if k=="Abc" else f'{v:2}{mm}' if k in ("Count", "Idx") else f'{v:5}{mm}' if k=="Note" else f'{v:3}{mm}' if k=="Ival" else f'{v:6}{mm}'
-            msg += f']{nn}]'   ;   msgs.append(msg)
-        msgs = '\n'.join(msgs)
-        slog(f'{msgs}', p=0, f=ff)
-        slog(f'END checkIvals() {self.csv=}', p=0, f=ff)
-    ########################################################################################################################################################################################################
-    def checkIvals2(self):
-        self.dmpCkmap()
-        keys = list(self.ckmap.keys())
-        for k in keys:
-            if self.ckmap[k]["Count"] > 0: self.checkIvals2A(k)
-
-    def checkIvals2A(self, key):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.9f'  ;  vv = f'7.3f'  ;  uu = f'^{x}'
-        rs = []   ;   blnk = x*W   ;   fk = 'Freq'
-        fv = self.ckmap[key][fk]
-        for i, (ck, cv) in enumerate(self.ckmap.items()):
-            for k2, v2 in cv.items():
-                if k2 == fk:
-                    v  = cv[fk] / fv
-                    rs.append(f'{v:{ww}}')
-                    break
+    def dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)
+        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if   i == 0:
+            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif not i % 2:
+            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
+            if  j < 6 and j % 2 or j > 6 and not j % 2:
+                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
             else:
-                rs.append(blnk)
-            if rs and i==len(self.ckmap)-1:   slog(f'{fv:{vv}}{fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
-    ########################################################################################################################################################################################################
-    def dmpCkmap(self):
-        ks = []   ;   x = 13   ;   w = f'^{x}'   ;   o = '|'
-        for k, v in self.ckmap.items():
-            ks.append(f'{k:3} {v["Count"]}')
-        slog(f'{7*W}{fmtl(ks, w=w, s=o)}', p=0)
-
-    def dmpDataTableLine(self, w=10, n=24):
-        c = '-'   ;   nn, mm, t = (Y, Y, Y) if self.csv else (Z, W, '|')
-        col = f'{c * (w-1)}'
-        cols = t.join([ col for _ in range(n) ])
-        slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if self.csv else 1)
+                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif i == len(self.ck2ikm)-1:
+            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
