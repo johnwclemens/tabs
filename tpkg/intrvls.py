@@ -54,25 +54,27 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
 [1200.000|1109.775|1086.315|1019.550| 996.090| 905.865| 882.405| 815.640| 792.180| 701.955| 678.495| 611.730| 588.270| 521.505| 498.045| 407.820| 384.360| 317.595| 294.135| 203.910| 180.450| 113.685|  90.225|   0.000]
 '''
 class Intonation(object):
-    def __init__(self, n='C', rf=440, vs=V_SOUND, csv=0):
+    def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         self.n      = n
-        self.k      = Notes.N2I[n] + 48
+        self.n0     = n
+        self.i      = Notes.N2I[n] + 48
+        self.i0     = Notes.N2I[n] + 48
         self.rf     = rf
-        self.VS     = vs
+        self.ss     = ss
         self.csv    = csv
         self.centKs = []
         self.ivalKs = []
         self.ck2ikm = {} # self.set_ck2ikm()
-        self.ckmap  = {} # self.reset_ckmap() # freq ratio in cents to ival counts and data
+        self.nimap  = {}
+        self.ckmap  = {} # self.reset_ckmap()
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'B♭♭':('D♯', 'E♭'), 'E♭♭':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
         self.COFM   = self.COFMA | self.COFMB
         self.FREFS  = F440s if self.rf == 440 else F432s
-        self.w0     = CM_P_M * self.VS
-        self.f0     = self.FREFS[self.k]
-#        self.r0s, self.r2s, self.r3s = [], [], []
-#        self.r1s, self.rAs, self.rBs = [], [], []
+        self.w0     = CM_P_M * self.ss
+        self.f0     = self.FREFS[self.i0]
     ####################################################################################################################################################################################################
+    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
     def set_ck2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
     @staticmethod
@@ -113,12 +115,6 @@ class Intonation(object):
             m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
         return n, m
     ####################################################################################################################################################################################################
-    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
-#        ckm = {}
-#        for ck in self.centKs:
-#            ckm[ck] = {'Count': 0}
-#        return ckm
-
     def dmpCkmap(self):
         ks = []   ;   x = 8   ;   w = f'^{x}'   ;   o = '|'
         for k, v in self.ckmap.items():
@@ -258,21 +254,21 @@ class Intonation(object):
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class OTS(Intonation):
-    def __init__(self, n='C', rf=440, vs=V_SOUND, csv=0):
-        super().__init__(n=n, rf=rf, vs=vs, csv=csv)
+    def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
+        super().__init__(n=n, rf=rf, ss=ss, csv=csv)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
-        slog(f'BGN {self.csv=}', p=0)
+        slog(f'BGN {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
 #        k = Notes.N2I[self.n] + 48 # + 2
         self.dmpOts()
-        slog(f'END {self.csv=}', p=0)
+        slog(f'END {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
     
     def dmpOts(self):
-        slog(f'BGN Overtone Series ({self.rf=} {self.VS=} {self.csv=})', p=0)
+        slog(f'BGN Overtone Series {self.i0=:2} {self.n0=:2} {self.csv=}', p=0)
         ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if self.csv else ('^6', '[', W, Z, 1)
         cs, ds, ns, fs, ws = [], [], [], [], []   ;   ref = f'440A' if self.rf == 440 else f'432A'   ;   fr = range(1, 256+1)
         f0    = self.FREFS[0]
@@ -292,7 +288,7 @@ class OTS(Intonation):
         slog(f'{pfxc}{cs}{sfxc}',  p=0, f=ff)
         slog(f'{pfxd}{ds}{sfxd}',  p=0, f=ff)
         slog(f'w{ref}{ws}{sfxw}',  p=0, f=ff)
-        slog(f'END Overtone Series ({self.rf=} {self.VS=} {self.csv=})', p=0)
+        slog(f'END Overtone Series {self.i0=:2} {self.n0=:2} {self.csv=}', p=0)
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0_PTH(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
