@@ -55,13 +55,15 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
 '''
 class Intonation(object):
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
-        self.n      = n
-        self.n0     = n
-        self.i      = Notes.N2I[n] + 48
-        self.i0     = Notes.N2I[n] + 48
         self.rf     = rf
         self.ss     = ss
         self.csv    = csv
+        self.i      = Notes.N2I[n] + 48
+        self.j      = 0
+        self.k      = 0
+        self.m      = n
+        self.n      = Z
+        self.o      = Z
         self.centKs = []
         self.ivalKs = []
         self.ck2ikm = {} # self.set_ck2ikm()
@@ -72,7 +74,7 @@ class Intonation(object):
         self.COFM   = self.COFMA | self.COFMB
         self.FREFS  = F440s if self.rf == 440 else F432s
         self.w0     = CM_P_M * self.ss
-        self.f0     = self.FREFS[self.i0]
+        self.f0     = self.FREFS[self.i]
     ####################################################################################################################################################################################################
     def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
     def set_ck2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm # todo this base class method initializes and or sets self.ck2ikm
@@ -86,9 +88,9 @@ class Intonation(object):
     def r2cents(r): return math.log2(r) * NT * 100
 
     @staticmethod
-    def k2dCent(k):
-        return k if 0<=k<50  else k-100 if  50<=k<150 else k-200 if 150<=k<250 else k-300  if 250<=k<350  else k-400  if  350<=k<450  else k-500  if  450<=k<550   else k-600 if 550<=k<650 else k-700 \
-            if    650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150<=k<=1200 else None
+    def i2dCent(k):
+        return k  if   0<=k<50  else k-100 if  50<=k<150 else k-200 if 150<=k<250 else k-300  if 250<=k<350  else k-400  if  350<=k<450  else k-500  if  450<=k<550   else k-600 if 550<=k<650 else \
+            k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150<=k<=1200 else None
     ####################################################################################################################################################################################################
     @staticmethod
     def norm(n):
@@ -124,9 +126,9 @@ class Intonation(object):
     def checkIvals(self):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
         slog(f'BGN checkIvals() {self.csv=}', p=0, f=ff)
-        msgs, ws = [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
-        keys = list(list(self.ckmap.values())[0].keys())
-        slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, w=ws, s=mm, d=Z)}', p=0, f=ff)
+        msgs, ws = [], [3, 7, 7, 7, 6, 5, 10, 4, 3]
+        keys = list(list(self.ckmap.values())[0].keys())   ;   keys[0] = 'Knt'   ;   keys[-1] = 'Idx'
+        slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, u="^", w=ws, s=mm, d=Z)}', p=0, f=ff)
         for i, (ck, cv) in enumerate(self.ckmap.items()):
             msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
             for k, v in cv.items():
@@ -262,13 +264,13 @@ class OTS(Intonation):
         
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
-        slog(f'BGN {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
+        slog(f'BGN {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
 #        k = Notes.N2I[self.n] + 48 # + 2
         self.dmpOts()
-        slog(f'END {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
+        slog(f'END {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
     
     def dmpOts(self):
-        slog(f'BGN Overtone Series {self.i0=:2} {self.n0=:2} {self.csv=}', p=0)
+        slog(f'BGN Overtone Series {self.i=:2} {self.m=:2} {self.csv=}', p=0)
         ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if self.csv else ('^6', '[', W, Z, 1)
         cs, ds, ns, fs, ws = [], [], [], [], []   ;   ref = f'440A' if self.rf == 440 else f'432A'   ;   fr = range(1, 256+1)
         f0    = self.FREFS[0]
@@ -276,7 +278,7 @@ class OTS(Intonation):
             f = f0 * i              ;      w = self.w0 / f
             n, n2  = self.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1)
             fn = self.norm(f/f0)[0]
-            c  = self.r2cents(fn)   ;      d = self.k2dCent(c)
+            c  = self.r2cents(fn)   ;      d = self.i2dCent(c)
             fs.append(fmtf(f, 6))   ;     ns.append(n)            ;     ws.append(fmtf(w, 6))
             cs.append(fmtf(c, 6))   ;     ds.append(fmtg(d, 6 if d >= 0 else 5))
         fs   = mm.join(fs)          ;     ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
@@ -288,7 +290,7 @@ class OTS(Intonation):
         slog(f'{pfxc}{cs}{sfxc}',  p=0, f=ff)
         slog(f'{pfxd}{ds}{sfxd}',  p=0, f=ff)
         slog(f'w{ref}{ws}{sfxw}',  p=0, f=ff)
-        slog(f'END Overtone Series {self.i0=:2} {self.n0=:2} {self.csv=}', p=0)
+        slog(f'END Overtone Series {self.i=:2} {self.m=:2} {self.csv=}', p=0)
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0_PTH(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'

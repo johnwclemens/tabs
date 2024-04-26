@@ -123,24 +123,24 @@ class Just(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
-        slog(f'BGN {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
+        slog(f'BGN {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
 #        self.i = self.i0
 #        self.dmpJust()
 #        self.dmpJust(st=1)
         for i in range(0, NT):
-            self.i = self.i0 + (i * 7) % NT
+            self.j = self.i + (i * 7) % NT
             self.dmpJust(st=1)
 #        for i in range(7, NT):
-#            self.i = self.i0 + (i * 7) % NT
+#            self.j = self.i + (i * 7) % NT
 #            self.dmpJust()
 #        for i in range(0, 7):
-#            self.i = self.i0 + (i * 7) % NT
+#            self.j = self.i + (i * 7) % NT
 #            self.dmpJust()
-        slog(f'END {self.i0=:2} {self.n0=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
+        slog(f'END {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNPair(self, k, i, s=0, dbg=0): # todo fixme
-        n0, _   = self.i2nPair(self.i0, s=1)   ;   s = '/' if s else W
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or self.i in (self.i0 + 4, self.i0 + 6, self.i0 + 11) else 1, s=1, e=1)   ;   slog(f'{self.i0=:2} {n0=:2} {n1=:2} {n2=:2}') if dbg else None
+        n0, _   = self.i2nPair(self.i, s=1)   ;   s = '/' if s else W
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or self.j in (self.i + 4, self.i + 6, self.i + 11) else 1, s=1, e=1)   ;   slog(f'{self.i=:2} {n0=:2} {n1=:2} {n2=:2}') if dbg else None
         if i and i != NT:
             if          n1 == self.COFM[n0][1]:   return n2
             elif n2 and n2 != self.COFM[n0][1]:   n1 += s + n2
@@ -178,24 +178,24 @@ class Just(ivls.Intonation):
         slog(f'{nn}r3s{nn}{nn}{d1}{nn}{fmtl(r3s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def dmpJust(self, st=0, dbg=1):
-        f0 = self.FREFS[self.i]  ;  M3 = Notes.V2I['M3']   ;   a, b = 5, 3   ;   self.i += 2 # todo fixme note freq hack
+        f0 = self.FREFS[self.j]  ;  M3 = Notes.V2I['M3']   ;   a, b = 5, 3   ;   self.j += 2 # todo fixme note freq hack
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
-        slog(f'BGN Just Intonation Series {self.i0=:2} {self.n0=:2} {self.i=:2} {st=} {self.csv=} {dbg=}', p=0, f=ff)
+        slog(f'BGN Just Intonation Series {self.i=:2} {self.m=:2} {self.j=:2} {self.k=:2} {st=} {self.csv=} {dbg=}', p=0, f=ff)
         self.fmtIRs(a, b)
         for     i, c in enumerate(C):
-            kk = self.i - i * M3
+            self.k = self.j - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNPair(kk, (j*7)%NT)
-                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {self.i=:2} {kk=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
+                n = self.fmtNPair(self.k, (j*7)%NT)
+                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 slog(f'   {nn}{d1}{nn}{i}{nn} {j}{nn}:{nn} {a}^{c:2} {nn}*{nn} {b}^{d:2} {nn}={nn} {u:7.4f} {nn}*{nn} 2^{p:2} {nn}={nn} {v:7.5f} {nn}:{nn} {n:2}{nn}{d2}', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   cents, dcnts, ivals, notes = [], [], [], []   ;   freqs, wvlns = [], []
         for     i, c in enumerate(C):
-            kk = self.i - i * M3
+            self.k = self.j - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNote(kk, (j*7)%NT)
-                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=:2} {self.i=:2} {kk=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
+                n = self.fmtNote(self.k, (j*7)%NT)
+                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 notes.append(n)
                 u = CRS[i][j]
                 v, p = self.norm(u)
@@ -203,9 +203,9 @@ class Just(ivls.Intonation):
                 freq = f0 * v              ;   freqs.append(fmtf(freq, x-2))
                 wvln = self.w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
                 cent = self.r2cents(v)     ;   cents.append(f'{cent:7.2f}')
-                dcnt = self.k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
+                dcnt = self.i2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
                 rc   = round(cent)
-                assert rc in self.ck2ikm,  f'{rc=} not in ck2ik {self.i=:2} {i=} {j=} {n=} {cent=} {dcnt=} {rc=}'
+                assert rc in self.ck2ikm,  f'{rc=} not in ck2ik {self.i=:2} {self.j=:2} {self.k=:2} {i=} {j=} {n=} {cent=} {dcnt=} {rc=}'
                 ival = self.ck2ikm[rc]     ;   ivals.append(ival)
         slog(f'{nn}notes{nn}{nn}{d1}{nn}{fmtl(notes, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}ivals{nn}{nn}{d1}{nn}{fmtl(ivals, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
@@ -217,7 +217,7 @@ class Just(ivls.Intonation):
         slog(f'{nn} r3s {nn}{nn}{d1}{nn}{fmtl(r3s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}freqs{nn}{nn}{d1}{nn}{fmtl(freqs, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}wvlns{nn}{nn}{d1}{nn}{fmtl(wvlns, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
-        slog(f'END Just Intonation Series {self.i0=:2} {self.n0=:2} {self.i=:2} {st=} {self.csv=} {dbg=}', p=0, f=ff)
+        slog(f'END Just Intonation Series {self.i=:2} {self.m=:2} {self.j=:2} {self.k=:2} {st=} {self.csv=} {dbg=}', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
