@@ -20,34 +20,13 @@ F440s, F432s  = notes.F440s, notes.F432s
 def i2spr(i): # todo fixme still being used by old code that hasn't been retired yet
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
+
+def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
+def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
+def stackI(a, b, c): return [ a, b, c ]
+def fabc(abc):       return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
-'''
-[   0.000|  90.225| 113.685| 180.450| 203.910| 294.135| 317.595| 384.360| 407.820| 498.045| 521.505| 588.270| 611.730| 678.495| 701.955| 792.180| 815.640| 882.405| 905.865| 996.090|1019.550|1086.315|1109.775|1200.000]
-[  90.225|   0.000|  23.460|  90.225| 113.685| 203.910| 227.370| 294.135| 317.595| 407.820| 431.280| 498.045| 521.505| 588.270| 611.730| 701.955| 725.415| 792.180| 815.640| 905.865| 929.325| 996.090|1019.550|1109.775]
-[ 113.685|  23.460|   0.000|  66.765|  90.225| 180.450| 203.910| 270.675| 294.135| 384.360| 407.820| 474.585| 498.045| 564.810| 588.270| 678.495| 701.955| 768.720| 792.180| 882.405| 905.865| 972.630| 996.090|1086.315]
-[ 180.450|  90.225|  66.765|   0.000|  23.460| 113.685| 137.145| 203.910| 227.370| 317.595| 341.055| 407.820| 431.280| 498.045| 521.505| 611.730| 635.190| 701.955| 725.415| 815.640| 839.100| 905.865| 929.325|1019.550]
-[ 203.910| 113.685|  90.225|  23.460|   0.000|  90.225| 113.685| 180.450| 203.910| 294.135| 317.595| 384.360| 407.820| 474.585| 498.045| 588.270| 611.730| 678.495| 701.955| 792.180| 815.640| 882.405| 905.865| 996.090]
-[ 294.135| 203.910| 180.450| 113.685|  90.225|   0.000|  23.460|  90.225| 113.685| 203.910| 227.370| 294.135| 317.595| 384.360| 407.820| 498.045| 521.505| 588.270| 611.730| 701.955| 725.415| 792.180| 815.640| 905.865]
-[ 317.595| 227.370| 203.910| 137.145| 113.685|  23.460|   0.000|  66.765|  90.225| 180.450| 203.910| 270.675| 294.135| 360.900| 384.360| 474.585| 498.045| 564.810| 588.270| 678.495| 701.955| 768.720| 792.180| 882.405]
-[ 384.360| 294.135| 270.675| 203.910| 180.450|  90.225|  66.765|   0.000|  23.460| 113.685| 137.145| 203.910| 227.370| 294.135| 317.595| 407.820| 431.280| 498.045| 521.505| 611.730| 635.190| 701.955| 725.415| 815.640]
-[ 407.820| 317.595| 294.135| 227.370| 203.910| 113.685|  90.225|  23.460|   0.000|  90.225| 113.685| 180.450| 203.910| 270.675| 294.135| 384.360| 407.820| 474.585| 498.045| 588.270| 611.730| 678.495| 701.955| 792.180]
-[ 498.045| 407.820| 384.360| 317.595| 294.135| 203.910| 180.450| 113.685|  90.225|   0.000|  23.460|  90.225| 113.685| 180.450| 203.910| 294.135| 317.595| 384.360| 407.820| 498.045| 521.505| 588.270| 611.730| 701.955]
-[ 521.505| 431.280| 407.820| 341.055| 317.595| 227.370| 203.910| 137.145| 113.685|  23.460|   0.000|  66.765|  90.225| 156.990| 180.450| 270.675| 294.135| 360.900| 384.360| 474.585| 498.045| 564.810| 588.270| 678.495]
-[ 588.270| 498.045| 474.585| 407.820| 384.360| 294.135| 270.675| 203.910| 180.450|  90.225|  66.765|   0.000|  23.460|  90.225| 113.685| 203.910| 227.370| 294.135| 317.595| 407.820| 431.280| 498.045| 521.505| 611.730]
-[ 611.730| 521.505| 498.045| 431.280| 407.820| 317.595| 294.135| 227.370| 203.910| 113.685|  90.225|  23.460|   0.000|  66.765|  90.225| 180.450| 203.910| 270.675| 294.135| 384.360| 407.820| 474.585| 498.045| 588.270]
-[ 678.495| 588.270| 564.810| 498.045| 474.585| 384.360| 360.900| 294.135| 270.675| 180.450| 156.990|  90.225|  66.765|   0.000|  23.460| 113.685| 137.145| 203.910| 227.370| 317.595| 341.055| 407.820| 431.280| 521.505]
-[ 701.955| 611.730| 588.270| 521.505| 498.045| 407.820| 384.360| 317.595| 294.135| 203.910| 180.450| 113.685|  90.225|  23.460|   0.000|  90.225| 113.685| 180.450| 203.910| 294.135| 317.595| 384.360| 407.820| 498.045]
-[ 792.180| 701.955| 678.495| 611.730| 588.270| 498.045| 474.585| 407.820| 384.360| 294.135| 270.675| 203.910| 180.450| 113.685|  90.225|   0.000|  23.460|  90.225| 113.685| 203.910| 227.370| 294.135| 317.595| 407.820]
-[ 815.640| 725.415| 701.955| 635.190| 611.730| 521.505| 498.045| 431.280| 407.820| 317.595| 294.135| 227.370| 203.910| 137.145| 113.685|  23.460|   0.000|  66.765|  90.225| 180.450| 203.910| 270.675| 294.135| 384.360]
-[ 882.405| 792.180| 768.720| 701.955| 678.495| 588.270| 564.810| 498.045| 474.585| 384.360| 360.900| 294.135| 270.675| 203.910| 180.450|  90.225|  66.765|   0.000|  23.460| 113.685| 137.145| 203.910| 227.370| 317.595]
-[ 905.865| 815.640| 792.180| 725.415| 701.955| 611.730| 588.270| 521.505| 498.045| 407.820| 384.360| 317.595| 294.135| 227.370| 203.910| 113.685|  90.225|  23.460|   0.000|  90.225| 113.685| 180.450| 203.910| 294.135]
-[ 996.090| 905.865| 882.405| 815.640| 792.180| 701.955| 678.495| 611.730| 588.270| 498.045| 474.585| 407.820| 384.360| 317.595| 294.135| 203.910| 180.450| 113.685|  90.225|   0.000|  23.460|  90.225| 113.685| 203.910]
-[1019.550| 929.325| 905.865| 839.100| 815.640| 725.415| 701.955| 635.190| 611.730| 521.505| 498.045| 431.280| 407.820| 341.055| 317.595| 227.370| 203.910| 137.145| 113.685|  23.460|   0.000|  66.765|  90.225| 180.450]
-[1086.315| 996.090| 972.630| 905.865| 882.405| 792.180| 768.720| 701.955| 678.495| 588.270| 564.810| 498.045| 474.585| 407.820| 384.360| 294.135| 270.675| 203.910| 180.450|  90.225|  66.765|   0.000|  23.460| 113.685]
-[1109.775|1019.550| 996.090| 929.325| 905.865| 815.640| 792.180| 725.415| 701.955| 611.730| 588.270| 521.505| 498.045| 431.280| 407.820| 317.595| 294.135| 227.370| 203.910| 113.685|  90.225|  23.460|   0.000|  90.225]
-[1200.000|1109.775|1086.315|1019.550| 996.090| 905.865| 882.405| 815.640| 792.180| 701.955| 678.495| 611.730| 588.270| 521.505| 498.045| 407.820| 384.360| 317.595| 294.135| 203.910| 180.450| 113.685|  90.225|   0.000]
-'''
 class Intonation(object):
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         self.rf     = rf
@@ -86,6 +65,26 @@ class Intonation(object):
     def i2dCent(k):
         return k  if   0<=k<50  else k-100 if  50<=k<150 else k-200 if 150<=k<250 else k-300  if 250<=k<350  else k-400  if  350<=k<450  else k-500  if  450<=k<550   else k-600 if 550<=k<650 else \
             k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150<=k<=1200 else None
+
+    def abc2r(self, a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
+        pa0, pb0 = a ** c, b ** c
+        r0       = pa0 / pb0
+        r, j     = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+        ca       = c + j if j > 0 else c
+        cb       = c - j if j < 0 else c
+        return r, ca, cb
+
+    def abcs(self, a=7, b=6): # todo generalize m2bc ?
+        abc1 = stck5ths(a)
+        abc2 = stck4ths(b)
+        abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
+        abc4 = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
+        return [ abc1, abc2, abc3, abc4 ] 
+
+    def i2Abcs(self): # todo generalize m2bc ?
+        f = self.abcs   ;   i = self.i   ;   j = self.j
+        return f(6, 5) if j==i else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else f(0, 11) if j==i+6 \
+                               else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(12, 0)
     ####################################################################################################################################################################################################
     @staticmethod
     def norm(n):
@@ -98,6 +97,15 @@ class Intonation(object):
                 n *= 2  ;  i += 1
         return n, i
     ####################################################################################################################################################################################################
+    def fmtNPair(self, k, i, dbg=0): # todo generalize m2bc ? fixme
+        n0, _   = self.i2nPair(self.i, s=1)
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (self.i + 4, self.i + 6, self.i + 11) else 1, s=1, e=1)   ;   slog(f'{self.i=} {n0=} {n1=} {n2=}') if dbg else None
+        if i and i != NT:
+            if          n1 == self.COFM[n0][1]:   return n2
+            elif n2 and n2 != self.COFM[n0][1]:   n1 += '/' + n2
+        slog(f'return {n1=}') if dbg else None
+        return n1
+
     @staticmethod
     def f2nPair(f, rf=440, b=None, s=0, e=0):
         ni = NT * math.log2(f / rf) # fixme
@@ -156,26 +164,31 @@ class Intonation(object):
                 self.j = self.i + (i * 7) % NT
                 self._setup(u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
-    def _setup(self, u=9, o=0, dbg=1):       pass
     def dmpNiMap(self, ni, x, upd=0, dbg=1): pass
     def dmpCkMap(self, u=9, o=0, dbg=1):     pass
+
+    def upd_ckmap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2 # todo move to base class, but abc arg and key is an issue
+        assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
+        ckm[ck]['Count'] = ckm[ck]['Count'] + 1 if 'Count' in ckm[ck] else 1
+        ckm[ck]['Freq']  = f                      ;   ckm[ck]['Wavln'] = self.w0 / f
+        ckm[ck]['Cents'] = cent                   ;   ckm[ck]['DCent'] = self.i2dCent(cent)
+        ckm[ck]['Note']  = n                      ;   ckm[ck]['Abcd']  = abc
+        ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Index'] = idx
     ####################################################################################################################################################################################################
-    '''
     def _setup(self, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'  ;  self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
         if dbg: slog(f'BGN Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
-        tmp, abc1, abc2, abc3, abc4 = self.sub_setup(u=u, o=o, dbg=dbg) # ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
-#        tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
-#        for i, e in enumerate(abc0):
-#            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
-#            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=:2} {i=} {self.j=} {n=} {c=} {r=} {abcd=}'  ;  v = self.ck2ikm[rc]
-#            while self.centKs[cki] < rc:
-#                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
-#                cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-#            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)  ;  vs.append(v)
-#            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
-#            if not dbg:   self.upd_ckmap(rc, ckm, n, f, abcd, c, i)
+        tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
+        for i, e in enumerate(abc0):
+            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
+            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=:2} {i=} {self.j=} {n=} {c=} {r=} {abcd=}'  ;  v = self.ck2ikm[rc]
+            while self.centKs[cki] < rc:
+                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
+                cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
+            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)  ;  vs.append(v)
+            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
+            if not dbg:   self.upd_ckmap(rc, ckm, n, f, abcd, c, i)
         self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
         while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
@@ -197,7 +210,6 @@ class Intonation(object):
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
         self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
-    '''
     ####################################################################################################################################################################################################
     def dmpMaps(self, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
         if dbg:

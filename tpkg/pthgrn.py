@@ -12,72 +12,6 @@ NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUN
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
-def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
-def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
-def stackI(a, b, c): return [ a, b, c ]
-def fabc(abc):       return [ fmtl(e, w=2, d=Z) for e in abc ]
-
-def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
-    pa0, pb0 = a ** c, b ** c
-    r0       = pa0 / pb0
-    r, j     = ivls.Intonation.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-    ca       = c + j if j > 0 else c
-    cb       = c - j if j < 0 else c
-#    pa, pb   = a ** ca, b ** cb
-#    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-    return r, ca, cb
-
-def testStacks(n=100, dbg=0):
-    i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
-    i4s, f4s = test4ths(n, -1)
-    for i, k in enumerate(i5s.keys()):
-        if k in i4s and i4s[k][0] > 0:
-            if dbg:    slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}') if dbg else None
-    for i, k in enumerate(i4s.keys()):
-        if k in i5s and i5s[k][0] > 0:
-            if dbg:    slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}') if dbg else None
-
-def test5ths(n, i, dbg=0):
-    mi, mf = {}, {}   ;   w = '10.5f'
-    for m in range(1, n+1):
-        s5s       = stck5ths(m)
-        a, b, c   = s5s[i]
-        r, ca, cb = abc2r(a, b, c)
-        pa, pb    = a**ca, b**cb   ;   p = pa/pb
-        cents     = ivls.Intonation.r2cents(p)
-        kf, ki    = cents, round(cents)
-        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
-        if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
-        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-        if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
-        if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())                     ;   slog(f'5ths {fmtl(ks, w=4)}', p=0)
-    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
-    return mi, mf
-
-def test4ths(n, i, dbg=0):
-    mi, mf = {}, {}   ;   w = '10.5f'
-    for m in range(1, n+1):
-        s4s       = stck4ths(m)
-        a, b, c   = s4s[i]
-        r, ca, cb = abc2r(a, b, c)
-        pa, pb    = a**ca, b**cb   ;   p = pa/pb
-        cents     = ivls.Intonation.r2cents(p)
-        kf, ki    = cents, round(cents)
-        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
-        if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
-        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-        if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
-        if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
-    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
-    return mi, mf
-########################################################################################################################################################################################################
-########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
@@ -88,64 +22,6 @@ class Pthgrn(ivls.Intonation):
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
     ####################################################################################################################################################################################################
-    @staticmethod
-    def abcs(a=7, b=6): # todo generalize m2bc ?
-        abc1 = stck5ths(a)
-        abc2 = stck4ths(b)
-        abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
-        abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])
-        return [ abc1, abc2, abc3, abc4 ] 
-
-    def i2Abcs(self): # todo generalize m2bc ?
-        f = self.abcs   ;   i = self.i   ;   j = self.j
-        return f(6, 5) if j==i else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else f(0, 11) if j==i+6 \
-                               else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(12, 0)
-    ####################################################################################################################################################################################################
-    def fmtNPair(self, k, i, dbg=0): # todo generalize m2bc ? fixme
-        n0, _   = self.i2nPair(self.i, s=1)
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (self.i + 4, self.i + 6, self.i + 11) else 1, s=1, e=1)   ;   slog(f'{self.i=} {n0=} {n1=} {n2=}') if dbg else None
-        if i and i != NT:
-            if          n1 == self.COFM[n0][1]:   return n2
-            elif n2 and n2 != self.COFM[n0][1]:   n1 += '/' + n2
-        slog(f'return {n1=}') if dbg else None
-        return n1
-    ####################################################################################################################################################################################################
-    def _setup(self, u=9, o=0, dbg=1): # todo generalize m2bc ?
-        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'  ;  self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
-        if dbg: slog(f'BGN Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
-        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
-        tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
-        for i, e in enumerate(abc0):
-            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
-            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=:2} {i=} {self.j=} {n=} {c=} {r=} {abcd=}'  ;  v = self.ck2ikm[rc]
-            while self.centKs[cki] < rc:
-                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
-                cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)  ;  vs.append(v)
-            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
-            if not dbg:   self.upd_ckmap(rc, ckm, n, f, abcd, c, i)
-        self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
-        while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
-        while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
-        if dbg:
-            slog(f'{mm}CentK{mm}{nn}[{nn}{fmtl(cks,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
-            slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
-            slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
-        self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
-    ####################################################################################################################################################################################################
     def epsilon(self, dbg=0): # todo generalize m2bc ?
         ccents = self.comma()
         ecents = ccents / NT
@@ -154,9 +30,9 @@ class Pthgrn(ivls.Intonation):
         
     def comma(self, dbg=0): # todo generalize m2bc ?
         n, i, iv  = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
-        s5s       = stck5ths(n)
+        s5s       = ivls.stck5ths(n)
         a, b, c   = s5s[i]
-        r, ca, cb = abc2r(a, b, c)
+        r, ca, cb = self.abc2r(a, b, c)
         if dbg:   slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
         if dbg:   slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
         assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
@@ -235,7 +111,7 @@ class Pthgrn(ivls.Intonation):
         abcs = self.nimap[self.j][1]    ;   aa, bb = [], []
         for j, abc in enumerate(abcs):
             a, b, c = abc[0], abc[1], abc[2]
-            r, ca, cb = abc2r(a, b, c)
+            r, ca, cb = self.abc2r(a, b, c)
             aa.append(a ** ca)     ;    bb.append(b ** cb)
         self.dmp_rABs(rAs, rBs, o) if o == 1 else self.dmp_rABs(aa, bb, o)
 
@@ -255,7 +131,7 @@ class Pthgrn(ivls.Intonation):
         abcs = self.nimap[self.j][1]    ;   As, Bs = [], []
         for j, abc in enumerate(abcs):
             a, b, c = abc[0], abc[1], abc[2]
-            r, ca, cb = abc2r(a, b, c)
+            r, ca, cb = self.abc2r(a, b, c)
             As.append(a ** ca)     ;    Bs.append(b ** cb)
         self.dmp_rArBs(As, Bs, rAs, rBs, u=u)        
 
@@ -313,13 +189,6 @@ class Pthgrn(ivls.Intonation):
             data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
             fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
-    def upd_ckmap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2 # todo move to base class, but abc arg and key is an issue
-        assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
-        ckm[ck]['Count'] = ckm[ck]['Count'] + 1 if 'Count' in ckm[ck] else 1
-        ckm[ck]['Freq']  = f                      ;   ckm[ck]['Wavln'] = self.w0 / f
-        ckm[ck]['Cents'] = cent                   ;   ckm[ck]['DCent'] = self.i2dCent(cent)
-        ckm[ck]['Note']  = n                      ;   ckm[ck]['Abcd']  = abc
-        ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Index'] = idx
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
