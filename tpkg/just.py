@@ -112,6 +112,9 @@ CRS  = [ R1, R2, R3 ]
 #  0  | 71  92 112 133|182 204 223|275 294 316|386 427|478 498 520|569 590 610 631|680 702 722|773 814|884 906 925|977 996 1018|1067 1088 1108 1129|1200
 ########################################################################################################################################################################################################
 class Just(ivls.Intonation): 
+    def __str__(self):  return f'{self.__class__.__name__}'
+    def __repr__(self): return f'{self.__class__.__name__}'
+
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
 #        self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
@@ -121,15 +124,15 @@ class Just(ivls.Intonation):
         self.centKs = [   0,  71,   92,  112,  133,  182,  204,  223,  275,  294,  316,  386,  427,  478,  498,  520,  569,  590,  610,  631,  680,  702,  722,  773,  814,  884,  906,  925,  977,  996,  1018, 1067, 1088, 1108, 1129, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
-    def dmpData(self, csv=0): # todo fixme 
+    def dmpData(self, csv=0): # todo REMOVE
         self.csv = csv
         slog(f'BGN {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
-#        self.i = self.i0
 #        self.dmpJust()
 #        self.dmpJust(st=1)
         for i in range(0, NT):
             self.j = self.i + (i * 7) % NT
             self.dmpJust(st=1)
+#            self.setup(o=0, csv=csv)
 #        for i in range(7, NT):
 #            self.j = self.i + (i * 7) % NT
 #            self.dmpJust()
@@ -138,16 +141,7 @@ class Just(ivls.Intonation):
 #            self.dmpJust()
         slog(f'END {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
     ####################################################################################################################################################################################################
-    def fmtNPair(self, k, i, s=0, dbg=0): # todo fixme
-        n0, _   = self.i2nPair(self.i, s=1)   ;   s = '/' if s else W
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or self.j in (self.i + 4, self.i + 6, self.i + 11) else 1, s=1, e=1)   ;   slog(f'{self.i=:2} {n0=:2} {n1=:2} {n2=:2}') if dbg else None
-        if i and i != NT:
-            if          n1 == self.COFM[n0][1]:   return n2
-            elif n2 and n2 != self.COFM[n0][1]:   n1 += s + n2
-        slog(f'return {n1=}') if dbg else None
-        return n1
-
-    def fmtNote(self, k, i, b=1):
+    def fmtNote(self, k, i, b=1): # todo generalize m2bc ?
         n1, n2   = self.i2nPair(k + i, b=b, s=1)
         return n1
 
@@ -185,7 +179,7 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             self.k = self.j - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNPair(self.k, (j*7)%NT)
+                n = self.fmtNPair(self.k, (j*7)%NT, j=0)
                 if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 u = CRS[i][j]
                 v, p = self.norm(u)

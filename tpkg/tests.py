@@ -180,7 +180,7 @@ class Tetractys:
         slog(f'{fmtl(self.b, w=5)}', p=0, f=ff)
         slog(f'{fmtl(self.c, w=5)}', p=0, f=ff)
         
-    def dmpData(self, o, csv=0):
+    def setup(self, o, csv=0):
         self.__init__(self.pythgrn, csv)
         u = 12 if csv else 13
         self.sort()
