@@ -174,10 +174,15 @@ class Intonation(object):
         ckm[ck]['Cents'] = cent                   ;   ckm[ck]['DCent'] = self.i2dCent(cent)
         ckm[ck]['Note']  = n                      ;   ckm[ck]['Abcd']  = abc
         ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Index'] = idx
+    
+    def dmpIndices(self, n, pfx, w):
+        mm, ff = (Y, 3) if self.csv else(W, 1)   ;   ww = f'^{w}'
+        ii = [ f'{i}' for i in range(n) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def _setup(self, u=9, o=0, dbg=1):
-        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'  ;  self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
-        if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
+        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
+        self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
+        if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(2*NT, pfx, x)  ;  self.dmpDataTableLine(x + 1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
         tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
@@ -213,36 +218,36 @@ class Intonation(object):
     ####################################################################################################################################################################################################
     def dmpMaps(self, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
         if dbg:
-            self.dmpNiMap(  0, x=13, upd=1, dbg=dbg)
-            self.dmpNiMap(  1, x=13, upd=1, dbg=dbg)
-            self.dmpNiMap(  2, x=13, upd=1, dbg=dbg)
-            self.dmpNiMap(  3, x=13, upd=1, dbg=dbg)
-            self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
-            self.dmpCks2Iks(   x=13                )
-            self.dmpCkMap(     u=u,         dbg=dbg)
-            self.dmpNiMap(  0, x=9,  upd=0, dbg=dbg)
-            self.dmpNiMap(  1, x=9,  upd=0, dbg=dbg)
-            self.dmpNiMap(  2, x=9,  upd=0, dbg=dbg)
-            self.dmpNiMap(  3, x=9,  upd=0, dbg=dbg)
-            self.dmpNiMap(  4, x=9,  upd=0, dbg=dbg)
-            self.dmpCks2Iks(   x=9                 )
-            self.checkIvals(                       )
-            self.checkIvals2(                      )
+            self.dmpNiMap(0, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(1, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(2, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(3, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(4, x=13, upd=1, dbg=dbg)
+            self.dmpCk2Ik(   x=13                )
+            self.dmpCkMap(   u=u,         dbg=dbg)
+            self.dmpNiMap(0, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(1, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(2, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(3, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(4, x=9,  upd=0, dbg=dbg)
+            self.dmpCk2Ik(   x=9                 )
+            self.chckIvls(                       )
+            self.chckIvl2(                       )
         else:
             assert u == 12 or u == 13, f'{u=} {self.i=} {self.j=} {self.k=} {self.m=} {o=} {dbg=} {self.csv=}'
             self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(     u=u,  o=o,   dbg=dbg)
         self.ckmap = self.reset_ckmap() # todo call this once @ end of dmpMaps()
     ####################################################################################################################################################################################################
-    def dmpCks2Iks(self, x=13): # todo move to base class
+    def dmpCk2Ik(self, x=13): # todo move to base class
         mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
         elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
         else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=oo,  d=Z)}', p=0, f=f2)
     ####################################################################################################################################################################################################
-    def checkIvals(self):
+    def chckIvls(self):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
-        slog(f'BGN checkIvals() {self.csv=}', p=0, f=ff)
+        slog(f'BGN chckIvls() {self.csv=}', p=0, f=ff)
         msgs, ws = [], [3, 7, 7, 7, 6, 5, 10, 4, 3]
         keys = list(list(self.ckmap.values())[0].keys())   ;   keys[0] = 'Knt'   ;   keys[-1] = 'Idx'
         slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, u="^", w=ws, s=mm, d=Z)}', p=0, f=ff)
@@ -253,21 +258,21 @@ class Intonation(object):
             msg += f']{nn}]'   ;   msgs.append(msg)
         msgs = '\n'.join(msgs)
         slog(f'{msgs}', p=0, f=ff)
-        slog(f'END checkIvals() {self.csv=}', p=0, f=ff)
+        slog(f'END chckIvls() {self.csv=}', p=0, f=ff)
 
-    def checkIvals2(self):
+    def chckIvl2(self):
         ff = 3 if self.csv else -3
 #        self.dmpCkmap()
         cntr = Counter()
         keys = list(self.ckmap.keys())
         for k in keys:
-            if self.ckmap[k]["Count"] > 0: self.checkIvals2A(k, cntr)
+            if self.ckmap[k]["Count"] > 0: self.chckIvl2A(k, cntr)
         sl = cntr.most_common()   ;   m, n = 0, 0
         for e in sl:
             n += e[1]   ;   m += 1
         slog(f'{n=} {m=} {fmtl(sl)}', p=0, f=ff)
 
-    def checkIvals2A(self, key, cntr):
+    def chckIvl2A(self, key, cntr):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', -3)  ;  x = 8  ;  uu = f'{x}'  ;   ww = f'{x}.3f'
         cs = []   ;   blnk = x*W   ;   cmk = 'Cents'
         cmv  = self.ckmap[key][cmk]

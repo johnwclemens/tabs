@@ -50,8 +50,8 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4
-        ii = [ f'{i}' for i in range(2 * NT) ]   ;   pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[self.j] #  ;   w2 = '7.2f'
-        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 0 else None    ;   self.dmpDataTableLine(x + 1) if ni==0 else None
+        pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[self.j] #  ;   w2 = '7.2f'
+        if dbg and ni==0:  self.dmpIndices(2*NT, pfx2, x)   ;   self.dmpDataTableLine(x + 1)
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1 #  ;   self.k = kk
             rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
@@ -76,7 +76,7 @@ class Pthgrn(ivls.Intonation):
                 elif ni==4:           slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)
             elif ni==0:               slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
             elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
-        if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}',    p=0, f=ff) if ni == 4 else None
+        if dbg: self.dmpDataTableLine(x + 1)   ;   self.dmpIndices(2*NT, pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, u=9, o=0, dbg=1): # todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, ww, y = self.FREFS[self.j], 0, Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
@@ -92,8 +92,7 @@ class Pthgrn(ivls.Intonation):
             else: n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
             if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
         if dbg:
-            ii = [ f'{i}' for i in range(2 * NT) ]
-            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,  w=ww, s=mm, d=Z)}',       p=0, f=ff)  ;  self.dmpDataTableLine(u + 1)
+            self.dmpIndices(2*NT, f'{mm}  k  {mm}{nn} {nn}', u)  ;  self.dmpDataTableLine(u + 1)
             slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(cks, w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
