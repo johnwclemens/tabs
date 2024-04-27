@@ -21,11 +21,6 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
 ########################################################################################################################################################################################################
-#def dmpData(csv=0):
-#    slog(f'BGN {csv=}')
-#    dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
-#    slog(f'END {csv=}')
-########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 '''
 [   0.000|  90.225| 113.685| 180.450| 203.910| 294.135| 317.595| 384.360| 407.820| 498.045| 521.505| 588.270| 611.730| 678.495| 701.955| 792.180| 815.640| 882.405| 905.865| 996.090|1019.550|1086.315|1109.775|1200.000]
@@ -122,6 +117,116 @@ class Intonation(object):
         for k, v in self.ckmap.items():
             ks.append(f'{k:4} {v["Count"]:2}')
         slog(f'{fmtl(ks, w=w, s=o)}', p=0)
+    ####################################################################################################################################################################################################
+    def setup(self, o, csv=0):
+        self.csv = csv
+        if   o == 0:
+            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(0, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+        elif o == 1:
+            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(7, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            for i in range(0, 7):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+
+    def setup2(self, o, o2, u=13, dbg=0, csv=0):
+        self.csv = csv
+        if   o == 0:
+            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            self.nimap = {}
+            for i in range(0, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup(u=u, o=o2, dbg=dbg)
+        elif o == 1:
+            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            self.nimap = {}
+            for i in range(7, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup(u=u, o=o2, dbg=dbg)
+            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            for i in range(0, 7):
+                self.j = self.i + (i * 7) % NT
+                self._setup(u=u, o=o2, dbg=dbg)
+    ####################################################################################################################################################################################################
+    def _setup(self, u=9, o=0, dbg=1):       pass
+    def dmpNiMap(self, ni, x, upd=0, dbg=1): pass
+    def dmpCkMap(self, u=9, o=0, dbg=1):     pass
+    ####################################################################################################################################################################################################
+    '''
+    def _setup(self, u=9, o=0, dbg=1):
+        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'  ;  self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
+        if dbg: slog(f'BGN Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
+        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
+        tmp, abc1, abc2, abc3, abc4 = self.sub_setup(u=u, o=o, dbg=dbg) # ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
+#        tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
+#        for i, e in enumerate(abc0):
+#            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
+#            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=:2} {i=} {self.j=} {n=} {c=} {r=} {abcd=}'  ;  v = self.ck2ikm[rc]
+#            while self.centKs[cki] < rc:
+#                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
+#                cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
+#            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)  ;  vs.append(v)
+#            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
+#            if not dbg:   self.upd_ckmap(rc, ckm, n, f, abcd, c, i)
+        self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
+        while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
+        while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
+        if dbg:
+            slog(f'{mm}CentK{mm}{nn}[{nn}{fmtl(cks,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
+            slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
+            slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
+        self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END Pythagorean {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
+    '''
+    ####################################################################################################################################################################################################
+    def dmpMaps(self, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
+        if dbg:
+            self.dmpNiMap(  0, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(  1, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(  2, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(  3, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
+            self.dmpCks2Iks(   x=13                )
+            self.dmpCkMap(     u=u,         dbg=dbg)
+            self.dmpNiMap(  0, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(  1, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(  2, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(  3, x=9,  upd=0, dbg=dbg)
+            self.dmpNiMap(  4, x=9,  upd=0, dbg=dbg)
+            self.dmpCks2Iks(   x=9                 )
+            self.checkIvals(                       )
+            self.checkIvals2(                      )
+        else:
+            assert u == 12 or u == 13, f'{u=} {self.i=} {self.j=} {self.k=} {self.m=} {o=} {dbg=} {self.csv=}'
+            self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
+            self.dmpCkMap(     u=u,  o=o,   dbg=dbg)
+        self.ckmap = self.reset_ckmap() # todo call this once @ end of dmpMaps()
+    ####################################################################################################################################################################################################
+    def dmpCks2Iks(self, x=13): # todo move to base class
+        mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
+        if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
+        elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
+        else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=oo,  d=Z)}', p=0, f=f2)
     ####################################################################################################################################################################################################
     def checkIvals(self):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)

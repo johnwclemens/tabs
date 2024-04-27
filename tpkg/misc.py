@@ -54,6 +54,27 @@ class Modes:
 # source = pyglet.media.load('explosion.wav')
 
 '''
+    def setup(self, o, csv=0):
+        self.csv = csv
+        if   o == 0:
+            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(0, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+        elif o == 1:
+            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(7, NT):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            for i in range(0, 7):
+                self.j = self.i + (i * 7) % NT
+                self._setup()
+
+''' 
+'''
  CentK [      0      |     90      |     114     |     180     |     204     |     294     |     318     |     384     |     408     |     498     |     522     |     588     |     612     |     678     |     702     |     792     |     816     |     882     |     906     |     996     |    1020     |    1086     |    1110     |    1200     ]
  Note  [      C      |    D♭/C♯    |             |             |      D      |    E♭/D♯    |             |             |      E      |      F      |             |             |     F♯      |             |      G      |    A♭/G♯    |             |             |      A      |    B♭/A♯    |             |             |      B      |      C      ]
  Itval [     P1      |     m2      |             |             |     M2      |     m3      |             |             |     M3      |     P4      |             |             |     A4      |             |     P5      |     m6      |             |             |     M6      |     m7      |             |             |     M7      |     P8      ]

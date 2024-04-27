@@ -184,13 +184,13 @@ class Tetractys:
         self.__init__(self.pythgrn, csv)
         u = 12 if csv else 13
         self.sort()
-        self.pythgrn.dmpData2(  o, o2=0, u=u,  dbg=0, csv=csv)
+        self.pythgrn.setup2(  o, o2=0, u=u,  dbg=0, csv=csv)
         self.pythgrn.dmpCks2Iks(   x=7                       )
         self.pythgrn.dmpNiMap(  0, x=7, upd=0, dbg=0         )
         self.pythgrn.dmpCks2Iks(   x=7                       )
         self.pythgrn.dmpNiMap(  5, x=7, upd=0, dbg=0         )
         self.pythgrn.dmpCks2Iks(   x=7                       )
-        self.pythgrn.dmpData2(  o, o2=1,       dbg=0, csv=csv)
+        self.pythgrn.setup2(  o, o2=1,       dbg=0, csv=csv)
         self.octdiv()
         
     def sort(self):
