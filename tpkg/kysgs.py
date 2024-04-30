@@ -77,14 +77,14 @@ def dmpKSVHdr(csv=0, t=0):
     hdrs = y.join(hdrs)    ;    slog(hdrs, p=PFX, f=fd)
 ########################################################################################################################################################################################################
 def fmtKSK(k, csv=0):
-    y = Y if csv else W   ;   w, d = 2, '['     ;    ak = abs(k)
+    y, nn = (Y, Y) if csv else (W, Z)   ;   w, d, d2 = 2, f'[{nn}', f'{nn}]'     ;    ak = abs(k)
     t   = FLAT if k < 0 else SHRP if k > 0 else NTRL    ;   ntype = TYPES[t]
     s   = signed(k)       ;  im = KSD[k][KIM]   ;    i = im[0]    ;    m = im[1]
     iz  = KSD[k][KIS]     ;  jz = KSD[k][KJS]   ;   ms = KSD[k][KMS]
     ns  = [ name(j, t, 0 if ak > 5 else 1) for j in jz ] #    0 4 5 b
     iz  = [ f'{i:x}' for i in iz ]
     jz  = [ f'{j:x}' for j in jz ]
-    _ = [s, ntype, f'{m:{w}}', f'{i:x}', fmtl(ms, w=w, d=d, s=y), fmtl(iz, d=d, s=y), fmtl(jz, d=d, s=y), fmtl(ns, w=w, d=d, s=y)]
+    _ = [s, ntype, f'{m:{w}}', f'{i:x}', fmtl(ms, w=w, d=d, d2=d2, s=y), fmtl(iz, d=d, d2=d2, s=y), fmtl(jz, d=d, d2=d2, s=y), fmtl(ns, w=w, d=d, d2=d2, s=y)]
     return y.join(_)
 ########################################################################################################################################################################################################
 def dumpKSH(csv=0):

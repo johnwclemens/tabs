@@ -4,6 +4,7 @@ from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
 from   collections       import Counter
 from   tpkg              import utl
+import decimal
 
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
@@ -62,18 +63,46 @@ def testSprTxt_3(tobj): # , path):
     slog(f'END {path=} {r=} {c=}')
     #Install pillow for SVG files
 ########################################################################################################################################################################################################
-def test0(tobj, a=3.14159265359, n=4, q=0):
-    slog(f'BGN test0 {a=} {n=} {q=}')
-    slog(utl.fmtf(a*1, n))
-    slog(utl.fmtf(a*10, n))
-    slog(utl.fmtf(a*100, n))
-    slog(utl.fmtf(a*1000, n))
-    slog(utl.fmtf(a*10000, n))
-    slog(utl.fmtf(a*100000, n))
-    slog(utl.fmtf(a*1000000, n))
-    if   q==2: tExit(tobj, f'test0 {a=} {n=} {q=}', 0)
-    elif q==1: tobj.quit(  f'test0 {a=} {n=} {q=}', 0, 0)
-    slog(f'END test0 {a=} {n=} {q=}')
+def test0(a=3.14159265359, n=4):
+    w = 13  ;  x = 6  ;  y = 4  ;  z = f'{x}.{y}'
+    slog(f'BGN test0 {a=} {n=}')
+    fc, fd, fe, ff, fg = 'c', 'd', 'e', 'f', 'g'
+    slog(f'{fc:{w}} {ff:{w}} {fe:{w}} {fg:{w}} {fd:{w}}', p=0)
+    b = a / 1000000  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a / 100000   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a / 10000    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a / 1000     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a / 100      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a / 10       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 1        ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 10       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 100      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 1000     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 10000    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 100000   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = a * 1000000  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    slog(f'END test0 {a=} {n=}')
+
+def test0_(a=3.14159265359, n=4, w=13, x=6, y=4):
+#    w = 13  ;  x = 6  ;  y = 4
+    z = f'{x}.{y}'  ;  D = decimal.Decimal
+    slog(f'BGN test0 {a=} {n=} {w=} {x=} {y=} {z=} {decimal.getcontext()}')
+    fc, fd, fe, ff, fg = 'c', 'd', 'e', 'f', 'g'
+    slog(f'{fc:{w}} {ff:{w}} {fe:{w}} {fg:{w}} {fd:{w}}', p=0)
+    b = D(a / 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a / 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a / 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a / 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a / 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a / 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 1)        ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = D(a * 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    slog(f'END test0 {a=} {n=} {w=} {x=} {y=} {z=} {decimal.getcontext()}')
 
 def test1(tobj, amap, mmap, q=0):
     slog(f'{tobj.nlnsnt()=}')

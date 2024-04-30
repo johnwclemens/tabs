@@ -65,7 +65,7 @@ class Intonation(object):
     def i2dCent(k):
         return k  if   0<=k<50  else k-100 if  50<=k<150 else k-200 if 150<=k<250 else k-300  if 250<=k<350  else k-400  if  350<=k<450  else k-500  if  450<=k<550   else k-600 if 550<=k<650 else \
             k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150<=k<=1200 else None
-
+    ####################################################################################################################################################################################################
     def abc2r(self, a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
         pa0, pb0 = a ** c, b ** c
         r0       = pa0 / pb0
@@ -120,12 +120,6 @@ class Intonation(object):
             m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
         return n, m
     ####################################################################################################################################################################################################
-    def dmpCkmap(self):
-        ks = []   ;   x = 8   ;   w = f'^{x}'   ;   o = '|'
-        for k, v in self.ckmap.items():
-            ks.append(f'{k:4} {v["Count"]:2}')
-        slog(f'{fmtl(ks, w=w, s=o)}', p=0)
-    ####################################################################################################################################################################################################
     def setup(self, o, csv=0):
         self.csv = csv
         if   o == 0:
@@ -164,20 +158,26 @@ class Intonation(object):
                 self.j = self.i + (i * 7) % NT
                 self._setup(u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
-    def dmpNiMap(self, ni, x, upd=0, dbg=1): pass
-    def dmpCkMap(self, u=9, o=0, dbg=1):     pass
+    def dmpNiMap( self, ni, x, upd=0, dbg=1): pass
+    def dmpCkMap( self, u=9, o=0, dbg=1):     pass
 
-    def upd_ckmap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2 # todo move to base class, but abc arg and key is an issue
+    def dmpCkMap2(self):
+        ks = []   ;   x = 8   ;   w = f'^{x}'   ;   o = '|'
+        for k, v in self.ckmap.items():
+            ks.append(f'{k:4} {v["Count"]:2}')
+        slog(f'{fmtl(ks, w=w, s=o)}', p=0)
+
+    def updCkMap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2 # todo move to base class, but abc arg and key is an issue
         assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
         ckm[ck]['Count'] = ckm[ck]['Count'] + 1 if 'Count' in ckm[ck] else 1
-        ckm[ck]['Freq']  = f                      ;   ckm[ck]['Wavln'] = self.w0 / f
-        ckm[ck]['Cents'] = cent                   ;   ckm[ck]['DCent'] = self.i2dCent(cent)
-        ckm[ck]['Note']  = n                      ;   ckm[ck]['Abcd']  = abc
-        ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Index'] = idx
-    
+        ckm[ck]['Freq']  = f                     ;   ckm[ck]['Wavln'] = self.w0 / f
+        ckm[ck]['Cents'] = cent                  ;   ckm[ck]['DCent'] = self.i2dCent(cent)
+        ckm[ck]['Note']  = n                     ;   ckm[ck]['Abcd']  = abc
+        ckm[ck]['Ival']  = self.ck2ikm[ck]       ;   ckm[ck]['Index'] = idx
+    ####################################################################################################################################################################################################
     def dmpIndices(self, n, pfx, w):
         mm, ff = (Y, 3) if self.csv else(W, 1)   ;   ww = f'^{w}'
-        ii = [ f'{i}' for i in range(n) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
+        ii     = [ f'{i}' for i in range(n) ]    ;   slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def _setup(self, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
@@ -187,20 +187,21 @@ class Intonation(object):
         tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
-            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {n=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'  ;  v = self.ck2ikm[rc]
+            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {n=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}' # ;  v = self.ck2ikm[cki]
             while self.centKs[cki] < rc:
-                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
+                v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]  ;  vs.append(v)  ;  cs.append(c)  ;  ds.append(d)
+                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)  ;  vs.append(v)
+            v = self.ck2ikm[rc]  ;  vs.append(v)  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
-            if not dbg:   self.upd_ckmap(rc, ckm, n, f, abcd, c, i)
+            if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
         self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
         while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         if dbg:
             slog(f'{mm}CentK{mm}{nn}[{nn}{fmtl(cks,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
@@ -260,9 +261,9 @@ class Intonation(object):
         slog(f'{msgs}', p=0, f=ff)
         slog(f'END chckIvls() {self.csv=}', p=0, f=ff)
 
-    def chckIvl2(self):
+    def chckIvl2(self, cm=0):
         ff = 3 if self.csv else -3
-#        self.dmpCkmap()
+        if cm:    self.dmpCkMap2()
         cntr = Counter()
         keys = list(self.ckmap.keys())
         for k in keys:

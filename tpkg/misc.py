@@ -53,27 +53,51 @@ class Modes:
 # pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent')
 # source = pyglet.media.load('explosion.wav')
 
-'''
-    def setup(self, o, csv=0):
-        self.csv = csv
-        if   o == 0:
-            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-            self.nimap = {}
-            for i in range(0, NT):
-                self.j = self.i + (i * 7) % NT
-                self._setup()
-        elif o == 1:
-            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-            self.nimap = {}
-            for i in range(7, NT):
-                self.j = self.i + (i * 7) % NT
-                self._setup()
-            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-            for i in range(0, 7):
-                self.j = self.i + (i * 7) % NT
-                self._setup()
+# The Pthgrn subclass and the superclass assume a is the numerator, b is the denomnator, and c is the exponent that applies to both the numerator and denominator e.g. (2, 3, 5) (2/3)^5
+# The addFmtRs() and fmtR0() fmtRA() etc... methods are awkward because this not the case for the Just subclass which uses a separate negative exponent.
+# In either case the result is octave adjusted dividing or multiplying the result by 2 until its between 1 and 2.
 
-''' 
+# So it seems wether or not 2 is an explicit factor with either its own or a shared exponent is not worth worrying about since we
+# still need to octave adjust the result by halving it or doubling it until its between 1 and 2.
+
+# We can use two lists (one list to specify the prime factors and a second list to specify their corresponding exponents) or a dict of prime factors and exponents or a list of prime factor exponent list pairs.
+# e.g. fs  = [2, 3] es = [5, -5] # orig (2/3)^5 or 2^5 * 3^-5
+#      fs  = [2, 3] es = [8, -5] # octa 2^8/3^5 or 2^8 * 3^-5
+#      fes = {2: 5, 3: -5}       # orig (2/3)^5 or 2^5 * 3^-5
+#      fes = {2: 8, 3: -5}       # octa 2^8/3^5 or 2^8 * 3^-5
+#      fes = [[2, 5], [3, -5]]
+#      fes = [[2, 8], [3, -5]]
+# or  fes2 = {2: [5, 8], 3: [-5, -5]} # (2/3)^5, 2^8/3^5
+# [[a1, b1, c1],        [a2, b2, c2]        ... [an, bn, cn]]        # current return
+# [[a1, b1, c1, d1],    [a2, b2, c2, d2]    ... [an, bn, cn, dn]]    # need to return
+# [[a1, b1], [c1, d1]], [[a2, b2] [c2, d2]] ... [[an, bn], [cn, dn]] # need to return
+
+'''
+11 Abb Bbb Cb  Db  Ebb Fb  Gb  Abb
+10 Ebb Fb  Gb  Ab  Bbb Cb  Db  Ebb
+-9 Bbb Cb  Db  Ebb Fb  Gb  Ab  Bbb
+-8 Fb  Gb  Ab  Bbb Cb  Db  Eb  Fb
+-7 Cb  Db  Eb  Fb  Gb  Ab  Bb  Cb
+-6 Gb  Ab  Bb  Cb  Db  Eb  F   Gb
+-5 Db  Eb  F   Gb  Ab  Bb  C   Db
+-4 Ab  Bb  C   Db  Eb  F   G   Ab
+-3 Eb  F   G   Ab  Bb  C   D   Eb
+-2 Bb  C   D   Eb  F   G   A   Bb
+-1 F   G   A   Bb  C   D   E   F
+ 0 C   D   E   F   G   A   B   C
+ 1 G   A   B   C   D   E   F#  G
+ 2 D   E   F#  G   A   B   C#  D
+ 3 A   B   C#  D   E   F#  G#  A
+ 4 E   F#  G#  A   B   C#  D#  E
+ 5 B   C#  D#  E   F#  G#  A#  B
+ 6 F#  G#  A#  B#  C#  D#  E#  F#
+ 7 C#  D#  E#  F#  G#  A#  B#  C#
+ 8 G#  A#  B#  C#  D#  E#  F## G#
+ 9 D#  E#  F## G#  A#  B#  C## D#
+10 A#  B#  C## D#  E#  F## G## A#
+11 E#  F## G## A#  B#  C## D## E#
+'''
+
 '''
  CentK [      0      |     90      |     114     |     180     |     204     |     294     |     318     |     384     |     408     |     498     |     522     |     588     |     612     |     678     |     702     |     792     |     816     |     882     |     906     |     996     |    1020     |    1086     |    1110     |    1200     ]
  Note  [      C      |    D♭/C♯    |             |             |      D      |    E♭/D♯    |             |             |      E      |      F      |             |             |     F♯      |             |      G      |    A♭/G♯    |             |             |      A      |    B♭/A♯    |             |             |      B      |      C      ]
@@ -355,12 +379,12 @@ j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e    
 a 1000 20 m7 10 @  996 :  -3.910 = 1.955 *  2    A6  2 @ 1020 :  19.550 = 1.955 * 10
 b 1100 22 M7  7 @ 1110 :   9.780 = 1.955 *  5    d8  5 @ 1086 : -13.690 = 1.955 *  7
 c 1200 24 P8 12 @ 1200 :   0.000 = 1.955 *  0    A7  0 @ 1178 :         = 1.955 * 12
-
+########################################################################################################################################################################################################
 Consider adding: c/t and c`/t` current of total counts (above verses below)?
 However, currently by luck, the csv colors are mapped perfectly to the number and type of columns!
 So that the cols with the same header have the same color!
 Consider more table decoration: top/bottom rows, left/right cols, vertical dividers '|' etc
-
+########################################################################################################################################################################################################
 j j*100 i Iv  c/t      k       d       e      c`/t    Iv  c/t     k       d       e      c`/t
 0    0  0 P1  1/12 @    0 :   0.000 = 1.955 *  0/0    d2  0/0 @   24 :         = 1.955 *  1/12
 1  100  2 m2  1/ 7 @   90 :  -9.780 = 1.955 *  0/5    A1  0/5 @  114 :         = 1.955 *  1/ 7
