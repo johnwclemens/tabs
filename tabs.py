@@ -499,6 +499,8 @@ class Tabs(pyglet.window.Window):
             tetract.setup(o=0)    ;    tetract.setup(o=0, csv=1)
             pythgrn.setup(o=1)    ;    pythgrn.setup(o=1, csv=1)
             tetract.setup(o=1)    ;    tetract.setup(o=1, csv=1)
+            tests.testIR()
+            tests.testCoins()
 #            justint.setup(o=0)    ;    justint.setup(o=0, csv=1)
 #            overtns.setup(o=0)    ;    overtns.setup(o=0, csv=1)
 #            tests.test0(self, a= 3.14159, n=4)

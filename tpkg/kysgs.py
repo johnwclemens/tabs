@@ -45,7 +45,7 @@ def initKSD(ksd, t):
         n  =   name(j, t, n2=0 if ak > 5 else 1)
         if ak >= 1:   ms2[ak-1] = n  ;  iz2[ak-1] = j   ;  ms = list(ms2)  ;  iz = list(iz2)
         else:                                              ms = list(ms2)  ;  iz = list(iz2)
-        jz = Scales.majIs(i)    ;   im = [i, m] #  ;   ns = []
+        jz = Scales.majorHept(i)    ;   im = [i, m] #  ;   ns = []
         ns = [ name(j, t, n2=0 if ak > 5 else 1) for j in jz ]
         ksd[k]  =  [ im, iz, ms, jz, ns ]
         slog(fmtKSK(k, csv=0), p=PFX, f=FD)
@@ -117,7 +117,7 @@ def nic2KS(nic, dbg=0):
     ns  = KSD[k][KMS]
     if dbg: slog(fmtKSK(k), p=PFX, f=FD)
     if dbg: slog(fmtKSK(k), p=PFX, f=FD)
-    return k, nt, n, i, ns, Scales.majIs(i)
+    return k, nt, n, i, ns, Scales.majorHept(i)
 
 def dumpNic(nic): #fix me
     s = f'{Y}{W}'

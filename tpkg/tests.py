@@ -4,7 +4,8 @@ from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
 from   collections       import Counter
 from   tpkg              import utl
-import decimal
+import decimal           as dcm
+Dcm = dcm.Decimal
 
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
@@ -63,6 +64,39 @@ def testSprTxt_3(tobj): # , path):
     slog(f'END {path=} {r=} {c=}')
     #Install pillow for SVG files
 ########################################################################################################################################################################################################
+def IR(dd, dbg=0):
+    num, den = dd.as_integer_ratio()
+    slog(f'{dd} = {num} / {den}') if dbg else None  ;  return num, den
+
+def testIR():
+    d = ['1.5', '1.75', '2.25', '3.125', '4.4']
+    for i in range(5):
+        dd = Dcm(d[i])
+        num, den = IR(dd)
+        slog(f'{i=} {dd=} = {num} / {den}')
+########################################################################################################################################################################################################
+def testCoins():
+#    d = [1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
+#    d = list(map(str, d))
+    d = ['1.00', '1.01', '1.02', '1.03', '1.04', '1.05', '1.06', '1.07', '1.08', '1.09', '1.10', '1.15', '1.20', '1.25', '1.30', '1.35', '1.40', '1.45', '1.50', '1.60', '1.70', '1.80', '1.90', '2.00', '2.50', '3.00', '3.50', '4.00', '4.50', '5.00', '5.50', '6.00', '6.50', '7.00', '7.50', '8.00', '8.50', '9.00', '9.50', '10.00']
+    p = 3  ;  w = p + 2
+    oc = dcm.getcontext()  ;  cp = oc.prec  ;  cr = oc.rounding
+    slog(f'{cp=} {oc=}')
+    for i in range(len(d)):
+#        c  = dcm.getcontext()
+#        c.prec = p
+#        c.rounding = dcm.ROUND_05UP
+        q = '1'
+        d1 = Dcm(d[i])
+        d2 = d1.quantize(Dcm(q), dcm.ROUND_05UP)
+        slog(f'{i:2} {d[i]:{w}} {q=:6} {d1:{w}} {d2:{w}} {dcm.getcontext()}')
+        dcm.getcontext().clear_flags()
+    c = dcm.getcontext()
+    c.prec = cp
+    c.rounding = cr
+    slog(f'{ c=}')
+    slog(f'{oc=}')
+########################################################################################################################################################################################################
 def test0(a=3.14159265359, n=4):
     w = 13  ;  x = 6  ;  y = 4  ;  z = f'{x}.{y}'
     slog(f'BGN test0 {a=} {n=}')
@@ -85,25 +119,25 @@ def test0(a=3.14159265359, n=4):
 
 def test0_(a=3.14159265359, n=4, w=13, x=6, y=4):
 #    w = 13  ;  x = 6  ;  y = 4
-    z = f'{x}.{y}'  ;  D = decimal.Decimal
-    slog(f'BGN test0 {a=} {n=} {w=} {x=} {y=} {z=} {decimal.getcontext()}')
+    z = f'{x}.{y}'
+    slog(f'BGN test0 {a=} {n=} {w=} {x=} {y=} {z=} {dcm.getcontext()}')
     fc, fd, fe, ff, fg = 'c', 'd', 'e', 'f', 'g'
     slog(f'{fc:{w}} {ff:{w}} {fe:{w}} {fg:{w}} {fd:{w}}', p=0)
-    b = D(a / 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a / 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a / 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a / 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a / 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a / 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 1)        ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    b = D(a * 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
-    slog(f'END test0 {a=} {n=} {w=} {x=} {y=} {z=} {decimal.getcontext()}')
-
+    b = Dcm(a / 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a / 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a / 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a / 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a / 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a / 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 1)        ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 10)       ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 100)      ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 1000)     ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 10000)    ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 100000)   ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    b = Dcm(a * 1000000)  ;  c = utl.fmtf(b, n)  ;  d = f'{b}'  ;  e = f'{b:{z}e}'  ;  f = f'{b:{z}f}'  ;  g = f'{b:{z}g}'  ;  slog(f'{c:{w}} {f:{w}} {e:{w}} {g:{w}} {d:{w}}', p=0)
+    slog(f'END test0 {a=} {n=} {w=} {x=} {y=} {z=} {dcm.getcontext()}')
+########################################################################################################################################################################################################
 def test1(tobj, amap, mmap, q=0):
     slog(f'{tobj.nlnsnt()=}')
     slog(f'{utl.fmtm(amap)}')

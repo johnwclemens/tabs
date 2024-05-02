@@ -81,10 +81,10 @@ class Intonation(object):
         abc4 = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
         return [ abc1, abc2, abc3, abc4 ] 
 
-    def i2Abcs(self): # todo generalize m2bc ?
+    def i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
         f = self.abcs   ;   i = self.i   ;   j = self.j
-        return f(6, 5) if j==i else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else f(0, 11) if j==i+6 \
-                               else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(12, 0)
+        return f(6, 5) if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
+            f(0, 11)   if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
     ####################################################################################################################################################################################################
     @staticmethod
     def norm(n):
@@ -188,10 +188,13 @@ class Intonation(object):
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
             c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {n=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}' # ;  v = self.ck2ikm[cki]
-            while self.centKs[cki] < rc:
+#            assert cki in self.centKs,  f'{cki=} {i=} {e=} {r=} {ca=} {cb=} {abcd=} \n{fmtl(self.centKs)=} \n{fmtm(self.ck2ikm)=}'
+            while cki < len(self.centKs) and self.centKs[cki] < rc:
+#                assert cki==0,  f'{cki=}'
                 v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]  ;  vs.append(v)  ;  cs.append(c)  ;  ds.append(d)
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
+#            else: slog(f'{cki=} welse: {self.centKs[cki]=} < {rc=}, {fmtl(self.centKs)=}') if dbg else None
             v = self.ck2ikm[rc]  ;  vs.append(v)  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
@@ -272,6 +275,7 @@ class Intonation(object):
         for e in sl:
             n += e[1]   ;   m += 1
         slog(f'{n=} {m=} {fmtl(sl)}', p=0, f=ff)
+        slog(f'{fmtm(cntr)}', p=0, f=ff)
 
     def chckIvl2A(self, key, cntr):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', -3)  ;  x = 8  ;  uu = f'{x}'  ;   ww = f'{x}.3f'
