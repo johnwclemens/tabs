@@ -51,17 +51,19 @@ class Pthgrn(ivls.Intonation):
     
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
-        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8', 'LA', 'LB', 'LC', 'LD', 'LE', 'LF']
+        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
+        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
 #                     [  0    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19     20    21    22    23 ]
-        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200,  23,  227,  271,  475,  725, 1177]
+#        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8', 'LA', 'LB', 'LC', 'LD']
+#        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200,  23, 475, 725, 1177]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
     ####################################################################################################################################################################################################
-    def setup(self, o, csv=0):
+    def HIDE__setup(self, o, csv=0):
         self.csv = csv
         if   o == 0:
-            x = 1
+            x = 0
             slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             self.nimap = {}
             for i in range(0, NT + x):
@@ -104,8 +106,7 @@ class Pthgrn(ivls.Intonation):
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
                 cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
                 if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb, e, cent, j)
-                assert cki in self.centKs,  f'{cki=} {ni=} {x=} {upd=} {dbg=} {self.centKs=}'
-                while  self.centKs[cki] < rc:
+                while cki < len(self.centKs) and self.centKs[cki] < rc:
                     rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(_) #  ;   cfnts.append(_)
                     rat1.append(_) if x==13 else None    ;   ratA.append(_) if x==9 else None   ;   ratB.append(_) if x==9 else None
                 cents.append(rc) #  ;   cfnts.append(f'{cent:{w2}}')
