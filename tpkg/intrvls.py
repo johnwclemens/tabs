@@ -122,40 +122,43 @@ class Intonation(object):
     ####################################################################################################################################################################################################
     def setup(self, o, csv=0):
         self.csv = csv
+        x = 0
         if   o == 0:
-            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             self.nimap = {}
-            for i in range(0, NT):
-                self.j = self.i + (i * 7) % NT
+            for i in range(0, NT + x):
+                self.j = self.i + (i * 7) % (NT + x)
+                slog(f'PRT 1 0-({NT}+{x}), {i=} {self.j=} {self.i=:2} {self.m=:2} {self.csv=}', p=0)
                 self._setup()
         elif o == 1:
-            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            slog(f'PRT 2A 7-({NT}+{x=}), {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             self.nimap = {}
-            for i in range(7, NT):
-                self.j = self.i + (i * 7) % NT
+            for i in range(7, NT + x):
+                self.j = self.i + (i * 7) % (NT + x)
                 self._setup()
-            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            slog(f'PRT 2B 0-7({x=}), {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             for i in range(0, 7):
-                self.j = self.i + (i * 7) % NT
+                self.j = self.i + (i * 7) % (NT + x)
                 self._setup()
 
     def setup2(self, o, o2, u=13, dbg=0, csv=0):
         self.csv = csv
+        x = 0
         if   o == 0:
-            slog(f'PRT 1 0-NT {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
             for i in range(0, NT):
-                self.j = self.i + (i * 7) % NT
+                self.j = self.i + (i * 7) % (NT + x)
                 self._setup(u=u, o=o2, dbg=dbg)
         elif o == 1:
-            slog(f'PRT 2A 7-NT {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            slog(f'PRT 2A ({NT}+{x}), {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
             for i in range(7, NT):
-                self.j = self.i + (i * 7) % NT
+                self.j = self.i + (i * 7) % (NT + x)
                 self._setup(u=u, o=o2, dbg=dbg)
-            slog(f'PRT 2B 0-7 {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            slog(f'PRT 2B 0-7({x=}), {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             for i in range(0, 7):
-                self.j = self.i + (i * 7) % NT
+                self.j = self.i + (i * 7) % (NT + x)
                 self._setup(u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
     def dmpNiMap( self, ni, x, upd=0, dbg=1): pass
