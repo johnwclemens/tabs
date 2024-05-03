@@ -4,47 +4,13 @@ from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
 import math
 
-W,  Y,  Z,  slog,  ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
-fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
-
+W,    Y,    Z,    slog,   ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
+fmtl,   fmtm,    fmtf,   fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-#fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
-'''
-         0           1            2           3           4          5           6          7           8           9           10          11          12          13          14      
-    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-0  [    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   |   59049   |  177147   |  531441   |  1594323  |  4782969  ]
-1  [    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   |   59049   |  177147   |   531441  |  1594323  ]
-2  [    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   |   59049   |   177147  |   531441  ]
-3  [   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   |   59049   |   177147  ]
-4  [   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   |   59049   ]
-5  [   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    |   19683   ]
-6  [   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    |   6561    ]
-7  [  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    |   2187    ]
-8  [  1/6561   |  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    |    729    ]
-9  [  1/19683  |  1/6561   |  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    |    243    ]
-a  [  1/59049  |  1/19683  |  1/6561   |  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    |     81    ]
-b  [ 1/177147  |  1/59049  |  1/19683  |  1/6561   |  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     |     27    ]
-c  [ 1/531441  | 1/177147  |  1/59049  |  1/19683  |  1/6561   |  1/2187   |   1/729   |   1/243   |   1/81    |   1/27    |    1/9    |    1/3    |    1/1    |     3     |     9     ]
+########################################################################################################################################################################################################
+########################################################################################################################################################################################################
 
-         0           1            2           3           4          5           6          7           8           9           10          11          12          13          14      
-    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-0  [    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384|59049/32768|177147/    |531441/    |1594323/   |4782969/   ]
-1  [    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384|59049/32768|177147/    |531441/    |1594323/   ]
-2  [   16/9    |    1/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384|59049/32768|177147/    |531441/    ]
-3  [   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384|59049/32768|177147/    ]
-4  [  128/81   |   32/2    |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384|59049/32768]
-5  [  256/243  |  128/81   |   32/27   |   16/9    |   41/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 |19683/16384]
-6  [ 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 | 6561/4096 ]
-7  [ 4096/2187 | 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  | 2187/2048 ]
-8  [ 8182/6561 | 4096/2187 | 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  |  729/512  ]
-9  [32768/19683| 8192/6561 | 4096/2187 | 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/64   |  243/128  ]
-a  [65536/59049|32768/19683| 8192/6561 | 4096/2187 | 1024/729  |  248/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   |   81/32   ]
-b  [    /177147|65536/59049|32768/19683| 8192/6561 | 4096/2187 | 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   27/16   ]
-c  [    /531441|    /177147|65536/59049|32768/19683| 8192/6561 | 4096/2187 | 1024/729  |  256/243  |  128/81   |   32/27   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    ]
-'''
-########################################################################################################################################################################################################
-########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
     def __str__(self):  return f'{self.__class__.__name__}'
     def __repr__(self): return f'{self.__class__.__name__}'
@@ -53,9 +19,9 @@ class Pthgrn(ivls.Intonation):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
 #        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
 #        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-#                     [  0    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19     20    21    22    23 ]
-        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8', 'LA', 'LB', 'LC', 'LD']
-        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200,  23, 475, 725, 1177]
+#                     [  0    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19     20    21    22    23    24    25    26    27 ]
+        self.ivalKs = ['P1', 'LA', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'LC', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'LD', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'LB', 'P8']
+        self.centKs = [   0,   23,  90,  114,  180,  204,  294,  318,  384,  408,  475,  498,  522,  588,  612,  678,  702,  725,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1177, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
@@ -97,7 +63,7 @@ class Pthgrn(ivls.Intonation):
     def dmpNiMap(self, ni, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4
         pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[self.j] #  ;   w2 = '7.2f'
-        if dbg and ni==0:  self.dmpIndices(2*NT, pfx2, x)   ;   self.dmpDataTableLine(x + 1)
+        if dbg and ni==0:  self.dmpIndices(pfx2, x)   ;   self.dmpDataTableLine(x+1)
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1 #  ;   self.k = kk
             rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
@@ -122,7 +88,7 @@ class Pthgrn(ivls.Intonation):
                 elif ni==4:           slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)
             elif ni==0:               slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
             elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
-        if dbg: self.dmpDataTableLine(x + 1)   ;   self.dmpIndices(2*NT, pfx2, x) if ni == 4 else None
+        if dbg: self.dmpDataTableLine(x+1)   ;   self.dmpIndices(pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, u=9, o=0, dbg=1): # todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, ww, y = self.FREFS[self.j], 0, Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
@@ -135,10 +101,10 @@ class Pthgrn(ivls.Intonation):
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k, i2    = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k   ;   self.k = Notes.N2I[n[:2]] + 48 if n in Notes.N2I else self.k  ;  self.o = n[:2] if n in Notes.N2I else self.o
                 cksi.append(int(round(c)))  ;  cs.append(f'{fmtf(c, u-4)}')   ; ds.append(f'{fmtf(d, u-4)}') ; fs.append(f'{fmtf(f, u-2)}') ; ws.append(f'{fmtf(w, u-2)}')
-            else: n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
+            else:  n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_)  ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
             if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
         if dbg:
-            self.dmpIndices(2*NT, f'{mm}  k  {mm}{nn} {nn}', u)  ;  self.dmpDataTableLine(u + 1)
+            self.dmpIndices(f'{mm}  k  {mm}{nn} {nn}', u)  ;  self.dmpDataTableLine(u+1)
             slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(cks, w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
@@ -152,7 +118,7 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,  w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)  ;  self.dmpDataTableLine(u + 1)
+            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)  ;  self.dmpDataTableLine(u+1)
         elif rAs and rBs:    self.dmpABs(rAs, rBs, o)
     ####################################################################################################################################################################################################
     def dmpABs(self, rAs, rBs, o):
@@ -216,14 +182,14 @@ class Pthgrn(ivls.Intonation):
             elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
         return fd
 
-    def dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+    def OLD__dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
         eps, j     = self.epsilon(), math.floor(i/2)
         hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
         hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
         if   i == 0:
             slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, W*6, eps, cs[i]]
+            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 23, W*6, eps, cs[i]]
             fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
         elif not i % 2:
             u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
@@ -234,9 +200,53 @@ class Pthgrn(ivls.Intonation):
                 data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
                 fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
         elif i == len(self.ck2ikm)-1:
-            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
+            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
             fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
+    def FOO__dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)
+        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if   i == 0:
+            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 23, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif not i % 2:
+            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
+            if  j < 6 and j % 2 or j > 6 and not j % 2:
+                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+            else:
+                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif i == len(self.ck2ikm)-1:
+            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+    ####################################################################################################################################################################################################
+    def dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)
+        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if   i == 0:
+            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+#            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, cs[i+m], self.ck2ikm[ks[i+m]], cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+#            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+#        if i == 0: slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        elif not i % 2:
+            v, u = (self.ck2ikm[ks[i]], self.ck2ikm[ks[i+m]])
+            if  j < 6 and j % 2 or j > 6 and not j % 2:
+#                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+                data = [j, j*100, i, u, cs[i], ks[i], ds[i], eps, cs[i+m], v, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+            else:
+                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+#                data = [j, j*100, i, u, cs[i], ks[i], ds[i], eps, cs[i+m], v, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+#        elif i == len(self.ck2ikm)-1:
+#            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
+#            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################

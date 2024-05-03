@@ -580,12 +580,12 @@ class Tabs(pyglet.window.Window):
     def fjlen(self):                return fmtl(self.jlen())
     def fmtdl( self, data=None):    return f'{fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{W.join([ t.replace('class ', Z) for t in self.dtA(data) ])}]"
-    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return    f'{fmtl(self.jsum(), w=w, d=d)} {self.fnvis()}'
-    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return    f'{fmtl(self.J2,     w=w, d=d)} {self.fnvis()}'
-    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}'
-#    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return    f'{fmtl(self.jsum(), w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
-#    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return    f'{fmtl(self.J2,     w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
-#    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z, d2=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
+#    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return f'{fmtl(self.jsum(), w=w, d=d)} {self.fnvis()}'
+#    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return f'{fmtl(self.J2,     w=w, d=d)} {self.fnvis()}'
+#    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d}'
+    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return f'{d}{fmtl(self.jsum(), w=w, d=Z)} {self.fnvis()}{d2}'
+    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return f'{d}{fmtl(self.J2,     w=w, d=Z)} {self.fnvis()}{d2}'
+    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
     ####################################################################################################################################################################################################
     def fmtPos(self):                         cc = self.plct2cc(*self.j2())  ;  nc = self.normalizeCC(cc)  ;  cn = self.cc2cn(cc)  ;  return f'{fmtl(self.i, w=FIN)} {cc+1:3} {nc:3} {cn+1:2}]'
     def fmtn(  self, pfx='n=', n=None):       n = n if n is not None else self.n   ;   return f'{pfx}{fmtl(n)}'
@@ -657,12 +657,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpJs(  self, why, w=None, d=1):
         b = W*10 if self.OIDS else W
-        self.log(f'{b}J1{self.fmtJ1(w, d)} {self.fmtAx()} {why}')
-        self.log(f'{b}J2{self.fmtJ2(w, d)} {self.fmtAy()} {why}')
-        self.log(f'{b}LE{self.fmtLE(w, d)} {self.fmtAv()} {why}')
+        self.log(f'{b}J1{self.fmtJ1(w, d)} {self.fmtAx()} {why}', p=2)
+        self.log(f'{b}J2{self.fmtJ2(w, d)} {self.fmtAy()} {why}', p=2)
+        self.log(f'{b}LE{self.fmtLE(w, d)} {self.fmtAv()} {why}', p=2)
     def dumpGeom(self, why=Z, why2=Z):
         b = W*10 if self.OIDS else W
-        self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz()} {len(self.idmap):4} {self.fnvis()}] {self.fmtAa()} {why2}')
+        self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz()} {len(self.idmap):4} {self.fnvis()}] {self.fmtAa()} {why2}', p=2)
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', p=0)  ;  self.log(f'{self.fmtBlnkRow()}', p=0)

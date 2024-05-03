@@ -77,6 +77,8 @@ class Modes:
 # [[a1, b1, c1, d1],    [a2, b2, c2, d2]    ... [an, bn, cn, dn]]    # need to return
 # [[a1, b1], [c1, d1]], [[a2, b2] [c2, d2]] ... [[an, bn], [cn, dn]] # need to return
 
+# also working on extended tuning
+# but forgot about the 2 tones/notes added in 
 '''
 11 Abb Bbb Cb  Db  Ebb Fb  Gb  Abb
 10 Ebb Fb  Gb  Ab  Bbb Cb  Db  Ebb
@@ -495,7 +497,7 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
         sps = list(spo.parts[1:])
         sps.insert(0, spo.drive)
         sp = "/".join(sps)
-        if dbg:  slog(f'{sp}', p=2)
+        if dbg:  slog(f'{sp}', f=2)
         return sp
 
     def _snapshot(self):
@@ -519,8 +521,8 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
         if dbg:  slog(f'{BASE_NAME=} {tobj.fmtn(Z)}')
         if dbg:  slog(f'{snapName0=} {why}')
         if dbg:  slog(f'{snapName2=} {why}')
-        if dbg:  slog(f'{sp0=}', p=2)
-        if dbg:  slog(f'{sp2=}', p=2)
+        if dbg:  slog(f'{sp0=}', f=2)
+        if dbg:  slog(f'{sp2=}', f=2)
         tobj.dumpTnikCsvs(sp)
         return sp
 '''

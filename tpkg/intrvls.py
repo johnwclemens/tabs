@@ -124,41 +124,46 @@ class Intonation(object):
         self.csv = csv
         x = 0
         if   o == 0:
-            slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             self.nimap = {}
+            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
             for i in range(0, NT + x):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'PRT 1 0-({NT}+{x}), {i=} {self.j=} {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
                 self._setup()
         elif o == 1:
-            slog(f'PRT 2A 7-({NT}+{x=}), {self.i=:2} {self.m=:2} {self.csv=}', p=0)
             self.nimap = {}
+            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
             for i in range(7, NT + x):
                 self.j = self.i + (i * 7) % (NT + x)
+                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
                 self._setup()
-            slog(f'PRT 2B 0-7({x=}), {self.i=:2} {self.m=:2} {self.csv=}', p=0)
+            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
             for i in range(0, 7):
                 self.j = self.i + (i * 7) % (NT + x)
+                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
                 self._setup()
 
     def setup2(self, o, o2, u=13, dbg=0, csv=0):
         self.csv = csv
         x = 0
         if   o == 0:
-            slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
+            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
             for i in range(0, NT):
                 self.j = self.i + (i * 7) % (NT + x)
+                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
         elif o == 1:
-            slog(f'PRT 2A ({NT}+{x}), {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
+            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
             for i in range(7, NT):
                 self.j = self.i + (i * 7) % (NT + x)
+                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
-            slog(f'PRT 2B 0-7({x=}), {self.i=:2} {self.m=:2} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
+            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
             for i in range(0, 7):
                 self.j = self.i + (i * 7) % (NT + x)
+                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
     def dmpNiMap( self, ni, x, upd=0, dbg=1): pass
@@ -178,22 +183,20 @@ class Intonation(object):
         ckm[ck]['Note']  = n                     ;   ckm[ck]['Abcd']  = abc
         ckm[ck]['Ival']  = self.ck2ikm[ck]       ;   ckm[ck]['Index'] = idx
     ####################################################################################################################################################################################################
-    def dmpIndices(self, n, pfx, w):
-        mm, ff = (Y, 3) if self.csv else(W, 1)   ;   ww = f'^{w}'
+    def dmpIndices(self, pfx=Z, w=0):
+        mm, ff = (Y, 3) if self.csv else(W, 1)   ;   ww = f'^{w}'   ;   n = len(self.centKs)
         ii     = [ f'{i}' for i in range(n) ]    ;   slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def _setup(self, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
-        if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(2*NT, pfx, x)  ;  self.dmpDataTableLine(x + 1)
+        if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
         tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
             c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {n=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}' # ;  v = self.ck2ikm[cki]
-#            assert cki in self.centKs,  f'{cki=} {i=} {e=} {r=} {ca=} {cb=} {abcd=} \n{fmtl(self.centKs)=} \n{fmtm(self.ck2ikm)=}'
             while cki < len(self.centKs) and self.centKs[cki] < rc:
-#                assert cki==0,  f'{cki=}'
                 v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]  ;  vs.append(v)  ;  cs.append(c)  ;  ds.append(d)
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
@@ -220,7 +223,7 @@ class Intonation(object):
             slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
+            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x+1)
         self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
     def dmpMaps(self, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
@@ -295,9 +298,9 @@ class Intonation(object):
                 cs.append(blnk)
             if cs and i==len(self.ckmap)-1:   slog(f'{fmtl(cs, w=uu, s=oo)}', p=0, f=ff)
     ########################################################################################################################################################################################################
-    def dmpDataTableLine(self, w=10, n=24):
+    def dmpDataTableLine(self, w=10):
         c = '-'   ;   nn, mm, t = (Y, Y, Y) if self.csv else (Z, W, '|')
-        col = f'{c * (w-1)}'
+        col = f'{c * (w-1)}'   ;   n = len(self.centKs)
         cols = t.join([ col for _ in range(n) ])
         slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if self.csv else 1)
     ####################################################################################################################################################################################################

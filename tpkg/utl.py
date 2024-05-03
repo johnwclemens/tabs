@@ -8,8 +8,8 @@ import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
 from   tpkg          import unic
 #from   tpkg.notes    import Notes
-def fn( cf): return cf.f_code.co_name
-def ffn(cf): return cf.f_code.co_filename
+def fn( cf): return cf.f_code.co_name     # stack: func name
+def ffn(cf): return cf.f_code.co_filename # stack: func file name
 
 UNICODE       = unic.UNICODE
 SPRSCRPT_INTS = { 0: '\u2070', 1: '\u00B9', 2: '\u00B2', 3: '\u00B3', 4: '\u2074', 5: '\u2075', 6: '\u2076', 7: '\u2077', 8: '\u2078', 9: '\u2079' }
@@ -159,14 +159,15 @@ def rotateList(a, rev=0):
     else:   tmp0 = a[0]    ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
     return     a
 ########################################################################################################################################################################################################
-def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):
+def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):   # text, prfx, file, sepr, end, flush, filter
     if t and ft: t = filtText(t)
     if p:
-        sf = cfrm().f_back
-        while fn(sf) in STFILT:   sf = sf.f_back
-        fp = pathlib.Path(ffn(sf))
-        p  = f'#{sf.f_lineno:4} {fp.stem:5} '
-        t  =  f'{p}{fn(sf):18} ' + t
+        sf = cfrm().f_back                       # cfrm:  current frame  # sf: stack frame
+        while fn(sf) in STFILT:   sf = sf.f_back # fn():  func name
+        l = f'#{sf.f_lineno:4} '  if p >= 2 else '#' # set p >= 2 to print line numbers
+        fp = pathlib.Path(ffn(sf))               # ffn(): func file name
+        s  = f'{fp.stem:5} '
+        t  =  f'{l}{s}{fn(sf):18} ' + t          # fn():  func name
     tx, so, cs = 0, 0, 0
     if   f == -3: f = LOG_FILE  ;  tx = 1  ;  so = 1
     elif f == -2: f = TXT_FILE  ;  so = 1
@@ -442,7 +443,7 @@ def path2str(po, dbg=0):
     ps = list(po.parts[1:])
     ps.insert(0, po.drive)
     p = '/'.join(ps)
-    if dbg:  slog(f'{p}', p=2)
+    if dbg:  slog(f'{p}', f=2)
     return p
 
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):

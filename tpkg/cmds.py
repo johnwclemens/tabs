@@ -750,7 +750,7 @@ class SnapshotCmd(Cmd):
 #        sps = list(spo.parts[1:])
 #        sps.insert(0, spo.drive)
 #        sp = "/".join(sps)
-#        if dbg:  slog(f'{sp}', p=2)
+#        if dbg:  slog(f'{sp}', f=2)
 #        return sp
     
     def _snapshot(self):
@@ -774,8 +774,8 @@ class SnapshotCmd(Cmd):
         if dbg:  slog(f'{BASE_NAME=} {tobj.fmtn(Z)}')
         if dbg:  slog(f'{snapName0=} {why}')
         if dbg:  slog(f'{snapName2=} {why}')
-        if dbg:  slog(f'{sp0=}', p=2)
-        if dbg:  slog(f'{sp2=}', p=2)
+        if dbg:  slog(f'{sp0=}', f=2)
+        if dbg:  slog(f'{sp2=}', f=2)
         tobj.dumpTnikCsvs(snapPath)
         return snapPath
 ########################################################################################################################################################################################################

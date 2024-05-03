@@ -221,7 +221,7 @@ class Chords:
             for k in umapKeys:
                 v = self.umap[k]
                 k = "'" + k + "'"
-                slog(f'{k:18}: ({v[0]} {fmtl(sorted(v[1])):15})', p=2)
+                slog(f'{k:18}: ({v[0]} {fmtl(sorted(v[1])):15})', f=2)
             slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def dumpOMAP(self, catpath=None, merge=0):
