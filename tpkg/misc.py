@@ -489,6 +489,11 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
 # Revisit Notes class and any overlap with intrvls.py, pthgrn.py, and just.py Intonation classes and modules
 # Maybe implement a 12 tone ET class that is used by default
 
+# Something strange regarding upd2 event?
+# Full upd event was logged near snapshot and quit events in test.153.log
+# But cannot reproduce - perhaps just accidently resized the window ???
+# Had just checked in code that changed slog(p=2 -> f=2) in a few spots
+
 # Still seeing issues with WindowsPath objects being used as if they were str objects
 # _str() gets called sometimes when it's not defined
 # Added sp2s() method to return formatted str

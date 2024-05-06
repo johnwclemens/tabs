@@ -66,26 +66,6 @@ class Intonation(object):
         return k  if   0<=k<50  else k-100 if  50<=k<150 else k-200 if 150<=k<250 else k-300  if 250<=k<350  else k-400  if  350<=k<450  else k-500  if  450<=k<550   else k-600 if 550<=k<650 else \
             k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150<=k<=1200 else None
     ####################################################################################################################################################################################################
-    def abc2r(self, a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
-        pa0, pb0 = a ** c, b ** c
-        r0       = pa0 / pb0
-        r, j     = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-        ca       = c + j if j > 0 else c
-        cb       = c - j if j < 0 else c
-        return r, ca, cb
-
-    def abcs(self, a=7, b=6): # todo generalize m2bc ?
-        abc1 = stck5ths(a)
-        abc2 = stck4ths(b)
-        abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
-        abc4 = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
-        return [ abc1, abc2, abc3, abc4 ] 
-
-    def i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-        f = self.abcs   ;   i = self.i   ;   j = self.j
-        return f(6, 5) if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
-            f(0, 11)   if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
-    ####################################################################################################################################################################################################
     @staticmethod
     def norm(n):
         i = 0
@@ -97,73 +77,110 @@ class Intonation(object):
                 n *= 2  ;  i += 1
         return n, i
     ####################################################################################################################################################################################################
+    def abc2r(self, a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
+        pa0, pb0 = a ** c, b ** c
+        r0       = pa0 / pb0
+        r, j     = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+        ca       = c + j if j > 0 else c
+        cb       = c - j if j < 0 else c
+        return r, ca, cb
+
+    def abcs(self, a, b): # todo generalize m2bc ?
+        abc1 = stck5ths(a)
+        abc2 = stck4ths(b)
+        abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
+        abc4 = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
+        return [ abc1, abc2, abc3, abc4 ] 
+
+    def NEW__i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
+        f = self.abcs   ;   i = self.i   ;   j = self.j
+        return f(6, 6) if j==i   else f(5, 7) if j==i+7 else f(4, 8) if j==i+2  else f(3, 9) if j==i+9 else f(2, 10) if j==i+4 else f(1, 11) if j==i+11 else \
+            f(0, 11)   if j==i+6 else f(7, 5) if j==i+5 else f(8, 4) if j==i+10 else f(9, 3) if j==i+3 else f(10, 2) if j==i+8 else f(11, 1) if j==i+1  else f(13, 13)
+
+    def i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
+        f = self.abcs   ;   i = self.i   ;   j = self.j
+        return f(6, 5) if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
+            f(0, 11)   if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
+    ####################################################################################################################################################################################################
     def fmtNPair(self, k, i, j=1, d=0, dbg=0): # set j=k or j=self.j ?
-        n0, _   = self.i2nPair(self.i, s=1)   ;   d = '/' if d==1 else W if d==0 else d   ;   j = k if j else self.j
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or j in (self.i + 4, self.i + 6, self.i + 11) else 1, s=1, e=1)   ;   slog(f'{self.i=} {n0=} {n1=} {n2=}') if dbg else None
+        n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d   ;   j = k if j else self.j
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or j in (self.i + 4, self.i + 6, self.i + 11) else 1, o=0, e=1)   ;   slog(f'{self.i=} {n0=} {n1=} {n2=}') if dbg else None
         if i and i != NT:
             if          n1 == self.COFM[n0][1]:   return n2
+            elif n2 and n2 != self.COFM[n0][1]:   n1 += d + n2
+#            if          n1 == self.COFM[n0][1]:   return n2
+#            n1 += d + n2  #  'C':('F♯', 'G♭')
+        slog(f'return {n1=}') if dbg else None
+        return n1
+
+    def NEW__fmtNPair(self, i, d=0, dbg=0): #  'C':('F♯', 'G♭')
+        n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d
+        n1, n2  = self.i2nPair(self.j + i, b=0 if i in (4, 6, 11) else 1, o=0, e=1)   ;   slog(f'{self.j=} {i=} {n0=} {n1=} {n2=}') if dbg else None
+        if i:
+            if          n1 == self.COFM[n0][1]:   return n2
+            elif        n1 == self.COFM[n0][0]:   return n2
             elif n2 and n2 != self.COFM[n0][1]:   n1 += d + n2
         slog(f'return {n1=}') if dbg else None
         return n1
 
     @staticmethod
-    def f2nPair(f, rf=440, b=None, s=0, e=0):
+    def f2nPair(f, rf=440, b=None, o=0, e=0):
         ni = NT * math.log2(f / rf) # fixme
         i  = round(A4_INDEX + ni)
-        return Intonation.i2nPair(i, b, s, e)
+        return Intonation.i2nPair(i, b, o, e)
     
     @staticmethod
-    def i2nPair(i, b=None, s=0, e=0):
+    def i2nPair(i, b=None, o=0, e=0): # index, flat, oct, enharm
         m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
-        if s:         n = n[:-1].strip()
+        if not o:     n = n[:-1] # remove the octave number e.g. A4 -> A
         if e == 1 and len(n) > 1:
-            m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
+            m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1] if not o else m # remove the octave number e.g. A4 -> A
         return n, m
     ####################################################################################################################################################################################################
     def setup(self, o, csv=0):
-        self.csv = csv
+        self.csv = csv   ;   pp = 0
         x = 0
         if   o == 0:
             self.nimap = {}
-            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
+            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=pp)
             for i in range(0, NT + x):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
+                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=pp)
                 self._setup()
         elif o == 1:
             self.nimap = {}
-            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
+            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=pp)
             for i in range(7, NT + x):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
+                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=pp)
                 self._setup()
-            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=0)
+            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=}',        p=pp)
             for i in range(0, 7):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=0)
+                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}', p=pp)
                 self._setup()
 
     def setup2(self, o, o2, u=13, dbg=0, csv=0):
-        self.csv = csv
+        self.csv = csv   ;   pp = 0
         x = 0
         if   o == 0:
             self.nimap = {}
-            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
+            slog(    f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=pp) if dbg else None
             for i in range(0, NT):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
+                slog(f'P1  0-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=pp) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
         elif o == 1:
             self.nimap = {}
-            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
+            slog(    f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=pp) if dbg else None
             for i in range(7, NT):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
+                slog(f'P2A 7-{NT}+{x} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=pp) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
-            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=0) if dbg else None
+            slog(    f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {o2=} {u=}', p=pp) if dbg else None
             for i in range(0, 7):
                 self.j = self.i + (i * 7) % (NT + x)
-                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=0) if dbg else None
+                slog(f'P2B 0-7{x=:1}  {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {self.csv=} : {i=}',       p=pp) if dbg else None
                 self._setup(u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
     def dmpNiMap( self, ni, x, upd=0, dbg=1): pass
@@ -189,19 +206,25 @@ class Intonation(object):
     ####################################################################################################################################################################################################
     def _setup(self, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
-        self.k = 0  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
+        self.k = 0       ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
+#        self.k = self.j  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT] # ;  f1, f2 = 0, 0
         if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
         tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
-            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(self.j, i)  ;  cki += 1
-            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {n=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}' # ;  v = self.ck2ikm[cki]
+            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1 # ;  self.k = i  ;  n = self.fmtNPair(self.k, i)
+            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'
+#            if f1:
+#                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)  ;  f1 = 0  ;  continue
             while cki < len(self.centKs) and self.centKs[cki] < rc:
-                v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]  ;  vs.append(v)  ;  cs.append(c)  ;  ds.append(d)
+                v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
 #            else: slog(f'{cki=} welse: {self.centKs[cki]=} < {rc=}, {fmtl(self.centKs)=}') if dbg else None
-            v = self.ck2ikm[rc]  ;  vs.append(v)  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcdMap.append(abcd)  ;  ns.append(n)
+            n = self.fmtNPair(self.j, i)
+#            n = self.fmtNPair(i - f2)
+#            if n in self.COFM[self.m]:   slog(f'{n=:2} {fmtl(self.COFM[self.m])=}')  ;  f1 = 1  ;  f2 = 1
+            v = self.ck2ikm[rc]  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  ns.append(n)  ;  vs.append(v)  ;  abcdMap.append(abcd)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
         self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
@@ -404,22 +427,23 @@ class OTS(Intonation):
     
     def dmpOts(self):
         slog(f'BGN Overtone Series {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-        ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if self.csv else ('^6', '[', W, Z, 1)
-        cs, ds, ns, fs, ws = [], [], [], [], []   ;   ref = f'440A' if self.rf == 440 else f'432A'   ;   fr = range(1, 256+1)
+        uu, ww = 3, '^6'   ;   dd, mm, nn, oo, ff = ('[', Y, Y, Y, 3) if self.csv else ('[', W, Z, '|', 1)
+        cs, ds, ns, os, fs, ws = [], [], [], [], [], []   ;   ref = f'440A' if self.rf == 440 else f'432A'   ;   fr = range(1, 256+1)
         f0    = self.FREFS[0]
         for i in fr:
-            f = f0 * i              ;      w = self.w0 / f
-            n, n2  = self.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1)
+            f = f0 * i             ;      w = self.w0 / f
+            n, n2  = self.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1, o=0)
+            o, o2  = self.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1, o=1)
             fn = self.norm(f/f0)[0]
-            c  = self.r2cents(fn)   ;      d = self.i2dCent(c)
-            fs.append(fmtf(f, 6))   ;     ns.append(n)            ;     ws.append(fmtf(w, 6))
-            cs.append(fmtf(c, 6))   ;     ds.append(fmtg(d, 6 if d >= 0 else 5))
-        fs   = mm.join(fs)          ;     ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
-        ref += f'{nn}[{nn}'         ;   sfxf = f'{mm}]{mm}Hz'     ;   sfxw = f'{mm}]{mm}cm'              ;   sfxc = f'{mm}]{mm}cents'           ;   sfxd = f'{mm}]{mm}dcents'
-        pfxn = f'notes{nn}[{nn}'    ;   pfxc = f'cents{nn}[{nn}'  ;   pfxd = f'dcnts{nn}[{nn}'           ;    sfx = f'{mm}]{nn}'
+            c  = self.r2cents(fn)  ;    d = self.i2dCent(c)
+            fs.append(fmtf(f, 6))  ;    ws.append(fmtf(w, 6))  ;    ns.append(f'{n:{uu}}')          ;    os.append(f'{o:{uu}}')          ;    cs.append(fmtf(c, 6))           ;  ds.append(fmtg(d, 6 if d >= 0 else 5))
+        fs   = mm.join(fs)         ;    ws = mm.join(ws)       ;    ns = fmtl(ns, w=ww, s=mm, d=Z)  ;    os = fmtl(os, w=ww, s=mm, d=Z)  ;    cs = fmtl(cs, w=ww, s=mm, d=Z)  ;  ds = fmtl(ds, w=ww, s=mm, d=Z)
+        ref += f'{nn}[{nn}'        ;  sfxf = f'{mm}]{mm}Hz'    ;  sfxw = f'{mm}]{mm}cm'             ;  sfxc = f'{mm}]{mm}cents'          ;  sfxd = f'{mm}]{mm}dcents'
+        pfxn = f'notes{nn}[{nn}'   ;  pfxo = f'nOcts{nn}[{nn}' ;  pfxc = f'cents{nn}[{nn}'          ;  pfxd = f'dcnts{nn}[{nn}'          ;   sfx = f'{mm}]{nn}'
         slog(f'Index{nn}[{nn}{fmtl(list(fr), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
         slog(f'f{ref}{fs}{sfxf}',  p=0, f=ff)
         slog(f'{pfxn}{ns}{sfx}',   p=0, f=ff)
+        slog(f'{pfxo}{os}{sfx}',   p=0, f=ff)
         slog(f'{pfxc}{cs}{sfxc}',  p=0, f=ff)
         slog(f'{pfxd}{ds}{sfxd}',  p=0, f=ff)
         slog(f'w{ref}{ws}{sfxw}',  p=0, f=ff)

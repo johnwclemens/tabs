@@ -143,7 +143,7 @@ class Just(ivls.Intonation):
         slog(f'END {self.i=:2} {self.m=:2} {self.rf=} {self.ss=} {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNote(self, k, i, b=1): # todo generalize m2bc ?
-        n1, n2   = self.i2nPair(k + i, b=b, s=1)
+        n1, n2   = self.i2nPair(k + i, b=b, o=0)
         return n1
 
     def fmtIs(self, l, v=0, w=11):
@@ -180,6 +180,7 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             self.k = self.j - i * M3
             for j, d in enumerate(D):
+#                n = self.fmtNPair((j*7) % NT)
                 n = self.fmtNPair(self.k, (j*7)%NT, j=0)
                 if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 u = CRS[i][j]
@@ -189,7 +190,7 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             self.k = self.j - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNote(self.k, (j*7)%NT)
+                n = self.fmtNote(self.k, (j*7) % NT)
                 if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 notes.append(n)
                 u = CRS[i][j]

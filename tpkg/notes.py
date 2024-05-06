@@ -66,7 +66,7 @@ NT        = Notes.NT
 ########################################################################################################################################################################################################
 def f440(i):         return float(440 * (2 ** (1/NT)) ** (i - A4_INDEX))
 def f432(i):         return float(432 * (2 ** (1/NT)) ** (i - A4_INDEX))
-def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
+#def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
 def Piano(c, d=1):   (d, d2) = ("[", "]") if d else (Z, Z)    ;   return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]

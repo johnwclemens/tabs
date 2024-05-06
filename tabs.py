@@ -161,6 +161,7 @@ class Tabs(pyglet.window.Window):
         ################################################################################################################################################################################################
         self.sobj      = Strngs(self.TUNING)
         self.cobj      = Chords(self, self.sobj)
+        self.pobj      = None
         ################################################################################################################################################################################################
         self._initDataPath()
         self._initWindowA()
@@ -489,18 +490,22 @@ class Tabs(pyglet.window.Window):
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
             tests.test4(ARGS)
+            tests.testIR()
+            tests.testCoins()
             pythgrn = pthgrn.Pthgrn('C')
             justint = just.Just('C')
-            overtns = intrvls.OTS('C')
+            overtn1 = intrvls.OTS('C', 440.00)
+            overtn2 = intrvls.OTS('C', 431.65)
             tetract = tests.Tetractys(pythgrn)
-            overtns.dmpData()     ;    overtns.dmpData(   csv=1)
+            overtn1.dmpData()     ;    overtn1.dmpData(   csv=1)
+            overtn2.dmpData()     ;    overtn2.dmpData(   csv=1)
             justint.dmpData()     ;    justint.dmpData(   csv=1)
             pythgrn.setup(o=0)    ;    pythgrn.setup(o=0, csv=1)
             tetract.setup(o=0)    ;    tetract.setup(o=0, csv=1)
             pythgrn.setup(o=1)    ;    pythgrn.setup(o=1, csv=1)
             tetract.setup(o=1)    ;    tetract.setup(o=1, csv=1)
-            tests.testIR()
-            tests.testCoins()
+            self.pobj = pythgrn
+            tests.test_i2nPairs(self)
 #            justint.setup(o=0)    ;    justint.setup(o=0, csv=1)
 #            overtns.setup(o=0)    ;    overtns.setup(o=0, csv=1)
 #            tests.test0(self, a= 3.14159, n=4)

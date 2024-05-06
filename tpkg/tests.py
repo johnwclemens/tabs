@@ -4,6 +4,7 @@ from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
 from   collections       import Counter
 from   tpkg              import utl
+from   tpkg.notes        import Notes
 import decimal           as dcm
 Dcm = dcm.Decimal
 
@@ -96,6 +97,50 @@ def testCoins():
     c.rounding = cr
     slog(f'{ c=}')
     slog(f'{oc=}')
+########################################################################################################################################################################################################
+def test_fmtNPair(tobj, k, i, j, d, dbg):
+    n, m = tobj.fmtNPair(k, i, j, d, dbg)
+    slog(f'{n=} {m=} : {k=} {i=} {j=} {d=} {dbg=}')
+########################################################################################################################################################################################################
+def test_i2nPair(tobj, i, b, s, e):
+    p = tobj.pobj
+    n, m = p.i2nPair(i, b, s, e)  ;  return n, m
+
+def test_i2nPairs(tobj):
+    b = None
+    s = 0  ;  e = 0
+    for i in range(Notes.NT):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 0  ;  e = 1
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 1  ;  e = 0
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 1  ;  e = 1
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    b = 1
+    s = 0  ;  e = 0
+    for i in range(Notes.NT):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 0  ;  e = 1
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 1  ;  e = 0
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
+    s = 1  ;  e = 1
+    for i in range(10):
+        n, m = test_i2nPair(tobj, i, b, s, e)
+        slog(f'{i=:2} {b=} {s=} {e=} : {n:3} {m:3}')
 ########################################################################################################################################################################################################
 def test0(a=3.14159265359, n=4):
     w = 13  ;  x = 6  ;  y = 4  ;  z = f'{x}.{y}'
