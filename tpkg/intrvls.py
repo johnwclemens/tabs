@@ -115,7 +115,7 @@ class Intonation(object):
 
     def NEW__fmtNPair(self, i, d=0, dbg=0): #  'C':('F♯', 'G♭')
         n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d
-        n1, n2  = self.i2nPair(self.j + i, b=0 if i in (4, 6, 11) else 1, o=0, e=1)   ;   slog(f'{self.j=} {i=} {n0=} {n1=} {n2=}') if dbg else None
+        n1, n2  = self.i2nPair(self.k + i, b=0 if i in (4, 6, 11) else 1, o=0, e=1)   ;   slog(f'{self.j=} {i=} {n0=} {n1=} {n2=}') if dbg else None
         if i:
             if          n1 == self.COFM[n0][1]:   return n2
             elif        n1 == self.COFM[n0][0]:   return n2
@@ -207,23 +207,22 @@ class Intonation(object):
     def _setup(self, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0       ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]
-#        self.k = self.j  ;  self.o = Z  ;  self.n = Notes.i2n()[self.j % NT] # ;  f1, f2 = 0, 0
         if dbg: slog(f'BGN {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
         tmp = self.i2Abcs()  ;  abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
+#            if f1: #                abc3[cki+1] = _   ;   abc4[cki+1] = _
+#                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)  ;  f1 = 0  ;  continue
             a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1 # ;  self.k = i  ;  n = self.fmtNPair(self.k, i)
             c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'
-#            if f1:
-#                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)  ;  f1 = 0  ;  continue
             while cki < len(self.centKs) and self.centKs[cki] < rc:
                 v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v) # ;  c = self.centKs[cki]
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
 #            else: slog(f'{cki=} welse: {self.centKs[cki]=} < {rc=}, {fmtl(self.centKs)=}') if dbg else None
             n = self.fmtNPair(self.j, i)
-#            n = self.fmtNPair(i - f2)
-#            if n in self.COFM[self.m]:   slog(f'{n=:2} {fmtl(self.COFM[self.m])=}')  ;  f1 = 1  ;  f2 = 1
+#            n = self.fmtNPair(i) # - f2)
+#            if n in self.COFM[self.m]:    f1 = 1  ;  f2 = 1 # slog(f'{n=:2} {fmtl(self.COFM[self.m])=}')  ;  f1 = 1  ;  f2 = 1
             v = self.ck2ikm[rc]  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  ns.append(n)  ;  vs.append(v)  ;  abcdMap.append(abcd)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)

@@ -168,7 +168,7 @@ class Pthgrn(ivls.Intonation):
         d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),            f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i # todo assume callers do not want ckmap[ck]['Abcd'] value returned
     ####################################################################################################################################################################################################
-    def fIvals(self, data, i): # todo move to base class
+    def OLD__fIvals(self, data, i): # todo move to base class
         mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
         for j, d in enumerate(data): # j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
             if   j==0:  fd.append(f'{d:x}')                  # j
@@ -182,72 +182,157 @@ class Pthgrn(ivls.Intonation):
             elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
         return fd
 
-    def dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
-        eps, j     = self.epsilon(), math.floor(i/2)
-        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
-        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
-        if   i == 0:
-            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 23, W*6, eps, cs[i]]
-            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-        elif not i % 2:
-            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
-            if  j < 6 and j % 2 or j > 6 and not j % 2:
-                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-            else:
-                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-        elif i == len(self.ck2ikm)-1:
-            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
-            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-    ####################################################################################################################################################################################################
-    def FOO__dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
-        eps, j     = self.epsilon(), math.floor(i/2)
-        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
-        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
-        if   i == 0:
-            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 23, W*6, eps, cs[i]]
-            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-        elif not i % 2:
-            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
-            if  j < 6 and j % 2 or j > 6 and not j % 2:
-                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-            else:
-                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-        elif i == len(self.ck2ikm)-1:
-            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
-            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-    ####################################################################################################################################################################################################
-    def NEW__dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
-        eps, j     = self.epsilon(), math.floor(i/2)
-        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
-        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
-        if   i == 0:
-            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-#            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, cs[i+m], self.ck2ikm[ks[i+m]], cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-#            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-#        if i == 0: slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-        elif not i % 2:
-            v, u = (self.ck2ikm[ks[i]], self.ck2ikm[ks[i+m]])
-            if  j < 6 and j % 2 or j > 6 and not j % 2:
-#                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
-                data = [j, j*100, i, u, cs[i], ks[i], ds[i], eps, cs[i+m], v, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-            else:
-                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
-#                data = [j, j*100, i, u, cs[i], ks[i], ds[i], eps, cs[i+m], v, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-#        elif i == len(self.ck2ikm)-1:
-#            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
-#            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+    def fIvals(self, data, i): # todo move to base class
+        mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
+#                                    #           <-----------------1---------------->   <-----------------2---------------->   <-----------------3---------------->   <-----------------4---------------->
+        for j, d in enumerate(data): # j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
+            if   j==0:                 fd.append(f'{d:x}')                  # j
+            elif j==1:                 fd.append(f'{d:4}')                  # j*100
+            elif j==6:                 fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
+            elif j==12:                fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d
+            elif j==18:                fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d
+            elif j==24:                fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d
+            elif j in (8, 14, 20):     fd.append(f'*{mm}{d:2}   ')          # c` c` c`
+            elif j==26:                fd.append(f'*{mm}{d:2}')             # c`
+            elif j in (5, 11, 17, 23): fd.append(f'@{mm}{d:4}{mm}:') # k k k k
+            elif j in (7, 13, 19, 25): fd.append(f'={mm}{d:5.3f}')   # e e e e
+            elif j in (2, 3, 4, 9, 10, 15, 16, 21, 22): fd.append(f'{d:2}')  # i Iv c Iv c Iv c Iv c
+        return fd
 
+    def OLD__dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)
+        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if   i == 0:
+            slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+            data     = [j, j*100, i, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 23, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif not i % 2:
+            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
+            if  j < 6 and j % 2 or j > 6 and not j % 2:
+                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+            else:
+                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+                fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif i == len(self.ck2ikm)-1:
+            data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1177, W*6, eps, cs[i]]
+            fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+    ####################################################################################################################################################################################################
+    def NEW_1_dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)
+        hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if i == 0: slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        if i % 2:
+            if i==1:   u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]]) # swap u, v intervals if first row
+            else:      u, v = (self.ck2ikm[ks[i]], self.ck2ikm[ks[i+m]])
+            if  j in (0, 2, 4, 5, 10, 12):
+                data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+            else:
+                data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+            fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+    def NEW_2_dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   m = -1
+        eps, j     = self.epsilon(), math.floor(i/2)    ;    hdrA = ['j', 'j*100', 'i']
+        hdrB1 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+        hdrB2 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+        hdrB3 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)   ;   hdrs.extend(hdrB3)
+        if j == 5: return
+        k = j - 1 if j > 5 else j
+        if i == 0: slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        if i % 2:
+            u, v = (self.ck2ikm[ks[i+m]], self.ck2ikm[ks[i]])
+            if  k in (0, 1, 3,  8, 9):
+                data = [k, k*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
+            elif k == 5:
+                data = [k, k*100, i, u, cs[i-2], ks[i-2], ds[i-2], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i-3], v, cs[i-3], ks[i-3], ds[i-3], eps, cs[i+m]]
+            elif k == 6:
+                data = [k, k*100, i, u, cs[i-1], ks[i-1], ds[i-1], eps, cs[i-2], u, cs[i-2], ks[i-2], ds[i-2], eps, cs[i-3]] #, v, cs[i-3], ks[i-3], ds[i-3], eps, cs[i-2]]
+#            elif k == 7:
+#                data = [k, k*100, i, u, cs[i-2], ks[i-2], ds[i-2], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i-3], v, cs[i-3], ks[i-3], ds[i-3], eps, cs[i+m]]
+            else:
+                data = [k, k*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
+            fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+    def NEW_3_dmpIvals(self, i, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   j = i-1   ;   k = i-2
+        eps, h     = self.epsilon(), math.floor(i/2)    ;    hdrA = ['j', 'j*100', 'i']
+        hdrB1 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+        hdrB2 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+        hdrB3 = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)   ;   hdrs.extend(hdrB3)
+        if i == 0: slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        if i % 2:
+            u, v, w = (self.ck2ikm[ks[j]], self.ck2ikm[ks[i]], self.ck2ikm[ks[k]])
+            if      0 <= ks[i] <    50: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+            elif   50 <= ks[i] <   150: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+            elif  150 <= ks[i] <   250: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif  250 <= ks[i] <   350: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+            elif  350 <= ks[i] <   450: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif  450 <= ks[i] <   550: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif  550 <= ks[i] <   650: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+#            elif  550 <= ks[i] <   650: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[k], w, cs[k], ks[k], ds[k], eps, cs[j]]
+#            elif  550 <= ks[i] <   650: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j], w, cs[k], ks[k], ds[k], eps, cs[j]]
+            elif  650 <= ks[i] <   750: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif  750 <= ks[i] <   850: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+            elif  850 <= ks[i] <   950: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif  950 <= ks[i] <  1050: data = [h, h*100, i, u, cs[j], ks[j], ds[j], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[j]]
+            elif 1050 <= ks[i] <  1150: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif 1150 <= ks[i] <= 1200: data = [h, h*100, i, v, cs[i], ks[i], ds[i], eps, cs[j], u, cs[j], ks[j], ds[j], eps, cs[i]]
+            else:                      data = []
+            fd   = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+
+    def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3   ;   nh, ni, nj, nk = 0, 0, 0, 0
+        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i']    ;    data = []
+        hdrB1  = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+        hdrB2  = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
+        if   h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
+        elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
+        elif h > 2:    nh, ni, nj, nk = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
+        if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        if   h ==  1:  w, x    = nh, ni               ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h ==  3:  w, x    = nh, ni               ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h ==  5:  w, x    = nh, ni               ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h ==  7:  w, x    = nh, ni               ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h ==  9:  w, x    = nh, ni               ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 12:  w, x, y = nh, ni, nj  ;  l-=1  ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 14:  x, w    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 17:  w, x, y = nh, ni, nj  ;  l-=1  ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 19:  w, x    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 21:  w, x    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 23:  w, x    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 25:  w, x    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 27:  w, x    = nh, ni      ;  l-=1  ;  data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        if   h in (11, 16, 18, 20, 22, 24, 26):  return
+#        w          = self.ck2ikm[ks[h]]
+#        data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i]]
+#        w, x, y    = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
+#        data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h], x, cs[i], ks[i], ds[i], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[j]]
+#        w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
+#        data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h], x, cs[i], ks[i], ds[i], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[j], z, cs[k], ks[k], ds[k], eps, cs[k]]
+        if       h % 2 and (h <= 12 or h >= 17):  fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif not h % 2 and h >= 12:               fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+'''
+j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
+0    0  1 P1 12 @    0 :   0.000 = 1.955 *  0    LA  0 @   23 :         = 1.955 * 12   
+1  100  3 m2  7 @   90 :  -9.780 = 1.955 *  5    A1  5 @  114 :  13.690 = 1.955 *  7   
+2  200  5 M2 10 @  204 :   3.910 = 1.955 *  2    d3  2 @  180 : -19.550 = 1.955 * 10   
+3  300  7 m3  9 @  294 :  -5.870 = 1.955 *  3    A2  3 @  318 :  17.600 = 1.955 *  9   
+4  400  9 M3  8 @  408 :   7.820 = 1.955 *  4    d4  4 @  384 : -15.640 = 1.955 *  8   
+5  500 12 P4 11 @  498 :  -1.960 = 1.955 *  1    A3  1 @  522 :  21.510 = 1.955 * 11     0  0 @  475 :         = 1.955 * 11   
+6  600 14 d5  6 @  612 :  11.730 = 1.955 *  6    A4  6 @  588 : -11.730 = 1.955 *  6   
+7  700 17 P5 11 @  702 :   1.960 = 1.955 *  0     0  1 @  678 : -21.510 = 1.955 * 11    LD  0 @  725 :         = 1.955 * 11   
+8  800 19 m6  8 @  792 :  -7.820 = 1.955 *  4    A5  4 @  816 :  15.640 = 1.955 *  8   
+9  900 21 M6  9 @  906 :   5.870 = 1.955 *  3    d7  3 @  882 : -17.600 = 1.955 *  9   
+a 1000 23 m7 10 @  996 :  -3.910 = 1.955 *  2    A6  2 @ 1020 :  19.550 = 1.955 * 10   
+b 1100 25 M7  7 @ 1110 :   9.780 = 1.955 *  5    d8  5 @ 1086 : -13.690 = 1.955 *  7   
+c 1200 27 P8 12 @ 1200 :   0.000 = 1.955 *  0    LB  0 @ 1177 :         = 1.955 * 12   
+'''
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
