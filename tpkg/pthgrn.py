@@ -7,7 +7,7 @@ import math
 W,    Y,    Z,    slog,   ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl,   fmtm,    fmtf,   fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
-
+N2I,          F2S             = Notes.N2I, Notes.F2S
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 
@@ -68,7 +68,8 @@ class Pthgrn(ivls.Intonation):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1   ;   self.k = kk
             rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[2]):
-                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+#                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+                n    = self.fmtNPair(j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
                 cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
                 if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb, e, cent, j)
@@ -79,7 +80,8 @@ class Pthgrn(ivls.Intonation):
                 if   x==9:          self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==13:         self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==6 or x==7:  self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
-            if dbg:
+            pd = [f'{i:x}', f'{kk:2}', f'{self.fmtNPair(0):2}'] if dbg else [f'{i:x}', f'{kk:2}  ']   ;   pfx = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx #fixme hack to fix note name in pfx
+            if dbg: # pfx was set last at end of inner for loop
                 if   ni==0:           slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)
                 elif ni==1 and x==9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
                 elif ni==1 and x==13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)
@@ -91,15 +93,20 @@ class Pthgrn(ivls.Intonation):
         if dbg: self.dmpDataTableLine(x+1)   ;   self.dmpIndices(pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, u=9, o=0, dbg=1): # todo generalize m2bc ?
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, ww, y = self.FREFS[self.j], 0, Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
         ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
-        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
-        for i, ck in enumerate(self.centKs):
+        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm' #  ;   f1 = 0  ;  j = 0
+        for i, ck in enumerate(self.centKs): # ckmap[498,588,612,702][Note] = F,Gb,G,Ab
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{self.j=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[self.j][0]=} {dbg=}'
-            if ckmap[ck]['Count'] > 0:
+            if ckmap[ck]['Count'] > 0: # and n in F2S:          n = F2S[n]      if len(n) > 1 else n #  ;   f1 = 0
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abcd']   ;   q = self.fdvdr(a, ca, b, cb)
-                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
-                f, w, n, c, d, k, i2    = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k   ;   self.k = Notes.N2I[n[:2]] + 48 if n in Notes.N2I else self.k  ;  self.o = n[:2] if n in Notes.N2I else self.o
+                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck) # ;  ck2 = self.centKs[i - f1]
+                f, w, n, c, d, k, i2    = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
+#                n = Notes.i2n()[(j - f1) % NT]   ;   j += 1
+                n, m = self.f2nPair(f, b=1, o=0, e=1)
+                if n in self.COFM[self.m]:
+                    if n in F2S: n = F2S[n]
+                self.k                   = N2I[n[:2]] + 48 if n in N2I else self.k   ;   self.o = n[:2] if n in Notes.N2I else self.o
                 cksi.append(int(round(c)))  ;  cs.append(f'{fmtf(c, u-4)}')   ; ds.append(f'{fmtf(d, u-4)}') ; fs.append(f'{fmtf(f, u-2)}') ; ws.append(f'{fmtf(w, u-2)}')
             else:  n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_)  ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
             if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
