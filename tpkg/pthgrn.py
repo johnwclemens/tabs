@@ -92,21 +92,22 @@ class Pthgrn(ivls.Intonation):
             elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
         if dbg: self.dmpDataTableLine(x+1)   ;   self.dmpIndices(pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
-    def dmpCkMap(self, u=9, o=0, dbg=1): # todo generalize m2bc ?
+    def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? # ckmap[498,588,612,702][Note] = F,Gb,G,Ab
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
         ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
-        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm' #  ;   f1 = 0  ;  j = 0
-        for i, ck in enumerate(self.centKs): # ckmap[498,588,612,702][Note] = F,Gb,G,Ab
+        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   f1 = 0
+        for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{self.j=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[self.j][0]=} {dbg=}'
-            if ckmap[ck]['Count'] > 0: # and n in F2S:          n = F2S[n]      if len(n) > 1 else n #  ;   f1 = 0
+            if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abcd']   ;   q = self.fdvdr(a, ca, b, cb)
-                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck) # ;  ck2 = self.centKs[i - f1]
+                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k, i2    = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
-#                n = Notes.i2n()[(j - f1) % NT]   ;   j += 1
-                n, m = self.f2nPair(f, b=1, o=0, e=1)
-                if n in self.COFM[self.m]:
-                    if n in F2S: n = F2S[n]
-                self.k                   = N2I[n[:2]] + 48 if n in N2I else self.k   ;   self.o = n[:2] if n in Notes.N2I else self.o
+                n, m = self.f2nPair(f, b=1, o=0, e=1)   ;   assert m != n,  f'{i=} {ck=} {m=} {n=} {c=} {d=} {k=} {i2=} {f=} {w=}'
+                if m:
+                    if   m not in self.COFM[self.n]:   n = n + '/' + m
+                    elif f1:                           n = m
+                    else:                             f1 = 1
+                self.k = N2I[n[:2]] + 48 if n in N2I else self.k   ;   self.o = n[:2] if n in Notes.N2I else self.o
                 cksi.append(int(round(c)))  ;  cs.append(f'{fmtf(c, u-4)}')   ; ds.append(f'{fmtf(d, u-4)}') ; fs.append(f'{fmtf(f, u-2)}') ; ws.append(f'{fmtf(w, u-2)}')
             else:  n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_)  ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
             if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
@@ -165,7 +166,7 @@ class Pthgrn(ivls.Intonation):
         slog(f'{fmtl(rA1s, w=w1, s=mm, d=Z)}{nn}{n:{w1}}{nn}{fmtl(rA2s, w=w2, s=mm, d=Z)}', p=0, f=ff)
         slog(f'{fmtl(rB1s, w=w1, s=mm, d=Z)}{nn}{n:{w1}}{nn}{fmtl(rB2s, w=w2, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
-    def getCkMapVal(self, ckmap, ck, a, ca, b, cb, f0, w0): # todo move to base class, but abc args and key are issues  # fixme sometimes asserts key ?
+    def getCkMapVal(self, ckmap, ck, a, ca, b, cb, f0, w0): # todo move to base class, but abc args and key are issues
         f = ckmap[ck]['Freq']    ;   assert round(f, 10) == round(f0 * a**ca / b**cb, 10),    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}' #todo remove round() hack! use Decimal
         w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
         n = ckmap[ck]['Note']
@@ -179,22 +180,24 @@ class Pthgrn(ivls.Intonation):
         mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
 #                                    #           <-----------------1---------------->   <-----------------2---------------->   <-----------------3---------------->   <-----------------4---------------->
         for j, d in enumerate(data): # j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
-            if   j==0:                 fd.append(f'{d:x}')                  # j
-            elif j==1:                 fd.append(f'{d:4}')                  # j*100
+            if   j==0:                 fd.append(f'{d:x}')           # j
+            elif j==1:                 fd.append(f'{d:4}')           # j*100
+            elif j==2:                 fd.append(f'{d:2} ')          # i
             elif j==6:                 fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
             elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d d d
-            elif j in ( 8, 14, 20):    fd.append(f'*{mm}{d:2}   ')          # c` c` c`
-            elif j==26:                fd.append(f'*{mm}{d:2}')             # c`
+            elif j in ( 8, 14, 20):    fd.append(f'*{mm}{d:2}  ')    # c` c` c`
+            elif j==26:                fd.append(f'*{mm}{d:2}')      # c`
             elif j in (5, 11, 17, 23): fd.append(f'@{mm}{d:4}{mm}:') # k k k k
             elif j in (7, 13, 19, 25): fd.append(f'={mm}{d:5.3f}')   # e e e e
-            elif j in (2, 3, 4, 9, 10, 15, 16, 21, 22): fd.append(f'{d:2}')  # i Iv c Iv c Iv c Iv c
+            elif j in (3,  9, 15, 21): fd.append(f'|  {d:2}')        # Iv Iv Iv Iv
+            elif j in (4, 10, 16, 22): fd.append(f'{d:2}')           # c c c c
         return fd
 
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3   ;   nh, ni, nj, nk = 0, 0, 0, 0
-        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i']   ;   data = []   ;   m = l - 1 if h > 11 else l
-        hdrB1  = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
-        hdrB2  = ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   m = l - 1 if h > 11 else l
+        hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c` ']
+        hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
         if   h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
         elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]

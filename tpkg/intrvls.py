@@ -50,7 +50,7 @@ class Intonation(object):
         self.w0     = CM_P_M * self.ss
         self.f0     = self.FREFS[self.i]
     ####################################################################################################################################################################################################
-    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo call this once @ end of dmpMaps()
+    def reset_ckmap(self):  return { ck:{'Count':0} for ck in list(self.centKs) } # todo called in _setup() and at end of dmpMaps()
     def set_ck2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
     @staticmethod
@@ -202,7 +202,7 @@ class Intonation(object):
             ks.append(f'{k:4} {v["Count"]:2}')
         slog(f'{fmtl(ks, w=w, s=o)}', p=0)
 
-    def updCkMap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2 # todo move to base class, but abc arg and key is an issue
+    def updCkMap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2
         assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
         ckm[ck]['Count'] = ckm[ck]['Count'] + 1 if 'Count' in ckm[ck] else 1
         ckm[ck]['Freq']  = f                     ;   ckm[ck]['Wavln'] = self.w0 / f
@@ -256,7 +256,7 @@ class Intonation(object):
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x+1)
         self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.__str__()} {self.i=:2} {self.j=:2} {self.k=:2} {self.m=:2} {self.n=:2} {self.o=:2} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
-    def dmpMaps(self, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
+    def dmpMaps(self, u, o, dbg=1):
         if dbg:
             self.dmpNiMap(0, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(1, x=13, upd=1, dbg=dbg)
@@ -277,24 +277,37 @@ class Intonation(object):
             assert u == 12 or u == 13, f'{u=} {self.i=} {self.j=} {self.k=} {self.m=} {o=} {dbg=} {self.csv=}'
             self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(     u=u,  o=o,   dbg=dbg)
-        self.ckmap = self.reset_ckmap() # todo call this once @ end of dmpMaps()
+        self.ckmap = self.reset_ckmap() # fixme call this once @ end of dmpMaps() --> todo wrap in a try:except:finally or a with/as clause:  
     ####################################################################################################################################################################################################
-    def dmpCk2Ik(self, x=13): # todo move to base class
+    def dmpCk2Ik(self, x=13):
         mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
         elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
         else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=oo,  d=Z)}', p=0, f=f2)
     ####################################################################################################################################################################################################
+    '''
+Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
+ 0[    0: [  1 261.626 131.868 0.00000 +0.000 C     [3 0 2 0]   P1   0 ]]
+    '''
     def chckIvls(self):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
         slog(f'BGN chckIvls() {self.csv=}', p=0, f=ff)
-        msgs, ws = [], [3, 7, 7, 7, 6, 5, 10, 4, 3]
+        msgs, ws = [], [3, 7, 7, 7, 6, 5, 10, 3, 3]
         keys = list(list(self.ckmap.values())[0].keys())   ;   keys[0] = 'Knt'   ;   keys[-1] = 'Idx'
         slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, u="^", w=ws, s=mm, d=Z)}', p=0, f=ff)
         for i, (ck, cv) in enumerate(self.ckmap.items()):
             msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
             for k, v in cv.items():
-                msg += f'{fmtf(v, 7)}{mm}' if k in ("Cents", "Freq", "Wavln") else f'{fmtg(v, 6)}{mm}' if k=="DCent" else f'{fmtl(v, s=W):11}{mm}' if k=="Abcd" else f'{v:2}{mm}' if k in ("Count", "Index") else f'{v:5}{mm}' if k=="Note" else f'{v:3}{mm}' if k=="Ival" else f'{v:6}{mm}'
+                if   k == "Count":   msg += f'{v:2}{mm}'
+                elif k == "Freq":    msg += f'{fmtf(v, 7)}{mm}'
+                elif k == "Wavln":   msg += f'{fmtf(v, 7)}{mm}'
+                elif k == "Cents":   msg += f'{fmtf(v, 7)}{mm}'
+                elif k == "DCent":   msg += f'{fmtg(v, 6)}{mm}'
+                elif k == "Note":    msg += f'{v:5}{mm}'
+                elif k == "Abcd":    msg += f'{fmtl(v, s=W):11}{mm}'
+                elif k == "Ival":    msg += f'{v:3}{mm}'
+                elif k == "Index":   msg += f'{v:2}{mm}'
+#                msg += f'{fmtf(v, 7)}{mm}' if k in ("Cents", "Freq", "Wavln") else f'{fmtg(v, 6)}{mm}' if k=="DCent" else f'{fmtl(v, s=W):11}{mm}' if k=="Abcd" else f'{v:2}{mm}' if k in ("Count", "Index") else f'{v:5}{mm}' if k==" Ival " else f'{v:5}{mm}' if k=="Note" else f'{v:3}{mm}'
             msg += f']{nn}]'   ;   msgs.append(msg)
         msgs = '\n'.join(msgs)
         slog(f'{msgs}', p=0, f=ff)
