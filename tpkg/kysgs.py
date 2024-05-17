@@ -129,24 +129,48 @@ def dumpNic(nic): #fix me
     slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else " None " for i in KSD[P][KIS] ], s=s)}', p=PFX, f=FD)
 ########################################################################################################################################################################################################
 '''
-KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering  Key Sig Table -7
-t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
- 0 NTRL C  0 [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ][a  b  c  d  e  f  g ]
--1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ][d  e  f  g  a  bb c ]
--2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ][g  a  bb c  d  eb f ]
--3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ][c  d  eb f  g  ab bb]
--4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ][f  g  ab bb c  db eb]
--5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ][bb c  db eb f  gb ab]
--6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ][eb f  gb ab bb cb db]
--7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭][ab bb cb db eb fb gb]
-t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
- 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ][a  b  c  d  e  f  g ]
-+1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯][e  f# g  a  b  c  d ]
-+2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯][b  c# d  e  f# g  a ]
-+3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯][f# g# a  b  c# d  e ]
-+4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯][c# d# e  f# g# a  b ]
-+5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯][g# a# b  c# d# e  f#]
-+6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯][d# e# f# g# a# b  c#]
-+7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯][a# b# c# d# e# f# g#]
-KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering  Key Sig Table +7
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering Key Sig Table -7
+ 0 NTRL C  0 [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
+-1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
+-2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ] [g  a  b♭ c  d  e♭ f ]
+-3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ] [c  d  e♭ f  g  a♭ b♭]
+-4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ] [f  g  a♭ b♭ c  d♭ e♭]
+-5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ] [b♭ c  d♭ e♭ f  g♭ a♭]
+-6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ] [e♭ f  g♭ a♭ b♭ c♭ d♭]
+-7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭] [a♭ b♭ c♭ d♭ e♭ f♭ g♭]
+ 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
++1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
++2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯] [b  c♯ d  e  f♯ g  a ]
++3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯] [f♯ g♯ a  b  c♯ d  e ]
++4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯] [c♯ d♯ e  f♯ g♯ a  b ]
++5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯] [g♯ a♯ b  c♯ d♯ e  f♯]
++6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯] [d♯ e♯ f♯ g♯ a♯ b  c♯]
++7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯] [a♯ b♯ c♯ d♯ e♯ f♯ g♯]
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering Key Sig Table +7
+#kysgs dumpData           BGN csv=0
+ F  l  a  t  s        N        S  h  r  p  s
+ -  -  -  -  -  -  -     +  +  +  +  +  +  +
+[7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
+[b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 ]
+[C♭ G♭ D♭ A♭ E♭ B♭ F  C  G  D  A  E  B  F♯ C♯]
+[F♭ C♭ G♭ D♭ A♭ E♭ B♭    F♯ C♯ G♯ D♯ A♯ E♯ B♯]
+[4  b  6  1  8  3  a     6  1  8  3  a  5  0 ]
+#kysgs dumpKSV            BGN csv=0
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering Key Sig Table +15
+-7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭] [a♭ b♭ c♭ d♭ e♭ f♭ g♭]
+-6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ] [e♭ f  g♭ a♭ b♭ c♭ d♭]
+-5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ] [b♭ c  d♭ e♭ f  g♭ a♭]
+-4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ] [f  g  a♭ b♭ c  d♭ e♭]
+-3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ] [c  d  e♭ f  g  a♭ b♭]
+-2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ] [g  a  b♭ c  d  e♭ f ]
+-1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
+ 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
++1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
++2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯] [b  c♯ d  e  f♯ g  a ]
++3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯] [f♯ g♯ a  b  c♯ d  e ]
++4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯] [c♯ d♯ e  f♯ g♯ a  b ]
++5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯] [g♯ a♯ b  c♯ d♯ e  f♯]
++6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯] [d♯ e♯ f♯ g♯ a♯ b  c♯]
++7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯] [a♯ b♯ c♯ d♯ e♯ f♯ g♯]
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering Key Sig Table +15
 '''

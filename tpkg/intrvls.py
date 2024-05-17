@@ -14,17 +14,18 @@ NT, A4_INDEX, CM_P_M, V_SOUND    = notes.NT,   notes.A4_INDEX,   notes.CM_P_M,  
 
 FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s
-
-# COFS = {'C', 'G', 'D', 'A', 'E', 'B/Cb', 'F#/Gb', 'C#/Db', 'Ab', 'Eb', 'Bb', 'F'}
+#        0    1    2     3     4     5     6     7     8     9      10     11     12
+COFS = ['C', 'G', 'D',  'A',  'E',  'B',  'F♯', 'C♯', 'G♯', 'D♯',  'A♯',  'E#',  'B#']
+COFF = ['C', 'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭']
 ########################################################################################################################################################################################################
 def i2spr(i): # todo fixme still being used by old code that hasn't been retired yet
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
 
-def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
-def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
-def stackI(a, b, c): return [ a, b, c ]
-def fabc(abc):       return [ fmtl(e, w=2, d=Z) for e in abc ]
+def stck5ths(i, n):     return [ stackI(3, 2, j, COFS[n + j]) for j in range(1, 1 + i) ]
+def stck4ths(i, n):     return [ stackI(2, 3, j, COFF[n + j]) for j in range(1, 1 + i) ]
+def stackI(a, b, c, n): return [ a, b, c, n ]
+def fabc(abc):          return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Intonation(object):
@@ -85,22 +86,35 @@ class Intonation(object):
         cb       = c - j if j < 0 else c
         return r, ca, cb
 
-    def abcs(self, a, b): # todo generalize m2bc ?
-        abc1 = stck5ths(a)
-        abc2 = stck4ths(b)
-        abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
+    def abcs(self, a, b, n, dbg=1): # todo generalize m2bc ?
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   w = [1, 1, 2, 3]   ;   pfx, sfx = [], []
+        abc1 = stck5ths(a, n)
+        abc2 = stck4ths(b, n)
+        abc3 = [ stackI(3, 2, 0, COFS[n]) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1, COFF[n]))
         abc4 = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
-        return [ abc1, abc2, abc3, abc4 ] 
+        abcList = [abc1, abc2, abc3, abc4]
+        if dbg:
+            for j, abcs in enumerate(abcList):
+                msg = []
+                pfx.append(f'abc{j+1} {nn}[{nn}')  ;  sfx.append(f'{nn}]{nn}')
+                for i, abc in enumerate(abcs): 
+                    msg.append(f'{fmtl(abc, w=w, d=W, s=mm)}')
+                slog(f'{pfx[j]}{fmtl(msg)}{sfx[j]}', p=0, f=ff)
+#            slog(f'abc1 {nn}[{nn}{fmtl(abc1, w=w, d=W, s=mm)}{nn}]{nn}', p=0, f=ff)
+#            slog(f'abc2 {nn}[{nn}{fmtl(abc2, w=w, d=W, s=mm)}{nn}]{nn}', p=0, f=ff)
+#            slog(f'abc3 {nn}[{nn}{fmtl(abc3, w=w, d=W, s=mm)}{nn}]{nn}', p=0, f=ff)
+#            slog(f'abc4 {nn}[{nn}{fmtl(abc4, w=w, d=W, s=mm)}{nn}]{nn}', p=0, f=ff)
+        return abcList 
 
     def i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-        f = self.abcs   ;   i = self.i   ;   j = self.j
-        return f(6, 6) if j==i   else f(5, 7) if j==i+7 else f(4, 8) if j==i+2  else f(3, 9) if j==i+9 else f(2, 10) if j==i+4 else f(1, 11) if j==i+11 else \
-            f(0, 11)   if j==i+6 else f(7, 5) if j==i+5 else f(8, 4) if j==i+10 else f(9, 3) if j==i+3 else f(10, 2) if j==i+8 else f(11, 1) if j==i+1  else f(13, 13)
+        f = self.abcs   ;   i = self.i   ;   j = self.j   ;   n = self.k % NT
+        return f(6, 6, n)  if j==i   else f(5, 7, n) if j==i+7 else f(4, 8, n) if j==i+2  else f(3, 9, n) if j==i+9 else f(2, 10, n) if j==i+4 else f(1, 11, n) if j==i+11 else \
+               f(0, 12, n) if j==i+6 else f(7, 5, n) if j==i+5 else f(8, 4, n) if j==i+10 else f(9, 3, n) if j==i+3 else f(10, 2, n) if j==i+8 else f(11, 1, n) if j==i+1  else f(13, 13, n)
 
-    def OLD__i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-        f = self.abcs   ;   i = self.i   ;   j = self.j
-        return f(6, 5) if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
-            f(0, 11)   if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
+#    def OLD__i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
+#        f = self.abcs   ;   i = self.i   ;   j = self.j
+#        return f(6, 5)  if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
+#               f(0, 11) if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
     ####################################################################################################################################################################################################
     def OLD__fmtNPair(self, k, i, j=1, d=0, dbg=0): # set j=k or j=self.j ?
         n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d   ;   j = k if j else self.j
@@ -318,7 +332,7 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         slog(f'END chckIvls() {self.csv=}', p=0, f=ff)
 
     def chckIvl2(self, cm=0):
-        ff = 3 if self.csv else -3
+        ff = 3 if self.csv else 1
         if cm:    self.dmpCkMap2()
         cntr = Counter()
         keys = list(self.ckmap.keys())
@@ -331,7 +345,7 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         slog(f'{fmtm(cntr)}', p=0, f=ff)
 
     def chckIvl2A(self, key, cntr):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', -3)  ;  x = 8  ;  uu = f'{x}'  ;   ww = f'{x}.3f'
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  x = 8  ;  uu = f'{x}'  ;   ww = f'{x}.3f'
         cs = []   ;   blnk = x*W   ;   cmk = 'Cents'
         cmv  = self.ckmap[key][cmk]
         for i, (ck, cv) in enumerate(self.ckmap.items()):

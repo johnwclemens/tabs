@@ -44,20 +44,20 @@ class Pthgrn(ivls.Intonation):
         return ecents
         
     def comma(self, dbg=0): # todo generalize m2bc ?
-        n, i, iv  = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
-        s5s       = ivls.stck5ths(n)
-        a, b, c   = s5s[i]
-        r, ca, cb = self.abc2r(a, b, c)
-        if dbg:   slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
-        if dbg:   slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
+        n, i, iv   = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
+        s5s        = ivls.stck5ths(n, 0)
+        a, b, c, m = s5s[i]
+        r, ca, cb  = self.abc2r(a, b, c)
+        if dbg:    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
+        if dbg:    slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
         assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-        pa, pb    = a ** ca, b ** cb
-        cratio    = pa / pb
-        q         = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
-        ccents    = self.r2cents(cratio)
-        if dbg:   slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
-        ecents    = ccents / NT
-        if dbg:   slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
+        pa, pb     = a ** ca, b ** cb
+        cratio     = pa / pb
+        q          = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
+        ccents     = self.r2cents(cratio)
+        if dbg:    slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
+        ecents     = ccents / NT
+        if dbg:    slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ccents
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
@@ -216,11 +216,24 @@ class Pthgrn(ivls.Intonation):
         elif h == 23:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h == 25:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
         elif h == 27:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-#       if       h % 2 and (h <= 9 or h >= 17):    fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-#       if       h % 2 and (h < 11 or h > 15):     fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-        if       h % 2 and h not in (11, 13, 15):  fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        if       h % 2 and h not in (11, 13, 15):  fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff) # (h < 11 or h > 15) # (h <= 9 or h >= 17)
         elif not h % 2 and h     in (12, 14):      fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
+j j*100 i  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`
+0    0  1  |  P1 12 @    0 :   0.000 = 1.955 *  0   |  LA  0 @   23 :         = 1.955 * 12  
+1  100  3  |  m2  8 @   90 :  -9.780 = 1.955 *  5   |  A1  5 @  114 :  13.690 = 1.955 *  8  
+2  200  5  |  M2 10 @  204 :   3.910 = 1.955 *  3   |  d3  3 @  180 : -19.550 = 1.955 * 10  
+3  300  7  |  m3 10 @  294 :  -5.870 = 1.955 *  3   |  A2  3 @  318 :  17.600 = 1.955 * 10  
+4  400  9  |  M3  8 @  408 :   7.820 = 1.955 *  5   |  d4  5 @  384 : -15.640 = 1.955 *  8  
+5  500 12  |  P4 12 @  498 :  -1.960 = 1.955 *  1   |  A3  1 @  522 :  21.510 = 1.955 * 12   |   0  0 @  475 :         = 1.955 * 12  
+6  600 14  |  d5  6 @  612 :  11.730 = 1.955 *  7   |  A4  7 @  588 : -11.730 = 1.955 *  6  
+7  700 17  |  P5 11 @  702 :   1.960 = 1.955 *  0   |   0  2 @  678 : -21.510 = 1.955 * 11   |  LD  0 @  725 :         = 1.955 * 11  
+8  800 19  |  m6  9 @  792 :  -7.820 = 1.955 *  4   |  A5  4 @  816 :  15.640 = 1.955 *  9  
+9  900 21  |  M6  9 @  906 :   5.870 = 1.955 *  4   |  d7  4 @  882 : -17.600 = 1.955 *  9  
+a 1000 23  |  m7 11 @  996 :  -3.910 = 1.955 *  2   |  A6  2 @ 1020 :  19.550 = 1.955 * 11  
+b 1100 25  |  M7  7 @ 1110 :   9.780 = 1.955 *  6   |  d8  6 @ 1086 : -13.690 = 1.955 *  7  
+c 1200 27  |  P8 12 @ 1200 :   0.000 = 1.955 *  0   |  LB  0 @ 1177 :         = 1.955 * 12  
+
 j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`   Iv  c     k       d       e       c`
 0    0  1 P1 12 @    0 :   0.000 = 1.955 *  0    LA  0 @   23 :         = 1.955 * 12   
 1  100  3 m2  7 @   90 :  -9.780 = 1.955 *  5    A1  5 @  114 :  13.690 = 1.955 *  7   
