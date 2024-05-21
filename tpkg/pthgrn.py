@@ -45,7 +45,7 @@ class Pthgrn(ivls.Intonation):
         
     def comma(self, dbg=0): # todo generalize m2bc ?
         n, i, iv   = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
-        s5s        = ivls.stck5ths(n, 0)
+        s5s        = self.stck5ths(n, 0)
         a, b, c, m = s5s[i]
         r, ca, cb  = self.abc2r(a, b, c)
         if dbg:    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')

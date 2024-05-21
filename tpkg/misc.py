@@ -688,6 +688,300 @@ dmpCkMap():
 ####################################################################################################
 ####################################################################################################
 '''
+       -7 -6 -5 -4 -3 -2 -1          +1 +2 +3 +4 +5 +6 +7 
+ 0 C  [B  E  A  D  G  C  F ]   0 C  [B  E  A  D  G  C  F ]
+-1 F  [B♭ E  A  D  G  C  F ]  +1 G  [F♯ C  G  D  A  E  B ]
+-2 B♭ [B♭ E♭ A  D  G  C  F ]  +2 D  [F♯ C♯ G  D  A  E  B ]
+-3 E♭ [B♭ E♭ A♭ D  G  C  F ]  +3 A  [F♯ C♯ G♯ D  A  E  B ]
+-4 A♭ [B♭ E♭ A♭ D♭ G  C  F ]  +4 E  [F♯ C♯ G♯ D♯ A  E  B ]
+-5 D♭ [B♭ E♭ A♭ D♭ G♭ C  F ]  +5 B  [F♯ C♯ G♯ D♯ A♯ E  B ]
+-6 G♭ [B♭ E♭ A♭ D♭ G♭ C♭ F ]  +6 F♯ [F♯ C♯ G♯ D♯ A♯ E♯ B ]
+-7 C♭ [B♭ E♭ A♭ D♭ G♭ C♭ F♭]  +7 C♯ [F♯ C♯ G♯ D♯ A♯ E♯ B♯]
+       -7 -6 -5 -4 -3 -2 -1          +1 +2 +3 +4 +5 +6 +7 
+
+       -7 -6 -5 -4 -3 -2 -1          +1 +2 +3 +4 +5 +6 +7 
+ 0 C  [B  E  A  D  G  C  F ]   0 C  [B  E  A  D  G  C  F ]
+-1 F  [B♭ E  A  D  G  C  F ]  +1 G  [F♯ C  G  D  A  E  B ]
+-2 B♭ [B♭ E♭ A  D  G  C  F ]  +2 D  [F♯ C♯ G  D  A  E  B ]
+-3 E♭ [B♭ E♭ A♭ D  G  C  F ]  +3 A  [F♯ C♯ G♯ D  A  E  B ]
+-4 A♭ [B♭ E♭ A♭ D♭ G  C  F ]  +4 E  [F♯ C♯ G♯ D♯ A  E  B ]
+
+-5 D♭ [B♭ E♭ A♭ D♭ G♭ C  F ]  +5 B  [F♯ C♯ G♯ D♯ A♯ E  B ]
++7 C♯ [F♯ C♯ G♯ D♯ A♯ E♯ B♯]  -7 C♭ [B♭ E♭ A♭ D♭ G♭ C♭ F♭]
+-6 G♭ [B♭ E♭ A♭ D♭ G♭ C♭ F ]  +6 F♯ [F♯ C♯ G♯ D♯ A♯ E♯ B ]
++6 F♯ [F♯ C♯ G♯ D♯ A♯ E♯ B ]  -6 G♭ [B♭ E♭ A♭ D♭ G♭ C♭ F ]
+-7 C♭ [B♭ E♭ A♭ D♭ G♭ C♭ F♭]  +7 C♯ [F♯ C♯ G♯ D♯ A♯ E♯ B♯]
++5 B  [F♯ C♯ G♯ D♯ A♯ E  B ]  -5 D♭ [B♭ E♭ A♭ D♭ G♭ C  F ]
+       -7 -6 -5 -4 -3 -2 -1          +1 +2 +3 +4 +5 +6 +7 
+'''
+####################################################################################################
+####################################################################################################
+'''
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb    F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb          C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                            A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                                  E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                                        B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                                        B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                                  E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                            A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb          C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb    F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+                                                                 
+                                                                 
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                                        B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                                  E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                            A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb          C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb    F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb    F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb          C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                            A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                                  E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                                        B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+
+                                                                 
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]                                                                 
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+
+
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]                                                                 
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+                                                                 
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]                                                                 
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+
+
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]                                                                 
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbbb Bbb Bbb Bbb Bbb Bbb Bbb Bbb Bb Bb Bb Bb Bb Bb Bb                      B# B#  B#  B#  B#  B#  B#  B## D##  D##  D##  D##  D##  D##  D### D###  D###  D###  D###  D###  D###  D####]
+[Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbbb Ebbb  Ebbb Ebbb Ebbb Ebbb Ebbb Ebbb Ebb  Ebb Ebb Ebb Ebb Ebb Ebb Eb  Eb Eb Eb Eb Eb Eb                      E# E# E#  E#  E#  E#  E#  E## E## E##  E##  E##  E##  E##  E### E### E###  E###  E###  E###  E###  E#### E####]
+[Abbbb Abbbb Abbbb Abbbb Abbbb Abbb  Abbb  Abbb Abbb Abbb Abbb Abbb Abb  Abb  Abb Abb Abb Abb Abb Ab  Ab  Ab Ab Ab Ab Ab                      A# A# A# A#  A#  A#  A#  A## A## A## A##  A##  A##  A##  A### A### A### A###  A###  A###  A###  A#### A#### A####]
+[Dbbbb Dbbbb Dbbbb Dbbbb Dbbb  Dbbb  Dbbb  Dbbb Dbbb Dbbb Dbbb Dbb  Dbb  Dbb  Dbb Dbb Dbb Dbb Db  Db  Db  Db Db Db Db                      D# D# D# D# D#  D#  D#  D## D## D## D## D##  D##  D##  D### D### D### D### D###  D###  D###  D#### D#### D#### D####]
+[Gbbbb Gbbbb Gbbbb Gbbb  Gbbb  Gbbb  Gbbb  Gbbb Gbbb Gbbb Gbb  Gbb  Gbb  Gbb  Gbb Gbb Gbb Gb  Gb  Gb  Gb  Gb Gb Gb                      G# G# G# G# G# G#  G#  G## G## G## G## G## G##  G##  G### G### G### G### G### G###  G###  G#### G#### G#### G#### G####]
+[Cbbbb Cbbbb Cbbbb Cbbb  Cbbb  Cbbb  Cbbb  Cbbb Cbbb Cbb  Cbb  Cbb  Cbb  Cbb  Cbb Cb  Cb  Cb  Cb  Cb  Cb  Cb Cb                      C# C# C# C# C# C# C#  C## C## C## C## C## C## C##  C### C### C### C### C### C### C###  C#### C#### C#### C#### C#### C####]
+[Fbbbb Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb  Fbbb Fbb  Fbb  Fbb  Fbb  Fbb  Fbb  Fbb Fb  Fb  Fb  Fb  Fb  Fb  Fb                      F# F# F# F# F# F# F# F## F## F## F## F## F## F## F### F### F### F### F### F### F### F#### F#### F#### F#### F#### F#### F####]
+[Cbbbb Gbbbb Dbbbb Abbbb Ebbbb Bbbbb Fbbb  Cbbb Gbbb Dbbb Abbb Ebbb Bbbb Fbb  Cbb Gbb Dbb Abb Ebb Bbb Fb  Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C# G#  D#  A#  E#  B#  F## C## G##  D##  A##  E##  B##  F### C### G###  D###  A###  E###  B###  F#### C####]
+[-     -     -     -     -     -     -     -    -    -    -    -    -    -    -   -   -   -   -   -   -   -  -  -  -  -  -  -  .  +  +  +  +  +  +  +  +   +   +   +   +   +   +   +    +    +    +    +    +    +    +     +     +     +     +     +     +    ]
+[28    27    26    25    24    23    22    21   20   19   18   17   16   15   14  13  12  11  10  9   8   7  6  5  4  3  2  1  0  1  2  3  4  5  6  7  8   9   10  11  12  13  14  15   16   17   18   19   20   21   22    23    24    25    26    27    28   ]
+
+           Fb    Cb    Gb    Db    Ab    Eb    Bb               C            G     D     A     E     B     F#    C# 
+           -7    -6    -5    -4    -3    -2    -1               0            +1    +2    +3    +4    +5    +6    +7    
+C       0 [                                         ]   0 C     | C       0 [                                         ]   0 C    
+F     - 1 [                                    B♭   ] - 1 F     | G     + 1 [F♯                                       ] + 1 G    
+B♭    - 2 [                              Eb    B♭   ] - 2 B♭    | D     + 2 [F♯    C♯                                 ] + 2 D    
+E♭    - 3 [                        A♭    Eb    B♭   ] - 3 E♭    | A     + 3 [F♯    C♯    G♯                           ] + 3 A    
+A♭    - 4 [                  D♭    A♭    Eb    B♭   ] - 4 A♭    | E     + 4 [F♯    C♯    G♯    D♯                     ] + 4 E    
+D♭    - 5 [            G♭    D♭    A♭    Eb    B♭   ] - 5 D♭    | B     + 5 [F♯    C♯    G♯    D♯    A♯               ] + 5 B    
+G♭    - 6 [      C♭    G♭    D♭    A♭    Eb    B♭   ] - 6 G♭    | F♯    + 6 [F♯    C♯    G♯    D♯    A♯    E♯         ] + 6 F♯   
+C♭    - 7 [F♭    C♭    G♭    D♭    A♭    Eb    B♭   ] - 7 C♭    | C♯    + 7 [F♯    C♯    G♯    D♯    A♯    E♯    B♯   ] + 7 C♯   
+F♭    - 8 [F♭    C♭    G♭    D♭    A♭    Eb    B♭♭  ] - 8 F♭    | G♯    + 8 [F♯♯   C♯    G♯    D♯    A♯    E♯    B♯   ] + 8 G♯   
+B♭♭   - 9 [F♭    C♭    G♭    D♭    A♭    E♭♭   B♭♭  ] - 9 B♭♭   | D♯    + 9 [F♯♯   C♯♯   G♯    D♯    A♯    E♯    B♯   ] + 9 D♯   
+E♭♭   -10 [F♭    C♭    G♭    D♭    A♭♭   E♭♭   B♭♭  ] -10 E♭♭   | A♯    +10 [F♯♯   C♯♯   G♯♯   D♯    A♯    E♯    B♯   ] +10 A♯   
+A♭♭   -11 [F♭    C♭    G♭    D♭♭   A♭♭   E♭♭   B♭♭  ] -11 A♭♭   | E♯    +11 [F♯♯   C♯♯   G♯♯   D♯♯   A♯    E♯    B♯   ] +11 E♯   
+D♭♭   -12 [F♭    C♭    G♭♭   D♭♭   A♭♭   E♭♭   B♭♭  ] -12 D♭♭   | B♯    +12 [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯    B♯   ] +12 B♯   
+G♭♭   -13 [F♭    C♭♭   G♭♭   D♭♭   A♭♭   E♭♭   B♭♭  ] -13 G♭♭   | F♯♯   +13 [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯   ] +13 F♯♯  
+C♭♭   -14 [F♭♭   C♭♭   G♭♭   D♭♭   A♭♭   E♭♭   B♭♭  ] -14 C♭♭   | C♯♯   +14 [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ] +14 C♯♯  
+F♭♭   -15 [F♭♭   C♭♭   G♭♭   D♭♭   A♭♭   E♭♭   B♭♭♭ ] -15 F♭♭   | G♯♯   +15 [F♯♯♯  C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ] +15 G♯♯  
+B♭♭♭  -16 [F♭♭   C♭♭   G♭♭   D♭♭   A♭♭   E♭♭♭  B♭♭♭ ] -16 B♭♭♭  | D♯♯   +16 [F♯♯♯  C♯♯♯  G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ] +16 D♯♯  
+E♭♭♭  -17 [F♭♭   C♭♭   G♭♭   D♭♭   A♭♭♭  E♭♭♭  B♭♭♭ ] -17 E♭♭♭  | A♯♯   +17 [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯   A♯♯   E♯♯   B♯♯  ] +17 A♯♯  
+A♭♭♭  -18 [F♭♭   C♭♭   G♭♭   D♭♭♭  A♭♭♭  E♭♭♭  B♭♭♭ ] -18 A♭♭♭  | E♯♯   +18 [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯   E♯♯   B♯♯  ] +18 E♯♯  
+D♭♭♭  -19 [F♭♭   C♭♭   G♭♭♭  D♭♭♭  A♭♭♭  E♭♭♭  B♭♭♭ ] -19 D♭♭♭  | B♯♯   +19 [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯   B♯♯  ] +19 B♯♯  
+G♭♭♭  -20 [F♭♭   C♭♭♭  G♭♭♭  D♭♭♭  A♭♭♭  E♭♭♭  B♭♭♭ ] -20 G♭♭♭  | F♯♯♯  +20 [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯  ] +20 F♯♯♯ 
+C♭♭♭  -21 [F♭♭♭  C♭♭♭  G♭♭♭  D♭♭♭  A♭♭♭  E♭♭♭  B♭♭♭ ] -21 C♭♭♭  | C♯♯♯  +21 [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ] +21 C♯♯♯ 
+F♭♭♭  -22 [F♭♭♭  C♭♭♭  G♭♭♭  D♭♭♭  A♭♭♭  E♭♭♭  B♭♭♭♭] -22 F♭♭♭  | G♯♯♯  +22 [F♯♯♯♯ C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ] +22 G♯♯♯ 
+B♭♭♭♭ -23 [F♭♭♭  C♭♭♭  G♭♭♭  D♭♭♭  A♭♭♭  E♭♭♭♭ B♭♭♭♭] -23 B♭♭♭♭ | D♯♯♯  +23 [F♯♯♯♯ C♯♯♯♯ G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ] +23 D♯♯♯ 
+E♭♭♭♭ -24 [F♭♭♭  C♭♭♭  G♭♭♭  D♭♭♭  A♭♭♭♭ E♭♭♭♭ B♭♭♭♭] -24 E♭♭♭♭ | A♯♯♯  +24 [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ] +24 A♯♯♯ 
+A♭♭♭♭ -25 [F♭♭♭  C♭♭♭  G♭♭♭  D♭♭♭♭ A♭♭♭♭ E♭♭♭♭ B♭♭♭♭] -25 A♭♭♭♭ | E♯♯♯  +25 [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯  E♯♯♯  B♯♯♯ ] +25 E♯♯♯ 
+D♭♭♭♭ -26 [F♭♭♭  C♭♭♭  G♭♭♭♭ D♭♭♭♭ A♭♭♭♭ E♭♭♭♭ B♭♭♭♭] -26 D♭♭♭♭ | B♯♯♯  +26 [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯  B♯♯♯ ] +26 B♯♯♯ 
+G♭♭♭♭ -27 [F♭♭♭  C♭♭♭♭ G♭♭♭♭ D♭♭♭♭ A♭♭♭♭ E♭♭♭♭ B♭♭♭♭] -27 G♭♭♭♭ | F♯♯♯♯ +27 [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯♯ B♯♯♯ ] +27 F♯♯♯♯
+C♭♭♭♭ -28 [F♭♭♭♭ C♭♭♭♭ G♭♭♭♭ D♭♭♭♭ A♭♭♭♭ E♭♭♭♭ B♭♭♭♭] -28 C♭♭♭♭ | C♯♯♯♯ +28 [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯♯ B♯♯♯♯] +28 C♯♯♯♯
+           -7    -6    -5    -4    -3    -2    -1               0            +1    +2    +3    +4    +5    +6    +7    
+           Fb    Cb    Gb    Db    Ab    Eb    Bb               C            G     D     A     E     B     F#    C#
+
+'''
+####################################################################################################
+####################################################################################################
+'''
+Reverse negative headers and first row of notes for key of C in sharps column
+       -1 -2 -3 -4 -5 -6 -7          +1 +2 +3 +4 +5 +6 +7 
+ 0 C  [B  E  A  D  G  C  F ]   0 C  [F  C  G  D  A  E  B ]
+-1 F  [B♭ E  A  D  G  C  F ]  +1 G  [F♯ C  G  D  A  E  B ]
+-2 B♭ [B♭ E♭ A  D  G  C  F ]  +2 D  [F♯ C♯ G  D  A  E  B ]
+-3 E♭ [B♭ E♭ A♭ D  G  C  F ]  +3 A  [F♯ C♯ G♯ D  A  E  B ]
+-4 A♭ [B♭ E♭ A♭ D♭ G  C  F ]  +4 E  [F♯ C♯ G♯ D♯ A  E  B ]
+-5 D♭ [B♭ E♭ A♭ D♭ G♭ C  F ]  +5 B  [F♯ C♯ G♯ D♯ A♯ E  B ]
+-6 G♭ [B♭ E♭ A♭ D♭ G♭ C♭ F ]  +6 F♯ [F♯ C♯ G♯ D♯ A♯ E♯ B ]
+-7 C♭ [B♭ E♭ A♭ D♭ G♭ C♭ F♭]  +7 C♯ [F♯ C♯ G♯ D♯ A♯ E♯ B♯]
+       -1 -2 -3 -4 -6 -6 -7          +1 +2 +3 +4 +5 +6 +7 
+
+         -1  -2  -3 -4  -5  -6   -7             +1  +2  +3  +4  +5  +6  +7  
+  0 C   [B   E   A   D   G   C   F  ]    0 C   [F   C   G   D   A   E   B  ]
+ -1 F   [B♭  E   A   D   G   C   F  ]   +1 G   [F♯  C   G   D   A   E   B  ]
+ -2 B♭  [B♭  E♭  A   D   G   C   F  ]   +2 D   [F♯  C♯  G   D   A   E   B  ]
+ -3 E♭  [B♭  E♭  A♭  D   G   C   F  ]   +3 A   [F♯  C♯  G♯  D   A   E   B  ]
+ -4 A♭  [B♭  E♭  A♭  D♭  G   C   F  ]   +4 E   [F♯  C♯  G♯  D♯  A   E   B  ]
+ -5 D♭  [B♭  E♭  A♭  D♭  G♭  C   F  ]   +5 B   [F♯  C♯  G♯  D♯  A♯  E   B  ]
+ -6 G♭  [B♭  E♭  A♭  D♭  G♭  C♭  F  ]   +6 F♯  [F♯  C♯  G♯  D♯  A♯  E♯  B  ]
+ -7 C♭  [B♭  E♭  A♭  D♭  G♭  C♭  F♭ ]   +7 C♯  [F♯  C♯  G♯  D♯  A♯  E♯  B♯ ]
+ -8 F♭  [B♭♭ E♭  A♭  D♭  G♭  C♭  F♭ ]   +8 G♯  [F♯♯ C♯  G♯  D♯  A♯  E♯  B♯ ]
+ -9 B♭♭ [B♭♭ E♭♭ A♭  D♭  G♭  C♭  F♭ ]   +9 D♯  [F♯♯ C♯♯ G♯  D♯  A♯  E♯  B♯ ]
+-10 E♭♭ [B♭♭ E♭♭ A♭♭ D♭  G♭  C♭  F♭ ]  +10 A♯  [F♯♯ C♯♯ G♯♯ D♯  A♯  E♯  B♯ ]
+-11 A♭♭ [B♭♭ E♭♭ A♭♭ D♭♭ G♭  C♭  F♭ ]  +11 E♯  [F♯♯ C♯♯ G♯♯ D♯♯ A♯  E♯  B♯ ]
+-12 D♭♭ [B♭♭ E♭♭ A♭♭ D♭♭ G♭♭ C♭  F♭ ]  +12 B♯  [F♯♯ C♯♯ G♯♯ D♯♯ A♯♯ E♯  B♯ ]
+-13 G♭♭ [B♭♭ E♭♭ A♭♭ D♭♭ G♭♭ C♭♭ F♭ ]  +13 F♯♯ [F♯♯ C♯♯ G♯♯ D♯♯ A♯♯ E♯♯ B♯ ]
+-14 C♭♭ [B♭♭ E♭♭ A♭♭ D♭♭ G♭♭ C♭♭ F♭♭]  +14 C♯♯ [F♯♯ C♯♯ G♯♯ D♯♯ A♯♯ E♯♯ B♯♯]
+         -7  -6  -5  -4  -3  -2  -1             +1  +2  +3  +4  +5  +6  +7  
+
+          -7   -6   -5   -4   -3   -2   -1               +1   +2   +3   +4   +5   +6   +7   
+  0 C    [B    E    A    D    G    C    F   ]    0 C    [B    E    A    D    G    C    F   ]
+ -1 F    [B♭   E    A    D    G    C    F   ]   +1 G    [F♯   C    G    D    A    E    B   ]
+ -2 B♭   [B♭   E♭   A    D    G    C    F   ]   +2 D    [F♯   C♯   G    D    A    E    B   ]
+ -3 E♭   [B♭   E♭   A♭   D    G    C    F   ]   +3 A    [F♯   C♯   G♯   D    A    E    B   ]
+ -4 A♭   [B♭   E♭   A♭   D♭   G    C    F   ]   +4 E    [F♯   C♯   G♯   D♯   A    E    B   ]
+ -5 D♭   [B♭   E♭   A♭   D♭   G♭   C    F   ]   +5 B    [F♯   C♯   G♯   D♯   A♯   E    B   ]
+ -6 G♭   [B♭   E♭   A♭   D♭   G♭   C♭   F   ]   +6 F♯   [F♯   C♯   G♯   D♯   A♯   E♯   B   ]
+ -7 C♭   [B♭   E♭   A♭   D♭   G♭   C♭   F♭  ]   +7 C♯   [F♯   C♯   G♯   D♯   A♯   E♯   B♯  ]
+ -8 F♭   [B♭♭  E♭   A♭   D♭   G♭   C♭   F♭  ]   +8 G♯   [F♯♯  C♯   G♯   D♯   A♯   E♯   B♯  ]
+ -9 B♭♭  [B♭♭  E♭♭  A♭   D♭   G♭   C♭   F♭  ]   +9 D♯   [F♯♯  C♯♯  G♯   D♯   A♯   E♯   B♯  ]
+-10 E♭♭  [B♭♭  E♭♭  A♭♭  D♭   G♭   C♭   F♭  ]  +10 A♯   [F♯♯  C♯♯  G♯♯  D♯   A♯   E♯   B♯  ]
+-11 A♭♭  [B♭♭  E♭♭  A♭♭  D♭♭  G♭   C♭   F♭  ]  +11 E♯   [F♯♯  C♯♯  G♯♯  D♯♯  A♯   E♯   B♯  ]
+-12 D♭♭  [B♭♭  E♭♭  A♭♭  D♭♭  G♭♭  C♭   F♭  ]  +12 B♯   [F♯♯  C♯♯  G♯♯  D♯♯  A♯♯  E♯   B♯  ]
+-13 G♭♭  [B♭♭  E♭♭  A♭♭  D♭♭  G♭♭  C♭♭  F♭  ]  +13 F♯♯  [F♯♯  C♯♯  G♯♯  D♯♯  A♯♯  E♯♯  B♯  ]
+-14 C♭♭  [B♭♭  E♭♭  A♭♭  D♭♭  G♭♭  C♭♭  F♭♭ ]  +14 C♯♯  [F♯♯  C♯♯  G♯♯  D♯♯  A♯♯  E♯♯  B♯♯ ]
+-15 F♭♭  [B♭♭♭ E♭♭  A♭♭  D♭♭  G♭♭  C♭♭  F♭♭ ]  +15 G♯♯  [F♯♯♯ C♯♯  G♯♯  D♯♯  A♯♯  E♯♯  B♯♯ ]
+-16 B♭♭♭ [B♭♭♭ E♭♭♭ A♭♭  D♭♭  G♭♭  C♭♭  F♭♭ ]  +16 D♯♯  [F♯♯♯ C♯♯♯ G♯♯  D♯♯  A♯♯  E♯♯  B♯♯ ]
+-17 E♭♭♭ [B♭♭♭ E♭♭♭ A♭♭♭ D♭♭  G♭♭  C♭♭  F♭♭ ]  +17 A♯♯  [F♯♯♯ C♯♯♯ G♯♯♯ D♯♯  A♯♯  E♯♯  B♯♯ ]
+-18 A♭♭♭ [B♭♭♭ E♭♭♭ A♭♭♭ D♭♭♭ G♭♭  C♭♭  F♭♭ ]  +18 E♯♯  [F♯♯♯ C♯♯♯ G♯♯♯ D♯♯♯ A♯♯  E♯♯  B♯♯ ]
+-19 D♭♭♭ [B♭♭♭ E♭♭♭ A♭♭♭ D♭♭♭ G♭♭♭ C♭♭  F♭♭ ]  +19 B♯♯  [F♯♯♯ C♯♯♯ G♯♯♯ D♯♯♯ A♯♯♯ E♯♯  B♯♯ ]
+-20 G♭♭♭ [B♭♭♭ E♭♭♭ A♭♭♭ D♭♭♭ G♭♭♭ C♭♭♭ F♭♭ ]  +20 F♯♯♯ [F♯♯♯ C♯♯♯ G♯♯♯ D♯♯♯ A♯♯♯ E♯♯♯ B♯♯ ]
+-21 C♭♭♭ [B♭♭♭ E♭♭♭ A♭♭♭ D♭♭♭ G♭♭♭ C♭♭♭ F♭♭♭]  +21 C♯♯♯ [F♯♯♯ C♯♯♯ G♯♯♯ D♯♯♯ A♯♯♯ E♯♯♯ B♯♯♯]
+          -7   -6   -5   -4   -3   -2   -1               +1   +2   +3   +4   +5   +6   +7   
+
+           -7    -6    -5    -4    -3    -2    -1                 +1    +2    +3    +4    +5    +6    +7    
+  0 C     [B     E     A     D     G     C     F    ]    0 C     [F     C     G     D     A     E     B    ]
+ -1 F     [B♭    E     A     D     G     C     F    ]   +1 G     [F♯    C     G     D     A     E     B    ]
+ -2 B♭    [B♭    E♭    A     D     G     C     F    ]   +2 D     [F♯    C♯    G     D     A     E     B    ]
+ -3 E♭    [B♭    E♭    A♭    D     G     C     F    ]   +3 A     [F♯    C♯    G♯    D     A     E     B    ]
+ -4 A♭    [B♭    E♭    A♭    D♭    G     C     F    ]   +4 E     [F♯    C♯    G♯    D♯    A     E     B    ]
+ -5 D♭    [B♭    E♭    A♭    D♭    G♭    C     F    ]   +5 B     [F♯    C♯    G♯    D♯    A♯    E     B    ]
+ -6 G♭    [B♭    E♭    A♭    D♭    G♭    C♭    F    ]   +6 F♯    [F♯    C♯    G♯    D♯    A♯    E♯    B    ]
+ -7 C♭    [B♭    E♭    A♭    D♭    G♭    C♭    F♭   ]   +7 C♯    [F♯    C♯    G♯    D♯    A♯    E♯    B♯   ]
+ -8 F♭    [B♭♭   E♭    A♭    D♭    G♭    C♭    F♭   ]   +8 G♯    [F♯♯   C♯    G♯    D♯    A♯    E♯    B♯   ]
+ -9 B♭♭   [B♭♭   E♭♭   A♭    D♭    G♭    C♭    F♭   ]   +9 D♯    [F♯♯   C♯♯   G♯    D♯    A♯    E♯    B♯   ]
+-10 E♭♭   [B♭♭   E♭♭   A♭♭   D♭    G♭    C♭    F♭   ]  +10 A♯    [F♯♯   C♯♯   G♯♯   D♯    A♯    E♯    B♯   ]
+-11 A♭♭   [B♭♭   E♭♭   A♭♭   D♭♭   G♭    C♭    F♭   ]  +11 E♯    [F♯♯   C♯♯   G♯♯   D♯♯   A♯    E♯    B♯   ]
+-12 D♭♭   [B♭♭   E♭♭   A♭♭   D♭♭   G♭♭   C♭    F♭   ]  +12 B♯    [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯    B♯   ]
+-13 G♭♭   [B♭♭   E♭♭   A♭♭   D♭♭   G♭♭   C♭♭   F♭   ]  +13 F♯♯   [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯   ]
+-14 C♭♭   [B♭♭   E♭♭   A♭♭   D♭♭   G♭♭   C♭♭   F♭♭  ]  +14 C♯♯   [F♯♯   C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ]
+-15 F♭♭   [B♭♭♭  E♭♭   A♭♭   D♭♭   G♭♭   C♭♭   F♭♭  ]  +15 G♯♯   [F♯♯♯  C♯♯   G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ]
+-16 B♭♭♭  [B♭♭♭  E♭♭♭  A♭♭   D♭♭   G♭♭   C♭♭   F♭♭  ]  +16 D♯♯   [F♯♯♯  C♯♯♯  G♯♯   D♯♯   A♯♯   E♯♯   B♯♯  ]
+-17 E♭♭♭  [B♭♭♭  E♭♭♭  A♭♭♭  D♭♭   G♭♭   C♭♭   F♭♭  ]  +17 A♯♯   [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯   A♯♯   E♯♯   B♯♯  ]
+-18 A♭♭♭  [B♭♭♭  E♭♭♭  A♭♭♭  D♭♭♭  G♭♭   C♭♭   F♭♭  ]  +18 E♯♯   [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯   E♯♯   B♯♯  ]
+-19 D♭♭♭  [B♭♭♭  E♭♭♭  A♭♭♭  D♭♭♭  G♭♭♭  C♭♭   F♭♭  ]  +19 B♯♯   [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯   B♯♯  ]
+-20 G♭♭♭  [B♭♭♭  E♭♭♭  A♭♭♭  D♭♭♭  G♭♭♭  C♭♭♭  F♭♭  ]  +20 F♯♯♯  [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯  ]
+-21 C♭♭♭  [B♭♭♭  E♭♭♭  A♭♭♭  D♭♭♭  G♭♭♭  C♭♭♭  F♭♭♭ ]  +21 C♯♯♯  [F♯♯♯  C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ]
+-22 F♭♭♭  [B♭♭♭♭ E♭♭♭  A♭♭♭  D♭♭♭  G♭♭♭  C♭♭♭  F♭♭♭ ]  +22 G♯♯♯  [F♯♯♯♯ C♯♯♯  G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ]
+-23 B♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭  D♭♭♭  G♭♭♭  C♭♭♭  F♭♭♭ ]  +23 D♯♯♯  [F♯♯♯♯ C♯♯♯♯ G♯♯♯  D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ]
+-24 E♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭♭ D♭♭♭  G♭♭♭  C♭♭♭  F♭♭♭ ]  +24 A♯♯♯  [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯  A♯♯♯  E♯♯♯  B♯♯♯ ]
+-25 A♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭♭ D♭♭♭♭ G♭♭♭  C♭♭♭  F♭♭♭ ]  +25 E♯♯♯  [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯  E♯♯♯  B♯♯♯ ]
+-26 D♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭♭ D♭♭♭♭ G♭♭♭♭ C♭♭♭  F♭♭♭ ]  +26 B♯♯♯  [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯  B♯♯♯ ]
+-27 G♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭♭ D♭♭♭♭ G♭♭♭♭ C♭♭♭♭ F♭♭♭ ]  +27 F♯♯♯♯ [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯♯ B♯♯♯ ]
+-28 C♭♭♭♭ [B♭♭♭♭ E♭♭♭♭ A♭♭♭♭ D♭♭♭♭ G♭♭♭♭ C♭♭♭♭ F♭♭♭♭]  +28 C♯♯♯♯ [F♯♯♯♯ C♯♯♯♯ G♯♯♯♯ D♯♯♯♯ A♯♯♯♯ E♯♯♯♯ B♯♯♯♯]
+           -7    -6    -5    -4    -3    -2    -1                 +1    +2    +3    +4    +5    +6    +7    
+
+'''
+####################################################################################################
+####################################################################################################
+'''
 Db -t -v Fbbbb
 Ab -s -u Cbbbb
 Eb -r -t Gbbbb
