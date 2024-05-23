@@ -35,7 +35,7 @@ class Pthgrn(ivls.Intonation):
             for i in range(0, NT + x):
                 self.j = self.i + (i * 7) % (NT + x)
                 slog(f'PRT 1 0-({NT}+{x}), {i=} {self.j=} {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-                self._setup()
+                self._setup(0)
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0): # todo generalize m2bc ?
         ccents = self.comma()
@@ -72,6 +72,7 @@ class Pthgrn(ivls.Intonation):
                 n    = self.fmtNPair(j)       ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
                 cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
+                assert rc in self.ckmap,  f'{rc=} {i=} {kk=} {j=} {n=} {pa=} {pb=} {e=} {rat0[i]} {rat2[i]} {rat3[i]} {fmtl(list(self.ckmap.keys()))}'
                 if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb, e, cent, j)
                 while cki < len(self.centKs) and self.centKs[cki] < rc:
                     rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(_) #  ;   cfnts.append(_)

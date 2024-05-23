@@ -181,11 +181,11 @@ class Chords:
         return a
 #        self.mlimap[cn] = (self.mlimap[cn][-1:] + self.mlimap[cn][:-1])
 
-    @staticmethod
-    def rotateList(a, rev=0):
-        if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
-        else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
-        return a
+#    @staticmethod
+#    def rotateList(a, rev=0):
+#        if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
+#        else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
+#        return a
 
     @staticmethod
     def rotateIndices(a):
