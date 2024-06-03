@@ -208,22 +208,22 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -tdeo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-#utl   getFilePath        baseName =test.225     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.225     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.225.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.225.cat'
-#utl   getFilePath        fileName =test.225.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.225.cat')
-#utl   getFilePath        baseName =test.225     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.225     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.225.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.225.csv'
-#utl   getFilePath        fileName =test.225.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.225.csv')
-#utl   getFilePath        baseName =test.225     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.225     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.225.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.225.log'
-#utl   getFilePath        fileName =test.225.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.225.log')
-#utl   getFilePath        baseName =test.225     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.225     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.225.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.225.txt'
-#utl   getFilePath        fileName =test.225.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.225.txt')
+#utl   getFilePath        baseName =test.268     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.268     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.268.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.268.cat'
+#utl   getFilePath        fileName =test.268.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.268.cat')
+#utl   getFilePath        baseName =test.268     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.268     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.268.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.268.csv'
+#utl   getFilePath        fileName =test.268.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.268.csv')
+#utl   getFilePath        baseName =test.268     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.268     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.268.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.268.log'
+#utl   getFilePath        fileName =test.268.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.268.log')
+#utl   getFilePath        baseName =test.268     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.268     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.268.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.268.txt'
+#utl   getFilePath        fileName =test.268.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.268.txt')
 #tabs  dumpArgs           [a]      .AUTO_SAVE=0
 #tabs  dumpArgs           [A]         .VARROW=1
 #tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -339,87 +339,87 @@ i=1 1 1 6 n=1 1 10 6 M=0 t= d= e= o= p=6 S=0 1 3 f=test w=0 0 0 0 T=E A D G B E 
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
 #intrvls stck5ths           n=5 i=1
@@ -471,109 +471,109 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
    1   |       |   3   |       |       |   9   |  27   |       |       |  81   |       |  243  |       |  729  |   4   |       |  16   |       |  32   |       |       |  128  |  256  |       |       | 1024  |       |   2    C 
    1   |       |   2   |       |       |   8   |  16   |       |       |  64   |       |  128  |       |  512  |   3   |       |   9   |       |  27   |       |       |  81   |  243  |       |       |  729  |       |   1    C 
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
    1   |       |   3   |       |       |   9   |  27   |       |       |  81   |       |  243  |       |   4   |       |       |  16   |       |  32   |       |       |  128  |  256  |       | 1024  | 4096  |       |   2    G 
    1   |       |   2   |       |       |   8   |  16   |       |       |  64   |       |  128  |       |   3   |       |       |   9   |       |  27   |       |       |  81   |  243  |       |  729  | 2187  |       |   1    G 
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
    1   |       |   3   |       |       |   9   |  27   |       |  81   |   4   |       |  16   |       |  32   |       |       |  128  |       |  256  |       |       | 1024  | 4096  |       | 8192  |       |       |   2    D 
    1   |       |   2   |       |       |   8   |  16   |       |  64   |   3   |       |   9   |       |  27   |       |       |  81   |       |  243  |       |       |  729  | 2187  |       | 6561  |       |       |   1    D 
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
    1   |       |   3   |       |       |   9   |  27   |       |   4   |       |       |  16   |       |  32   |       |       |  128  |       |  256  |       | 1024  | 4096  | 8192  |       | 32768 |       |       |   2    A 
    1   |       |   2   |       |       |   8   |  16   |       |   3   |       |       |   9   |       |  27   |       |       |  81   |       |  243  |       |  729  | 2187  | 6561  |       | 19683 |       |       |   1    A 
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
    1   |       |   3   |       |   9   |   4   |  16   |       |  32   |       |       |  128  |       |  256  |       |       | 1024  |       | 4096  |       | 8192  |       | 32768 |       | 65536 |       |       |   2    E 
    1   |       |   2   |       |   8   |   3   |   9   |       |  27   |       |       |  81   |       |  243  |       |       |  729  |       | 2187  |       | 6561  |       | 19683 |       | 59049 |       |       |   1    E 
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
    1   |       |   3   |       |   4   |       |  16   |       |  32   |       |       |  128  |       |  256  |       | 1024  | 4096  |       | 8192  |       | 32768 |       | 65536 |       |262144 |       |       |   2    B 
    1   |       |   2   |       |   3   |       |   9   |       |  27   |       |       |  81   |       |  243  |       |  729  | 2187  |       | 6561  |       | 19683 |       | 59049 |       |177147 |       |       |   1    B 
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
    1   |       |   4   |       |  16   |       |  32   |       |  128  |       |       |  256  |       | 1024  |       | 4096  |       |       | 8192  |       | 32768 |       | 65536 |       |262144 |       |1048576|   2    F♯
    1   |       |   3   |       |   9   |       |  27   |       |  81   |       |       |  243  |       |  729  |       | 2187  |       |       | 6561  |       | 19683 |       | 59049 |       |177147 |       |531441 |   1    F♯
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
    1   |       |   3   |   9   |       |  27   |  81   |       |       |  243  |       |  729  |       |       | 2187  |       |   4   |       |  16   |       |       |  32   |  128  |       |       |  256  |       |   2    F 
    1   |       |   2   |   8   |       |  16   |  64   |       |       |  128  |       |  512  |       |       | 2048  |       |   3   |       |   9   |       |       |  27   |  81   |       |       |  243  |       |   1    F 
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
    1   |       |       |   3   |       |   9   |  27   |       |       |  81   |       |  243  |       |       |  729  |       | 2187  |       | 6561  |   4   |       |  16   |  32   |       |       |  128  |       |   2    B♭
    1   |       |       |   2   |       |   8   |  16   |       |       |  64   |       |  128  |       |       |  512  |       | 2048  |       | 4096  |   3   |       |   9   |  27   |       |       |  81   |       |   1    B♭
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
    1   |       |       |   3   |       |   9   |  27   |  81   |       |  243  |       |  729  |       |       | 2187  |       | 6561  |       |       | 19683 |       |   4   |  16   |       |       |  32   |       |   2    E♭
    1   |       |       |   2   |       |   8   |  16   |  64   |       |  128  |       |  512  |       |       | 2048  |       | 4096  |       |       | 16384 |       |   3   |   9   |       |       |  27   |       |   1    E♭
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
    1   |       |       |   3   |       |   9   |       |  27   |       |  81   |       |  243  |       |       |  729  |       | 2187  |       |       | 6561  |       | 19683 | 59049 |   4   |       |  16   |       |   2    A♭
    1   |       |       |   2   |       |   8   |       |  16   |       |  64   |       |  128  |       |       |  512  |       | 2048  |       |       | 4096  |       | 16384 | 32768 |   3   |       |   9   |       |   1    A♭
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
    1   |       |       |   3   |       |   9   |       |  27   |       |  81   |       |  243  |  729  |       | 2187  |       | 6561  |       |       | 19683 |       | 59049 |       |177147 |       |   4   |       |   2    D♭
    1   |       |       |   2   |       |   8   |       |  16   |       |  64   |       |  128  |  512  |       | 2048  |       | 4096  |       |       | 16384 |       | 32768 |       |131072 |       |   3   |       |   1    D♭
    0:P1|  23:LA|  90:m2| 114:A1| 180:d3| 204:M2| 294:m3| 318:A2| 384:d4| 408:M3| 475:LC| 498:P4| 522:A3| 588:d5| 612:A4| 678:d6| 702:P5| 725:LD| 792:m6| 816:A5| 882:d7| 906:M6| 996:m7|1020:A6|1086:d8|1110:M7|1177:LB|1200:P8
@@ -606,109 +606,109 @@ abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
    1   |       |  256  |       |       |   9   |  32   |       |       |  81   |       |   4   |       | 1024  |  729  |       |   3   |       |  128  |       |       |  27   |  16   |       |       |  243  |       |   2    C 
    1   |       |  243  |       |       |   8   |  27   |       |       |  64   |       |   3   |       |  729  |  512  |       |   2   |       |  81   |       |       |  16   |   9   |       |       |  128  |       |   1    C 
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
    1   |       |  256  |       |       |   9   |  32   |       |       |  81   |       |   4   |       | 1024  |       |       |   3   |       |  128  |       |       |  27   |  16   |       | 4096  |  243  |       |   2    G 
    1   |       |  243  |       |       |   8   |  27   |       |       |  64   |       |   3   |       |  729  |       |       |   2   |       |  81   |       |       |  16   |   9   |       | 2187  |  128  |       |   1    G 
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
    1   |       |  256  |       |       |   9   |  32   |       | 8192  |  81   |       |   4   |       | 1024  |       |       |   3   |       |  128  |       |       |  27   |  16   |       | 4096  |       |       |   2    D 
    1   |       |  243  |       |       |   8   |  27   |       | 6561  |  64   |       |   3   |       |  729  |       |       |   2   |       |  81   |       |       |  16   |   9   |       | 2187  |       |       |   1    D 
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
    1   |       |  256  |       |       |   9   |  32   |       | 8192  |       |       |   4   |       | 1024  |       |       |   3   |       |  128  |       | 32768 |  27   |  16   |       | 4096  |       |       |   2    A 
    1   |       |  243  |       |       |   8   |  27   |       | 6561  |       |       |   3   |       |  729  |       |       |   2   |       |  81   |       | 19683 |  16   |   9   |       | 2187  |       |       |   1    A 
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
    1   |       |  256  |       | 65536 |   9   |  32   |       | 8192  |       |       |   4   |       | 1024  |       |       |   3   |       |  128  |       | 32768 |       |  16   |       | 4096  |       |       |   2    E 
    1   |       |  243  |       | 59049 |   8   |  27   |       | 6561  |       |       |   3   |       |  729  |       |       |   2   |       |  81   |       | 19683 |       |   9   |       | 2187  |       |       |   1    E 
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
    1   |       |  256  |       | 65536 |       |  32   |       | 8192  |       |       |   4   |       | 1024  |       |262144 |   3   |       |  128  |       | 32768 |       |  16   |       | 4096  |       |       |   2    B 
    1   |       |  243  |       | 59049 |       |  27   |       | 6561  |       |       |   3   |       |  729  |       |177147 |   2   |       |  81   |       | 19683 |       |   9   |       | 2187  |       |       |   1    B 
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
    1   |       |  256  |       | 65536 |       |  32   |       | 8192  |       |       |   4   |       | 1024  |       |262144 |       |       |  128  |       | 32768 |       |  16   |       | 4096  |       |1048576|   2    F♯
    1   |       |  243  |       | 59049 |       |  27   |       | 6561  |       |       |   3   |       |  729  |       |177147 |       |       |  81   |       | 19683 |       |   9   |       | 2187  |       |531441 |   1    F♯
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
    1   |       |  256  | 2187  |       |   9   |  32   |       |       |  81   |       |   4   |       |       |  729  |       |   3   |       |  128  |       |       |  27   |  16   |       |       |  243  |       |   2    F 
    1   |       |  243  | 2048  |       |   8   |  27   |       |       |  64   |       |   3   |       |       |  512  |       |   2   |       |  81   |       |       |  16   |   9   |       |       |  128  |       |   1    F 
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
    1   |       |       | 2187  |       |   9   |  32   |       |       |  81   |       |   4   |       |       |  729  |       |   3   |       |  128  | 6561  |       |  27   |  16   |       |       |  243  |       |   2    B♭
    1   |       |       | 2048  |       |   8   |  27   |       |       |  64   |       |   3   |       |       |  512  |       |   2   |       |  81   | 4096  |       |  16   |   9   |       |       |  128  |       |   1    B♭
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
    1   |       |       | 2187  |       |   9   |  32   | 19683 |       |  81   |       |   4   |       |       |  729  |       |   3   |       |       | 6561  |       |  27   |  16   |       |       |  243  |       |   2    E♭
    1   |       |       | 2048  |       |   8   |  27   | 16384 |       |  64   |       |   3   |       |       |  512  |       |   2   |       |       | 4096  |       |  16   |   9   |       |       |  128  |       |   1    E♭
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
    1   |       |       | 2187  |       |   9   |       | 19683 |       |  81   |       |   4   |       |       |  729  |       |   3   |       |       | 6561  |       |  27   |  16   | 59049 |       |  243  |       |   2    A♭
    1   |       |       | 2048  |       |   8   |       | 16384 |       |  64   |       |   3   |       |       |  512  |       |   2   |       |       | 4096  |       |  16   |   9   | 32768 |       |  128  |       |   1    A♭
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
    1   |       |       | 2187  |       |   9   |       | 19683 |       |  81   |       |   4   |177147 |       |  729  |       |   3   |       |       | 6561  |       |  27   |       | 59049 |       |  243  |       |   2    D♭
    1   |       |       | 2048  |       |   8   |       | 16384 |       |  64   |       |   3   |131072 |       |  512  |       |   2   |       |       | 4096  |       |  16   |       | 32768 |       |  128  |       |   1    D♭
                                                                                                    1                                                                                                     [1] 1
@@ -782,87 +782,87 @@ abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
 #intrvls stck5ths           n=8 i=-2
@@ -914,109 +914,109 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
    1   |       |   3   |   9   |       |  27   |  81   |       |       |  243  |       |  729  |       |       | 2187  |       |   4   |       |  16   |       |       |  32   |  128  |       |       |  256  |       |   2    F 
    1   |       |   2   |   8   |       |  16   |  64   |       |       |  128  |       |  512  |       |       | 2048  |       |   3   |       |   9   |       |       |  27   |  81   |       |       |  243  |       |   1    F 
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
    1   |       |       |   3   |       |   9   |  27   |       |       |  81   |       |  243  |       |       |  729  |       | 2187  |       | 6561  |   4   |       |  16   |  32   |       |       |  128  |       |   2    B♭
    1   |       |       |   2   |       |   8   |  16   |       |       |  64   |       |  128  |       |       |  512  |       | 2048  |       | 4096  |   3   |       |   9   |  27   |       |       |  81   |       |   1    B♭
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
    1   |       |       |   3   |       |   9   |  27   |  81   |       |  243  |       |  729  |       |       | 2187  |       | 6561  |       |       | 19683 |       |   4   |  16   |       |       |  32   |       |   2    E♭
    1   |       |       |   2   |       |   8   |  16   |  64   |       |  128  |       |  512  |       |       | 2048  |       | 4096  |       |       | 16384 |       |   3   |   9   |       |       |  27   |       |   1    E♭
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
    1   |       |       |   3   |       |   9   |       |  27   |       |  81   |       |  243  |       |       |  729  |       | 2187  |       |       | 6561  |       | 19683 | 59049 |   4   |       |  16   |       |   2    A♭
    1   |       |       |   2   |       |   8   |       |  16   |       |  64   |       |  128  |       |       |  512  |       | 2048  |       |       | 4096  |       | 16384 | 32768 |   3   |       |   9   |       |   1    A♭
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
    1   |       |       |   3   |       |   9   |       |  27   |       |  81   |       |  243  |  729  |       | 2187  |       | 6561  |       |       | 19683 |       | 59049 |       |177147 |       |   4   |       |   2    D♭
    1   |       |       |   2   |       |   8   |       |  16   |       |  64   |       |  128  |  512  |       | 2048  |       | 4096  |       |       | 16384 |       | 32768 |       |131072 |       |   3   |       |   1    D♭
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
    1   |       |   3   |       |       |   9   |  27   |       |       |  81   |       |  243  |       |  729  |   4   |       |  16   |       |  32   |       |       |  128  |  256  |       |       | 1024  |       |   2    C 
    1   |       |   2   |       |       |   8   |  16   |       |       |  64   |       |  128  |       |  512  |   3   |       |   9   |       |  27   |       |       |  81   |  243  |       |       |  729  |       |   1    C 
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
    1   |       |   3   |       |       |   9   |  27   |       |       |  81   |       |  243  |       |   4   |       |       |  16   |       |  32   |       |       |  128  |  256  |       | 1024  | 4096  |       |   2    G 
    1   |       |   2   |       |       |   8   |  16   |       |       |  64   |       |  128  |       |   3   |       |       |   9   |       |  27   |       |       |  81   |  243  |       |  729  | 2187  |       |   1    G 
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
    1   |       |   3   |       |       |   9   |  27   |       |  81   |   4   |       |  16   |       |  32   |       |       |  128  |       |  256  |       |       | 1024  | 4096  |       | 8192  |       |       |   2    D 
    1   |       |   2   |       |       |   8   |  16   |       |  64   |   3   |       |   9   |       |  27   |       |       |  81   |       |  243  |       |       |  729  | 2187  |       | 6561  |       |       |   1    D 
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
    1   |       |   3   |       |       |   9   |  27   |       |   4   |       |       |  16   |       |  32   |       |       |  128  |       |  256  |       | 1024  | 4096  | 8192  |       | 32768 |       |       |   2    A 
    1   |       |   2   |       |       |   8   |  16   |       |   3   |       |       |   9   |       |  27   |       |       |  81   |       |  243  |       |  729  | 2187  | 6561  |       | 19683 |       |       |   1    A 
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
    1   |       |   3   |       |   9   |   4   |  16   |       |  32   |       |       |  128  |       |  256  |       |       | 1024  |       | 4096  |       | 8192  |       | 32768 |       | 65536 |       |       |   2    E 
    1   |       |   2   |       |   8   |   3   |   9   |       |  27   |       |       |  81   |       |  243  |       |       |  729  |       | 2187  |       | 6561  |       | 19683 |       | 59049 |       |       |   1    E 
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
    1   |       |   3   |       |   4   |       |  16   |       |  32   |       |       |  128  |       |  256  |       | 1024  | 4096  |       | 8192  |       | 32768 |       | 65536 |       |262144 |       |       |   2    B 
    1   |       |   2   |       |   3   |       |   9   |       |  27   |       |       |  81   |       |  243  |       |  729  | 2187  |       | 6561  |       | 19683 |       | 59049 |       |177147 |       |       |   1    B 
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
    1   |       |   4   |       |  16   |       |  32   |       |  128  |       |       |  256  |       | 1024  |       | 4096  |       |       | 8192  |       | 32768 |       | 65536 |       |262144 |       |1048576|   2    F♯
    1   |       |   3   |       |   9   |       |  27   |       |  81   |       |       |  243  |       |  729  |       | 2187  |       |       | 6561  |       | 19683 |       | 59049 |       |177147 |       |531441 |   1    F♯
    0:P1|  23:LA|  90:m2| 114:A1| 180:d3| 204:M2| 294:m3| 318:A2| 384:d4| 408:M3| 475:LC| 498:P4| 522:A3| 588:d5| 612:A4| 678:d6| 702:P5| 725:LD| 792:m6| 816:A5| 882:d7| 906:M6| 996:m7|1020:A6|1086:d8|1110:M7|1177:LB|1200:P8
@@ -1049,109 +1049,109 @@ abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C�
 #intrvls i2Abcs             i=-1 p=7 q=5
 #intrvls stck5ths           n=7 i=-1
 #intrvls stck4ths           n=5 i=-1
-abc1 [[ 3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯  ]]
-abc2 [[ 2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E   ]]
-abc3 [[ 3 2  0 F     3 2  1 C     3 2  2 G     3 2  3 D     3 2  4 A     3 2  5 E     3 2  6 B     3 2  7 F♯    2 3  1 C     2 3  2 G     2 3  3 D     2 3  4 A     2 3  5 E     2 1  1 F   ]]
-abc4 [[ 3 2  0 F     2 3  5 E     3 2  7 F♯    3 2  2 G     2 3  3 D     3 2  4 A     2 3  1 C     3 2  6 B     3 2  1 C     2 3  4 A     3 2  3 D     2 3  2 G     3 2  5 E     2 1  1 F   ]]
+abc1 [  [ 3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |]]
+abc2 [  [ 2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |]]
+abc3 [  [ 3 2  0 F   |  3 2  1 C   |  3 2  2 G   |  3 2  3 D   |  3 2  4 A   |  3 2  5 E   |  3 2  6 B   |  3 2  7 F♯  |  2 3  1 B♭  |  2 3  2 E♭  |  2 3  3 A♭  |  2 3  4 D♭  |  2 3  5 G♭  |  2 1  1 F   |]]
+abc4 [  [ 3 2  0 F   |  2 3  5 G♭  |  3 2  7 F♯  |  3 2  2 G   |  2 3  3 A♭  |  3 2  4 A   |  2 3  1 B♭  |  3 2  6 B   |  3 2  1 C   |  2 3  4 D♭  |  3 2  3 D   |  2 3  2 E♭  |  3 2  5 E   |  2 1  1 F   |]]
    1   |       |  256  | 2187  |       |   9   |  32   |       |       |  81   |       |   4   |       |       |  729  |       |   3   |       |  128  |       |       |  27   |  16   |       |       |  243  |       |   2    F 
    1   |       |  243  | 2048  |       |   8   |  27   |       |       |  64   |       |   3   |       |       |  512  |       |   2   |       |  81   |       |       |  16   |   9   |       |       |  128  |       |   1    F 
 #intrvls i2Abcs             i=-2 p=8 q=4
 #intrvls stck5ths           n=8 i=-2
 #intrvls stck4ths           n=4 i=-2
-abc1 [[ 3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯  ]]
-abc2 [[ 2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D   ]]
-abc3 [[ 3 2  0 B♭    3 2  1 F     3 2  2 C     3 2  3 G     3 2  4 D     3 2  5 A     3 2  6 E     3 2  7 B     3 2  8 F♯    2 3  1 F     2 3  2 C     2 3  3 G     2 3  4 D     2 1  1 B♭  ]]
-abc4 [[ 3 2  0 B♭    3 2  7 B     3 2  2 C     2 3  3 G     3 2  4 D     2 3  1 F     3 2  6 E     3 2  1 F     2 3  4 D     3 2  8 F♯    3 2  3 G     2 3  2 C     3 2  5 A     2 1  1 B♭  ]]
+abc1 [  [ 3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |]]
+abc2 [  [ 2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |]]
+abc3 [  [ 3 2  0 B♭  |  3 2  1 F   |  3 2  2 C   |  3 2  3 G   |  3 2  4 D   |  3 2  5 A   |  3 2  6 E   |  3 2  7 B   |  3 2  8 F♯  |  2 3  1 E♭  |  2 3  2 A♭  |  2 3  3 D♭  |  2 3  4 G♭  |  2 1  1 B♭  |]]
+abc4 [  [ 3 2  0 B♭  |  3 2  7 B   |  3 2  2 C   |  2 3  3 D♭  |  3 2  4 D   |  2 3  1 E♭  |  3 2  6 E   |  3 2  1 F   |  2 3  4 G♭  |  3 2  8 F♯  |  3 2  3 G   |  2 3  2 A♭  |  3 2  5 A   |  2 1  1 B♭  |]]
    1   |       |       | 2187  |       |   9   |  32   |       |       |  81   |       |   4   |       |       |  729  |       |   3   |       |  128  | 6561  |       |  27   |  16   |       |       |  243  |       |   2    B♭
    1   |       |       | 2048  |       |   8   |  27   |       |       |  64   |       |   3   |       |       |  512  |       |   2   |       |  81   | 4096  |       |  16   |   9   |       |       |  128  |       |   1    B♭
 #intrvls i2Abcs             i=-3 p=9 q=3
 #intrvls stck5ths           n=9 i=-3
 #intrvls stck4ths           n=3 i=-3
-abc1 [[ 3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯  ]]
-abc2 [[ 2 3  1 B♭    2 3  2 F     2 3  3 C   ]]
-abc3 [[ 3 2  0 E♭    3 2  1 B♭    3 2  2 F     3 2  3 C     3 2  4 G     3 2  5 D     3 2  6 A     3 2  7 E     3 2  8 B     3 2  9 F♯    2 3  1 B♭    2 3  2 F     2 3  3 C     2 1  1 E♭  ]]
-abc4 [[ 3 2  0 E♭    3 2  7 E     3 2  2 F     2 3  3 C     3 2  9 F♯    3 2  4 G     2 3  1 B♭    3 2  6 A     3 2  1 B♭    3 2  8 B     3 2  3 C     2 3  2 F     3 2  5 D     2 1  1 E♭  ]]
+abc1 [  [ 3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |]]
+abc2 [  [ 2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |]]
+abc3 [  [ 3 2  0 E♭  |  3 2  1 B♭  |  3 2  2 F   |  3 2  3 C   |  3 2  4 G   |  3 2  5 D   |  3 2  6 A   |  3 2  7 E   |  3 2  8 B   |  3 2  9 F♯  |  2 3  1 A♭  |  2 3  2 D♭  |  2 3  3 G♭  |  2 1  1 E♭  |]]
+abc4 [  [ 3 2  0 E♭  |  3 2  7 E   |  3 2  2 F   |  2 3  3 G♭  |  3 2  9 F♯  |  3 2  4 G   |  2 3  1 A♭  |  3 2  6 A   |  3 2  1 B♭  |  3 2  8 B   |  3 2  3 C   |  2 3  2 D♭  |  3 2  5 D   |  2 1  1 E♭  |]]
    1   |       |       | 2187  |       |   9   |  32   | 19683 |       |  81   |       |   4   |       |       |  729  |       |   3   |       |       | 6561  |       |  27   |  16   |       |       |  243  |       |   2    E♭
    1   |       |       | 2048  |       |   8   |  27   | 16384 |       |  64   |       |   3   |       |       |  512  |       |   2   |       |       | 4096  |       |  16   |   9   |       |       |  128  |       |   1    E♭
 #intrvls i2Abcs             i=-4 p=10 q=2
 #intrvls stck5ths           n=10 i=-4
 #intrvls stck4ths           n=2 i=-4
-abc1 [[ 3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯  ]]
-abc2 [[ 2 3  1 E♭    2 3  2 B♭  ]]
-abc3 [[ 3 2  0 A♭    3 2  1 E♭    3 2  2 B♭    3 2  3 F     3 2  4 C     3 2  5 G     3 2  6 D     3 2  7 A     3 2  8 E     3 2  9 B     3 2 10 F♯    2 3  1 E♭    2 3  2 B♭    2 1  1 A♭  ]]
-abc4 [[ 3 2  0 A♭    3 2  7 A     3 2  2 B♭    3 2  9 B     3 2  4 C     2 3  1 E♭    3 2  6 D     3 2  1 E♭    3 2  8 E     3 2  3 F     2 3  2 B♭    3 2 10 F♯    3 2  5 G     2 1  1 A♭  ]]
+abc1 [  [ 3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |]]
+abc2 [  [ 2 3  1 D♭  |  2 3  2 G♭  |]]
+abc3 [  [ 3 2  0 A♭  |  3 2  1 E♭  |  3 2  2 B♭  |  3 2  3 F   |  3 2  4 C   |  3 2  5 G   |  3 2  6 D   |  3 2  7 A   |  3 2  8 E   |  3 2  9 B   |  3 2 10 F♯  |  2 3  1 D♭  |  2 3  2 G♭  |  2 1  1 A♭  |]]
+abc4 [  [ 3 2  0 A♭  |  3 2  7 A   |  3 2  2 B♭  |  3 2  9 B   |  3 2  4 C   |  2 3  1 D♭  |  3 2  6 D   |  3 2  1 E♭  |  3 2  8 E   |  3 2  3 F   |  2 3  2 G♭  |  3 2 10 F♯  |  3 2  5 G   |  2 1  1 A♭  |]]
    1   |       |       | 2187  |       |   9   |       | 19683 |       |  81   |       |   4   |       |       |  729  |       |   3   |       |       | 6561  |       |  27   |  16   | 59049 |       |  243  |       |   2    A♭
    1   |       |       | 2048  |       |   8   |       | 16384 |       |  64   |       |   3   |       |       |  512  |       |   2   |       |       | 4096  |       |  16   |   9   | 32768 |       |  128  |       |   1    A♭
 #intrvls i2Abcs             i=-5 p=11 q=1
 #intrvls stck5ths           n=11 i=-5
 #intrvls stck4ths           n=1 i=-5
-abc1 [[ 3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯  ]]
-abc2 [[ 2 3  1 A♭  ]]
-abc3 [[ 3 2  0 D♭    3 2  1 A♭    3 2  2 E♭    3 2  3 B♭    3 2  4 F     3 2  5 C     3 2  6 G     3 2  7 D     3 2  8 A     3 2  9 E     3 2 10 B     3 2 11 F♯    2 3  1 A♭    2 1  1 D♭  ]]
-abc4 [[ 3 2  0 D♭    3 2  7 D     3 2  2 E♭    3 2  9 E     3 2  4 F     2 3  1 A♭    3 2 11 F♯    3 2  6 G     3 2  1 A♭    3 2  8 A     3 2  3 B♭    3 2 10 B     3 2  5 C     2 1  1 D♭  ]]
+abc1 [  [ 3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |]]
+abc2 [  [ 2 3  1 G♭  |]]
+abc3 [  [ 3 2  0 D♭  |  3 2  1 A♭  |  3 2  2 E♭  |  3 2  3 B♭  |  3 2  4 F   |  3 2  5 C   |  3 2  6 G   |  3 2  7 D   |  3 2  8 A   |  3 2  9 E   |  3 2 10 B   |  3 2 11 F♯  |  2 3  1 G♭  |  2 1  1 D♭  |]]
+abc4 [  [ 3 2  0 D♭  |  3 2  7 D   |  3 2  2 E♭  |  3 2  9 E   |  3 2  4 F   |  2 3  1 G♭  |  3 2 11 F♯  |  3 2  6 G   |  3 2  1 A♭  |  3 2  8 A   |  3 2  3 B♭  |  3 2 10 B   |  3 2  5 C   |  2 1  1 D♭  |]]
    1   |       |       | 2187  |       |   9   |       | 19683 |       |  81   |       |   4   |177147 |       |  729  |       |   3   |       |       | 6561  |       |  27   |       | 59049 |       |  243  |       |   2    D♭
    1   |       |       | 2048  |       |   8   |       | 16384 |       |  64   |       |   3   |131072 |       |  512  |       |   2   |       |       | 4096  |       |  16   |       | 32768 |       |  128  |       |   1    D♭
 #intrvls i2Abcs             i=0 p=6 q=6
 #intrvls stck5ths           n=6 i=0
 #intrvls stck4ths           n=6 i=0
-abc1 [[ 3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯  ]]
-abc2 [[ 2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯  ]]
-abc3 [[ 3 2  0 C     3 2  1 G     3 2  2 D     3 2  3 A     3 2  4 E     3 2  5 B     3 2  6 F♯    2 3  1 G     2 3  2 D     2 3  3 A     2 3  4 E     2 3  5 B     2 3  6 F♯    2 1  1 C   ]]
-abc4 [[ 3 2  0 C     2 3  5 B     3 2  2 D     2 3  3 A     3 2  4 E     2 3  1 G     2 3  6 F♯    3 2  6 F♯    3 2  1 G     2 3  4 E     3 2  3 A     2 3  2 D     3 2  5 B     2 1  1 C   ]]
+abc1 [  [ 3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |]]
+abc2 [  [ 2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |]]
+abc3 [  [ 3 2  0 C   |  3 2  1 G   |  3 2  2 D   |  3 2  3 A   |  3 2  4 E   |  3 2  5 B   |  3 2  6 F♯  |  2 3  1 F   |  2 3  2 B♭  |  2 3  3 E♭  |  2 3  4 A♭  |  2 3  5 D♭  |  2 3  6 G♭  |  2 1  1 C   |]]
+abc4 [  [ 3 2  0 C   |  2 3  5 D♭  |  3 2  2 D   |  2 3  3 E♭  |  3 2  4 E   |  2 3  1 F   |  2 3  6 G♭  |  3 2  6 F♯  |  3 2  1 G   |  2 3  4 A♭  |  3 2  3 A   |  2 3  2 B♭  |  3 2  5 B   |  2 1  1 C   |]]
    1   |       |  256  |       |       |   9   |  32   |       |       |  81   |       |   4   |       | 1024  |  729  |       |   3   |       |  128  |       |       |  27   |  16   |       |       |  243  |       |   2    C 
    1   |       |  243  |       |       |   8   |  27   |       |       |  64   |       |   3   |       |  729  |  512  |       |   2   |       |  81   |       |       |  16   |   9   |       |       |  128  |       |   1    C 
 #intrvls i2Abcs             i=1 p=5 q=7
 #intrvls stck5ths           n=5 i=1
 #intrvls stck4ths           n=7 i=1
-abc1 [[ 3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯  ]]
-abc2 [[ 2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯  ]]
-abc3 [[ 3 2  0 G     3 2  1 D     3 2  2 A     3 2  3 E     3 2  4 B     3 2  5 F♯    2 3  1 D     2 3  2 A     2 3  3 E     2 3  4 B     2 3  5 F♯    2 3  6 C♯    2 3  7 G♯    2 1  1 G   ]]
-abc4 [[ 3 2  0 G     2 3  5 F♯    3 2  2 A     2 3  3 E     3 2  4 B     2 3  1 D     2 3  6 C♯    3 2  1 D     2 3  4 B     3 2  3 E     2 3  2 A     2 3  7 G♯    3 2  5 F♯    2 1  1 G   ]]
+abc1 [  [ 3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |]]
+abc2 [  [ 2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |]]
+abc3 [  [ 3 2  0 G   |  3 2  1 D   |  3 2  2 A   |  3 2  3 E   |  3 2  4 B   |  3 2  5 F♯  |  2 3  1 C   |  2 3  2 F   |  2 3  3 B♭  |  2 3  4 E♭  |  2 3  5 A♭  |  2 3  6 D♭  |  2 3  7 G♭  |  2 1  1 G   |]]
+abc4 [  [ 3 2  0 G   |  2 3  5 A♭  |  3 2  2 A   |  2 3  3 B♭  |  3 2  4 B   |  2 3  1 C   |  2 3  6 D♭  |  3 2  1 D   |  2 3  4 E♭  |  3 2  3 E   |  2 3  2 F   |  2 3  7 G♭  |  3 2  5 F♯  |  2 1  1 G   |]]
    1   |       |  256  |       |       |   9   |  32   |       |       |  81   |       |   4   |       | 1024  |       |       |   3   |       |  128  |       |       |  27   |  16   |       | 4096  |  243  |       |   2    G 
    1   |       |  243  |       |       |   8   |  27   |       |       |  64   |       |   3   |       |  729  |       |       |   2   |       |  81   |       |       |  16   |   9   |       | 2187  |  128  |       |   1    G 
 #intrvls i2Abcs             i=2 p=4 q=8
 #intrvls stck5ths           n=4 i=2
 #intrvls stck4ths           n=8 i=2
-abc1 [[ 3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯  ]]
-abc2 [[ 2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯  ]]
-abc3 [[ 3 2  0 D     3 2  1 A     3 2  2 E     3 2  3 B     3 2  4 F♯    2 3  1 A     2 3  2 E     2 3  3 B     2 3  4 F♯    2 3  5 C♯    2 3  6 G♯    2 3  7 D♯    2 3  8 A♯    2 1  1 D   ]]
-abc4 [[ 3 2  0 D     2 3  5 C♯    3 2  2 E     2 3  3 B     2 3  8 A♯    3 2  4 F♯    2 3  1 A     2 3  6 G♯    3 2  1 A     2 3  4 F♯    3 2  3 B     2 3  2 E     2 3  7 D♯    2 1  1 D   ]]
+abc1 [  [ 3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |]]
+abc2 [  [ 2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |]]
+abc3 [  [ 3 2  0 D   |  3 2  1 A   |  3 2  2 E   |  3 2  3 B   |  3 2  4 F♯  |  2 3  1 G   |  2 3  2 C   |  2 3  3 F   |  2 3  4 B♭  |  2 3  5 E♭  |  2 3  6 A♭  |  2 3  7 D♭  |  2 3  8 G♭  |  2 1  1 D   |]]
+abc4 [  [ 3 2  0 D   |  2 3  5 E♭  |  3 2  2 E   |  2 3  3 F   |  2 3  8 G♭  |  3 2  4 F♯  |  2 3  1 G   |  2 3  6 A♭  |  3 2  1 A   |  2 3  4 B♭  |  3 2  3 B   |  2 3  2 C   |  2 3  7 D♭  |  2 1  1 D   |]]
    1   |       |  256  |       |       |   9   |  32   |       | 8192  |  81   |       |   4   |       | 1024  |       |       |   3   |       |  128  |       |       |  27   |  16   |       | 4096  |       |       |   2    D 
    1   |       |  243  |       |       |   8   |  27   |       | 6561  |  64   |       |   3   |       |  729  |       |       |   2   |       |  81   |       |       |  16   |   9   |       | 2187  |       |       |   1    D 
 #intrvls i2Abcs             i=3 p=3 q=9
 #intrvls stck5ths           n=3 i=3
 #intrvls stck4ths           n=9 i=3
-abc1 [[ 3 2  1 E     3 2  2 B     3 2  3 F♯  ]]
-abc2 [[ 2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯  ]]
-abc3 [[ 3 2  0 A     3 2  1 E     3 2  2 B     3 2  3 F♯    2 3  1 E     2 3  2 B     2 3  3 F♯    2 3  4 C♯    2 3  5 G♯    2 3  6 D♯    2 3  7 A♯    2 3  8 E♯    2 3  9 B♯    2 1  1 A   ]]
-abc4 [[ 3 2  0 A     2 3  5 G♯    3 2  2 B     2 3  3 F♯    2 3  8 E♯    2 3  1 E     2 3  6 D♯    3 2  1 E     2 3  4 C♯    2 3  9 B♯    3 2  3 F♯    2 3  2 B     2 3  7 A♯    2 1  1 A   ]]
+abc1 [  [ 3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |]]
+abc2 [  [ 2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |]]
+abc3 [  [ 3 2  0 A   |  3 2  1 E   |  3 2  2 B   |  3 2  3 F♯  |  2 3  1 D   |  2 3  2 G   |  2 3  3 C   |  2 3  4 F   |  2 3  5 B♭  |  2 3  6 E♭  |  2 3  7 A♭  |  2 3  8 D♭  |  2 3  9 G♭  |  2 1  1 A   |]]
+abc4 [  [ 3 2  0 A   |  2 3  5 B♭  |  3 2  2 B   |  2 3  3 C   |  2 3  8 D♭  |  2 3  1 D   |  2 3  6 E♭  |  3 2  1 E   |  2 3  4 F   |  2 3  9 G♭  |  3 2  3 F♯  |  2 3  2 G   |  2 3  7 A♭  |  2 1  1 A   |]]
    1   |       |  256  |       |       |   9   |  32   |       | 8192  |       |       |   4   |       | 1024  |       |       |   3   |       |  128  |       | 32768 |  27   |  16   |       | 4096  |       |       |   2    A 
    1   |       |  243  |       |       |   8   |  27   |       | 6561  |       |       |   3   |       |  729  |       |       |   2   |       |  81   |       | 19683 |  16   |   9   |       | 2187  |       |       |   1    A 
 #intrvls i2Abcs             i=4 p=2 q=10
 #intrvls stck5ths           n=2 i=4
 #intrvls stck4ths           n=10 i=4
-abc1 [[ 3 2  1 B     3 2  2 F♯  ]]
-abc2 [[ 2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪  ]]
-abc3 [[ 3 2  0 E     3 2  1 B     3 2  2 F♯    2 3  1 B     2 3  2 F♯    2 3  3 C♯    2 3  4 G♯    2 3  5 D♯    2 3  6 A♯    2 3  7 E♯    2 3  8 B♯    2 3  9 F𝄪    2 3 10 C𝄪    2 1  1 E   ]]
-abc4 [[ 3 2  0 E     2 3  5 D♯    2 3 10 C𝄪    3 2  2 F♯    2 3  3 C♯    2 3  8 B♯    2 3  1 B     2 3  6 A♯    3 2  1 B     2 3  4 G♯    2 3  9 F𝄪    2 3  2 F♯    2 3  7 E♯    2 1  1 E   ]]
+abc1 [  [ 3 2  1 B   |  3 2  2 F♯  |]]
+abc2 [  [ 2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |]]
+abc3 [  [ 3 2  0 E   |  3 2  1 B   |  3 2  2 F♯  |  2 3  1 A   |  2 3  2 D   |  2 3  3 G   |  2 3  4 C   |  2 3  5 F   |  2 3  6 B♭  |  2 3  7 E♭  |  2 3  8 A♭  |  2 3  9 D♭  |  2 3 10 G♭  |  2 1  1 E   |]]
+abc4 [  [ 3 2  0 E   |  2 3  5 F   |  2 3 10 G♭  |  3 2  2 F♯  |  2 3  3 G   |  2 3  8 A♭  |  2 3  1 A   |  2 3  6 B♭  |  3 2  1 B   |  2 3  4 C   |  2 3  9 D♭  |  2 3  2 D   |  2 3  7 E♭  |  2 1  1 E   |]]
    1   |       |  256  |       | 65536 |   9   |  32   |       | 8192  |       |       |   4   |       | 1024  |       |       |   3   |       |  128  |       | 32768 |       |  16   |       | 4096  |       |       |   2    E 
    1   |       |  243  |       | 59049 |   8   |  27   |       | 6561  |       |       |   3   |       |  729  |       |       |   2   |       |  81   |       | 19683 |       |   9   |       | 2187  |       |       |   1    E 
 #intrvls i2Abcs             i=5 p=1 q=11
 #intrvls stck5ths           n=1 i=5
 #intrvls stck4ths           n=11 i=5
-abc1 [[ 3 2  1 F♯  ]]
-abc2 [[ 2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪  ]]
-abc3 [[ 3 2  0 B     3 2  1 F♯    2 3  1 F♯    2 3  2 C♯    2 3  3 G♯    2 3  4 D♯    2 3  5 A♯    2 3  6 E♯    2 3  7 B♯    2 3  8 F𝄪    2 3  9 C𝄪    2 3 10 G𝄪    2 3 11 D𝄪    2 1  1 B   ]]
-abc4 [[ 3 2  0 B     2 3  5 A♯    2 3 10 G𝄪    2 3  3 G♯    2 3  8 F𝄪    2 3  1 F♯    2 3  6 E♯    2 3 11 D𝄪    3 2  1 F♯    2 3  4 D♯    2 3  9 C𝄪    2 3  2 C♯    2 3  7 B♯    2 1  1 B   ]]
+abc1 [  [ 3 2  1 F♯  |]]
+abc2 [  [ 2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |]]
+abc3 [  [ 3 2  0 B   |  3 2  1 F♯  |  2 3  1 E   |  2 3  2 A   |  2 3  3 D   |  2 3  4 G   |  2 3  5 C   |  2 3  6 F   |  2 3  7 B♭  |  2 3  8 E♭  |  2 3  9 A♭  |  2 3 10 D♭  |  2 3 11 G♭  |  2 1  1 B   |]]
+abc4 [  [ 3 2  0 B   |  2 3  5 C   |  2 3 10 D♭  |  2 3  3 D   |  2 3  8 E♭  |  2 3  1 E   |  2 3  6 F   |  2 3 11 G♭  |  3 2  1 F♯  |  2 3  4 G   |  2 3  9 A♭  |  2 3  2 A   |  2 3  7 B♭  |  2 1  1 B   |]]
    1   |       |  256  |       | 65536 |       |  32   |       | 8192  |       |       |   4   |       | 1024  |       |262144 |   3   |       |  128  |       | 32768 |       |  16   |       | 4096  |       |       |   2    B 
    1   |       |  243  |       | 59049 |       |  27   |       | 6561  |       |       |   3   |       |  729  |       |177147 |   2   |       |  81   |       | 19683 |       |   9   |       | 2187  |       |       |   1    B 
 #intrvls i2Abcs             i=6 p=0 q=12
 #intrvls stck5ths           n=0 i=6
 #intrvls stck4ths           n=12 i=6
-abc1 [[]]
-abc2 [[ 2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪  ]]
-abc3 [[ 3 2  0 F♯    2 3  1 C♯    2 3  2 G♯    2 3  3 D♯    2 3  4 A♯    2 3  5 E♯    2 3  6 B♯    2 3  7 F𝄪    2 3  8 C𝄪    2 3  9 G𝄪    2 3 10 D𝄪    2 3 11 A𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
-abc4 [[ 3 2  0 F♯    2 3  5 E♯    2 3 10 D𝄪    2 3  3 D♯    2 3  8 C𝄪    2 3  1 C♯    2 3  6 B♯    2 3 11 A𝄪    2 3  4 A♯    2 3  9 G𝄪    2 3  2 G♯    2 3  7 F𝄪    2 3 12 E𝄪    2 1  1 F♯  ]]
+abc1 [  []]
+abc2 [  [ 2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |]]
+abc3 [  [ 3 2  0 F♯  |  2 3  1 B   |  2 3  2 E   |  2 3  3 A   |  2 3  4 D   |  2 3  5 G   |  2 3  6 C   |  2 3  7 F   |  2 3  8 B♭  |  2 3  9 E♭  |  2 3 10 A♭  |  2 3 11 D♭  |  2 3 12 G♭  |  2 1  1 F♯  |]]
+abc4 [  [ 3 2  0 F♯  |  2 3  5 G   |  2 3 10 A♭  |  2 3  3 A   |  2 3  8 B♭  |  2 3  1 B   |  2 3  6 C   |  2 3 11 D♭  |  2 3  4 D   |  2 3  9 E♭  |  2 3  2 E   |  2 3  7 F   |  2 3 12 G♭  |  2 1  1 F♯  |]]
    1   |       |  256  |       | 65536 |       |  32   |       | 8192  |       |       |   4   |       | 1024  |       |262144 |       |       |  128  |       | 32768 |       |  16   |       | 4096  |       |1048576|   2    F♯
    1   |       |  243  |       | 59049 |       |  27   |       | 6561  |       |       |   3   |       |  729  |       |177147 |       |       |  81   |       | 19683 |       |   9   |       | 2187  |       |531441 |   1    F♯
                                                                                                    1                                                                                                     [1] 1
@@ -1237,36 +1237,36 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 [ None ,  None ,  None ,  None , 6:G♭:2, b:B :6, 4:E :4]
 [6:G♭:2,  None ,  None ,  None ,  None ,  None ,  None ]
 #tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-#cmds  _snapshot          snapName='test.225.1.NEW.png' New1
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.1.NEW.png'
+#cmds  _snapshot          snapName='test.268.1.NEW.png' New1
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.1.NEW.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.1.NEW.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.1.NEW.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.1.NEW.png'
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.1.NEW.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.1.NEW.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.1.NEW.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
 #cmds  _snapshot          sp0='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
 #cmds  _snapshot          sp2='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#evnts on_draw            .LOG_ID=225 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
+#evnts on_draw            .LOG_ID=268 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.1.NEW.png
 #evnts on_key_press       BGN  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 #evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       check isParsing k='LCTRL' retv=False
 #evnts on_key_press       Not isParsing k='LCTRL' retv=False
 #evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-#evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001CF06E899C0>
+#evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000025B620B9900>
 #evnts on_key_press       END  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       END processing event k='LCTRL' return retv=False
 #evnts on_key_press       BGN  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
@@ -1275,7 +1275,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
 #evnts on_key_press       check isParsing k='LSHIFT' retv=False
 #evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 #evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-#evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001CF06E899C0>
+#evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000025B620B9900>
 #evnts on_key_press       END  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
 #evnts on_key_press       END processing event k='LSHIFT' return retv=False
 #evnts on_key_press       BGN    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True, 113: True}
@@ -1293,22 +1293,22 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
 #chords dumpLimap            0 0 0 Bs4/E        Bs4/E        4R5RR4       507005 EBF♯BBE      R45          057    BEF♯        
 #chords dumpLimap            0 0 1 Es2          Es2          R5255R       072770 EBF♯BBE      R25          027    EF♯B        
 #chords dumpLimap            0 0 2 F♯7s4x/E     F♯7s4x/E     ♭74R44♭7     a5055a EBF♯BBE      R4♭7         05a    F♯BE        
-#cmds  _snapshot          snapName='test.225.2.FIN.png' quit 0 save=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.2.FIN.png'
+#cmds  _snapshot          snapName='test.268.2.FIN.png' quit 0 save=0
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.2.FIN.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.2.FIN.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.2.FIN.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.2.FIN.png'
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.2.FIN.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.225.2.FIN.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.268.2.FIN.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.268.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
@@ -1334,13 +1334,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.225.csv
+#tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.268.csv
 #utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv'
-#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.225.csv'
+#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.268.csv'
 #utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.225.csv')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.225.csv ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.225.csv)
+#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.268.csv')
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.268.csv ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.268.csv)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
@@ -1357,7 +1357,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
 #evnts on_key_press       check isParsing k='Q' retv=False
 #evnts on_key_press       Not isParsing k='Q' retv=False
 #evnts on_key_press       Done Not isParsing k='Q' retv=False
-#evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001CF06E899C0>
+#evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000025B620B9900>
 #evnts on_key_press       END    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={}
 #evnts on_key_press       END processing event k='Q' return retv=False
 #tabs  <module>           OK pyglet.app.run() runstat=None
@@ -1372,13 +1372,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.225.1.NEW.png
 #utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 #utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt'
 #utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.225.txt
+#tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.268.txt
 #utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt'
-#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.225.txt'
+#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.268.txt'
 #utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.225.txt')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.225.txt ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.225.txt)
+#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.268.txt')
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.268.txt ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.268.txt)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0

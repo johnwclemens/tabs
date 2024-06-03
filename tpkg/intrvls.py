@@ -62,6 +62,14 @@ C4F = ['Cbbbb', 'Gbbbb', 'Dbbbb', 'Abbbb', 'Ebbbb', 'Bbbbb', 'Fbbb', 'Cbbb', 'Gb
        'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#', 'F##', 'C##', 'G##', 'D##', 'A##', 'E##', 'B##', 'F###', 'C###', 'G###', 'D###', 'A###', 'E###', 'B###', 'F####', 'C####']
 #       +1   +2   +3   +4   +5   +6    +7    +8    +9   +10  +11  +12  +13   +14   +15   +16   +17   +18   +19   +20    +21    +22    +23    +24    +25    +26    +27     +28
 #       +28  +27  +26  +25  +24  +23   +22   +21   +20   +19   +18   +17   +16    +15    +14    +13    +12    +11    +10    +9      +8      +7      +6      +5      +4      +3      +2       +1
+
+#                    -28      -27      -26      -25      -24      -23      -22     -21     -20     -19     -18     -17    -16      -15      0     +15    +16    +17    +18    +19    +20     +21     +22     +23     +24     +25     +26     +27      +28
+#                    -14      -13      -12      -11      -10      -9       -8      -7      -6      -5      -4      -3      -2      -1       0     +1     +2     +3     +4     +5     +6      +7      +8      +9      +10     +11     +12     +13      +14
+#        self.COF = ['C♭♭♭♭', 'G♭♭♭♭', 'D♭♭♭♭', 'A♭♭♭♭', 'E♭♭♭♭', 'B♭♭♭♭', 'F♭♭♭', 'C♭♭♭', 'G♭♭♭', 'D♭♭♭', 'A♭♭♭', 'E♭♭♭', 'B♭♭♭', 'F♭♭',
+#                    'C♭♭',   'G♭♭',   'D♭♭',   'A♭♭',   'E♭♭',   'B♭♭',   'F♭',   'C♭',   'G♭',   'D♭',   'A♭',   'E♭',   'B♭',   'F',    'C',   'G',   'D',   'A',   'E',   'B',   'F♯',   'C♯',   'G♯',   'D♯',   'A♯',   'E♯',   'B♯',   'F♯♯',   'C♯♯',
+#                                                                                                                                                 'G♯♯', 'D♯♯', 'A♯♯', 'E♯♯', 'B♯♯', 'F♯♯♯', 'C♯♯♯', 'G♯♯♯', 'D♯♯♯', 'A♯♯♯', 'E♯♯♯', 'B♯♯♯', 'F♯♯♯♯', 'C♯♯♯♯']
+#                    -14      -13      -12      -11      -10      -9       -8      -7      -6      -5      -4      -3      -2      -1       0     +1     +2     +3     +4     +5     +6      +7      +8      +9      +10     +11     +12     +13      +14
+#                    -28      -27      -26      -25      -24      -23      -22     -21     -20     -19     -18     -17     -16     -15      0     +15    +16    +17    +18    +19    +20     +21     +22     +23     +24     +25     +26     +27      +28
 '''
 ########################################################################################################################################################################################################
 def i2spr(i): # todo fixme still being used by old code that hasn't been retired yet
@@ -72,18 +80,13 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
 ########################################################################################################################################################################################################
 class Intonation(object):
     ic      = 0
-#               0   +1   +2    +3   +4    +5    +6    +7    +8    +9    +10   +11   +12   +13    +14   +15   +16    +17    +18    +19    +20    +21    +22    +23    +24    +25     +26    +27   +28
-    COF1    = ['C', 'G', 'D',  'A', 'E',  'B',  'F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯', 'F𝄪',  'C𝄪', 'G𝄪',  'D𝄪',  'A𝄪',  'E𝄪',   'B𝄪',  'F♯𝄪',  'C♯𝄪', 'G♯𝄪', 'D♯𝄪',  'A♯𝄪',  'E♯𝄪',  'B♯𝄪', 'F𝄪𝄪',  'C𝄪𝄪',  'G𝄪𝄪',  'D𝄪𝄪',   'A𝄪𝄪',   'E𝄪𝄪',   'B𝄪𝄪',   'F♯𝄪𝄪'] 
-#   COF2    = [     'F', 'B𝄬', 'E𝄬', 'A𝄬', 'D𝄬', 'G𝄬', 'C𝄬', 'F𝄬', 'B𝄫', 'E𝄫', 'A𝄫', 'D𝄫', 'G𝄫', 'C𝄫', 'F𝄫', 'B𝄬𝄫', 'E𝄬𝄫', 'A𝄬𝄫', 'D𝄬𝄫', 'G𝄬𝄫', 'C𝄬𝄫', 'F𝄬𝄫', 'B𝄫𝄫', 'E𝄫𝄫', 'A𝄫𝄫', 'D𝄫𝄫', 'G𝄫𝄫', 'C𝄫𝄫', 'F𝄫𝄫', 'B𝄬𝄫𝄫', 'E𝄬𝄫𝄫', 'A𝄬𝄫𝄫', 'D𝄬𝄫𝄫', 'G𝄬𝄫𝄫']
+#               0   +1   +2    +3    +4    +5    +6    +7    +8    +9    +10   +11   +12   +13    +14   +15   +16    +17    +18    +19    +20    +21     +22    +23    +24    +25     +26    +27    +28    +29    +30     +31     +32      +33     +34
+    COF1    = ['C', 'G', 'D',  'A',  'E',  'B',  'F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯', 'F𝄪',  'C𝄪', 'G𝄪',  'D𝄪',   'A𝄪',  'E𝄪',   'B𝄪',  'F♯𝄪',  'C♯𝄪',  'G♯𝄪', 'D♯𝄪',  'A♯𝄪',  'E♯𝄪',  'B♯𝄪', 'F𝄪𝄪',  'C𝄪𝄪',  'G𝄪𝄪',  'D𝄪𝄪',   'A𝄪𝄪',   'E𝄪𝄪',   'B𝄪𝄪',   'F♯𝄪𝄪'] 
     COF2    = [     'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B𝄫', 'E𝄫', 'A𝄫', 'D𝄫', 'G𝄫', 'C𝄫', 'F𝄫', 'B♭𝄫', 'E♭𝄫', 'A♭𝄫', 'D♭𝄫', 'G♭𝄫', 'C♭𝄫', 'F♭𝄫', 'B𝄫𝄫', 'E𝄫𝄫', 'A𝄫𝄫', 'D𝄫𝄫', 'G𝄫𝄫', 'C𝄫𝄫', 'F𝄫𝄫', 'B♭𝄫𝄫', 'E♭𝄫𝄫', 'A♭𝄫𝄫', 'D♭𝄫𝄫', 'G♭𝄫𝄫']
-#                   -1   -2    -3   -4    -5    -6    -7    -8    -9    -10   -11   -12   -13    -14   -15   -16    -17    -18    -19    -20    -21    -22    -23    -24    -25     -26    -27   -28
-    COFA    = list(COF2)
-    COFA.reverse()
-    COFA.extend(COF1)
-    COFB    = list(COF1)   ;   COF3 = list(COF2)
-    COF3.reverse()
-    COFB.extend(COF3)
-    COF     = COFB
+#                   -1   -2    -3    -4    -5    -6    -7    -8    -9    -10   -11   -12   -13    -14   -15   -16    -17    -18    -19    -20    -21     -22    -23    -24    -25     -26    -27    -28    -29     -30     -31     -32     -33     -34
+    COF2.reverse()
+    COF     = list(COF1)
+    COF.extend(COF2)
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         self.rf     = rf
         self.ss     = ss
@@ -100,27 +103,11 @@ class Intonation(object):
         self.nimap  = {}
         self.ckmap  = {} # self.reset_ckmap()
         self.dmpCOF()
-#        self.CIF    = 28
-#                    -28      -27      -26      -25      -24      -23      -22     -21     -20     -19     -18     -17    -16      -15      0     +15    +16    +17    +18    +19    +20     +21     +22     +23     +24     +25     +26     +27      +28
-#                    -14      -13      -12      -11      -10      -9       -8      -7      -6      -5      -4      -3      -2      -1       0     +1     +2     +3     +4     +5     +6      +7      +8      +9      +10     +11     +12     +13      +14
-#        self.COF = ['C♭♭♭♭', 'G♭♭♭♭', 'D♭♭♭♭', 'A♭♭♭♭', 'E♭♭♭♭', 'B♭♭♭♭', 'F♭♭♭', 'C♭♭♭', 'G♭♭♭', 'D♭♭♭', 'A♭♭♭', 'E♭♭♭', 'B♭♭♭', 'F♭♭',
-#                    'C♭♭',   'G♭♭',   'D♭♭',   'A♭♭',   'E♭♭',   'B♭♭',   'F♭',   'C♭',   'G♭',   'D♭',   'A♭',   'E♭',   'B♭',   'F',    'C',   'G',   'D',   'A',   'E',   'B',   'F♯',   'C♯',   'G♯',   'D♯',   'A♯',   'E♯',   'B♯',   'F♯♯',   'C♯♯',
-#                                                                                                                                                 'G♯♯', 'D♯♯', 'A♯♯', 'E♯♯', 'B♯♯', 'F♯♯♯', 'C♯♯♯', 'G♯♯♯', 'D♯♯♯', 'A♯♯♯', 'E♯♯♯', 'B♯♯♯', 'F♯♯♯♯', 'C♯♯♯♯']
-#                    -14      -13      -12      -11      -10      -9       -8      -7      -6      -5      -4      -3      -2      -1       0     +1     +2     +3     +4     +5     +6      +7      +8      +9      +10     +11     +12     +13      +14
-#                    -28      -27      -26      -25      -24      -23      -22     -21     -20     -19     -18     -17     -16     -15      0     +15    +16    +17    +18    +19    +20     +21     +22     +23     +24     +25     +26     +27      +28
-#        self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
-#        self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'A♭':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'B♭♭':('D♯', 'E♭'), 'E♭♭':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
-#        self.COFM2  = self.COFMA | self.COFMB
-        l           = len(self.COFA)
-        self.COFMA  = { self.COFA[i]: (self.COFA[(i+6)], self.COFA[(i-6)]) for i in range(-l//2, 1+l//2) }
-        self.dmpCOFMA()
-        l           = len(self.COFB) - 12
-        self.COFMB  = { self.COFB[i]: (self.COFB[(i+6)], self.COFB[(i-6)]) for i in range(1+l//2) }
-#        l           = len(self.COFB) - 12 # ;   j = l - len(self.COFMB)
-        _           = { self.COFB[i]: (self.COFB[(i+6)], self.COFB[(i-6)]) for i in range(0, -1-l//2, -1) }
-        self.COFMB.update(_)
-        self.dmpCOFMB()
-        self.COFM = self.COFMA if self.COF == self.COFA else self.COFMB
+        l           = len(self.COF) - 12
+        self.COFM   = { self.COF[i]: (self.COF[(i+6)], self.COF[(i-6)]) for i in range(1+l//2) }
+#        self.COFM  |= { self.COF[i]: (self.COF[(i+6)], self.COF[(i-6)]) for i in range(-1, l//2-l, -1) }
+        self.COFM  |= { self.COF[i]: (self.COF[(i+6)], self.COF[(i-6)]) for i in range(-l//2, 0, 1) }
+        self.dmpCOFM()
         self.dmpUnis()
         self.FREFS  = F440s if self.rf == 440 else F432s
         self.w0     = CM_P_M * self.ss
@@ -133,16 +120,10 @@ class Intonation(object):
     @classmethod # if cls.ic==0 else None
     def dmpCOF(cls):
         cls.ic += 1
-        slog(f'{cls.ic=} {fmtl(cls.COFA)}', p=0)
-#                    G𝄬𝄫𝄫 D𝄬𝄫𝄫 A𝄬𝄫𝄫 E𝄬𝄫𝄫 B𝄬𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F𝄬𝄫 C𝄬𝄫 G𝄬𝄫 D𝄬𝄫 A𝄬𝄫 E𝄬𝄫 B𝄬𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F𝄬 C𝄬 G𝄬 D𝄬 A𝄬 E𝄬 B𝄬 F C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪
-#                    G♭𝄫𝄫 D♭𝄫𝄫 A♭𝄫𝄫 E♭𝄫𝄫 B♭𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪
-        slog('       0    1     2    3    4     5   6    7   8   9    10  11   12  13  14  15  16  17  18   19 20 21 22  23 24 25 26 27 28 29 30 31 32 3334343332313029-28-27-26-25-24-23-22-2120-1918-1716-15-14 -13-12 -11 -10 -9 -8 -7 -6  -5 -4 -3 -2 -1',  p=0)
-        slog('       0    1     2    3    4     5   6    7   8   9    10  11   12  13  14  15  16  17  18   19 20 21 22  23 24 25 26 27 28 29 30 31 32 3334353637383940 41 42 43 44 45 46 47 4849 5051 5253 54 55  56 57  58  59 60 61 62  63  64 65 66 67 68', p=0)
-        slog(f'{cls.ic=} {fmtl(cls.COFB)}', p=0)
-#                    C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪 G𝄬𝄫𝄫 D𝄬𝄫𝄫 A𝄬𝄫𝄫 E𝄬𝄫𝄫 B𝄬𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F𝄬𝄫 C𝄬𝄫 G𝄬𝄫 D𝄬𝄫 A𝄬𝄫 E𝄬𝄫 B𝄬𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F𝄬 C𝄬 G𝄬 D𝄬 A𝄬 E𝄬 B𝄬 F
+        slog(f'{cls.ic=} {fmtl(cls.COF)}', p=0)
 #                    C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪 G♭𝄫𝄫 D♭𝄫𝄫 A♭𝄫𝄫 E♭𝄫𝄫 B♭𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F
-        slog('       0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 161718 19 20 21  22  23  24 25  26  27 28 29 30 31  32 33  34 -34  -33   -32  -31   -30  -29  -28 -27  -26 -25  -24 -23  -22 -21  -20 -19 -18 -17 -16 -15 -14-13-12-11 -10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
-        slog('       0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 161718 19 20 21  22  23  24 25  26  27 28 29 30 31  32 33  34  35   36    37   38    39   40   41  42   43  44   45  46   47  48   49  50  51  52  53  54  55 56  57 58 59 60 61 62 63 64 65 66 67 68', p=0)
+        slog('       0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 161718 19 20  21 22  23  24  25 26  27 28  29 30 31 32 33  34 -34   -33  -32   -31  -30   -29  -28 -27 -26  -25 -24  -23 -22 -21 -20 -19  -18 -17 -16 -15-14-13-12 -11-10-9  -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
+        slog('       0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 161718 19 20  21 22  23  24 25  26  27 28  29 30 31 32 33  34  35    36   37    38   39    40   41  42  43   44  45   46  47  48  49  50   51  52  53  54 55 56 57  58 59 60  61 62 63 64 65 66 67 68', p=0)
     def dmpUnis(self):
         slog(f'{F}{N}{S}{E}{X}')
         for i in range(16):
@@ -155,15 +136,15 @@ class Intonation(object):
             j.append(f'{u+i:c}')
         k = W.join(j)
         slog(k, p=0)
-    def dmpCOFMA(self):
-        cofa = self.COFA[6:-6]
-        for i, k in enumerate(cofa):
-            v = self.COFMA[k]
-            j = i if i <= len(cofa)//2 else i - len(cofa)
-            slog(f'{i:2} {j:3} {k:5} {v}', p=0)
-    def dmpCOFMB(self):
-        for i, (k, v) in enumerate(self.COFMB.items()):
-            j = i if i <= len(self.COFMB)//2 else i - len(self.COFMB)
+
+    def dmpCOFM(self):
+        n   = (len(self.COF)-12)//2
+        cof = self.COF[:n+1] + self.COF[-n:]
+        slog(f'{len(cof)}:{fmtl(cof)}', p=0)
+        for i, k in enumerate(cof):
+            assert k in self.COFM,  f'{i=} {k=} {n=} {cof[i]} {fmtl(cof)} keys={fmtl(list(self.COFM.keys()))}'
+            v = self.COFM[k]
+            j = i if i <= len(cof)//2 else i - len(cof)
             slog(f'{i:2} {j:3} {k:5} {v}', p=0)
     @staticmethod
     def i2spr(i):
@@ -190,7 +171,7 @@ class Intonation(object):
         return n, i
     ####################################################################################################################################################################################################
     def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, 2, k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
-    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(2, 3, k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
+    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(2, 3, k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
     def stackI(self, a, b, c, i):    return [ a, b, c, self.COF[i] ]
     @staticmethod
     def fabc(abc):                   return [ fmtl(e, w=2, d=Z) for e in abc ]
@@ -208,15 +189,14 @@ class Intonation(object):
         abc1   = self.stck5ths(a, i, dbg=1)
         abc2   = self.stck4ths(b, i, dbg=1)
         abc3   = [ self.stackI(3, 2, 0, i) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(self.stackI(2, 1, 1, i))
-#        abc3   = [ stackI(3, 2, 0, COFS[(b-a)//2]) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1, COFF[(b-a)//2]))
         abc4   = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
         abcLst = [abc1, abc2, abc3, abc4]
         if dbg:
             for j, abcs in enumerate(abcLst):
                 msg = []
-                pfx.append(f'abc{j+1} {nn}[{nn}')  ;  sfx.append(f'{nn}]{nn}')
+                pfx.append(f'abc{j+1} {nn}[{nn}  ')  ;  sfx.append(f'{nn}]{nn}')
                 for i, abc in enumerate(abcs):
-                    msg.append(f'{fmtl(abc, w=w, d=W, s=mm)}')
+                    msg.append(f'{fmtl(abc, w=w, d=W, s=mm)}|')
                 slog(f'{pfx[j]}{fmtl(msg)}{sfx[j]}', p=0, f=ff)
         return abcLst
 
@@ -428,7 +408,7 @@ class Intonation(object):
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x+1)
         self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.fim()} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
-        
+
     def _setup(self, i, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0   ;   self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]   ;   k = 6 - i if i > 6 else i
