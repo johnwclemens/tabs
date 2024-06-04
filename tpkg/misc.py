@@ -489,6 +489,29 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
 # Revisit Notes class and any overlap with intrvls.py, pthgrn.py, and just.py Intonation classes and modules
 # Maybe implement a 12 tone ET class that is used by default
 
+# Issues with fixed width font (JetBrains Mono? size=40 lineheight=1.2 ligatures=0) (mainweight=Regular boldweight=Bold fallbackfont=None) 
+# and unicode points like double sharp and double flat are like about 1.5 chars wide
+# Note text from source code file/window looks different from output window/file (output text pasted below does not match output file/window)
+# Seems to never align consistantly, always seeing a few column shifts of about one char (rounding? font type? font size? window/file type?)
+# Try using cursor in log file to determine the best columns between rows with unicode and rows without unicode
+'''
+        slog(f'{cls.ic:2}{fmtl(cls.COF)}', p=0)
+#                C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪 G♭𝄫𝄫 D♭𝄫𝄫 A♭𝄫𝄫 E♭𝄫𝄫 B♭𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34 -34   -33  -32   -31  -30   -29 -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34  35    36   37    38   39    40  41   42  43   44  45   46  47  48   49  50  51  52  53   54 55 56 57  58 59 60 61 62 63 64 65 66 67 68', p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28                                                      29   30  31   32  33   34  35  36   37  38  39  40  41   42 43 44 45  46 47 48 49 50 51 52 53 54 55 56', p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28                                                     -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
+        slog('   C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪                                                       C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F',  p=0)
+ 1[C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪 G♭𝄫𝄫 D♭𝄫𝄫 A♭𝄫𝄫 E♭𝄫𝄫 B♭𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F]
+   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34 -34   -33  -32   -31  -30   -29 -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1
+   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34  35    36   37    38   39    40  41   42  43   44  45   46  47  48   49  50  51  52  53   54 55 56 57  58 59 60 61 62 63 64 65 66 67 68
+   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28                                                      29   30  31   32  33   34  35  36   37  38  39  40  41   42 43 44 45  46 47 48 49 50 51 52 53 54 55 56
+   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 16 1718 19 20 21  22 23  24  25 26  27 28                                                     -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1
+   C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪                                                       C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F
+57[C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪]                                                    [C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F]
+'''
+
+
 # Something strange regarding upd2 event?
 # Full upd event was logged near snapshot and quit events in test.153.log
 # But cannot reproduce - perhaps just accidently resized the window ???
