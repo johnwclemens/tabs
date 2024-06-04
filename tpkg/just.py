@@ -180,8 +180,8 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             self.k = self.j - i * M3
             for j, d in enumerate(D):
+#               n = self.OLD__fmtNPair((self.k, (j*7)%NT, j=0)
                 n = self.fmtNote(self.k, (j*7) % NT)
-#                n = self.fmtNPair(self.k, (j*7)%NT, j=0)
                 if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {self.i=:2} {self.j=:2} {self.k=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 u = CRS[i][j]
                 v, p = self.norm(u)

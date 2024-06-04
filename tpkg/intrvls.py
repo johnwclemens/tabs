@@ -5,12 +5,12 @@ from tpkg.notes import Notes
 from collections import Counter
 import math
 
-F, N, S, E, X          = unic.F,   unic.N,   unic.S,   unic.E,   unic.X
-W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog, utl.ist
-fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
+F,    N,    S,    E,    X   = unic.F,   unic.N,   unic.S,   unic.E,   unic.X
+W,    Y,    Z,    slog, ist = utl.W,    utl.Y,    utl.Z,    utl.slog, utl.ist
+fmtl, fmtm, fmtf, fmtg      = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
-SUPERS, MAX_FREQ_IDX, ACCD_TONES = utl.SPRSCRPT_INTS,    utl.MAX_FREQ_IDX,    notes.ACCD_TONES
-NT, A4_INDEX, CM_P_M, V_SOUND    = notes.NT,   notes.A4_INDEX,   notes.CM_P_M,   notes.V_SOUND
+NONE, SUPERS,   MAX_FREQ_IDX, ACCD_TONES = utl.NONE, utl.SPRSCRPT_INTS, utl.MAX_FREQ_IDX, notes.ACCD_TONES
+NT,   A4_INDEX, CM_P_M,       V_SOUND    = notes.NT, notes.A4_INDEX,    notes.CM_P_M,     notes.V_SOUND
 
 FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s
@@ -122,11 +122,11 @@ class Intonation(object):
         cls.ic += 1
         slog(f'{cls.ic:2}{fmtl(cls.COF)}', p=0)
 #                C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪 G𝄪𝄪 D𝄪𝄪 A𝄪𝄪 E𝄪𝄪 B𝄪𝄪 F♯𝄪𝄪 G♭𝄫𝄫 D♭𝄫𝄫 A♭𝄫𝄫 E♭𝄫𝄫 B♭𝄫𝄫 F𝄫𝄫 C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F
-        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34 -34   -33  -32   -31  -30   -29 -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
-        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34  35    36   37    38   39    40  41   42  43   44  45   46  47  48   49  50  51  52  53   54 55 56 57  58 59 60 61 62 63 64 65 66 67 68', p=0)
-        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28                                                      29   30  31   32  33   34  35  36   37  38  39  40  41   42 43 44 45  46 47 48 49 50 51 52 53 54 55 56', p=0)
-        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28                                                     -28  -27 -26  -25 -24  -23 -22 -21  -20 -19 -18 -17 -16  -15-14-13-12 -11-10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
-        slog('   C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪                                                       C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F',  p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34 -34   -33  -32   -31   -30  -29  -28  -27 -26 -25  -24  -23 -22 -21  -20 -19 -18  -17 -16 -15-14 -13-12 11 -10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28  29 30 31  32 33 34  35    36   37    38    39   40   41   42  43  44   45   46  47  48   49  50  51   52  53  54 55  56 57 58  59 60 61 62 63 64 65 66 67 68', p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28                                                       29   30  31  32   33   34  35  36   37  38  39   40  41  42 43  44 45 46  47 48 49 50 51 52 53 54 55 56', p=0)
+        slog('   0 1 2 3 4 5 6  7  8  9  10 11 12 13 1415 1617 18 19 20 21  22 23  24  25 26  27 28                                                      -28  -27 -26 -25  -24  -23 -22 -21  -20 -19 -18  -17 -16 -15-14- 13-12 11 -10-9 -8 -7 -6 -5 -4 -3 -2 -1',  p=0)
+#       slog('   C G D A E B F♯ C♯ G♯ D♯ A♯ E♯ B♯ F𝄪 C𝄪 G𝄪 D𝄪 A𝄪 E𝄪 B𝄪 F♯𝄪 C♯𝄪 G♯𝄪 D♯𝄪 A♯𝄪 E♯𝄪 B♯𝄪 F𝄪𝄪 C𝄪𝄪                                                       C𝄫𝄫 G𝄫𝄫 D𝄫𝄫 A𝄫𝄫 E𝄫𝄫 B𝄫𝄫 F♭𝄫 C♭𝄫 G♭𝄫 D♭𝄫 A♭𝄫 E♭𝄫 B♭𝄫 F𝄫 C𝄫 G𝄫 D𝄫 A𝄫 E𝄫 B𝄫 F♭ C♭ G♭ D♭ A♭ E♭ B♭ F',  p=0)
     def dmpUnis(self):
         slog(f'{F}{N}{S}{E}{X}')
         for i in range(16):

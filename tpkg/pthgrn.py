@@ -68,7 +68,7 @@ class Pthgrn(ivls.Intonation):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1   ;   self.k = kk
             rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[2]):
-#                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+#               n=self.OLD__fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 n    = self.fmtNPair(j)       ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
                 cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
