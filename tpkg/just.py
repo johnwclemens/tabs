@@ -114,7 +114,7 @@ R2   = [ A**C[1] * B**D[0], A**C[1] * B**D[1], A**C[1] * B**D[2], A**C[1] * B**D
 R3   = [ A**C[2] * B**D[0], A**C[2] * B**D[1], A**C[2] * B**D[2], A**C[2] * B**D[3], A**C[2] * B**D[4] ]
 CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
-class Just(ivls.Intonation): 
+class Just(ivls.Intonation):
     def __str__(self):  return f'{self.__class__.__name__}'
     def __repr__(self): return f'{self.__class__.__name__}'
 
@@ -154,7 +154,7 @@ class Just(ivls.Intonation):
             elif     v and ist(v ** -e, int):  _ = f'1/{v**-e}' ;  ret.append(f'{_:^{w}}')
             else:                              assert 0,  f'{v=} {i=} {l=} {l[i]=} {e=} {type(e)=} {v**e=} {type(v**e)=} {v**-e=} {type(v**-e)=}'
         return fmtl(ret, s=oo, d=Z) # W.join(fmtl(ret))
-    
+
     def fmtIRs(self, a, b):
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
         r0s, r1s, r2s, r3s = [], [], [], []
@@ -250,7 +250,7 @@ class Just(ivls.Intonation):
 ########################################################################################################################################################################################################
 #def fmtR2(a, ca, b, cb, w, k, i, j):
 #    qa = f'1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
-#    qb = f'1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
+#    qb = f'1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}'
 #    l = 2 ** abs(k) if k is not None else 1  ;  qaqbi = f'{l}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
 #    if   not k:
 #        ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
@@ -288,7 +288,7 @@ class Just(ivls.Intonation):
 #    r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
 #    if   lr == 4:   return r0s, r1s,      r2s, r3s
 #    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
-    
+
 #def OLD_addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11): # u=5 w=11
 ##   rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
 ##   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))

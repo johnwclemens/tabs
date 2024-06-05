@@ -151,7 +151,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'X' and isCtlShf(d, m):      cmd = cmds.CutTabsCmd(      tobj, '@^X')                 ;  cmd.do()
     elif k == 'X' and isCtl(   d, m):      cmd = cmds.CutTabsCmd(      tobj, '@ X')                 ;  cmd.do()
     elif k == 'Y' and isCtlShf(d, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^Y')                 ;  cmd.do()
-    elif k == 'Y' and isCtl(   d, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@ Y')                 ;  cmd.do() 
+    elif k == 'Y' and isCtl(   d, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@ Y')                 ;  cmd.do()
     elif k == 'Z' and isCtlShf(d, m):      cmd = cmds.TogZZsCmd(       tobj, '@^Z', 1)              ;  cmd.do()
     elif k == 'Z' and isCtl(   d, m):      cmd = cmds.TogZZsCmd(       tobj, '@ Z', 0)              ;  cmd.do()
     ####################################################################################################################################################################################################
@@ -178,7 +178,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'S' and isAltShf(d, m):      cmd = cmds.ShiftTabsCmd(    tobj, '&^S')                 ;  cmd.do()
     elif k == 'S' and isAlt(   d, m):      cmd = cmds.ShiftTabsCmd(    tobj, '& S')                 ;  cmd.do()
     elif k == 'V' and isAltShf(d, m):      cmd = cmds.TogVisibleCmd(   tobj, '&^V')                 ;  cmd.do()
-    elif k == 'V' and isAlt(   d, m):      cmd = cmds.TogVisibleCmd(   tobj, '& V')                 ;  cmd.do() 
+    elif k == 'V' and isAlt(   d, m):      cmd = cmds.TogVisibleCmd(   tobj, '& V')                 ;  cmd.do()
     elif k == 'W' and isAltShf(d, m):      cmd = cmds.SwapTabCmd(      tobj, '&^W', txt=Z)          ;  cmd.do()
     elif k == 'W' and isAlt(   d, m):      cmd = cmds.SwapTabCmd(      tobj, '& W', txt=Z)          ;  cmd.do()
     elif k == 'Z' and isAltShf(d, m):      cmd = cmds.UpdateTniksCmd(  tobj, '&^Z', tobj.width, tobj.height)   ;  cmd.do()
@@ -256,7 +256,7 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
         hh = tobj.height  ;  ww = tobj.width  ;  tlen = len(tobj.tabls)  ;  ll = tobj.LL    ;  np, nl, ns, nc, nt  = tobj.n
         y0 = y            ;   y = hh - y0     ;    nr = nl*(ns*nt + ll)  ;   w = ww/nc      ;  h = hh/nr
         cc = tobj.cc      ;   r = int(y/h)    ;     d = int(y/h)  - ll   ;   a = int(d/nr)  ;  b = int(x/w)
-        p  = tobj.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = (d - l*nr) # % nt
+        p  = tobj.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = d - l*nr #) % nt
         txt = tobj.tabls[cc].text if cc < tlen else Z   ;   f = -3
         if dbg:   slog(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {nr=:2} {r=:2} {d=:2} {txt=} {bttn=} {mods=}', f=f)
         if dbg:   slog(f'    p={p+1} l={l+1}=(d/nr) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*nr)', f=f)
@@ -265,7 +265,7 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
         if dbg:   slog(f'    after  MOVE plsct={tobj.fplsct(p, l, s, c, t)}',   f=f)
         if dbg:   slog(f'END {fxy(x, y)} {y0:4} ({ww:4}x{hh:4})  {fbm(bttn, mods)}', f=f)
         return True
-    else: return False
+    return False
 
 def on_mouse_scroll(tobj, x, y, dx, dy, dbg=1):
     retv = True
@@ -331,7 +331,7 @@ def on_text_motion(tobj, motion, dbg=1):
         elif m == k.MOTION_DOWN:              msg =                            f'@  DOWN(     {m})'             ;  slog(msg)   ;   retv = False
         elif m == k.MOTION_RIGHT:             msg =                            f'@  RIGHT(    {m})'             ;  slog(msg)   ;   retv = False
         elif m == k.MOTION_LEFT:              msg =                            f'@  LEFT(     {m})'             ;  slog(msg)   ;   retv = False
-        elif m == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(     tobj, f'@  PAGEDOWN( {m})',  1)        ;  cmd.do()     
+        elif m == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(     tobj, f'@  PAGEDOWN( {m})',  1)        ;  cmd.do()
         elif m == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.TogPageCmd(     tobj, f'@  PAGEUP(   {m})', -1)        ;  cmd.do() # ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif m == k.MOTION_BACKSPACE:         cmd = cmds.DeleteTabsCmd(  tobj, f'@  BACKSPACE({m})')            ;  cmd.do() # todo fixme
         elif m == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(  tobj, f'@  DELETE(   {m})')            ;  cmd.do()

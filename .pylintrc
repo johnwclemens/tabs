@@ -8,6 +8,7 @@
 #R0913: Too many arguments (6/5) (too-many-arguments)
 #R0914: Too many local variables (16/15) (too-many-locals)
 #R0915: Too many statements (179/50) (too-many-statements)
+#W0105: String statement has no effect (pointless-string-statement)
 #
 
 [MAIN]
@@ -676,9 +677,10 @@ redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
 # tabsC.py:1021:4:  R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
 # tabsC.py:2731:20: R1728: Consider using a generator instead 'list(fri(rgb[i] / dv + j * steps[i]) for i in range(lrgb))' (consider-using-generator)
 # tabsC.py:2728:62: E1126: Sequence index is not an int, slice, or instance with __index__ (invalid-sequence-index)
+# intrvls.py:478:4: W0105: String statement has no effect (pointless-string-statement)
 # jwc # # # # # # # Not much point using this tool in build/run because the external pylint job ends even when successful???
 # Owner@DESKTOP-38CCATT MINGW64 ~/Documents/GitHub/tabs (master)
 # $ pylint --disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106,W0201,W0237,W0602,W0603,
-# R0902,R0903,R0904,C0201,C0206,C0411,R1710,R1728,W0108,W0644,E1126 tabsC.py util.py chord.py --output=lnts/lnt.txt
+# R0902,R0903,R0904,C0201,C0206,C0411,R1710,R1728,W0108,W0644,E1126,W0105 tabs.py tpkg/ --output=lnts/lnt.txt
 # jwc # # # # # # #        Use " " around args or around spaces within args if any
 # https://www.jetbrains.com/help/pycharm/2022.1/configuring-third-party-tools.html

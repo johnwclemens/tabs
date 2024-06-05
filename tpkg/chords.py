@@ -27,7 +27,7 @@ class Chords:
         self.cat1,   self.cat2    = set(), set()
         self.cat3                 = {}
         self.OMAP                 = cdata.OMAP
-        
+
     @staticmethod
     def checkOmap(o):
         assert     ist(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')

@@ -14,7 +14,7 @@ N2I,          F2S             = Notes.N2I, Notes.F2S
 class Pthgrn(ivls.Intonation):
     def __str__(self):  return f'{self.__class__.__name__}'
     def __repr__(self): return f'{self.__class__.__name__}'
-    
+
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
 #        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
@@ -42,7 +42,7 @@ class Pthgrn(ivls.Intonation):
         ecents = ccents / NT
         if dbg:  slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ecents
-        
+
     def comma(self, dbg=0): # todo generalize m2bc ?
         n, i, iv   = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
         s5s        = self.stck5ths(n, 0)
@@ -66,7 +66,7 @@ class Pthgrn(ivls.Intonation):
         if dbg and ni==0:  self.dmpIndices(pfx2, x)   ;   self.dmpDataTableLine(x+1)
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1   ;   self.k = kk
-            rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
+            rat1 = [] if x in (6, 7, 13) else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[2]):
 #               n=self.OLD__fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 n    = self.fmtNPair(j)       ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
@@ -80,7 +80,7 @@ class Pthgrn(ivls.Intonation):
                 cents.append(rc) #  ;   cfnts.append(f'{cent:{w2}}')
                 if   x==9:          self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==13:         self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                elif x==6 or x==7:  self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                elif x in (6, 7):   self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
             pd = [f'{i:x}', f'{kk:2}', f'{self.fmtNPair(0):2}'] if dbg else [f'{i:x}', f'{kk:2}  ']   ;   pfx = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx #fixme hack to fix note name in pfx
             if dbg: # pfx was set last at the end of the inner for loop
                 if   ni==0:           slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff)
@@ -156,7 +156,7 @@ class Pthgrn(ivls.Intonation):
             a, b, c = abc[0], abc[1], abc[2]
             r, ca, cb = self.abc2r(a, b, c)
             As.append(a ** ca)     ;    Bs.append(b ** cb)
-        self.dmp_rArBs(As, Bs, rAs, rBs, u=u)        
+        self.dmp_rArBs(As, Bs, rAs, rBs, u=u)
 
     def dmp_rArBs(self, rA1s, rB1s, rA2s, rB2s, u): # print both on same line
         ckm = self.nimap[self.j][0]   ;   ck = 0
@@ -185,7 +185,8 @@ class Pthgrn(ivls.Intonation):
             elif j==1:                 fd.append(f'{d:4}')           # j*100
             elif j==2:                 fd.append(f'{d:2} ')          # i
             elif j==6:                 fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
-            elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d d d
+            elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i not in (0, len(self.ck2ikm)-1) else fd.append(W*7) # d d d
+#            elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d d d
             elif j in ( 8, 14, 20):    fd.append(f'*{mm}{d:2}  ')    # c` c` c`
             elif j==26:                fd.append(f'*{mm}{d:2}')      # c`
             elif j in (5, 11, 17, 23): fd.append(f'@{mm}{d:4}{mm}:') # k k k k
@@ -197,8 +198,8 @@ class Pthgrn(ivls.Intonation):
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3   ;   nh, ni, nj, nk = 0, 0, 0, 0
         eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   m = l - 1 if h > 11 else l
-        hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c` ']
-        hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
+        hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', ' c` ']
+        hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', ' c`']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
         if   h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
         elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
@@ -257,7 +258,7 @@ c 1200 27 P8 12 @ 1200 :   0.000 = 1.955 *  0    LB  0 @ 1177 :         = 1.955 
 #def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
 #def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
 #def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
-#def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
+#def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}'
 #def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
 
 #def NEW_addFmtRs(a, ca, b, cb, rs, u=4, w=9):
@@ -272,7 +273,7 @@ c 1200 27 P8 12 @ 1200 :   0.000 = 1.955 *  0    LB  0 @ 1177 :         = 1.955 
 #    r3s.append(fmtR3(a, ca, b, cb, u))
 #    if   lr == 4:   return r0s, r1s,      r2s, r3s
 #    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
-    
+
 #def OLD_addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, u=4, w=9):
 #    r0s.append(fmtR0(a, ca, b, cb, w))
 #    rAs.append(fmtRA(a, ca, w)) # if ist(a**ca, int) else w3))

@@ -115,12 +115,11 @@ def memorize(func):
     def wrapper(*args):
         if args in cache:
             return cache[args]
-        else:
-            result = func(*args)
-            cache[args] = result
+        result = func(*args)
+        cache[args] = result
         return result
     return wrapper
-    
+
 def paths():           return BASE_NAME, BASE_PATH, PATH
 ########################################################################################################################################################################################################
 def fri(f):            return int(math.floor(f + 0.5))
@@ -220,9 +219,9 @@ def ist(o, t):  return isinstance(o, t)
 
 def replceDelims(d):
     o = ['[', '{', '<', '('] #, '||', '|']
-    c = [']', '}', '>', ')'] #, '|', '']   
-    for i in range(len(o)):
-        d = d.replace(o[i], c[i])
+    c = [']', '}', '>', ')'] #, '|', '']
+    for i, oo in enumerate(o):
+        d = d.replace(oo, c[i])
     return d
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None): #todo remove negative ll, zl values
@@ -257,9 +256,9 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='{', d2=None, s=W, ll=No
     uv = Z if uv is None else uv
     for i, (k, v) in enumerate(m.items()):
         ss = s if i < len(m) - 1 else Z
-        if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
-        elif type(v) == dict: b,c='{','}' ;  t.append(f'{b}{k:{u}{w}}{d0}{d}{fmtm(v, d=Z)}{d2}{c}{X}')
-        elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
+        if   ist(v, (list, tuple, set)):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
+        elif ist(v, dict): b,c='{','}' ;  t.append(f'{b}{k:{u}{w}}{d0}{d}{fmtm(v, d=Z)}{d2}{c}{X}')
+        elif ist(v, (int, str)):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return d + Z.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtf(a, b):

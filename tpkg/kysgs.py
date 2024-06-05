@@ -73,7 +73,7 @@ def dmpKSVHdr(csv=0, t=0):
     y, fd = (Y, 3)  if csv else (W, FD)  # ;   n, m = W, W*2
     k = 2*P+1 if t == 0 else M if t == FLAT else P if t == SHRP else 1
     kso, fsi, ini, ino, ano, kst = 'Key Sigature Ordered', 'F/S/N Indices', 'Ionian Note I', 'Ionian Note Ordering', 'Aeolean Note Ordering', f'Key Sig Table {signed(k)}'
-    hdrs = ['KS', 'Type', 'N ', f'I', f' {kso} ', f' {fsi} ', f' {ini} ', f' {ino} ', f'{ano}', f'{kst}']
+    hdrs = ['KS', 'Type', 'N ', 'I', f' {kso} ', f' {fsi} ', f' {ini} ', f' {ino} ', f'{ano}', f'{kst}']
     hdrs = y.join(hdrs)    ;    slog(hdrs, p=PFX, f=fd)
 ########################################################################################################################################################################################################
 def fmtKSK(k, csv=0):
@@ -92,10 +92,10 @@ def fmtKSK(k, csv=0):
 def dumpKSH(csv=0):
     y = Z if csv else W*2   ;   d, m, n = (Z, Y, Y) if csv else ('[', W, W*2)
     v, fd   = (f'{W}{Y}', 3)    if csv else (W*2, FD)   ;   p = 0 if csv else PFX
-    f, k, s = [c for c in 'Flats  '], [c for c in 'N'], [c for c in '  Shrps']
+    f, k, s = list('Flats  '), list('N'), list('  Shrps')
     f = v.join(f)   ;   k = v.join(k)   ;   s = v.join(s)
     hdrs = [ f'{f} ', f'{k} ', f'{s}' ]       ;  hdrs = m.join(hdrs)   ;  _ =  Z if csv else W  ;  slog(f'{_}{hdrs}', p=p, f=fd)
-    keys = sorted(KSD.keys())  ;  w = f'<2' ;   x = f'{w}x'
+    keys = sorted(KSD.keys())  ;  w = '<2' ;   x = f'{w}x'
     _  = utl.ns2signs(keys)
     z = v.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd)
     slog(f'{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=fd)

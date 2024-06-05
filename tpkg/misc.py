@@ -14,7 +14,7 @@ class Scales:
     RomanMaj    = ['I', 'ii',  'iii',   'IV', 'V', 'vi',  'viio']  # CM7  Dm7 Em7 FM7 G7  Am7 B07  CM7
     RomanMinNat = ['i', 'iio', 'bIII',  'iv', 'v', 'bVI', 'bVII']  # Am7  B07 CM7 Dm7 Em7 FM7 G7   Am7
     RomanMinHar = ['i', 'iio', 'bIII+', 'iv', 'V', 'bVI', 'viio']  # AmM7 Bo7 C+7 Dm7 E7  FM7 G#o7 AmM7
-    RomanMinMel = ['i', 'iio', 'bIII+', 'iv', 'V', 'bVI', 'VII']   # 
+    RomanMinMel = ['i', 'iio', 'bIII+', 'iv', 'V', 'bVI', 'VII']   #
     @classmethod
     def majorHept(cls, i):  return [ (i + j) % Notes.NT for j in cls.MajorHept ]
 ########################################################################################################################################################################################################
@@ -78,7 +78,7 @@ class Modes:
 # [[a1, b1], [c1, d1]], [[a2, b2] [c2, d2]] ... [[an, bn], [cn, dn]] # need to return
 
 # also working on extended tuning
-# but forgot about the 2 tones/notes added in 
+# but forgot about the 2 tones/notes added in
 '''
 11 Abb Bbb Cb  Db  Ebb Fb  Gb  Abb
 10 Ebb Fb  Gb  Ab  Bbb Cb  Db  Ebb
@@ -489,7 +489,7 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
 # Revisit Notes class and any overlap with intrvls.py, pthgrn.py, and just.py Intonation classes and modules
 # Maybe implement a 12 tone ET class that is used by default
 
-# Issues with fixed width font (JetBrains Mono? size=40 lineheight=1.2 ligatures=0) (mainweight=Regular boldweight=Bold fallbackfont=None) 
+# Issues with fixed width font (JetBrains Mono? size=40 lineheight=1.2 ligatures=0) (mainweight=Regular boldweight=Bold fallbackfont=None)
 # and unicode points like double sharp and double flat are like about 1.5 chars wide
 # Note text from source code file/window looks different from output window/file (output text pasted below does not match output file/window)
 # Seems to never align consistantly, always seeing a few column shifts of about one char (rounding? font type? font size? window/file type?)
@@ -698,7 +698,7 @@ dmpCkMap():
 
 
 # D  E  F  G  A  B  C# D
-# P1 M2 m3 
+# P1 M2 m3
 #
 
 ####################################################################################################

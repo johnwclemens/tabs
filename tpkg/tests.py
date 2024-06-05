@@ -1,3 +1,4 @@
+import sys
 import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
 from   pyglet.window.key import symbol_string    as psym
@@ -20,7 +21,7 @@ def test_0(tobj):
     print(tobj.__class__.__name__, 'testB', b, sep=Y, file=f, end=Y)
     print(tobj.__class__.__name__, 'testC', c, sep=Y, file=f)
     print(tobj.__class__.__name__, 'testD', d, sep=Y, file=f)
-    quit(Z.join(('test00', str(a))))
+    sys.exit(Z.join(('test00', str(a))))
 ########################################################################################################################################################################################################
 def testSprTxt_0(tobj, path):
     np, nl, ns, nc, nt = tobj.n  ;  r, c = nt*ns*nl, nc
@@ -83,14 +84,14 @@ def testCoins():
     p = 3  ;  w = p + 2
     oc = dcm.getcontext()  ;  cp = oc.prec  ;  cr = oc.rounding
     slog(f'{cp=} {oc=}')
-    for i in range(len(d)):
+    for i, dd in enumerate(d):
 #        c  = dcm.getcontext()
 #        c.prec = p
 #        c.rounding = dcm.ROUND_05UP
         q = '1'
-        d1 = Dcm(d[i])
+        d1 = Dcm(dd)
         d2 = d1.quantize(Dcm(q), dcm.ROUND_05UP)
-        slog(f'{i:2} {d[i]:{w}} {q=:6} {d1:{w}} {d2:{w}} {dcm.getcontext()}')
+        slog(f'{i:2} {dd:{w}} {q=:6} {d1:{w}} {d2:{w}} {dcm.getcontext()}')
         dcm.getcontext().clear_flags()
     c = dcm.getcontext()
     c.prec = cp
@@ -287,7 +288,7 @@ class Tetractys:
         slog(f'{fmtl(self.a, w=5)}', p=0, f=ff)
         slog(f'{fmtl(self.b, w=5)}', p=0, f=ff)
         slog(f'{fmtl(self.c, w=5)}', p=0, f=ff)
-        
+
     def setup(self, o, csv=0):
         self.__init__(self.pythgrn, csv)
         u = 12 if csv else 13
@@ -300,7 +301,7 @@ class Tetractys:
         self.pythgrn.dmpCk2Ik(   x=7                       )
         self.pythgrn.setup2(  o, o2=1,       dbg=0, csv=csv)
         self.octdiv()
-        
+
     def sort(self):
         mm, nn, ff = (Y, Y, 3) if self.csv else (W, Z, -3)
         for v in self.c:
@@ -309,7 +310,7 @@ class Tetractys:
                 self.d.append(w)
             self.e = sorted(self.d)
             slog(f'{s:^200} {fmtl(self.e)} {len(self.e)}', p=0, f=ff)
-        
+
     def octdiv(self):
         mm, nn, ff = (Y, Y, 3) if self.csv else (W, Z, -3)
         self.k = Counter()
@@ -326,7 +327,7 @@ class Tetractys:
             s = f'{fmtl(v, w="^9", s=mm, d=Z)}'
             self.e2 = sorted(self.d2)
             slog(f'{s:^200} {fmtl(self.e2)} {len(self.e2)}', p=0, f=ff)
-            
+
     def foldA(self, n, m): # N/A not used ?
         n = self.base(n)
         while n in self.d2 and self.k[f'{n}'] >= m:
@@ -335,7 +336,7 @@ class Tetractys:
         if n not in self.d2: self.d2.append(n)
         self.k[f'{n}'] += 1
         return n
-        
+
     def foldB(self, n, m):
         n0 = n   ;   n //= 2
         while self.k[f'{n}'] >= m:

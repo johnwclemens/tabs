@@ -1,3 +1,4 @@
+import sys
 from abc import ABC, abstractmethod
 import inspect, itertools, pathlib
 import pyglet
@@ -15,7 +16,7 @@ BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = ut
 
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = utl.NORMAL_STYLE, utl.SELECT_STYLE, utl.CURRENT_STYLE
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   = utl.CAT,  utl.CSV,  utl.EVN,  utl.LOG,  utl.PNG,  utl.TXT,  utl.DAT
-CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  = utl.CATS, utl.CSVS, utl.EVNS, utl.LOGS, utl.PNGS, utl.TEXT, utl.DATA 
+CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  = utl.CATS, utl.CSVS, utl.EVNS, utl.LOGS, utl.PNGS, utl.TEXT, utl.DATA
 BASE_NAME,        BASE_PATH,        PATH  = utl.paths()
 
 MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
@@ -31,17 +32,17 @@ FONT_NAMES            = utl.FONT_NAMES
 class Cmd(ABC):
     @abstractmethod
     def do(self): pass
-    
+
     @abstractmethod
     def undo(self): pass
 ########################################################################################################################################################################################################
 class AddPageCmd(Cmd):
     def __init__(self, tobj, how, ins=None, dbg=1):
         self.tobj, self.how, self.ins, self.dbg = tobj, how, ins, dbg
-        
+
     def do(  self): self._addPage()
     def undo(self): self._addPage() # todo fixme
-    
+
     def _addPage(self):
         tobj, how, ins, dbg = self.tobj, self.how, self.ins, self.dbg
         np, nl, ns, nc, nt = tobj.n   ;   how = f'{how} {ins=}'
@@ -69,10 +70,10 @@ class AddPageCmd(Cmd):
 class AutoMoveCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._autoMove()
     def undo(self): self._autoMove() # todo fixme
-    
+
     def _autoMove(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         tobj.log(f'BGN {tobj.hArrow=} {tobj.vArrow=} {tobj.csrMode=} {how}', pos=1)
@@ -115,17 +116,17 @@ class CsrJumpCmd(Cmd):
 class CopyKordNamesCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._copyKordNames()
     def undo(self): self._copyKordNames() # todo fixme
-    
+
     def _copyKordNames(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         nt = tobj.n[T]  ;  cc = tobj.cursorCol()  ;  cn = tobj.cc2cn(cc)  ;  i = 0
         text = set()   ;   t2n = tobj.sobj.tab2nn
         for s in range(nt):
             tt = tobj.tabls[s].text
-            if tt and tt != W: 
+            if tt and tt != W:
                 txt = t2n(tt if tt else tobj.tblank, s)
                 text.add(txt)
         text = list(text)
@@ -145,10 +146,10 @@ class CopyKordNamesCmd(Cmd):
 class CopyTabsCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._copyTabs()
     def undo(self): self._copyTabs() # todo fixme
-    
+
     def _copyTabs(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         tobj.dumpSmap(f'BGN {how}')  ;  nt = tobj.n[T]  ;  style = NORMAL_STYLE  ;  text = []  ;  tobj.cpyC += 1
@@ -164,10 +165,10 @@ class CopyTabsCmd(Cmd):
 class CutTabsCmd(Cmd):
     def __init__(self, tobj, how):
         self.tobj, self.how = tobj, how
-        
+
     def do(  self): self._cutTabs()
     def undo(self): self._cutTabs() # todo fixme
-    
+
     def _cutTabs(self):
         tobj, how = self.tobj, self.how
         slog('BGN Cut = Copy + Delete')
@@ -179,13 +180,13 @@ class CutTabsCmd(Cmd):
 class DeleteTabsCmd(Cmd):
     def __init__(self, tobj, how, keep=0, dbg=1):
         self.tobj, self.how, self.keep, self.dbg = tobj, how, keep, dbg
-        
+
     def do(  self): self._deleteTabs()
     def undo(self): self._deleteTabs() # todo fixme
-    
+
     def _deleteTabs(self):
         tobj, how, keep, dbg = self.tobj, self.how, self.keep, self.dbg
-        tobj.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = tobj.n[T]   ;   tobj.delC += 1  
+        tobj.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = tobj.n[T]   ;   tobj.delC += 1
         for k, text in tobj.smap.items():
             cn = k   ;   k *= nt
             if dbg:     slog(f'{k=} {cn=} {text=}')
@@ -199,10 +200,10 @@ class DeleteTabsCmd(Cmd):
 class EraseTabsCmd(Cmd):
     def __init__(self, tobj, how): #, reset=0
         self.tobj, self.how = tobj, how
-        
+
     def do(  self): self._eraseTabs()
     def undo(self): self._eraseTabs() # todo fixme
-    
+
     def _eraseTabs(self):
         tobj, how = self.tobj, self.how
         np, nl, ns, nc, nt = tobj.n   ;  nz = 0 #  ;   nz = tobj.zzlen()  ;  nc += nz
@@ -227,10 +228,10 @@ class EraseTabsCmd(Cmd):
 class Go2FirstTabCmd(Cmd):
     def __init__(self, tobj, how, page=0, dbg=1):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
-        
+
     def do(  self): self._move2FirstTab()
     def undo(self): self._move2FirstTab() # todo fixme
-    
+
     def _move2FirstTab(self):
         tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
         np, nl, ns, nc, nt = tobj.n    ;   p, l, s, c, t = tobj.j()  ;  i = p
@@ -245,11 +246,11 @@ class Go2FirstTabCmd(Cmd):
 ########################################################################################################################################################################################################
 class Go2LastTabCmd(Cmd):
     def __init__(self, tobj, how, page=0, dbg=1):
-        self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg  
+        self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
 
     def do(  self): self._move2LastTab()
     def undo(self): self._move2LastTab() # todo fixme
-    
+
     def _move2LastTab(self):
         tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
         np, nl, ns, nc, nt = tobj.n    ;   p, l, s, c, t = tobj.j()  ;  i = p
@@ -261,15 +262,14 @@ class Go2LastTabCmd(Cmd):
             p, l, s, c, t = tobj.cc2plsct(i, dbg=1)    ;   break
         tobj.moveToB(how, p, l, s, c, t, dbg=dbg)
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-
 ########################################################################################################################################################################################################
 class InsertSpaceCmd(Cmd):
     def __init__(self, tobj, how, txt='0', dbg=1):
         self.tobj, self.how, self.txt, self.dbg = tobj, how, txt, dbg
-        
+
     def do(  self): self._insertSpace()
     def undo(self): self._insertSpace() # todo fixme
-    
+
     def _insertSpace(self):
         tobj, how, txt, dbg = self.tobj, self.how, self.txt, self.dbg
         cc = tobj.cursorCol()   ;  c0 = tobj.cc2cn(cc)
@@ -302,10 +302,10 @@ class InsertSpaceCmd(Cmd):
 class MoveCmd(Cmd):
     def __init__(self, tobj, how, n, ss=0, dbg=1):
         self.tobj, self.how, self.n, self.ss, self.dbg = tobj, how, n, ss, dbg
-        
+
     def do(  self): self._move()
     def undo(self): self._move() # todo fixme
-    
+
     def _move(self):
         tobj, how, n, ss, dbg = self.tobj, self.how, self.n, self.ss, self.dbg
         if dbg:      tobj.log(f'BGN {how} {n=}', pos=1)
@@ -317,10 +317,10 @@ class MoveCmd(Cmd):
 class MoveCursorCmd(Cmd):
     def __init__(self, tobj, how, ss=0, dbg=1):
         self.tobj, self.how, self.ss, self.dbg = tobj, how, ss, dbg
-        
+
     def do(  self): self._moveCursor()
     def undo(self): self._moveCursor() # todo fixme
-    
+
     def _moveCursor(self):
         tobj, how, ss, dbg = self.tobj, self.how, self.ss, self.dbg
         if dbg:           tobj.log(f'BGN {ss=} {tobj.cc=}', pos=1)
@@ -332,10 +332,10 @@ class MoveCursorCmd(Cmd):
 class MoveToCmd(Cmd):
     def __init__(self, tobj, how, p, l, c, t, ss=0, dbg=1):
         self.tobj, self.how, self.p, self.l, self.c, self.t, self.ss, self.dbg = tobj, how, p, l, c, t, ss, dbg
-        
+
     def do(  self): self._moveTo()
     def undo(self): self._moveTo() # todo fixme
-    
+
     def _moveTo(self):
         tobj, how, p, l, c, t, ss, dbg = self.tobj, self.how, self.p, self.l, self.c, self.t, self.ss, self.dbg
         if dbg:    tobj.log(f'BGN {how}', pos=1)
@@ -345,11 +345,11 @@ class MoveToCmd(Cmd):
 ########################################################################################################################################################################################################
 class MoveTo2Cmd(Cmd):
     def __init__(self, tobj, p, l, c, t, n=0, dbg=1):
-        self.tobj, self.p, self.l, self.c, self.t, self.n, self.dbg = tobj, p, l, c, t, n, dbg 
+        self.tobj, self.p, self.l, self.c, self.t, self.n, self.dbg = tobj, p, l, c, t, n, dbg
 
     def do(  self): self._moveto2()
     def undo(self): self._moveto2() # todo fixme
-    
+
     def _moveto2(self): # todo
         tobj, p, l, c, t, n, dbg = self.tobj, self.p, self.l, self.c, self.t, self.n, self.dbg
         if dbg: tobj.log(f'BGN plct={tobj.fplct(p, l, c, t)}', pos=1) # {n=}
@@ -370,7 +370,7 @@ class MoveDownCmd(Cmd):
 
     def do(  self): self._moveDown()
     def undo(self): self._moveDown() # todo fixme
-    
+
     def _moveDown(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
@@ -382,10 +382,10 @@ class MoveDownCmd(Cmd):
 class MoveLeftCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._moveLeft()
     def undo(self): self._moveLeft() # todo fixme
-    
+
     def _moveLeft(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, s, c, t = tobj.j()  ;  n = tobj.n[C] - 1  ;  m = tobj.n[L] - 1
@@ -397,10 +397,10 @@ class MoveLeftCmd(Cmd):
 class MoveRightCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._moveRight()
     def undo(self): self._moveRight() # todo fixme
-    
+
     def _moveRight(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, s, c, t = tobj.j()  ;  n = tobj.n[C] - 1  ;  m = tobj.n[L] - 1
@@ -412,10 +412,10 @@ class MoveRightCmd(Cmd):
 class MoveUpCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._moveUp()
     def undo(self): self._moveUp() # todo fixme
-    
+
     def _moveUp(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
@@ -427,10 +427,10 @@ class MoveUpCmd(Cmd):
 class NextPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._nextPage()
     def undo(self): self._nextPage() # todo fixme
-    
+
     def _nextPage(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, c, t = tobj.j2()   ;   n = tobj.n[P] - 1
@@ -442,10 +442,10 @@ class NextPageCmd(Cmd):
 class PasteTabsCmd(Cmd):
     def __init__(self, tobj, how, kk=0, dbg=1):
         self.tobj, self.how, self.kk, self.dbg = tobj, how, kk, dbg
-        
+
     def do(  self): self._pasteTabs()
     def undo(self): self._pasteTabs() # todo fixme
-    
+
     def _pasteTabs(self):
         tobj, how, kk, dbg = self.tobj, self.how, self.kk, self.dbg
         cc = tobj.cursorCol()       ;   nt = tobj.n[T]
@@ -470,21 +470,21 @@ class PasteTabsCmd(Cmd):
 class PlayCmd(Cmd):
     def __init__(self, tobj, how):
         self.tobj, self.how = tobj, how
-        
+
     def do(self):   self._play()
     def undo(self): self._play()
-    
+
     def _play(self): # todo finish impl
         tobj, how = self.tobj, self.how
-        assert 0,  f'{tobj=} {how=}'        
+        assert 0,  f'{tobj=} {how=}'
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._prevPage()
     def undo(self): self._prevPage() # todo fixme
-    
+
     def _prevPage(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         p, l, c, t = tobj.j2()   ;   n = tobj.n[P] - 1
@@ -499,9 +499,9 @@ class QuitCmd(Cmd):
 
     def do(  self): return self._quit()
     def undo(self): self._quit()
-    
+
     def _quit(self):
-        tobj, why, err, save, dbg = self.tobj, self.why, self.err, self.save, self.dbg  
+        tobj, why, err, save, dbg = self.tobj, self.why, self.err, self.save, self.dbg
         retv = True   ;   ff = -3
         hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   slog(hdr1, p=0, f=ff)  ;  slog(hdr0,     p=0, f=ff)   ;   errStr = f'Error={err}'
         slog(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=ff)                           ;  slog(utl.QUIT, p=0, f=ff)   ;   msg    = 'Recursion Error'
@@ -539,17 +539,17 @@ class QuitCmd(Cmd):
             if   tobj.EXIT == 0: retv = False  ;  slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
             elif tobj.EXIT == 1: retv = True   ;  slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
             elif tobj.EXIT == 2:                  slog(f'{tobj.EXIT=} Calling pyglet.app.exit()', f=ff)   ;   pyglet.app.exit()
-            else:                                 slog(f'{tobj.EXIT=} Calling exit()', f=ff)              ;   exit()
+            else:                                 slog(f'{tobj.EXIT=} Calling exit()', f=ff)              ;   sys.exit()
         else:                                     slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
         return retv
 ########################################################################################################################################################################################################
 class ResetCmd(Cmd):
     def __init__(self, tobj, how):
         self.tobj, self.how = tobj, how
-        
+
     def do(  self): self._reset()
     def undo(self): self._reset() # todo fixme
-    
+
     def _reset(self):
         tobj, how = self.tobj, self.how
         tobj.dumpGeom('BGN', f'{how} before cleanup()')
@@ -561,10 +561,10 @@ class ResetCmd(Cmd):
 class RotSprCmd(Cmd):
     def __init__(self, tobj, how, spr, cw=1):
         self.tobj, self.how, self.spr, self.cw = tobj, how, spr, cw
-    
+
     def do(  self): self._rotSpr()
     def undo(self): self._rotSpr()
-    
+
     def _rotSpr(self):
         tobj, how, spr, cw = self.tobj, self.how, self.spr, self.cw
         old = spr.rotation
@@ -574,10 +574,10 @@ class RotSprCmd(Cmd):
 class SaveDataFileCmd(Cmd):
     def __init__(self, tobj, how, path, dbg=1):
         self.tobj, self.how, self.path, self.dbg = tobj, how, path, dbg
-        
+
     def do(  self): return self._saveDataFile()
     def undo(self): self._saveDataFile()
-    
+
     def _saveDataFile(self):
         tobj, how, path, dbg = self.tobj, self.how, self.path, self.dbg
         if dbg:   slog(f'BGN {how} {path}')
@@ -607,10 +607,10 @@ class SaveDataFileCmd(Cmd):
 class SelectTabsCmd(Cmd):
     def __init__(self, tobj, how, m=0, cn=None, dbg=1, dbg2=1):
         self.tobj, self.how, self.m, self.cn, self.dbg, self.dbg2 = tobj, how, m, cn, dbg, dbg2
-        
+
     def do(  self): self._selectTabs()
     def undo(self): self._selectTabs()
-    
+
     def _selectTabs(self):
         tobj, how, m, cn, dbg, dbg2 = self.tobj, self.how, self.m, self.cn, self.dbg, self.dbg2
         cc            = tobj.cursorCol()  ;  old = cn
@@ -646,7 +646,7 @@ class SetFontArgCmd(Cmd):
 
     def do(  self): self._setFontArg()
     def undo(self): self._setFontArg()
-    
+
     def _setFontArg(self):
         tobj, how, n, v, m, dbg = self.tobj, self.how, self.n, self.v, self.m, self.dbg
         if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  slog(f'{how} {n=:12} {v=:2} {tobj.clrIdx=:2}')
@@ -662,10 +662,10 @@ class SetFontArgCmd(Cmd):
 class SetNCmd(Cmd):
     def __init__(self, tobj, how, txt=Z, dbg=1):
         self.tobj, self.how, self.txt, self.dbg = tobj, how, txt, dbg
-    
+
     def do(  self): self._setN()
     def undo(self): self._setN()
-    
+
     def _setN(self):
         tobj, how, txt, dbg = self.tobj, self.how, self.txt, self.dbg
         if not tobj.settingN: tobj.settingN = 1   ;  tobj.setNtxt = Z  ;  slog(f'BGN {how} {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
@@ -683,10 +683,10 @@ class SetNCmd(Cmd):
 class SetTabCmd(Cmd):
     def __init__(self, tobj, how, text, m=0, rev=0, dbg=1):
         self.tobj, self.how, self.text, self.m, self.rev, self.dbg = tobj, how, text, m, rev, dbg
-        
+
     def do(  self): self._setTab()
     def undo(self): self._setTab()
-    
+
     def _setTab(self):
         tobj, how, text, m, rev, dbg = self.tobj, self.how, self.text, self.m, self.rev, self.dbg
         bsp = 1 if m == pygwink.MOTION_BACKSPACE else 0
@@ -742,7 +742,7 @@ class ShiftTabsCmd(Cmd):
 class SnapshotCmd(Cmd):
     def __init__(self, tobj, sid, typ=Z, why=Z, dbg=1, dbg2=1): #fixme 11/18/23
         self.tobj, self.sid, self.typ, self.why, self.dbg, self.dbg2 = tobj, sid, typ, why, dbg, dbg2
-        
+
     def do(  self): return self._snapshot()
     def undo(self): self._snapshot()
 #    @staticmethod
@@ -752,7 +752,7 @@ class SnapshotCmd(Cmd):
 #        sp = "/".join(sps)
 #        if dbg:  slog(f'{sp}', f=2)
 #        return sp
-    
+
     def _snapshot(self):
         tobj, sid, typ, why, dbg, dbg2 = self.tobj, self.sid, self.typ, self.why, self.dbg, self.dbg2
         logId     = tobj.LOG_ID
@@ -782,10 +782,10 @@ class SnapshotCmd(Cmd):
 class SwapColsCmd(Cmd):
     def __init__(self, tobj, how):
         self.tobj, self.how = tobj, how
-        
+
     def do(  self): self._swapCols()
     def undo(self): self._swapCols() # todo fixme
-    
+
     def _swapCols(self):
         tobj, how = self.tobj, self.how
         nk = len(tobj.smap)   ;   nk2 = nk // 2
@@ -804,10 +804,10 @@ class SwapColsCmd(Cmd):
 class SwapTabCmd(Cmd):
     def __init__(self, tobj, how, txt=Z, data=None, dbg=0, dbg2=0):
         self.tobj, self.how, self.txt, self.data, self.dbg, self.dbg2 = tobj, how, txt, data, dbg, dbg2
-        
+
     def do(  self): self._swapTab()
     def undo(self): self._swapTab()
-    
+
     def _swapTab(self):  # e.g. c => 12 not same # chars asserts
         tobj, how, txt, data, dbg, dbg2 = self.tobj, self.how, self.txt, self.data, self.dbg, self.dbg2
         src, trg = tobj.swapSrc, tobj.swapTrg
@@ -853,7 +853,7 @@ class TogArrowCmd(Cmd):
 
     def do(  self): self._togArrow()
     def undo(self): self._togArrow()
-    
+
     def _togArrow(self):
         tobj, how, v, dbg = self.tobj, self.how, self.v, self.dbg
         if dbg: slog(f'BGN {how} {v=} {tobj.hArrow=} = {HARROWS[tobj.hArrow]=} {tobj.vArrow=} = {VARROWS[tobj.vArrow]=}')
@@ -864,10 +864,10 @@ class TogArrowCmd(Cmd):
 class TogBlankCmd(Cmd):
     def __init__(self, tobj, how, a):
         self.tobj, self.how, self.a = tobj, how, a
-    
+
     def do(  self):                  self._togBlank()
     def undo(self): self.a *= -1  ;  self._togBlank()
-    
+
     def _togBlank(self):
         tobj, how, a = self.tobj, self.how, self.a
         prevBlank    =  tobj.tblank
@@ -898,7 +898,7 @@ class TogCsrModeCmd(Cmd):
 
     def do(  self): self._togCsrMode()
     def undo(self): self._togCsrMode()
-        
+
     def _togCsrMode(self):
         tobj, how, a = self.tobj, self.how, self.a
         c = tobj.csrMode  ;  h = tobj.hArrow  ;  v = tobj.vArrow
@@ -921,10 +921,10 @@ class TogDrwBGCCmd(Cmd):
 class TogFlatShrpCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-    
+
     def do(  self): self._togFlatShrp()
     def undo(self): self._togFlatShrp()
-    
+
     def _togFlatShrp(self):  #  page line colm tab or select
         tobj, how, dbg = self.tobj, self.how, self.dbg
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
@@ -984,7 +984,7 @@ class TogKordNamesCmd(Cmd):
             if hit: self._togKordNameHits(tobj, how, cn)
             else:   self._togKordName(tobj, how, cn)
         if dbg:     tobj.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-        
+
     def _togKordNameHits(self, tobj, how, cn, dbg=1):
         mli = tobj.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   slog(msg)   ;   cmd = QuitCmd(tobj, msg)   ;  cmd.do()
@@ -1051,7 +1051,7 @@ class TogSelectAllCmd(Cmd):
 
     def do(  self): self._togSelectAll()
     def undo(self): self._togSelectAll()
-        
+
     def _togSelectAll(self):
         tobj, how = self.tobj, self.how
         tobj.dumpSmap(f'BGN {how} {tobj.allTabSel=}')
@@ -1062,14 +1062,14 @@ class TogSelectAllCmd(Cmd):
 class TogAXYVCmd(Cmd):
     def __init__(self, tobj, how, i, j):
         self.tobj, self.how, self.i, self.j = tobj, how, i, j
-        
+
     def do(  self): self._togAXYV()
     def undo(self): self._togAXYV()
-    
+
     def _togAXYV(self):
         tobj, how, i, j = self.tobj, self.how, self.i, self.j
         v  = tobj.aa if i==0 else tobj.ax if i==1 else tobj.ay if i==2 else tobj.av if i==3 else -1
-        w  = tobj.ftAa(v) if i==0 else tobj.ftAx(v) if i==1 else tobj.ftAy(v) if i==2 else tobj.ftAv(v) if i==3 else -1 
+        w  = tobj.ftAa(v) if i==0 else tobj.ftAx(v) if i==1 else tobj.ftAy(v) if i==2 else tobj.ftAv(v) if i==3 else -1
         d  = tobj.AXYV[i] + 1
         d2 = d + j
         d2 %= 4 if i==2 else 3
@@ -1081,7 +1081,7 @@ class TogAXYVCmd(Cmd):
         slog(f'{how} [{i}] [{j}] tobj.AXYV[{i}]={tobj.AXYV[i]:2} : {d} {w:} {v:8} => {d2} {w2} {v2:8}')
         tobj.on_resize(tobj.width, tobj.height)
 
-    @staticmethod    
+    @staticmethod
     def setAnchor(tobj, i, how):
         tobj.setAa(tobj.AXYV[i]) if i==0 else tobj.setAx(tobj.AXYV[i]) if i==1 else tobj.setAy(tobj.AXYV[i]) if i==2 else tobj.setAv(tobj.AXYV[i]) if i==3 else None
         v  = tobj.aa if i==0 else tobj.ax if i==1 else tobj.ay if i==2 else tobj.av if i==3 else -1
@@ -1119,10 +1119,10 @@ class TogAXYVCmd(Cmd):
 class TogVisibleCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
-        
+
     def do(  self): self._togVisible()
     def undo(self): self._togVisible()
-    
+
     def _togVisible(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = tobj.n
@@ -1154,7 +1154,7 @@ class TogLLsCmd(Cmd):
 
     def do(  self): self._togLLs()
     def undo(self): self._togLLs()
-    
+
     def _togLLs(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         if not tobj.LL: msg = 'ADD'
@@ -1188,10 +1188,10 @@ class TogTTsCmd(Cmd):
 class TogZZsCmd(Cmd):
     def __init__(self, tobj, how, z):
         self.tobj, self.how, self.z = tobj, how, z
-        
+
     def do(  self): self._togZZs()
     def undo(self): self._togZZs()
-    
+
     def _togZZs(self):
         tobj, how, z = self.tobj, self.how, self.z
         assert z in (0, 1),  f'{z=} {tobj.zz=}'
@@ -1206,10 +1206,10 @@ class TogZZsCmd(Cmd):
 class UnselectTabsCmd(Cmd):
     def __init__(self, tobj, how, m, cn=None, dbg=1):
         self.tobj, self.how, self.m, self.cn, self.dbg = tobj, how, m, cn, dbg
-        
+
     def do(  self): self._unselectTabs()
     def undo(self): self._unselectTabs()
-    
+
     def _unselectTabs(self):
         tobj, how, m, cn, dbg = self.tobj, self.how, self.m, self.cn, self.dbg
         if cn is None:      cc = tobj.cc   ;      cn = tobj.cc2cn(cc)
@@ -1226,10 +1226,10 @@ class UnselectTabsCmd(Cmd):
 class UpdateCursorCmd(Cmd):
     def __init__(self, tobj, why, dbg=1):
         self.tobj, self.why, self.dbg = tobj, why, dbg
-        
+
     def do(  self): self._updateCursor()
     def undo(self): self._updateCursor() # todo fixme
-    
+
     def _updateCursor(self):
         tobj, why, dbg = self.tobj, self.why, self.dbg
         x, y, w, h, c = tobj.cc2xywh()
@@ -1238,10 +1238,10 @@ class UpdateCursorCmd(Cmd):
 class UpdateTniksCmd(Cmd):
     def __init__(self, tobj, how, w, h, z=None, dbg=1):
         self.tobj, self.how, self.w, self.h, self.z, self.dbg = tobj, how, w, h, z, dbg
-        
+
     def do(  self): self._updateTniks()
     def undo(self): self._updateTniks()
-    
+
     def _updateTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
         if self.w is not None and self.h is not None:        pyglet.window.Window.on_resize(tobj, self.w, self.h)
