@@ -26,17 +26,6 @@ class Pthgrn(ivls.Intonation):
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
     ####################################################################################################################################################################################################
-    def HIDE__setup(self, o, csv=0):
-        self.csv = csv
-        if   o == 0:
-            x = 0
-            slog(f'PRT 1 0-NT+{x=}, {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-            self.nimap = {}
-            for i in range(0, NT + x):
-                self.j = self.i + (i * 7) % (NT + x)
-                slog(f'PRT 1 0-({NT}+{x}), {i=} {self.j=} {self.i=:2} {self.m=:2} {self.csv=}', p=0)
-                self._setup(0)
-    ####################################################################################################################################################################################################
     def epsilon(self, dbg=0): # todo generalize m2bc ?
         ccents = self.comma()
         ecents = ccents / NT
@@ -46,12 +35,12 @@ class Pthgrn(ivls.Intonation):
     def comma(self, dbg=0): # todo generalize m2bc ?
         n, i, iv   = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
         s5s        = self.stck5ths(n, 0)
-        a, b, c, m = s5s[i]
-        r, ca, cb  = self.abc2r(a, b, c)
+        a, ca, m   = s5s[i]   ;   b = 2
+        r, cb      = self.ac2r(a, ca)
         if dbg:    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
         if dbg:    slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
-        assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-        pa, pb     = a ** ca, b ** cb
+        assert [a, b, ca] == [3, 2, n],  f'{a=} {b=} {ca=} {[3, 2, n]}'
+        pa, pb     = a ** abs(ca), b ** abs(cb)
         cratio     = pa / pb
         q          = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
         ccents     = self.r2cents(cratio)
@@ -68,12 +57,11 @@ class Pthgrn(ivls.Intonation):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1   ;   self.k = kk
             rat1 = [] if x in (6, 7, 13) else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[2]):
-#               n=self.OLD__fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
-                n    = self.fmtNPair(j)       ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+                n    = self.fmtNPair(j)  ;  a, ca, b, cb = e  ;  pa, pb = a ** abs(ca), b ** abs(cb)  ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
-                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
+                cent = self.r2cents(pa/pb if pa>=pb else pb/pa)    ;   rc = round(cent)   ;    cki += 1
                 assert rc in self.ckmap,  f'{rc=} {i=} {kk=} {j=} {n=} {pa=} {pb=} {e=} {rat0[i]} {rat2[i]} {rat3[i]} {fmtl(list(self.ckmap.keys()))}'
-                if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb, e, cent, j)
+                if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb if pa>=pb else f0*pb/pa, e, cent, j)
                 while cki < len(self.centKs) and self.centKs[cki] < rc:
                     rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(_) #  ;   cfnts.append(_)
                     rat1.append(_) if x==13 else None    ;   ratA.append(_) if x==9 else None   ;   ratB.append(_) if x==9 else None
@@ -133,9 +121,11 @@ class Pthgrn(ivls.Intonation):
     def dmpABs(self, rAs, rBs, o):
         abcs = self.nimap[self.j][1]    ;   aa, bb = [], []
         for j, abc in enumerate(abcs):
-            a, b, c = abc[0], abc[1], abc[2]
-            r, ca, cb = self.abc2r(a, b, c)
-            aa.append(a ** ca)     ;    bb.append(b ** cb)
+            a, ca  = abc[0], abc[1]      ;   b = 2
+            r, cb  = self.ac2r(a, ca)
+            pa, pb = a ** abs(ca), b ** abs(cb)
+            if pb > pa:   tmp = pa   ;  pa = pb  ;  pb = tmp
+            aa.append(pa)     ;    bb.append(pb)
         self.dmp_rABs(rAs, rBs, o) if o == 1 else self.dmp_rABs(aa, bb, o)
 
     def dmp_rABs(self, rAs, rBs, o):
@@ -153,8 +143,8 @@ class Pthgrn(ivls.Intonation):
     def dmpAsBs(self, rAs, rBs, u): # print both on same line
         abcs = self.nimap[self.j][1]    ;   As, Bs = [], []
         for j, abc in enumerate(abcs):
-            a, b, c = abc[0], abc[1], abc[2]
-            r, ca, cb = self.abc2r(a, b, c)
+            a, b, ca = abc[0], abc[1], abc[2]
+            r, cb = self.ac2r(a, ca)
             As.append(a ** ca)     ;    Bs.append(b ** cb)
         self.dmp_rArBs(As, Bs, rAs, rBs, u=u)
 
@@ -168,13 +158,15 @@ class Pthgrn(ivls.Intonation):
         slog(f'{fmtl(rB1s, w=w1, s=mm, d=Z)}{nn}{n:{w1}}{nn}{fmtl(rB2s, w=w2, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def getCkMapVal(self, ckmap, ck, a, ca, b, cb, f0, w0): # todo move to base class, but abc args and key are issues
-        f = ckmap[ck]['Freq']    ;   assert round(f, 10) == round(f0 * a**ca / b**cb, 10),    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}' #todo remove round() hack! use Decimal
-        w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
+        ca = abs(ca)   ;   cb = abs(cb)
+        pa = a ** ca   ;  pb = b ** cb   ;   p = pa/pb if pa > pb else pb/pa if pb/pa else 1/0 
+        f = ckmap[ck]['Freq']    ;   assert round(f, 10) == round(f0*p, 10),    f'{ck=} {f=} {f0=} p={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}' #todo remove round() hack! use Decimal
+        w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                        f'{w=} {w0=} {f=}'
         n = ckmap[ck]['Note']
         i = ckmap[ck]['Index']
         k = ckmap[ck]['Count']
-        c = ckmap[ck]['Cents']   ;   assert c == self.r2cents(a**ca/b**cb),  f'{c=} {self.r2cents(a**ca/b**cb)=}'
-        d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),            f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
+        c = ckmap[ck]['Cents']   ;   assert c == self.r2cents(p),  f'{c=} {self.r2cents(p)=} {p=}'
+        d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),  f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i # todo assume callers do not want ckmap[ck]['Abcd'] value returned
     ####################################################################################################################################################################################################
     def fIvals(self, data, i): # todo move to base class

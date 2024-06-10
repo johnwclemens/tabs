@@ -218,8 +218,8 @@ def ordSfx(n):
 def ist(o, t):  return isinstance(o, t)
 
 def replceDelims(d):
-    o = ['[', '{', '<', '('] #, '||', '|']
-    c = [']', '}', '>', ')'] #, '|', '']
+    o = ['[', '{', '<', '(', '|']
+    c = [']', '}', '>', ')', Z]
     for i, oo in enumerate(o):
         d = d.replace(oo, c[i])
     return d

@@ -500,6 +500,7 @@ class Tabs(pyglet.window.Window):
             overtn1.dmpData()     ;    overtn1.dmpData(   csv=1)
             overtn2.dmpData()     ;    overtn2.dmpData(   csv=1)
             justint.dmpData()     ;    justint.dmpData(   csv=1)
+#            justint.setup(o=0)    ;    justint.setup(o=0, csv=1)
             pythgrn.setup(o=0)    ;    pythgrn.setup(o=0, csv=1)
             tetract.setup(o=0)    ;    tetract.setup(o=0, csv=1)
             pythgrn.setup(o=1)    ;    pythgrn.setup(o=1, csv=1)

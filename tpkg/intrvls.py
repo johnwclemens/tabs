@@ -167,94 +167,68 @@ class Intonation:
                 n *= 2  ;  i += 1
         return n, i
     ####################################################################################################################################################################################################
-    def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, 2, k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
-    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(2, 3, k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
-    def stackI(self, a, b, c, i):    return [ a, b, c, self.COF[i] ]
-    @staticmethod
-    def fabc(abc):                   return [ fmtl(e, w=2, d=Z) for e in abc ]
+    def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3,  k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
+    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, -k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
+    def stackI(self, a, b, i):    return [ a, b, self.COF[i] ]
     ####################################################################################################################################################################################################
-    def abc2r(self, a, b, c): # assumes a==2 or b==2, probably too specific, Pythagorean only, rename?
-        pa0, pb0 = a ** c, b ** c
-        r0       = pa0 / pb0
-        r, j     = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-        ca       = c + j if j > 0 else c
-        cb       = c - j if j < 0 else c
-        return r, ca, cb
+    def ac2r(self, a, c):
+        r0   = a ** c
+        r, j = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+        return r, j
 
-    def abcs(self, a, b, i=0, dbg=1): # todo generalize m2bc ?
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 2)   ;   w = [1, 1, 2, 3]   ;   pfx, sfx = [], []
+    def abcs(self, a, b, i=0, dbg=1): # (n5ths, n4ths, index)
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 2)
         abc1   = self.stck5ths(a, i, dbg=1)
         abc2   = self.stck4ths(b, i, dbg=1)
-        abc3   = [ self.stackI(3, 2, 0, i) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(self.stackI(2, 1, 1, i))
-        abc4   = sorted(abc3, key= lambda z: self.abc2r(z[0], z[1], z[2])[0])
+        abc3   = [ self.stackI(3, 0, i) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(self.stackI(2, 1, i))
+        abc4   = sorted([(z[0], z[1], z[2], self.ac2r(z[0], z[1])[1]) for z in abc3], key=lambda z: self.ac2r(z[0], z[1])[0])
         abcLst = [abc1, abc2, abc3, abc4]
         if dbg:
+            wa, wb = [2, 3, 6], [2, 3, 2, 3]   ;   pfx, sfx = [], []
             for j, abcs in enumerate(abcLst):
-                msg = []
-                pfx.append(f'abc{j+1} {nn}[{nn}  ')  ;  sfx.append(f'{nn}]{nn}')
-                for abc in abcs:
-                    msg.append(f'{fmtl(abc, w=w, d=W, s=mm)}|')
-                slog(f'{pfx[j]}{fmtl(msg)}{sfx[j]}', p=0, f=ff)
+                msg = []   ;   pfx.append(f'  abc{j+1} {nn}[{nn}')  ;  sfx.append(f'{nn}]{nn}')
+                for k, abc in enumerate(abcs):
+                    if k:  msg.append(oo)
+                    msg.append(f'{fmtl(abc, w=wa if j<3 else wb, d=Z, s=mm)}')
+                slog(f'{pfx[j]}{Z.join(msg)}{sfx[j]}', p=0, f=ff)
         return abcLst
 
-    def i2Abcs(self, i): # todo generalize m2bc ? use the mod operator ? exploring the last else
+    def i2Abcs(self, i):
         ff = 3 if self.csv else 2
-        if   i == -7:  p, q = 14,  0 # Cb
-        elif i == -6:  p, q = 13,  1 # Gb
-        elif i == -5:  p, q = 12,  2 # Db
-        elif i == -4:  p, q = 11,  3 # Ab
-        elif i == -3:  p, q = 10,  4 # Eb
-        elif i == -2:  p, q =  9,  5 # Bb
-        elif i == -1:  p, q =  8,  6 # F
-        elif i ==  0:  p, q =  7,  7 # C
-        elif i ==  1:  p, q =  6,  8 # G
-        elif i ==  2:  p, q =  5,  9 # D
-        elif i ==  3:  p, q =  4, 10 # A
-        elif i ==  4:  p, q =  3, 11 # E
-        elif i ==  5:  p, q =  2, 12 # B
-        elif i ==  6:  p, q =  1, 13 # F#
-        elif i ==  7:  p,q =   0, 14 # G#
-        else:          p, q = 15, 15
-        slog(f'{i=} {p=} {q=}', f=ff)   ;   return self.abcs(p, q, i=i)
+        if -7 <= i <= 7:   a = 7 - i   ;  b = i + 7
+        else:              a = 15      ;  b = 15
+        slog(f'{i=} {a=} {b=}', f=ff)
+        return self.abcs(a, b, i=i)
 
-    def NEW_1_i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-        f = self.abcs   ;   i = self.i   ;   j = self.j   ;   n = 0 #j % NT
-        slog(f'{n=} {self.fim()}')
-        return f(6,  6, n) if j==i   else f(5, 7, n) if j==i+7 else f(4, 8, n) if j==i+2  else f(3, 9, n) if j==i+9 else f(2, 10, n) if j==i+4 else f(1, 11, n) if j==i+11 else \
-               f(0, 12, n) if j==i+6 else f(7, 5, n) if j==i+5 else f(8, 4, n) if j==i+10 else f(9, 3, n) if j==i+3 else f(10, 2, n) if j==i+8 else f(11, 1, n)  if j==i+1  else f(13, 13, n)
+    def new__i2Abcs(self, i):
+        ff = 3 if self.csv else 2
+        match i:
+            case -7|-6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6|7:   a = 7 - i   ;  b = i + 7
+            case _:                                      a = 15      ;  b = 15
+        slog(f'{i=} {a=} {b=}', f=ff)
+        return self.abcs(a, b, i=i)
 
-    def NEW_2_i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-        f = self.abcs   ;   i = self.i   ;   j = self.j   ;   n = self.j % NT
-        slog(f'{n=} {self.fim()}')
-        return f(6,  6, n+0) if j==i   else f(5, 7, n+1) if j==i+7 else f(4, 8, n+2) if j==i+2  else f(3, 9, n+3) if j==i+9 else f(2, 10, n+4) if j==i+4 else f(1, 11, n+5) if j==i+11 else \
-               f(0, 12, n+6) if j==i+6 else f(7, 5, n-1) if j==i+5 else f(8, 4, n-2) if j==i+10 else f(9, 3, n-3) if j==i+3 else f(10, 2, n-4) if j==i+8 else f(11, 1, n-5)  if j==i+1  else f(13, 13, n)
-
-#    def OLD__i2Abcs(self): # todo generalize m2bc ? use the mod operator ? exploring the last else
-#        f = self.abcs   ;   i = self.i   ;   j = self.j
-#        return f(6, 5)  if j==i   else f(5, 6) if j==i+7 else f(4, 7) if j==i+2  else f(3, 8) if j==i+9 else f(2, 9)  if j==i+4 else f(1, 10) if j==i+11 else \
-#               f(0, 11) if j==i+6 else f(7, 4) if j==i+5 else f(8, 3) if j==i+10 else f(9, 2) if j==i+3 else f(10, 1) if j==i+8 else f(11, 0) if j==i+1  else f(13, 13)
+    def OLD__i2Abcs(self, i):
+        ff = 3 if self.csv else 2
+        if   i == -7:  a, b = 14,  0 # Cb
+        elif i == -6:  a, b = 13,  1 # Gb
+        elif i == -5:  a, b = 12,  2 # Db
+        elif i == -4:  a, b = 11,  3 # Ab
+        elif i == -3:  a, b = 10,  4 # Eb
+        elif i == -2:  a, b =  9,  5 # Bb
+        elif i == -1:  a, b =  8,  6 # F
+        elif i ==  0:  a, b =  7,  7 # C
+        elif i ==  1:  a, b =  6,  8 # G
+        elif i ==  2:  a, b =  5,  9 # D
+        elif i ==  3:  a, b =  4, 10 # A
+        elif i ==  4:  a, b =  3, 11 # E
+        elif i ==  5:  a, b =  2, 12 # B
+        elif i ==  6:  a, b =  1, 13 # F#
+        elif i ==  7:  a, b =  0, 14 # C#
+        else:          a, b = 15, 15
+        slog(f'{i=} {a=} {b=}', f=ff)
+        return self.abcs(a, b, i=i)
     ####################################################################################################################################################################################################
-    def OLD__fmtNPair(self, k, i, j=1, d=0, dbg=0): # set j=k or j=self.j ?
-        n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d   ;   j = k if j else self.j
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or j in (self.i + 4, self.i + 6, self.i + 11) else 1, o=0, e=1)   ;   slog(f'{self.i=} {k=} {i=} {n0=} {n1=} {n2=}') if dbg else None
-        if i and i != NT:
-            if          n1 == self.COFM[n0][1]:   return n2
-            if   n2 and n2 != self.COFM[n0][1]:   n1 += d + n2
-#            if          n1 == self.COFM[n0][1]:   return n2
-#            n1 += d + n2  #  'C':('F♯', 'G♭')
-        slog(f'return {n1=}') if dbg else None
-        return n1
-
-    def OLD_1_fmtNPair(self, i, d=0, dbg=0): #  'C':('F♯', 'G♭')
-        n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d
-        n1, n2  = self.i2nPair(self.j + i, b=0 if i in (4, 6, 11) or self.j in (self.i + 4, self.i + 6, self.i + 11) else 1, o=0, e=1)   ;   slog(f'{self.j=} {i=} {n0=} {n1=} {n2=}') if dbg else None
-        if self.j + i and (self.j+i) != NT:
-            if          n1 == self.COFM[n0][1]:   return n2
-            if          n1 == self.COFM[n0][0]:   return n2
-            if   n2 and n2 != self.COFM[n0][1]:   n1 += d + n2
-        slog(f'return {n1=}') if dbg else None
-        return n1
-
     def fmtNPair(self, i, d=0, dbg=0):
         n0, _   = self.i2nPair(self.i, o=0)   ;   d = '/' if d==1 else W if d==0 else d
         n1, n2  = self.i2nPair(self.k + i, b=0 if i in (4, 6, 11) or self.j in (self.i + 4, self.i + 6, self.i + 11) else 1, o=0, e=1)   ;   slog(f'{self.j=} {i=} {n0=} {n1=} {n2=}') if dbg else None
@@ -345,56 +319,17 @@ class Intonation:
         ii     = [ f'{i}' for i in range(n) ]    ;   slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
 
     def fim(self, pfx=None):  pfx = str(self) + W if pfx is None else Z   ;   return f'{pfx}[{self.i:2} {self.j:2} {self.k:2} {self.m:2} {self.n:2} {self.o:2}]'
+    @staticmethod
+    def fabc(abc):                return [ fmtl(e, w=2, d=Z) for e in abc ]
     ####################################################################################################################################################################################################
-    def _OLD__setup(self, u=9, o=0, dbg=1):
-        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
-        self.k = 0   ;   self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]   ;   f1 = 0
-        if dbg: slog(f'BGN {self.fim()} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
-        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
-        tmp = self.i2Abcs(0)  ;  abc0 = list(tmp[-1])  ;  abc1, abc2, abc3, abc4 = self.fabc(tmp[0]), self.fabc(tmp[1]), self.fabc(tmp[2]), self.fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
-        for i, e in enumerate(abc0):
-            a, b, c, n = e[0], e[1], e[2], e[3]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1 # ;  cf = 1 if a==3 else -1  ;  self.k = 48 + (7 * cf) % NT
-            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'
-            while cki < len(self.centKs) and self.centKs[cki] < rc:
-                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
-                v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v)  ;  cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-#            n = self.fmtNPair(self.j, i)
-#            n = self.fmtNPair(self.j + i - f2)
-            if f1 and n in Notes.F2S:      n  = Notes.F2S[n] if len(n) > 1 else n   ;   f1 = 0
-            if n in self.COFM[self.m]:     f1 = 1 # ;  f2 = 1
-            v = self.ck2ikm[rc]  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  ns.append(n)  ;  vs.append(v)  ;  abcdMap.append(abcd)
-            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
-            if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
-        self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
-        while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
-        while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
-        if dbg:
-            slog(f'{mm}CentK{mm}{nn}[{nn}{fmtl(cks,  w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
-            slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
-            slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x+1)
-        self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.fim()} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
-
     def _setup(self, j, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0   ;   self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]   ;   k = 6 - j if j > 6 else j
         if dbg: slog(f'BGN {self.fim()} {j=} {k=} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
         tmp = self.i2Abcs(k)  ;  abc0 = list(tmp[-1])  ;  abc1, abc2, abc3, abc4 = self.fabc(tmp[0]), self.fabc(tmp[1]), self.fabc(tmp[2]), self.fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
-        for i, e in enumerate(abc0):
-            a, b, c, n = e[0], e[1], e[2], e[3]  ;  r, ca, cb = self.abc2r(a, b, c)  ;  abcd = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1 # ;  cf = 1 if a==3 else -1  ;  self.k = 48 + (7 * cf) % NT
+        for i, e in enumerate(abc0): # ;  cf = 1 if a==3 else -1  ;  self.k = 48 + (7 * cf) % NT
+            a, b, ca, n = e[0], 2, e[1], e[2]  ;  r, cb = self.ac2r(a, ca)  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1  ;  abcd = [a, ca, b, cb] if a**abs(ca) >= b**abs(cb) else [b, cb, a, ca]
             c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'
             while cki < len(self.centKs) and self.centKs[cki] < rc:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
@@ -421,8 +356,8 @@ class Intonation:
             slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x+1)
-        self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.fim()} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
+            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)   ;   self.dmpDataTableLine(x+1)
+        self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.fim()} {j=} {k=} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
     def dmpMaps(self, u, o, dbg=1):
         if dbg:
@@ -454,33 +389,33 @@ class Intonation:
         else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=oo,  d=Z)}', p=0, f=f2)
     ####################################################################################################################################################################################################
     '''
-Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
- 0[    0: [  1 261.626 131.868 0.00000 +0.000 C     [3 0 2 0]   P1   0 ]]
+Jdx   CK     Knt    Freq    Wavln    Cents    DCent  Note       Abcd       Ival  Idx
+ 0 [    0: [   3  293.665  117.481  0.00000  +0.000  D      [ 3  0  2   0]  P1    0 ]]
     '''
     def chckIvls(self):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)
         slog(f'BGN chckIvls() {self.csv=}', p=0, f=ff)
-        msgs, ws = [], [3, 7, 7, 7, 6, 5, 10, 3, 3]   ;   freq, f1 = None, 0
+        msgs, ws = [], [5, 8, 8, 8, 7, 5, 15, 5, 3]   ;   freq, f1 = None, 0
         keys = list(list(self.ckmap.values())[0].keys())   ;   keys[0] = 'Knt'   ;   keys[-1] = 'Idx'
-        slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, u="^", w=ws, s=mm, d=Z)}', p=0, f=ff)
+        slog(f'Jdx{mm}{nn} {nn} CK{mm}{mm} {mm}{fmtl(keys, u="^", w=ws, s=mm, d=Z)}', p=0, f=ff)
         for i, (ck, cv) in enumerate(self.ckmap.items()):
-            msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
+            msg = f'{i:2}{mm}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
             for k, v in cv.items():
-                if   k == "Count":   msg += f'{v:2}{mm}'
-                elif k == "Freq":    msg += f'{fmtf(v, 7)}{mm}'  ;  freq = v
-                elif k == "Wavln":   msg += f'{fmtf(v, 7)}{mm}'
-                elif k == "Cents":   msg += f'{fmtf(v, 7)}{mm}'
-                elif k == "DCent":   msg += f'{fmtg(v, 6)}{mm}'
+                if   k == "Count":   msg += f' {v:2}{mm}'
+                elif k == "Freq":    msg += f' {fmtf(v, 7)}{mm}'  ;  freq = v
+                elif k == "Wavln":   msg += f' {fmtf(v, 7)}{mm}'
+                elif k == "Cents":   msg += f' {fmtf(v, 7)}{mm}'
+                elif k == "DCent":   msg += f' {fmtg(v, 6)}{mm}'
                 elif k == "Note":
                     n, m = self.f2nPair(freq, b=1, o=0, e=1)   ;   assert m != n,  f'{i=} {ck=} {m=} {n=}'
                     if m:
                         if   m not in self.COFM[self.n]:   n = n + '/' + m
                         elif f1:                           n = m
                         else:                             f1 = 1
-                    msg += f'{n:5}{mm}'
-                elif k == "Abcd":    msg += f'{fmtl(v, s=W):11}{mm}'
-                elif k == "Ival":    msg += f'{v:3}{mm}'
-                elif k == "Index":   msg += f'{v:2}{mm}'
+                    msg += f' {n:5}{mm}'
+                elif k == "Abcd":    msg += f' {fmtl(v, w=[2, 2, 2, 3] , s=W):13}{mm}'
+                elif k == "Ival":    msg += f' {v:3}{mm}'
+                elif k == "Index":   msg += f' {v:2}{mm}'
             msg += f']{nn}]'   ;   msgs.append(msg)
         msgs = '\n'.join(msgs)
         slog(f'{msgs}', p=0, f=ff)
@@ -528,22 +463,28 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         elif lr == 5:   rAs, rBs      = rs[1], rs[2]
         elif lr == 6:   rAs, rBs, r1s = rs[1], rs[2], rs[3]
         r0s.append(self.fmtR0(a, ca, b, cb, w, k, i, j))
-        rAs.append(self.fmtRA(a, ca, w))                 if lr in (2, 5, 6) else None
-        rBs.append(self.fmtRB(b, cb, w))                 if lr in (2, 5, 6) else None
-        r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j)) if lr in (4, 6)    else None
         r2s.append(self.fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
         r3s.append(self.fmtR3(a, ca, b, cb, u, k, i, j))
+        r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j))    if lr in (4, 6)    else None
+        self.fmtRABs(a, ca, b, cb, w, rAs, rBs) if lr in (2, 5, 6) else None
         if   lr == 2:   return      rAs, rBs
         if   lr == 4:   return r0s,           r1s, r2s, r3s
         if   lr == 5:   return r0s, rAs, rBs,      r2s, r3s
         if   lr == 6:   return r0s, rAs, rBs, r1s, r2s, r3s
     ####################################################################################################################################################################################################
+    def fmtRABs(self, a, ca, b, cb, w, rAs, rBs):
+        pa = a ** abs(ca)      ;   pb = b ** abs(cb)  ;   dbg = 0 #  ;   p = 2 ** k if k else 1
+        if pb > pa:   tmp = a  ;  a = b  ;  b = tmp   ;   tmp = ca  ;  ca = cb  ;  cb = tmp
+        rAs.append(self.fmtRA(a, ca, w))
+        rBs.append(self.fmtRB(b, cb, w))
+        slog(f'{a:2} {ca:2} {b:2} {cb:2}') if dbg else None
+    
     @staticmethod
     def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
-        pa = a ** ca   ;   pb = b ** cb   ;   p = 2 ** k if k else 1   ;   dbg = 0
+        p = 2 ** k if k else 1   ;   dbg = 0
         pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-        if k is None:     v = pa/pb       ;   k = utl.NONE
-        else:             v = p*pa*pb
+        if k is None:     pa = a ** abs(ca)   ;   pb = b ** abs(cb)   ;   v = pa/pb   if pa >= pb else pb/pa   ;   k = utl.NONE
+        else:             pa = a ** ca        ;   pb = b ** cb        ;   v = p*pa*pb
         if w >= 9:        ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
         else:             ret = f'{v:^{w}.{w-2}f}' if ist(v, float) else f'{v:^{w}}'
         slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
@@ -553,7 +494,7 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  p = 2 ** abs(k) if k else 1  ;  papbi = f'{p}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
         pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
         if   k is None:
-            ret = f'{pa:>{w}}/{pb:<{w}}'   ;   k = utl.NONE
+            k = utl.NONE  ;  ret = f'{pa:>{w}}/{pb:<{w}}' if pa > pb else f'{pb:>{w}}/{pa:<{w}}' if pb > pa else f'{pa:>{w}}/{pb:<{w}}'
         elif k == 0:
             ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else '?#?#?'
         elif k > 0:
@@ -570,8 +511,9 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         p = 2 ** abs(k) if k is not None else 1  ;  qaqbi = f'{p}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
         pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
         if   k is None:
-            qa  = f'{a}^{ca}'   ;    qb = f'{b}^{cb}'
-            ret = f'{qa:>{w}}/{qb:<{w}}'   ;   k = utl.NONE
+            pa = a ** abs(ca)   ;   qa = f'{a}^{abs(ca)}'
+            pb = b ** abs(cb)   ;   qb = f'{b}^{abs(cb)}'
+            k = utl.NONE  ;  ret = f'{qa:>{w}}/{qb:<{w}}' if pa > pb else f'{qb:>{w}}/{qa:<{w}}' if pb > pa else f'{qa:>{w}}/{qb:<{w}}'
         elif k == 0:
             ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else '?#?#?'
         elif k > 0:
@@ -583,9 +525,9 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
     ####################################################################################################################################################################################################
     def fmtR3(self, a, ca, b, cb, w, k, i=None, j=None):
         p = 2 ** abs(k) if k is not None else 1  ;  sa = f'{a}{self.i2spr(abs(ca))}'  ;  sb = f'{b}{self.i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
-        pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
+        pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z   ;   pa = a ** ca   ;   pb = b ** cb
         if   k is None:
-            ret = f'{sa:>{w}}/{sb:<{w}}'   ;   k = utl.NONE
+            k = utl.NONE  ;  ret = f'{sa:>{w}}/{sb:<{w}}' if pa > pb else f'{sb:>{w}}/{sa:<{w}}' if pb > pa else f'{sa:>{w}}/{sb:<{w}}'
         elif not k:
             ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else '?#?#?'
         elif k > 0:
@@ -596,9 +538,17 @@ Jdx  CK    Knt  Freq    Wavln   Cents  DCent  Note     Abcd    Ival Idx
         slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
     ####################################################################################################################################################################################################
     @staticmethod
-    def fmtRA(a, ca, w=Z):        pa     =   a ** ca                               ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
+    def fmtRA(a, ca, w=Z):
+        pa     =   a ** abs(ca)
+        if   ist(pa, int):   return f'{pa:^{w}}'
+        elif ist(w,  int):   return f'{pa:^{w}.{w-4}f}'
+        else:                return f'{pa:^{w}}'
     @staticmethod
-    def fmtRB(b, cb, w=Z):        pb     =   b ** cb                               ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
+    def fmtRB(b, cb, w=Z):
+        pb     =   b ** abs(cb)
+        if   ist(pb, int):   return f'{pb:^{w}}'
+        elif ist(w,  int):   return f'{pb:^{w}.{w-4}f}'
+        else:                return f'{pb:^{w}}'
 
     def fdvdr(self, a, ca, b, cb):      n = max(len(self.fmtRA(a, ca)), len(self.fmtRB(b, cb)))    ;  return n * '/'
 ########################################################################################################################################################################################################
