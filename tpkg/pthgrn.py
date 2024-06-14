@@ -19,9 +19,9 @@ class Pthgrn(ivls.Intonation):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
 #        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
 #        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-#                     [  0     1     2     3     4     5      6      7     8     9    10    11     12    13    14    15    16    17    18     19     20    21    22    23    24     25     26    27    28    29    30    31    32]
-        self.ivalKs = ['P1', 'd2', 'm2', 'A1', 'd3', 'M2', 'dd4', 'AA2', 'm3', 'A2', 'd4', 'M3', 'dd5', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'AA4', 'dd7', 'm6', 'A5', 'd7', 'M6', 'AA5', 'dd8', 'm7', 'A6', 'd8', 'M7', 'A7', 'P8']
-        self.centKs = [   0,   23,  90,  114,  180,  204,   227,   271,  294,  318,  384,  408,   475,  498,  522,  588,  612,  678,  702,   725,   769,   792,  816,  882,  906,  929,   973,  996,  1020, 1086, 1110, 1177, 1200]
+#                     [  0     1     2     3     4     5      6      7     8     9    10    11     12    13    14    15    16    17    18     19     20    21    22    23    24     25     26    27    28    29    30    31    32    33    34]
+        self.ivalKs = ['P1', 'd2', 'dd3', 'm2', 'A1', 'd3', 'M2', 'dd4', 'AA2', 'm3', 'A2', 'd4', 'M3', 'AA2', 'dd5', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'AA4', 'dd7', 'm6', 'A5', 'd7', 'M6', 'AA5', 'dd8', 'm7', 'A6', 'd8', 'M7', 'A7', 'P8']
+        self.centKs = [   0,   23,   67,   90,  114,  180,  204,   227,   271,  294,  318,  384,  408,  431,   475,  498,  522,  588,  612,  678,  702,   725,   769,   792,  816,  882,  906,  929,   973,  996,  1020, 1086, 1110, 1177, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
@@ -189,7 +189,8 @@ class Pthgrn(ivls.Intonation):
 
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nh, ni, nj, nk = 0, 0, 0, 0
-        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   m = l-4 if h>27 else l-3 if h>21 else l-2 if h>11 else l-1 if h>5 else l
+        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   hs = []
+        m      = l-5 if h>29 else l-4 if h>23 else l-3 if h>15 else l-2 if h>9 else l-1 if h>3 else l
         hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']
         hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
@@ -197,21 +198,36 @@ class Pthgrn(ivls.Intonation):
         elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
         elif h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
         if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-        if   h ==  1:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h ==  3:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h ==  6:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h ==  9:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 11:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 14:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 16:  x, w    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 19:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 22:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 25:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 28:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 30:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 32:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        if   h in (1, 3, 6, 9, 11, 14, 16, 19, 22, 25, 28, 30, 32):    fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        if   h ==  1: hs.append(h) ; w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h ==  4: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h ==  7: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 10: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 13: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 16: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 18: hs.append(h) ; x, w    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 21: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 24: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 27: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 30: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 32: hs.append(h) ; w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 34: hs.append(h) ; w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        if   h in hs: fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
+j j*100 i  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`
+0    0  1  |  P1  12 @    0 :   0.000 = 1.955 *  5   |  d2   5 @   23 :  23.460 = 1.955 * 12  
+1  100  4  |  m2  12 @   90 :  -9.780 = 1.955 * 10   |  A1  10 @  114 :  13.690 = 1.955 * 12   |  dd3  1 @   67 : -33.240 = 1.955 * 12  
+2  200  7  |  M2  12 @  204 :   3.910 = 1.955 *  3   |  d3   8 @  180 : -19.550 = 1.955 * 12   |  dd4  3 @  227 :  27.370 = 1.955 * 12  
+3  300 10  |  m3  12 @  294 :  -5.870 = 1.955 *  8   |  A2   8 @  318 :  17.600 = 1.955 * 12   |  AA2  3 @  271 : -29.330 = 1.955 * 12  
+4  400 13  |  M3  12 @  408 :   7.820 = 1.955 *  1   |  d4  10 @  384 : -15.640 = 1.955 * 12   |  AA2  1 @  431 :  31.280 = 1.955 * 12  
+5  500 16  |  P4  12 @  498 :  -1.960 = 1.955 *  6   |  A3   6 @  522 :  21.510 = 1.955 *  5   |  dd5  5 @  475 : -25.420 = 1.955 * 12  
+6  600 18  |  d5  11 @  612 :  11.730 = 1.955 * 12   |  A4  12 @  588 : -11.730 = 1.955 * 11  
+7  700 21  |  P5  12 @  702 :   1.960 = 1.955 *  7   |  d6   7 @  678 : -21.510 = 1.955 *  4   |  AA4  4 @  725 :  25.420 = 1.955 * 12  
+8  800 24  |  m6  12 @  792 :  -7.820 = 1.955 *  9   |  A5   9 @  816 :  15.640 = 1.955 * 12   |  dd7  2 @  769 : -31.280 = 1.955 * 12  
+9  900 27  |  M6  12 @  906 :   5.870 = 1.955 *  2   |  d7   9 @  882 : -17.600 = 1.955 * 12   |  AA5  2 @  929 :  29.330 = 1.955 * 12  
+a 1000 30  |  m7  12 @  996 :  -3.910 = 1.955 *  7   |  A6   7 @ 1020 : -27.370 = 1.955 *  4   |  dd8  4 @  973 : -27.370 = 1.955 * 12  
+b 1100 32  |  M7  12 @ 1110 :   9.780 = 1.955 * 11   |  d8  11 @ 1086 : -13.690 = 1.955 * 12  
+c 1200 34  |  P8  12 @ 1200 :   0.000 = 1.955 *  6   |  A7   6 @ 1177 : -23.460 = 1.955 * 12  
+
 j j*100 i  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`
 0    0  1  |  P1  12 @    0 :   0.000 = 1.955 *  4   |  d2   4 @   23 :  23.460 = 1.955 * 12  
 1  100  3  |  m2  12 @   90 :  -9.780 = 1.955 *  9   |  A1   9 @  114 :  13.690 = 1.955 * 12  
