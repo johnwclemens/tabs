@@ -167,8 +167,8 @@ class Intonation:
                 n *= 2  ;  i += 1
         return n, i
     ####################################################################################################################################################################################################
-    def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3,  k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
-    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, -k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{n=} {i=}', f=2) if dbg else None   ;   return s
+    def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3,  k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{i=} {n=}', f=2) if dbg else None   ;   return s
+    def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, -k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{i=} {n=}', f=2) if dbg else None   ;   return s
     def stackI(self, a, b, i):    return [ a, b, self.COF[i] ]
     ####################################################################################################################################################################################################
     def ac2r(self, a, c):
@@ -195,8 +195,9 @@ class Intonation:
 
     def i2Abcs(self, i):
         ff = 3 if self.csv else 2
-        if -7 <= i <= 7:   a = 7 - i   ;  b = i + 7
-        else:              a = 15      ;  b = 15
+        p = 8  ;  q = 17
+        if -p <= i <= p:   a = p - i   ;  b = i + p
+        else:              a = q      ;  b = q
         slog(f'{i=} {a=} {b=}', f=ff)
         return self.abcs(a, b, i=i)
 
@@ -467,18 +468,19 @@ Jdx   CK     Knt    Freq    Wavln    Cents    DCent  Note       Abcd       Ival 
         r3s.append(self.fmtR3(a, ca, b, cb, u, k, i, j))
         r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j))    if lr in (4, 6)    else None
         self.fmtRABs(a, ca, b, cb, w, rAs, rBs) if lr in (2, 5, 6) else None
-        if   lr == 2:   return      rAs, rBs
-        if   lr == 4:   return r0s,           r1s, r2s, r3s
-        if   lr == 5:   return r0s, rAs, rBs,      r2s, r3s
-        if   lr == 6:   return r0s, rAs, rBs, r1s, r2s, r3s
+#        if   lr == 2:   return      rAs, rBs
+#        if   lr == 4:   return r0s,           r1s, r2s, r3s
+#        if   lr == 5:   return r0s, rAs, rBs,      r2s, r3s
+#        if   lr == 6:   return r0s, rAs, rBs, r1s, r2s, r3s
+        return r0s, rAs, rBs, r1s, r2s, r3s
     ####################################################################################################################################################################################################
     def fmtRABs(self, a, ca, b, cb, w, rAs, rBs):
         pa = a ** abs(ca)      ;   pb = b ** abs(cb)  ;   dbg = 0 #  ;   p = 2 ** k if k else 1
-        if pb > pa:   tmp = a  ;  a = b  ;  b = tmp   ;   tmp = ca  ;  ca = cb  ;  cb = tmp
+        if pb > pa:   a, b = b, a  ;  ca, cb = cb, ca
         rAs.append(self.fmtRA(a, ca, w))
         rBs.append(self.fmtRB(b, cb, w))
         slog(f'{a:2} {ca:2} {b:2} {cb:2}') if dbg else None
-    
+
     @staticmethod
     def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
         p = 2 ** k if k else 1   ;   dbg = 0
@@ -540,15 +542,15 @@ Jdx   CK     Knt    Freq    Wavln    Cents    DCent  Note       Abcd       Ival 
     @staticmethod
     def fmtRA(a, ca, w=Z):
         pa     =   a ** abs(ca)
-        if   ist(pa, int):   return f'{pa:^{w}}'
-        elif ist(w,  int):   return f'{pa:^{w}.{w-4}f}'
-        else:                return f'{pa:^{w}}'
+        if ist(pa, int):   return f'{pa:^{w}}'
+        if ist(w,  int):   return f'{pa:^{w}.{w-4}f}'
+        return                    f'{pa:^{w}}'
     @staticmethod
     def fmtRB(b, cb, w=Z):
         pb     =   b ** abs(cb)
-        if   ist(pb, int):   return f'{pb:^{w}}'
-        elif ist(w,  int):   return f'{pb:^{w}.{w-4}f}'
-        else:                return f'{pb:^{w}}'
+        if ist(pb, int):   return f'{pb:^{w}}'
+        if ist(w,  int):   return f'{pb:^{w}.{w-4}f}'
+        return                    f'{pb:^{w}}'
 
     def fdvdr(self, a, ca, b, cb):      n = max(len(self.fmtRA(a, ca)), len(self.fmtRB(b, cb)))    ;  return n * '/'
 ########################################################################################################################################################################################################

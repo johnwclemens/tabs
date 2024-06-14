@@ -19,9 +19,9 @@ class Pthgrn(ivls.Intonation):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
 #        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
 #        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-#                     [  0    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19     20    21    22    23    24    25    26    27 ]
-        self.ivalKs = ['P1', 'LA', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'LC', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'LD', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'LB', 'P8']
-        self.centKs = [   0,   23,  90,  114,  180,  204,  294,  318,  384,  408,  475,  498,  522,  588,  612,  678,  702,  725,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1177, 1200]
+#                     [  0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28 ]
+        self.ivalKs = ['P1', 'LA', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'LC', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'LD', 'm6', 'A5', 'd7', 'M6', '??', 'm7', 'A6', 'd8', 'M7', 'LB', 'P8']
+        self.centKs = [   0,   23,  90,  114,  180,  204,  294,  318,  384,  408,  475,  498,  522,  588,  612,  678,  702,  725,  792,  816,  882,  906,  973,  996,  1020, 1086, 1110, 1177, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
@@ -83,14 +83,14 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? # ckmap[498,588,612,702][Note] = F,Gb,G,Ab
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
-        ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
+        ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
         sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   f1 = 0
         for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{self.j=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[self.j][0]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abcd']   ;   q = self.fdvdr(a, ca, b, cb)
-                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
-                f, w, n, c, d, k, i2    = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
+                r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(              a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
+                f, w, n, c, d, k, i2         = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
                 n, m = self.f2nPair(f, b=1, o=0, e=1)   ;   assert m != n,  f'{i=} {ck=} {m=} {n=} {c=} {d=} {k=} {i2=} {f=} {w=}'
                 if m:
                     if   m not in self.COFM[self.n]:   n = n + '/' + m
@@ -124,7 +124,7 @@ class Pthgrn(ivls.Intonation):
             a, ca  = abc[0], abc[1]      ;   b = 2
             r, cb  = self.ac2r(a, ca)
             pa, pb = a ** abs(ca), b ** abs(cb)
-            if pb > pa:   tmp = pa   ;  pa = pb  ;  pb = tmp
+            if pb > pa:   pa, pb = pb, pa
             aa.append(pa)     ;    bb.append(pb)
         self.dmp_rABs(rAs, rBs, o) if o == 1 else self.dmp_rABs(aa, bb, o)
 
@@ -159,7 +159,7 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def getCkMapVal(self, ckmap, ck, a, ca, b, cb, f0, w0): # todo move to base class, but abc args and key are issues
         ca = abs(ca)   ;   cb = abs(cb)
-        pa = a ** ca   ;  pb = b ** cb   ;   p = pa/pb if pa > pb else pb/pa if pb/pa else 1/0 
+        pa = a ** ca   ;  pb = b ** cb   ;   p = pa/pb if pa > pb else pb/pa if pb/pa else 1/0
         f = ckmap[ck]['Freq']    ;   assert round(f, 10) == round(f0*p, 10),    f'{ck=} {f=} {f0=} p={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}' #todo remove round() hack! use Decimal
         w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                        f'{w=} {w0=} {f=}'
         n = ckmap[ck]['Note']
@@ -188,31 +188,46 @@ class Pthgrn(ivls.Intonation):
         return fd
 
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3   ;   nh, ni, nj, nk = 0, 0, 0, 0
-        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   m = l - 1 if h > 11 else l
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nh, ni, nj, nk = 0, 0, 0, 0
+        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   m = l-2 if h>21 else l-1 if h>11 else l
         hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', ' c` ']
         hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', ' c`']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
-        if   h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
+        if   h > 2:    nh, ni, nj, nk = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
         elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
-        elif h > 2:    nh, ni, nj, nk = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
+        elif h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
         if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
         if   h ==  1:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h ==  3:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h ==  5:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
         elif h ==  7:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h ==  9:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 12:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 12:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
         elif h == 14:  x, w    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 17:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+        elif h == 17:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h == 19:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
         elif h == 21:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 23:  w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 25:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        elif h == 27:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        if       h % 2 and h not in (11, 13, 15):  fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff) # (h < 11 or h > 15) # (h <= 9 or h >= 17)
-        elif not h % 2 and h     in (12, 14):      fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        elif h == 24:  w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
+        elif h == 26:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif h == 28:  w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        if       h % 2 and h not in (11, 13, 15, 23, 25, 27):  fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff) # (h < 11 or h > 15) # (h <= 9 or h >= 17)
+        elif not h % 2 and h     in (12, 14, 24, 26, 28):      fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
+j j*100 i  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`
+0    0  1  |  P1 12 @    0 :   0.000 = 1.955 *  2   |  LA  2 @   23 :  23.460 = 1.955 * 12  
+1  100  3  |  m2 10 @   90 :  -9.780 = 1.955 *  7   |  A1  7 @  114 :  13.690 = 1.955 * 10  
+2  200  5  |  M2 12 @  204 :   3.910 = 1.955 *  5   |  d3  5 @  180 : -19.550 = 1.955 * 12  
+3  300  7  |  m3 12 @  294 :  -5.870 = 1.955 *  5   |  A2  5 @  318 :  17.600 = 1.955 * 12  
+4  400  9  |  M3 10 @  408 :   7.820 = 1.955 *  7   |  d4  7 @  384 : -15.640 = 1.955 * 10  
+5  500 12  |  P4 12 @  498 :  -1.960 = 1.955 *  3   |  A3  3 @  522 :  21.510 = 1.955 *  2   |  LC  2 @  475 : -25.420 = 1.955 * 12  
+6  600 14  |  d5  8 @  612 :  11.730 = 1.955 *  9   |  A4  9 @  588 : -11.730 = 1.955 *  8  
+7  700 17  |  P5 12 @  702 :   1.960 = 1.955 *  4   |  d6  4 @  678 : -21.510 = 1.955 *  1   |  LD  1 @  725 :  25.420 = 1.955 * 12  
+8  800 19  |  m6 11 @  792 :  -7.820 = 1.955 *  6   |  A5  6 @  816 :  15.640 = 1.955 * 11  
+9  900 21  |  M6 11 @  906 :   5.870 = 1.955 *  6   |  d7  6 @  882 : -17.600 = 1.955 * 11  
+a 1000 24  |  m7 12 @  996 :  -3.910 = 1.955 *  4   |  A6  4 @ 1020 : -27.370 = 1.955 *  1   |  ??  1 @  973 : -27.370 = 1.955 * 12  
+b 1100 26  |  M7  9 @ 1110 :   9.780 = 1.955 *  8   |  d8  8 @ 1086 : -13.690 = 1.955 *  9  
+c 1200 28  |  P8 12 @ 1200 :   0.000 = 1.955 *  3   |  LB  3 @ 1177 : -23.460 = 1.955 * 12  
+
 j j*100 i  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`  |  Iv  c     k       d       e       c`
 0    0  1  |  P1 12 @    0 :   0.000 = 1.955 *  0   |  LA  0 @   23 :         = 1.955 * 12  
 1  100  3  |  m2  8 @   90 :  -9.780 = 1.955 *  5   |  A1  5 @  114 :  13.690 = 1.955 *  8  
