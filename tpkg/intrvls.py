@@ -195,7 +195,7 @@ class Intonation:
 
     def i2Abcs(self, i):
         ff = 3 if self.csv else 2
-        p = 11  ;  q = 23
+        p = 12  ;  q = 25
         if -p <= i <= p:   a = p - i   ;  b = i + p
         else:              a = q       ;  b = q
         slog(f'{i=} {a=} {b=}', f=ff)
