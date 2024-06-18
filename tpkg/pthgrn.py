@@ -17,11 +17,27 @@ class Pthgrn(ivls.Intonation):
 
     def __init__(self, n='C', rf=440, ss=V_SOUND, csv=0):
         super().__init__(n=n, rf=rf, ss=ss, csv=csv)
-#        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
-#        self.centKs = [  0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-#                     [  0     1     2     3     4     5     6      7      8     9     10    11    12    13     14     15    16    17    18     19    20    21    22     23     24    25    26    27    28     29     30    31    32    33    34     35    36]
-        self.ivalKs = ['P1', 'd2', 'dd3', 'm2', 'A1', 'd3', 'M2', 'AA1', 'dd4', 'm3', 'A2', 'd4', 'M3', 'AA2', 'dd5', 'P4', 'A3', 'AA3', 'd5', 'A4', 'd6', 'P5', 'AA4', 'dd7', 'm6', 'A5', 'd7', 'M6', 'AA5', 'dd8', 'm7', 'A6', 'd8', 'M7', 'AA6', 'A7', 'P8']
-        self.centKs = [   0,   23,   67,   90,  114,  180,  204,   227,   271,  294,  318,  384,  408,   431,   475,   498,  522,  565,  588,  612,  678,  702,   725,   769,   792,  816,  882,  906,  929,   973,  996,  1020, 1086, 1110, 1133,  1177, 1200]
+#        self.ivalKs = ['P1',  'm2', 'M2', 'm3', 'M3', 'P4', 'A4', 'P5',  'm6', 'M6',  'm7', 'M7', 'P8']
+#        self.centKs = [  0,    90,  204,  294,   408,  498,  612,  702,   792,  906,   996, 1110, 1200]
+#        self.ivalKs = ['P1',  'm2', 'M2', 'm3', 'M3', 'P4', 'd5', 'A4', 'P5',  'm6', 'M6',  'm7', 'M7', 'P8']
+#        self.centKs = [  0,    90,  204,  294,   408,  498,  588,  612,  702,   792,  906,   996, 1110, 1200]
+#        self.ivalKs = ['P1',  'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4',  'A3', 'd5', 'A4', 'd6',  'P5',  'm6', 'A5', 'd7', 'M6',  'm7', 'A6', 'd8', 'M7', 'P8']
+#        self.centKs = [  0,    90,  114,  180,  204,  294,  318,  384,   408,  498,   522,  588,  612,  678,   702,   792,  816,  882,  906,   996,  1020, 1086, 1110, 1200]
+#        self.ivalKs = ['P1',  'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4',  'A3', 'd5', 'A4', 'd6',  'P5',  'm6', 'A5', 'd7', 'M6',  'm7', 'A6', 'd8', 'M7', '???', 'P8']
+#        self.centKs = [  0,    90,  114,  180,  204,  294,  318,  384,   408,  498,   522,  588,  612,  678,   702,   792,  816,  882,  906,   996,  1020, 1086, 1110, 1177, 1200]
+#                     [  0     1      2     3     4     5     6      7      8     9     10    11    12    13     14     15    16    17    18     19    20    21    22     23    24]
+#        self.ivalKs = ['P1',  'd2', 'm2',  'A1', 'd3', 'M2', 'm3', 'A2', 'd4',  'M3',  'P4', 'A3', 'd5', 'A4', 'd6',  'P5',  'm6', 'A5', 'd7', 'M6',  'm7', 'A6', 'd8', 'M7', 'P8']
+#        self.centKs = [  0,    23,   90,   114,  180,  204,  294,  318,  384,   408,   498,   522,  588,  612,  678,   702,   792,  816,  882,  906,   996,  1020, 1086, 1110, 1200]
+        self.ivalKs = ['P1',  'd2', 'm2',  'A1', 'd3', 'M2', 'm3', 'A2', 'd4',  'M3',  'P4', 'A3', 'd5', 'A4', 'd6',  'P5',  'm6', 'A5', 'd7', 'M6',  'm7', 'A6', 'd8', 'M7', 'A7', 'P8']
+        self.centKs = [  0,    23,   90,   114,  180,  204,  294,  318,  384,   408,   498,   522,  588,  612,  678,   702,   792,  816,  882,  906,   996,  1020, 1086, 1110, 1177, 1200]
+#                     [  0     1      2     3     4     5     6      7      8     9     10    11    12    13     14     15    16    17    18     19    20    21    22     23     24    25    26    27    28     29     30    31    32    33    34     35    36]
+#        self.ivalKs = ['P1', 'd2', 'dd3', 'm2', 'A1', 'd3', 'M2', 'AA1', 'dd4', 'm3', 'A2', 'd4', 'M3', 'AA2', 'dd5', 'P4', 'A3', 'AA3', 'd5', 'A4', 'd6', 'P5', 'AA4', 'dd7', 'm6', 'A5', 'd7', 'M6', 'AA5', 'dd8', 'm7', 'A6', 'd8', 'M7', 'AA6', 'A7', 'P8']
+#        self.centKs = [   0,   23,   67,   90,  114,  180,  204,   227,   271,  294,  318,  384,  408,   431,   475,   498,  522,  565,  588,  612,  678,  702,   725,   769,   792,  816,  882,  906,  929,   973,  996,  1020, 1086, 1110, 1133,  1177, 1200]
+#        self.ivalKs = ['P1', 'd2', 'dd3', 'm2', 'A1', 'd3', 'M2', 'AA1', 'dd4', 'm3', 'A2', 'd4', 'M3', 'AA2', 'dd5', 'P4', 'A3', 'AA3', 'd5', 'A4', '???', 'd6', 'P5', 'AA4', 'dd7', 'm6', 'A5', 'd7', 'M6', 'AA5', 'dd8', 'm7', 'A6', '???', 'd8', 'M7', 'AA6', 'A7', 'P8']
+#        self.centKs = [   0,   23,   67,   90,  114,  180,  204,   227,   271,  294,  318,  384,  408,   431,   475,   498,  522,  565,  588,  612,   635,  678,  702,   725,   769,   792,  816,  882,  906,  929,   973,  996,  1020,  1063, 1086, 1110, 1133,  1177, 1200]
+#                     [  0     1     2       3     4     5     6       7     8     9      10    11     12     13    14    15     16     17    18    19     20     21     22    23    24     25     26    27    28     29    30     31    32     33     34    35     36    37     38     39    40    41     42     43     44    45    46     47     48    49    50     51     52    54    55]
+#        self.ivalKs = ['P1', 'd2', '???', 'dd3', 'm2', 'A1', '???', '???', 'd3', 'M2', 'AA1','???', '???', 'dd4', 'm3', 'A2', '???', '???', 'd4', 'M3', 'AA2', '???', 'dd5', 'P4', 'A3', '???', 'AA3', 'd5', 'A4', '???', '???', 'd6', 'P5', 'AA4', '???', 'dd7', 'm6', 'A5', '???', '???', 'd7', 'M6', 'AA5', '???', 'dd8', 'm7', 'A6', '???', '???', 'd8', 'M7', 'AA6', '???', 'A7', 'P8']
+#        self.centKs = [   0,   23,   47,   67,   90,   114,   137,   157,  180,  204,   227,  247,   251,   271,   294,  318,  341,   361,  384,  408,   431,   451,   475,   498,  522,  545,   565,  588,   612,  635,   655,  678,  702,   725,   749,   769,   792,  816,  839,   859,  882,  906,   929,   949,   973,  996,  1020,  1043,  1063,  1086, 1110, 1133,  1153,  1177, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.ckmap  = self.reset_ckmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
@@ -33,20 +49,20 @@ class Pthgrn(ivls.Intonation):
         return ecents
 
     def comma(self, dbg=0): # todo generalize m2bc ?
-        n, i, iv   = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
-        s5s        = self.stck5ths(n, 0)
-        a, ca, m   = s5s[i]   ;   b = 2
-        r, cb      = self.ac2r(a, ca)
-        if dbg:    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
-        if dbg:    slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
+        n, i, iv     = NT, -1, '5' # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
+        s5s          = self.stck5ths(n, 0)
+        a, ca, m, _  = s5s[i]   ;   b = 2
+        r, cb        = self.ac2r(a, ca)
+        if dbg:      slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
+        if dbg:      slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
         assert [a, b, ca] == [3, 2, n],  f'{a=} {b=} {ca=} {[3, 2, n]}'
-        pa, pb     = a ** abs(ca), b ** abs(cb)
-        cratio     = pa / pb
-        q          = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
-        ccents     = self.r2cents(cratio)
-        if dbg:    slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
-        ecents     = ccents / NT
-        if dbg:    slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
+        pa, pb       = a ** abs(ca), b ** abs(cb)
+        cratio       = pa / pb
+        q            = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
+        ccents       = self.r2cents(cratio)
+        if dbg:      slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
+        ecents       = ccents / NT
+        if dbg:      slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ccents
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
@@ -57,11 +73,11 @@ class Pthgrn(ivls.Intonation):
             rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1   ;   self.k = kk
             rat1 = [] if x in (6, 7, 13) else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[2]):
-                n    = self.fmtNPair(j)  ;  a, ca, b, cb = e  ;  pa, pb = a ** abs(ca), b ** abs(cb)  ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+                n    = v[1][0][-1]  ;  a, ca, b, cb = e  ;  pa, pb = a ** abs(ca), b ** abs(cb)  ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
                 cent = self.r2cents(pa/pb if pa>=pb else pb/pa)    ;   rc = round(cent)   ;    cki += 1
                 assert rc in self.ckmap,  f'{rc=} {i=} {kk=} {j=} {n=} {pa=} {pb=} {e=} {rat0[i]} {rat2[i]} {rat3[i]} {fmtl(list(self.ckmap.keys()))}'
-                if dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb if pa>=pb else f0*pb/pa, e, cent, j)
+                if not dbg and upd and ni == 4:   self.updCkMap(rc, self.ckmap, n if kk==self.j else W*2, f0*pa/pb if pa>=pb else f0*pb/pa, e, cent, j)
                 while cki < len(self.centKs) and self.centKs[cki] < rc:
                     rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(_) #  ;   cfnts.append(_)
                     rat1.append(_) if x==13 else None    ;   ratA.append(_) if x==9 else None   ;   ratB.append(_) if x==9 else None
@@ -81,7 +97,7 @@ class Pthgrn(ivls.Intonation):
             elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
         if dbg: self.dmpDataTableLine(x+1)   ;   self.dmpIndices(pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
-    def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? # ckmap[498,588,612,702][Note] = F,Gb,G,Ab
+    def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? # ckmap[498,588,612,702][Note] = F,Gb, F,G
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
         ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
         sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   f1 = 0
@@ -169,7 +185,7 @@ class Pthgrn(ivls.Intonation):
         d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),  f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i # todo assume callers do not want ckmap[ck]['Abcd'] value returned
     ####################################################################################################################################################################################################
-    def fIvals(self, data, i): # todo move to base class
+    def fIvals(self, i, data, ns): # todo move to base class
         mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
 #                                    #           <-----------------1----------------->    <-----------------2----------------->    <-----------------3----------------->    <-----------------4----------------->
         for j, d in enumerate(data): # j j*100 i Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`
@@ -178,41 +194,114 @@ class Pthgrn(ivls.Intonation):
             elif j==2:                 fd.append(f'{d:2} ')          # i
             elif j==6:                 fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
             elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i not in (0, len(self.ck2ikm)-1) else fd.append(W*7) # d d d
-#            elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(self.ck2ikm)-1 else fd.append(W*7) # d d d
             elif j in ( 8, 14, 20):    fd.append(f'*{mm}{d:2}  ')    # c` c` c`
             elif j==26:                fd.append(f'*{mm}{d:2}')      # c`
             elif j in (5, 11, 17, 23): fd.append(f'@{mm}{d:4}{mm}:') # k k k k
             elif j in (7, 13, 19, 25): fd.append(f'={mm}{d:5.3f}')   # e e e e
-            elif j in (3,  9, 15, 21): fd.append(f'|  {d:3}')        # Iv Iv Iv Iv
             elif j in (4, 10, 16, 22): fd.append(f'{d:2}')           # c c c c
+            elif j in (3,  9, 15, 21): # fd.append(f'|  {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
+#                n = ns[0] if j==3 else ns[1] if j==9 else ns[2] if j==15 else ns[3] if j==21 else '??'
+                if   j == 3  and len(ns) >= 1:  n = ns[0]
+                elif j == 9  and len(ns) >= 2:  n = ns[1]
+                elif j == 15 and len(ns) >= 3:  n = ns[2]
+                elif j == 21 and len(ns) >= 4:  n = ns[3]
+                else:                           n = f'?{len(ns)}\\{j}?' # ;  slog(f'{n=}')
+                fd.append(f'| {n:4} {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
         return fd
 
+    def getNs(self, i):
+        j = i   ;   ns = []
+        while j >= 0 and len(ns) <= 1+i:
+            ck = self.centKs[j]
+            if 'Count' in self.ckmap[ck] and self.ckmap[ck]['Count'] > 0:
+                ns.append(self.ckmap[ck]['Note'])
+            j -= 1
+        return ns
+
+    def NEW__getNs(self, js):
+        ns = []
+        for j in js:
+            ck = self.centKs[j]
+            if 'Count' in self.ckmap[ck] and self.ckmap[ck]['Count'] > 0:
+                ns.append(self.ckmap[ck]['Note'])
+        return ns
+
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nh, ni, nj, nk = 0, 0, 0, 0
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nns = 1
         eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   hs = []
-        m      = l-6 if h>33 else l-5 if h>27 else l-4 if h>21 else l-3 if h>15 else l-2 if h>9 else l-1 if h>3 else l
-        hdrB1  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']
-        hdrB2  = ['|  Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']
+        m  = l # l-1 if h>=23 else l # m = l-6 if h>=34 else l-5 if h>=28 else l-4 if h>=22 else l-3 if h>=16 else l-2 if h>=10 else l-1 if h>=4 else l
+        hdrB1  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']
+        hdrB2  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
-        if   h > 2:    nh, ni, nj, nk = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
-        elif h > 1:    nh, ni, nj     = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]]
-        elif h > 0:    nh, ni         = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]]
+        if   h > 2:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
+        elif h > 1:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], None
+        elif h > 0:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], None,               None
+        else:         w, x, y, z = self.ck2ikm[ks[h]], None,               None,               None
         if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-        if   h ==  1: hs.append(h) ; w, x    = nh, ni      ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h ==  4: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h ==  7: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 10: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 13: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 16: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 19: hs.append(h) ; x, w, y = nh, ni, nj  ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 22: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 25: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 28: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 31: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-        elif h == 34: hs.append(h) ; w, x, y = nh, ni, nj  ;  data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-        elif h == 36: hs.append(h) ; w, x    = nh, ni      ;  data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-        if   h in hs: fd = self.fIvals(data, h)  ;  slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        if nns == 0:
+            if   h ==  0: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  2: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  6: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  8: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 12: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif nns == 1:
+            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j]]
+            elif h == 13: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 15: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 17: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 21: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j]]
+            elif h == 23: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            elif h == 25: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif nns == 2:
+            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h == 13: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 16: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h == 22: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 25: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h == 28: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 31: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
+            elif h == 34: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
+            elif h == 37: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+        elif nns == 3:
+            pass
+        if   h in hs:
+            ns = self.getNs(h)
+            fd = self.fIvals(h, data, ns)
+            slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
+j j*100 i  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`
+0    0  1  | D♭   P1   1 @    0 :   0.000 = 1.955 *  0   | ?1\9? d2   0 @   23 :         = 1.955 *  1  
+1  100  3  | D    m2   0 @   90 :         = 1.955 *  1   | D♭   A1   1 @  114 :  13.690 = 1.955 *  0  
+2  200  5  | E♭   M2   1 @  204 :   3.910 = 1.955 *  0   | D    d3   0 @  180 :         = 1.955 *  1  
+3  300  7  | E    m3   0 @  294 :         = 1.955 *  1   | E♭   A2   1 @  318 :  17.600 = 1.955 *  0  
+4  400  9  | F    M3   1 @  408 :   7.820 = 1.955 *  0   | E    d4   0 @  384 :         = 1.955 *  1  
+5  500 11  | F♯   P4   1 @  498 :  -1.960 = 1.955 *  1   | G♭   A3   1 @  522 :  21.510 = 1.955 *  1  
+6  600 13  | G    A4   1 @  612 :  11.730 = 1.955 *  0   | F♯   d5   0 @  588 :         = 1.955 *  1  
+7  700 15  | A♭   P5   1 @  702 :   1.960 = 1.955 *  0   | G    d6   0 @  678 :         = 1.955 *  1  
+8  800 17  | A    m6   0 @  792 :         = 1.955 *  1   | A♭   A5   1 @  816 :  15.640 = 1.955 *  0  
+9  900 19  | B♭   M6   1 @  906 :   5.870 = 1.955 *  0   | A    d7   0 @  882 :         = 1.955 *  1  
+a 1000 21  | B    m7   0 @  996 :         = 1.955 *  1   | B♭   A6   1 @ 1020 :   5.870 = 1.955 *  1  
+b 1100 23  | C    M7   1 @ 1110 :   9.780 = 1.955 *  0   | B    d8   0 @ 1086 :         = 1.955 *  1  
+c 1200 25  | D♭   P8   1 @ 1200 :   0.000 = 1.955 *  0   | C    A7   0 @ 1177 :         = 1.955 *  1  
+########################################################################################################################################################################################################
 j j*100 i  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`  |  Iv  c     k       d       e        c`
 0    0  1  |  P1  12 @    0 :   0.000 = 1.955 *  6   |  d2   6 @   23 :  23.460 = 1.955 * 12  
 1  100  4  |  m2  12 @   90 :  -9.780 = 1.955 * 11   |  A1  11 @  114 :  13.690 = 1.955 * 12   |  dd3  2 @   67 : -33.240 = 1.955 * 12  

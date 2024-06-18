@@ -169,7 +169,7 @@ class Intonation:
     ####################################################################################################################################################################################################
     def stck5ths(self, n, i=0, dbg=0):  s = [ self.stackI(3,  k, i+k) for k in range(1, 1+n) ]   ;   slog(f'{i=} {n=}', f=2) if dbg else None   ;   return s
     def stck4ths(self, n, i=0, dbg=0):  s = [ self.stackI(3, -k, i-k) for k in range(1, 1+n) ]   ;   slog(f'{i=} {n=}', f=2) if dbg else None   ;   return s
-    def stackI(self, a, b, i):    return [ a, b, self.COF[i] ]
+    def stackI(self, a, b, i):    return [ a, b, self.COF[i], Z ]
     ####################################################################################################################################################################################################
     def ac2r(self, a, c):
         r0   = a ** c
@@ -184,18 +184,22 @@ class Intonation:
         abc4   = sorted([(z[0], z[1], z[2], self.ac2r(z[0], z[1])[1]) for z in abc3], key=lambda z: self.ac2r(z[0], z[1])[0])
         abcLst = [abc1, abc2, abc3, abc4]
         if dbg:
-            wa, wb = [2, 3, 6], [2, 3, 2, 3]   ;   pfx, sfx = [], []
+            wb = [2, 3, 2, 3]   ;   pfx, sfx = [], []
             for j, abcs in enumerate(abcLst):
                 msg = []   ;   pfx.append(f'  abc{j+1} {nn}[{nn}')  ;  sfx.append(f'{nn}]{nn}')
                 for k, abc in enumerate(abcs):
                     if k:  msg.append(oo)
-                    msg.append(f'{fmtl(abc, w=wa if j<3 else wb, d=Z, s=mm)}')
+                    msg.append(f'{fmtl(abc, w=wb, d=Z, s=mm)}')
                 slog(f'{pfx[j]}{Z.join(msg)}{sfx[j]}', p=0, f=ff)
         return abcLst
 
     def i2Abcs(self, i):
-        ff = 3 if self.csv else 2
-        p = 12  ;  q = 25
+        ff = 3 if self.csv else 2 # q = 2*p+1
+        p = 6   ;   q = 13
+#        p = 7   ;   q = 15
+#        p = 12  ;   q = 25
+#        p = 18  ;   q = 37
+#        p = 21  ;   q = 43
         if -p <= i <= p:   a = p - i   ;  b = i + p
         else:              a = q       ;  b = q
         slog(f'{i=} {a=} {b=}', f=ff)
@@ -321,23 +325,24 @@ class Intonation:
 
     def fim(self, pfx=None):  pfx = str(self) + W if pfx is None else Z   ;   return f'{pfx}[{self.i:2} {self.j:2} {self.k:2} {self.m:2} {self.n:2} {self.o:2}]'
     @staticmethod
-    def fabc(abc):                return [ fmtl(e, w=2, d=Z) for e in abc ]
+    def fabc(abc):                return [ fmtl(e, w=[2,3,2,3], d=Z) for e in abc ]
     ####################################################################################################################################################################################################
     def _setup(self, j, u=9, o=0, dbg=1):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0   ;   self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]   ;   k = 6 - j if j > 6 else j
         if dbg: slog(f'BGN {self.fim()} {j=} {k=} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
-        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.reset_ckmap()
+        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcdMap = []  ;  ckm = self.ckmap # reset_ckmap()
         tmp = self.i2Abcs(k)  ;  abc0 = list(tmp[-1])  ;  abc1, abc2, abc3, abc4 = self.fabc(tmp[0]), self.fabc(tmp[1]), self.fabc(tmp[2]), self.fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0): # ;  cf = 1 if a==3 else -1  ;  self.k = 48 + (7 * cf) % NT
             a, b, ca, n = e[0], 2, e[1], e[2]  ;  r, cb = self.ac2r(a, ca)  ;  f = r * f0  ;  w = self.w0 / f  ;  cki += 1  ;  abcd = [a, ca, b, cb] if a**abs(ca) >= b**abs(cb) else [b, cb, a, ca]
-            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)}'
+            c = self.r2cents(r)  ;  d = self.i2dCent(c)  ;  rc = round(c)
+            assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {self.i=} {i=} {self.j=} {c=} {r=} {abcd=} {fmtm(self.ck2ikm, d=Z)} {len(self.ck2ikm)=} {len(self.nimap)=}'
             while cki < len(self.centKs) and self.centKs[cki] < rc:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v)  ;  cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
             v = self.ck2ikm[rc]  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  ns.append(n)  ;  vs.append(v)  ;  abcdMap.append(abcd)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
-            if not dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
+            if dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
         self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
         while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
