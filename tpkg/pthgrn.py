@@ -7,7 +7,7 @@ import math
 W,    Y,    Z,    slog,   ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl,   fmtm,    fmtf,   fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
-N2I,          F2S             = Notes.N2I, Notes.F2S
+N2I,  F2S,  I2F, nextN, prevN = Notes.N2I, Notes.F2S, Notes.I2F, Notes.nextN, Notes.prevN
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 
@@ -99,8 +99,8 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? # ckmap[498,588,612,702][Note] = F,Gb, F,G
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
-        ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]
-        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   f1 = 0
+        ns, fs, ws, vs = [], [], [], []   ;   cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   f1 = 0 #  ;   os = []
+        sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   ckmap = self.ckmap if dbg else self.nimap[self.j][0]
         for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{self.j=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[self.j][0]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
@@ -108,6 +108,7 @@ class Pthgrn(ivls.Intonation):
                 r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(              a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k, i2         = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
                 n, m = self.f2nPair(f, b=1, o=0, e=1)   ;   assert m != n,  f'{i=} {ck=} {m=} {n=} {c=} {d=} {k=} {i2=} {f=} {w=}'
+                o    = n
                 if m:
                     if   m not in self.COFM[self.n]:   n = n + '/' + m
                     elif f1:                           n = m
@@ -115,8 +116,11 @@ class Pthgrn(ivls.Intonation):
                 self.k = N2I[n[:2]] + 48 if n in N2I else self.k   ;   self.o = n[:2] if n in Notes.N2I else self.o
                 cksi.append(int(round(c)))  ;  cs.append(f'{fmtf(c, u-4)}')   ; ds.append(f'{fmtf(d, u-4)}') ; fs.append(f'{fmtf(f, u-2)}') ; ws.append(f'{fmtf(w, u-2)}')
             else:  n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_)  ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
-            if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
+            if dbg:
+                ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q) # os.append(o)
+                self.dmpIvals(i, cksi, ks, d2s)
         if dbg:
+#            self.dmpIvals(len(self.ck2ikm)-1, cksi, os, ks, d2s)
             self.dmpIndices(f'{mm}  k  {mm}{nn} {nn}', u)  ;  self.dmpDataTableLine(u+1)
             slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(cks, w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
@@ -185,7 +189,7 @@ class Pthgrn(ivls.Intonation):
         d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),  f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i # todo assume callers do not want ckmap[ck]['Abcd'] value returned
     ####################################################################################################################################################################################################
-    def fIvals(self, i, data, ns): # todo move to base class
+    def fIvals(self, i, data, n): # todo move to base class
         mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
 #                                    #           <-----------------1----------------->    <-----------------2----------------->    <-----------------3----------------->    <-----------------4----------------->
         for j, d in enumerate(data): # j j*100 i Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`
@@ -201,14 +205,81 @@ class Pthgrn(ivls.Intonation):
             elif j in (4, 10, 16, 22): fd.append(f'{d:2}')           # c c c c
             elif j in (3,  9, 15, 21): # fd.append(f'|  {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
 #                n = ns[0] if j==3 else ns[1] if j==9 else ns[2] if j==15 else ns[3] if j==21 else '??'
-                if   j == 3  and len(ns) >= 1:  n = ns[0]
-                elif j == 9  and len(ns) >= 2:  n = ns[1]
-                elif j == 15 and len(ns) >= 3:  n = ns[2]
-                elif j == 21 and len(ns) >= 4:  n = ns[3]
-                else:                           n = f'?{len(ns)}\\{j}?' # ;  slog(f'{n=}')
-                fd.append(f'| {n:4} {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
+                if   j == 3:   m = self.iv2n(n, d)
+                elif j == 9:   m = self.iv2n(n, d)
+                elif j == 15:  m = self.iv2n(n, d)
+                elif j == 21:  m = self.iv2n(n, d)
+                else:                           m = f'?{j}?' # ;  slog(f'{n=}')
+                fd.append(f'| {m:4} {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
         return fd
+# P1 M2 M3 P4 P5 M6 M7 P8  m2 m3 m6 m7 
+# C♭ Db Eb Fb Gb Ab Bb Cb  C  E  G  B
+# G♭ Ab Bb Cb Db Eb F  Gb  G  A  D  E
+# Db Eb F  Gb Ab Bb C  Db  D  E  A  B
+# Ab Bb C  Db Eb F  G  Ab  A  B  E  Gb
+# Eb F  G  Ab Bb C  D  Eb  Fb Gb B  Cb
+# Bb C  D  Eb F  G  A  Bb  B  Db Gb Ab
+# F  G  A  Bb C  D  E  F   Gb Ab Db Eb
+# C  D  E  F  G  A  B  C   Db Eb Ab Bb
+# G  A  B  C  D  E  F# G   Ab Bb Eb F
+# D  E  F# G  A  B  C# D   Eb F  Bb C
+# A  B  C# D  E  F# G# A   A# C  F  G
+# E  F# G# A  B  C# D# E   F  G  C  D
+# B  C# D# E  F# G# A# B   C  D  G  A
+# F# G# A# B  C# D# E# F#  G  A  D  E
+# C# D# E# F# G# A# B# C#  D  E  A  B
+    @staticmethod
+    def iv2n(n, iv):
+        m = n[0]
+        if   iv == 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A♭', 'Db', 'G♭', 'C♭') else Z
+        elif iv == 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'E♭') else Z
+        elif iv == 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭') else '♯' if n  in ('E', 'B', 'F♯', 'C♯') else Z
+        elif iv == 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G', 'C', 'F', 'B♭', 'E♭') else Z
+        elif iv == 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G♭', 'C♭') else '♯' if n in ('D', 'A', 'E', 'B', 'F♯', 'C♯') else Z
+        elif iv == 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭') else '♯' if n == 'C♯' else Z
+        elif iv == 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♯' if nn not in ('B', 'E') else Z
+        elif iv == 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('E♭', 'A♭', 'D♭', 'G♭') else '♯' if n in ('G♯', 'C♯', 'F♯') else Z
+        elif iv == 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'B♭') else Z
+        elif iv == 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D♭', 'G♭', 'C♭') else '♯' if n in ('A', 'B', 'E', 'F♯', 'C♯') else Z
+        elif iv == 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C', 'F', 'B♭', 'E♭', 'A♭') else Z
+        elif iv == 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n == 'C♭' else '♯' if n in ('G', 'D', 'A', 'E', 'B', 'F♯', 'G♯') else Z
+        elif iv == 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭') else '♯' if n in ('F♯', 'C♯') else Z
+        elif iv == 'd2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭♭'
+        elif iv == 'd3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭♭'
+        elif iv == 'd4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭'
+        elif iv == 'd5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭'
+        elif iv == 'd6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭♭'
+        elif iv == 'd7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭♭'
+        elif iv == 'd8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭'
+        elif iv == 'A1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♯'
+        elif iv == 'A7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♯'
+        else:             i = 1  ;  nn = nextN(m, i)  ;  e = '??'
+        return nn + e
+    '''
+P1  d2  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6  d8  M7  A7  P8
 
+P1  m2  M2  m3  M3  P4  A4  P5  m6  M6  m7  M7  P8
+d2  A1  d3  A2  d4  A3  d5  d6  A5  d7  A6  d8  A7  
+
+P1  C   d2  D♭♭
+m2  D♭  A1  C♯
+M2  D   d3  E♭♭
+m3  E♭  A2  D♯
+M3  E   d4  F♭
+P4  F   A3  E♯
+A4  F♯  d5  G♭
+P5  G   d6  A♭♭
+m6  A♭  A5  G♯
+M6  A   d7  B♭♭
+m7  B♭  A6  A♯
+M7  B   d8  C♭
+P8  C   A7  B♯
+    '''
     def getNs(self, i):
         j = i   ;   ns = []
         while j >= 0 and len(ns) <= 1+i:
@@ -217,7 +288,6 @@ class Pthgrn(ivls.Intonation):
                 ns.append(self.ckmap[ck]['Note'])
             j -= 1
         return ns
-
     def NEW__getNs(self, js):
         ns = []
         for j in js:
@@ -225,6 +295,18 @@ class Pthgrn(ivls.Intonation):
             if 'Count' in self.ckmap[ck] and self.ckmap[ck]['Count'] > 0:
                 ns.append(self.ckmap[ck]['Note'])
         return ns
+
+    def NEW__dmpIvals(self, h, ks, ns, cs, ds): # todo move to base class, but epsilon is an issue
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   hdrA = ['j', 'j*100', 'i ']  ;  l = math.floor(h/2)
+        hdrB1  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']   ;   eps = self.epsilon()
+        hdrB2  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']    ;   data = []
+        hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)    ;   hdrs.extend(hdrB2)
+        w, x = self.ck2ikm[ks[h]], self.ck2ikm[ks[h-1]]
+        if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
+        elif h == 12: data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h]]
+        elif h == 25: data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h-1], x, cs[h-1], ks[h-1], ds[h-1], eps, cs[h]]
+        fd = self.fIvals(h, data, ns)
+        slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 
     def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nns = 1
@@ -283,8 +365,7 @@ class Pthgrn(ivls.Intonation):
         elif nns == 3:
             pass
         if   h in hs:
-            ns = self.getNs(h)
-            fd = self.fIvals(h, data, ns)
+            fd = self.fIvals(h, data, self.n) # ns[-1])
             slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
 j j*100 i  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`

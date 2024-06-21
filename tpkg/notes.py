@@ -15,16 +15,41 @@ ACCD_TONES    = ['b', '#', '♭', '♮', '♯']
 CM_P_M        = 100 # cm per m, cemtimeters per meter
 V_SOUND       = 345 # m/s in dry air @ about 73 deg F
 A4_INDEX      = 57  # 440 Hz A Note Index
+'''
+P1  d2  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6  d8  M7  A7  P8
+
+P1  m2  M2  m3  M3  P4  A4  P5  m6  M6  m7  M7  P8
+d2  A1  d3  A2  d4  A3  d5  d6  A5  d7  A6  d8  A7  
+
+P1  C   d2  D♭♭
+m2  D♭  A1  C♯
+M2  D   d3  E♭♭
+m3  E♭  A2  D♯
+M3  E   d4  F♭
+P4  F   A3  E♯
+A4  F♯  d5  G♭
+P5  G   d6  A♭♭
+m6  A♭  A5  G♯
+M6  A   d7  B♭♭
+m7  B♭  A6  A♯
+M7  B   d8  C♭
+P8  C   A7  B♯
+'''
 ########################################################################################################################################################################################################
 class Notes:#0      1       2       3       4       5       6       7       8       9        a        b           0       #[  2    7 9  ]#
     I2F = { 0:'C' , 1:'D♭', 2:'D' , 3:'E♭', 4:'E' , 5:'F' , 6:'G♭', 7:'G' , 8:'A♭', 9:'A' , 10:'B♭', 11:'B' } # ,12:'C' } # 8/12/16
     I2S = { 0:'C' , 1:'C♯', 2:'D' , 3:'D♯', 4:'E' , 5:'F' , 6:'F♯', 7:'G' , 8:'G♯', 9:'A' , 10:'A♯', 11:'B' } # ,12:'C' } # 8/12/16
     I4F = { 0:'C' , 1:'D♭', 2:'D' , 3:'E♭', 4:'F♭', 5:'F' , 6:'G♭', 7:'G' , 8:'A♭', 9:'A' , 10:'B♭', 11:'C♭'} # ,12:'C' } # 8/12/16 C♭ F♭
     I4S = { 0:'B♯', 1:'C♯', 2:'D' , 3:'D♯', 4:'E' , 5:'E♯', 6:'F♯', 7:'G' , 8:'G♯', 9:'A' , 10:'A♯', 11:'B' } # ,12:'C' } # 8/12/16 B♯ E♯
+#    I2V = { 0:'R',  1:'♭2', 2:'2',  3:'♭3', 4:'3',  5:'4',  6:'TT', 7:'5',  8:'♭6', 9:'6',  10:'♭7', 11:'7', 12:'R' } # 8/12/16 ♭5 ♯5
+#    I4V = { 0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'A4', 7:'P5', 8:'m6', 9:'M6', 10:'m7', 11:'M7',12:'P8'} # 8/12/16 TT m6
+#    I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'d5', 7:'d6', 8:'A5', 9:'d7', 10:'A6', 11:'d8',12:'A7'} # 8/12/16 TT d2 A1
     I2V = { 0:'R' , 1:'♭2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'♭5', 7:'5' , 8:'♯5', 9:'6' , 10:'♭7', 11:'7' } # ,12:'R' } # 8/12/16 ♭5 ♯5
     I4V = { 0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'TT', 7:'P5', 8:'m6', 9:'M6', 10:'m7', 11:'M7'} # ,12:'P8'} # 8/12/16 TT m6
     I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'P4', 6:'A4', 7:'d6', 8:'A5', 9:'d7', 10:'A6', 11:'d8'} # ,13:'A7'} # 8/12/16 TT d2 A1
     V2I = { 'R':0 , '♭2':1, '2':2 , 'm3':3, 'M3':4, '4' :5, '♭5':6, '5':7 , '♯5':8, '6' :9, '♭7':10, '7' :11} # ,'R`':12} # 8/12/16 ♭5 ♯5
+#    V2I = { 'R':0, '♭2':1, '2':2, '♭3':3, '3':4, '4':5, 'TT':6, '5':7 , '♭6':8, '6' :9, '♭7':10, '7':11, 'O':12 } # ,'R`':12} # 8/12/16 ♭5 ♯5
+    V4I = { 'P1':0, 'm2':1, 'M2':2, 'm3':3, 'M3':4, 'P4':5, 'A4':6, 'P5':7 , 'm6':8, 'M6' :9, 'm7':10, 'M7':11, 'P8':12 } # ,'R`':12} # 8/12/16 ♭5 ♯5
     N2I = {'B♯':0 , 'C' :0,'C♯':1 , 'D♭':1, 'D' :2, 'D♯':3, 'E♭':3, 'E':4 , 'F♭':4, 'E♯':5, 'F' :5,  'F♯':6, 'G♭':6, 'G' :7, 'G♯':8, 'A♭':8, 'A' :9, 'A♯':10, 'B♭':10, 'B' :11, 'C♭' :11, 'B♯`':12, 'C`':12 } #21 B# C♭ E# F♭
     F2S = {            'D♭':'C♯', 'E♭':'D♯',                       'G♭':'F♯', 'A♭':'G♯', 'B♭':'A♯'           } #[ 1 3  6 8 a ]# 5/9 D♭->C♯
     S2F = {            'C♯':'D♭', 'D♯':'E♭',                       'F♯':'G♭', 'G♯':'A♭', 'A♯':'B♭'           } #[ 1 3  6 8 a ]# 5/9 C♯->D♭
@@ -37,6 +62,34 @@ class Notes:#0      1       2       3       4       5       6       7       8   
     TYPE               = SHRP
     NT                 = len(V2I)
 
+    @staticmethod
+    def nextN(n, i=1):
+        m = n[0]
+        if i == 1:   return m
+        match m:
+            case 'A': mm = 'B'
+            case 'B': mm = 'C'
+            case 'C': mm = 'D'
+            case 'D': mm = 'E'
+            case 'E': mm = 'F'
+            case 'F': mm = 'G'
+            case 'G': mm = 'A'
+            case   _: mm = '??'
+        if i>2:
+            return Notes.nextN(mm, i-1)
+        else:    return mm
+
+    @staticmethod
+    def prevN(n):
+        match n[0]:
+            case 'A': return 'G'
+            case 'B': return 'A'
+            case 'C': return 'B'
+            case 'D': return 'C'
+            case 'E': return 'D'
+            case 'F': return 'E'
+            case 'G': return 'F'
+
     @classmethod
     def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
     @classmethod
@@ -47,17 +100,17 @@ class Notes:#0      1       2       3       4       5       6       7       8   
     def n2ai(cls, m):               n = m[:-1].strip()        ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(filtA(m))
     @classmethod
     def n2ipo(cls, n):              o = int(n[-1]) * cls.NT   ;   n = n[:-1]   ;   return cls.N2I[n] + o
-#    @classmethod
-#    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0) # todo fixme N/A not used?
-#    @classmethod
-#    def nextIndex(cls, i, d=1):     return (i+d) % cls.NT
     @classmethod
-    def name(cls, i, t=None, n2=1):
+    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V4I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0) # todo fixme N/A not used?
+    @classmethod
+    def nextIndex(cls, i, d=1):     return (i+d) % cls.NT # todo fixme N/A not used?
+    @classmethod
+    def name(cls, i, t=None, n2=0):
         j = i % cls.NT   ;   t = 2 if t==-1 else t
 #       t =     cls.TYPE if t is None else t
-        t = t        if t is not None else cls.TYPE
-        assert     t      is not None and  ist(t, int),     f'{t=} {type(t)=}'
-        assert  cls.i2n() is not None and  t in cls.i2n(),  f'{t=} {cls.i2n()=}'
+        t = t           if t is not None else cls.TYPE
+        assert             t is not None  and ist(t, int),     f'{t=} {type(t)=}'
+        assert  cls.i2n()    is not None  and t in cls.i2n(),  f'{t=} {cls.i2n()=}'
         assert  cls.i2n()[t] is not None,                   f'{t=} {cls.i2n()[t]=}'
         return  cls.i2n(t)[j]  if n2  else cls.i4n(t)[j]
 ########################################################################################################################################################################################################

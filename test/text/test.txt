@@ -72,18 +72,18 @@
 #utl   init               ROOT_DIR='test'
 #kysgs init               BGN
 KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Aeolean Note Ordering Key Sig Table -7
-t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
- 0 NTRL C  0 [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
--1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
+t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[C♭ F♭ A D G C F]'
+ 0 NTRL C  0 [C♭ F♭ A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
+-1 FLAT F  5 [B♭ F♭ A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
 -2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ] [g  a  b♭ c  d  e♭ f ]
 -3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ] [c  d  e♭ f  g  a♭ b♭]
 -4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ] [f  g  a♭ b♭ c  d♭ e♭]
 -5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ] [b♭ c  d♭ e♭ f  g♭ a♭]
 -6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ] [e♭ f  g♭ a♭ b♭ c♭ d♭]
 -7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭] [a♭ b♭ c♭ d♭ e♭ f♭ g♭]
-t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
- 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
-+1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
+t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[E♯ B♯ G D A E B]'
+ 0 NTRL C  0 [E♯ B♯ G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
++1 SHRP G  7 [F♯ B♯ G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
 +2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯] [b  c♯ d  e  f♯ g  a ]
 +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯] [f♯ g♯ a  b  c♯ d  e ]
 +4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯] [c♯ d♯ e  f♯ g♯ a  b ]
@@ -107,9 +107,9 @@ KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note
 -4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ] [f  g  a♭ b♭ c  d♭ e♭]
 -3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ] [c  d  e♭ f  g  a♭ b♭]
 -2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ] [g  a  b♭ c  d  e♭ f ]
--1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
- 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
-+1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
+-1 FLAT F  5 [B♭ F♭ A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ] [d  e  f  g  a  b♭ c ]
+ 0 NTRL C  0 [E♯ B♯ G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
++1 SHRP G  7 [F♯ B♯ G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯] [e  f♯ g  a  b  c  d ]
 +2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯] [b  c♯ d  e  f♯ g  a ]
 +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯] [f♯ g♯ a  b  c♯ d  e ]
 +4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯] [c♯ d♯ e  f♯ g♯ a  b ]
@@ -208,22 +208,22 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -tdeo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-#utl   getFilePath        baseName =test.184     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.184     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.184.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.184.cat'
-#utl   getFilePath        fileName =test.184.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.184.cat')
-#utl   getFilePath        baseName =test.184     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.184     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.184.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.184.csv'
-#utl   getFilePath        fileName =test.184.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.184.csv')
-#utl   getFilePath        baseName =test.184     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.184     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.184.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.184.log'
-#utl   getFilePath        fileName =test.184.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.184.log')
-#utl   getFilePath        baseName =test.184     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-#utl   getFilePath        baseName =test.184     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-#utl   getFilePath        fileName =test.184.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.184.txt'
-#utl   getFilePath        fileName =test.184.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.184.txt')
+#utl   getFilePath        baseName =test.240     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.240     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.240.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.240.cat'
+#utl   getFilePath        fileName =test.240.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.240.cat')
+#utl   getFilePath        baseName =test.240     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.240     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.240.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.240.csv'
+#utl   getFilePath        fileName =test.240.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.240.csv')
+#utl   getFilePath        baseName =test.240     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.240     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.240.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.240.log'
+#utl   getFilePath        fileName =test.240.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.240.log')
+#utl   getFilePath        baseName =test.240     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+#utl   getFilePath        baseName =test.240     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+#utl   getFilePath        fileName =test.240.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.240.txt'
+#utl   getFilePath        fileName =test.240.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.240.txt')
 #tabs  dumpArgs           [a]      .AUTO_SAVE=0
 #tabs  dumpArgs           [A]         .VARROW=1
 #tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -331,7 +331,7 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 [ None ,  None , 8:A♭:2, 1:D♭:1,  None ,  None ,  None ]
 [ None , 1:D♭:1, 8:A♭:2,  None ,  None , 5:F :2, 0:C :1]
 #tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
-#tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
+#tabs  _initTniks          0 NTRL C  0 [E♯ B♯ G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ] [a  b  c  d  e  f  g ]
 i=1 1 1 6 n=1 1 10 6 M=0 t= d= e= o= p=6 S=0 1 3 f=test w=0 0 0 0 T=E A D G B E Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
 [    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19]
 [[    0][    0     1][    0     1     2][    0     1     2     3][    0     1     2     3     4][    0     1     2     3     4     5][    0     1     2     3     4     5     6][    0     1     2     3     4     5     6     7][    0     1     2     3     4     5     6     7     8][    0     1     2     3     4     5     6     7     8     9][    0     1     2     3     4     5     6     7     8     9    10][    0     1     2     3     4     5     6     7     8     9    10    11][    0     1     2     3     4     5     6     7     8     9    10    11    12][    0     1     2     3     4     5     6     7     8     9    10    11    12    13][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18][    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19]]
@@ -475,8 +475,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    ]
   abc3 [ 3   0 C     | 3   1 G     | 3   2 D     | 3   3 A     | 3   4 E     | 3   5 B     | 3   6 F♯    | 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    | 2   1 C     ]
   abc4 [ 3   0 C    0| 3  -5 D♭   8| 3   2 D   -3| 3  -3 E♭   5| 3   4 E   -6| 3  -1 F    2| 3  -6 G♭  10| 3   6 F♯  -9| 3   1 G   -1| 3  -4 A♭   7| 3   3 A   -4| 3  -2 B♭   4| 3   5 B   -7| 2   1 C    0]
-   1   |       |   3   |       |       |   9   |  27   |       |       |  81   |  243  |       |  729  |   4   |       |  16   |  32   |       |       |  128  |  256  |       |       | 1024  |       |   2      
-   1   |       |   2   |       |       |   8   |  16   |       |       |  64   |  128  |       |  512  |   3   |       |   9   |  27   |       |       |  81   |  243  |       |       |  729  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  |   4   |  16   |  32   |  128  |  256  | 1024  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  |   3   |   9   |  27   |  81   |  243  |  729  |   1      
 #intrvls i2Abcs             i=1 a=5 b=7
 #intrvls stck5ths           i=1 n=5
 #intrvls stck4ths           i=1 n=7
@@ -484,8 +484,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    ]
   abc3 [ 3   0 G     | 3   1 D     | 3   2 A     | 3   3 E     | 3   4 B     | 3   5 F♯    | 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    | 2   1 G     ]
   abc4 [ 3   0 G    0| 3  -5 A♭   8| 3   2 A   -3| 3  -3 B♭   5| 3   4 B   -6| 3  -1 C    2| 3  -6 D♭  10| 3   1 D   -1| 3  -4 E♭   7| 3   3 E   -4| 3  -2 F    4| 3  -7 G♭  12| 3   5 F♯  -7| 2   1 G    0]
-   1   |       |   3   |       |       |   9   |  27   |       |       |  81   |  243  |       |   4   |  16   |       |  32   |  128  |       |       |  256  | 1024  |       | 4096  |   2   |          
-   1   |       |   2   |       |       |   8   |  16   |       |       |  64   |  128  |       |   3   |   9   |       |  27   |  81   |       |       |  243  |  729  |       | 2187  |   1   |          
+   1   |   3   |   9   |  27   |  81   |  243  |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   1      
 #intrvls i2Abcs             i=2 a=4 b=8
 #intrvls stck5ths           i=2 n=4
 #intrvls stck4ths           i=2 n=8
@@ -493,8 +493,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    ]
   abc3 [ 3   0 D     | 3   1 A     | 3   2 E     | 3   3 B     | 3   4 F♯    | 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    | 2   1 D     ]
   abc4 [ 3   0 D    0| 3  -5 E♭   8| 3   2 E   -3| 3  -3 F    5| 3  -8 G♭  13| 3   4 F♯  -6| 3  -1 G    2| 3  -6 A♭  10| 3   1 A   -1| 3  -4 B♭   7| 3   3 B   -4| 3  -2 C    4| 3  -7 D♭  12| 2   1 D    0]
-   1   |       |   3   |       |       |   9   |  27   |       |  81   |   4   |  16   |       |  32   |  128  |       |  256  | 1024  |       |       | 4096  | 8192  |       |   2   |          
-   1   |       |   2   |       |       |   8   |  16   |       |  64   |   3   |   9   |       |  27   |  81   |       |  243  |  729  |       |       | 2187  | 6561  |       |   1   |          
+   1   |   3   |   9   |  27   |  81   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  |   2      
+   1   |   2   |   8   |  16   |  64   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   1      
 #intrvls i2Abcs             i=3 a=3 b=9
 #intrvls stck5ths           i=3 n=3
 #intrvls stck4ths           i=3 n=9
@@ -502,8 +502,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    ]
   abc3 [ 3   0 A     | 3   1 E     | 3   2 B     | 3   3 F♯    | 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    | 2   1 A     ]
   abc4 [ 3   0 A    0| 3  -5 B♭   8| 3   2 B   -3| 3  -3 C    5| 3  -8 D♭  13| 3  -1 D    2| 3  -6 E♭  10| 3   1 E   -1| 3  -4 F    7| 3  -9 G♭  15| 3   3 F♯  -4| 3  -2 G    4| 3  -7 A♭  12| 2   1 A    0]
-   1   |       |   3   |       |       |   9   |  27   |       |   4   |  16   |  32   |       |  128  |  256  |       | 1024  | 4096  |       | 8192  | 32768 |   2   |       |          
-   1   |       |   2   |       |       |   8   |  16   |       |   3   |   9   |  27   |       |  81   |  243  |       |  729  | 2187  |       | 6561  | 19683 |   1   |       |          
+   1   |   3   |   9   |  27   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 |   2      
+   1   |   2   |   8   |  16   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   1      
 #intrvls i2Abcs             i=4 a=2 b=10
 #intrvls stck5ths           i=4 n=2
 #intrvls stck4ths           i=4 n=10
@@ -511,8 +511,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    ]
   abc3 [ 3   0 E     | 3   1 B     | 3   2 F♯    | 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    | 2   1 E     ]
   abc4 [ 3   0 E    0| 3  -5 F    8| 3 -10 G♭  16| 3   2 F♯  -3| 3  -3 G    5| 3  -8 A♭  13| 3  -1 A    2| 3  -6 B♭  10| 3   1 B   -1| 3  -4 C    7| 3  -9 D♭  15| 3  -2 D    4| 3  -7 E♭  12| 2   1 E    0]
-   1   |       |   3   |       |   9   |   4   |  16   |       |  32   |  128  |  256  |       | 1024  | 4096  |       | 8192  | 32768 |       | 65536 |   2   |       |          
-   1   |       |   2   |       |   8   |   3   |   9   |       |  27   |  81   |  243  |       |  729  | 2187  |       | 6561  | 19683 |       | 59049 |   1   |       |          
+   1   |   3   |   9   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |   2      
+   1   |   2   |   8   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   1      
 #intrvls i2Abcs             i=5 a=1 b=11
 #intrvls stck5ths           i=5 n=1
 #intrvls stck4ths           i=5 n=11
@@ -520,8 +520,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    ]
   abc3 [ 3   0 B     | 3   1 F♯    | 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    | 2   1 B     ]
   abc4 [ 3   0 B    0| 3  -5 C    8| 3 -10 D♭  16| 3  -3 D    5| 3  -8 E♭  13| 3  -1 E    2| 3  -6 F   10| 3 -11 G♭  18| 3   1 F♯  -1| 3  -4 G    7| 3  -9 A♭  15| 3  -2 A    4| 3  -7 B♭  12| 2   1 B    0]
-   1   |       |   3   |       |   4   |  16   |  32   |       |  128  |  256  | 1024  |       | 4096  | 8192  | 32768 | 65536 |262144 |       |   2   |       |          
-   1   |       |   2   |       |   3   |   9   |  27   |       |  81   |  243  |  729  |       | 2187  | 6561  | 19683 | 59049 |177147 |       |   1   |       |          
+   1   |   3   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |   2      
+   1   |   2   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   1      
 #intrvls i2Abcs             i=6 a=0 b=12
 #intrvls stck5ths           i=6 n=0
 #intrvls stck4ths           i=6 n=12
@@ -529,8 +529,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    ]
   abc3 [ 3   0 F♯    | 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    | 2   1 F♯    ]
   abc4 [ 3   0 F♯   0| 3  -5 G    8| 3 -10 A♭  16| 3  -3 A    5| 3  -8 B♭  13| 3  -1 B    2| 3  -6 C   10| 3 -11 D♭  18| 3  -4 D    7| 3  -9 E♭  15| 3  -2 E    4| 3  -7 F   12| 3 -12 G♭  20| 2   1 F♯   0]
-   1   |       |   4   |       |  16   |  32   |  128  |       |  256  | 1024  | 4096  |       | 8192  | 32768 | 65536 |262144 |1048576|       |   2   |          
-   1   |       |   3   |       |   9   |  27   |  81   |       |  243  |  729  | 2187  |       | 6561  | 19683 | 59049 |177147 |531441 |       |   1   |          
+   1   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |1048576|   2      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |531441 |   1      
 #intrvls i2Abcs             i=-1 a=7 b=5
 #intrvls stck5ths           i=-1 n=7
 #intrvls stck4ths           i=-1 n=5
@@ -538,8 +538,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    ]
   abc3 [ 3   0 F     | 3   1 C     | 3   2 G     | 3   3 D     | 3   4 A     | 3   5 E     | 3   6 B     | 3   7 F♯    | 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    | 2   1 F     ]
   abc4 [ 3   0 F    0| 3  -5 G♭   8| 3   7 F♯ -11| 3   2 G   -3| 3  -3 A♭   5| 3   4 A   -6| 3  -1 B♭   2| 3   6 B   -9| 3   1 C   -1| 3  -4 D♭   7| 3   3 D   -4| 3  -2 E♭   4| 3   5 E   -7| 2   1 F    0]
-   1   |       |   3   |   9   |  27   |  81   |  243  |       |  729  | 2187  |   4   |       |  16   |  32   |  128  |  256  |   2   |       |          
-   1   |       |   2   |   8   |  16   |  64   |  128  |       |  512  | 2048  |   3   |       |   9   |  27   |  81   |  243  |   1   |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   4   |  16   |  32   |  128  |  256  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  |   3   |   9   |  27   |  81   |  243  |   1      
 #intrvls i2Abcs             i=-2 a=8 b=4
 #intrvls stck5ths           i=-2 n=8
 #intrvls stck4ths           i=-2 n=4
@@ -547,8 +547,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    ]
   abc3 [ 3   0 B♭    | 3   1 F     | 3   2 C     | 3   3 G     | 3   4 D     | 3   5 A     | 3   6 E     | 3   7 B     | 3   8 F♯    | 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    | 2   1 B♭    ]
   abc4 [ 3   0 B♭   0| 3   7 B  -11| 3   2 C   -3| 3  -3 D♭   5| 3   4 D   -6| 3  -1 E♭   2| 3   6 E   -9| 3   1 F   -1| 3  -4 G♭   7| 3   8 F♯ -12| 3   3 G   -4| 3  -2 A♭   4| 3   5 A   -7| 2   1 B♭   0]
-   1   |       |   3   |   9   |  27   |  81   |  243  |       |  729  | 2187  | 6561  |       |   4   |  16   |  32   |  128  |   2   |          
-   1   |       |   2   |   8   |  16   |  64   |  128  |       |  512  | 2048  | 4096  |       |   3   |   9   |  27   |  81   |   1   |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   4   |  16   |  32   |  128  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  |   3   |   9   |  27   |  81   |   1      
 #intrvls i2Abcs             i=-3 a=9 b=3
 #intrvls stck5ths           i=-3 n=9
 #intrvls stck4ths           i=-3 n=3
@@ -556,8 +556,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    ]
   abc3 [ 3   0 E♭    | 3   1 B♭    | 3   2 F     | 3   3 C     | 3   4 G     | 3   5 D     | 3   6 A     | 3   7 E     | 3   8 B     | 3   9 F♯    | 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    | 2   1 E♭    ]
   abc4 [ 3   0 E♭   0| 3   7 E  -11| 3   2 F   -3| 3  -3 G♭   5| 3   9 F♯ -14| 3   4 G   -6| 3  -1 A♭   2| 3   6 A   -9| 3   1 B♭  -1| 3   8 B  -12| 3   3 C   -4| 3  -2 D♭   4| 3   5 D   -7| 2   1 E♭   0]
-   1   |       |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |       |   4   |  16   |  32   |   2   |          
-   1   |       |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |       |   3   |   9   |  27   |   1   |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   4   |  16   |  32   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |   3   |   9   |  27   |   1      
 #intrvls i2Abcs             i=-4 a=10 b=2
 #intrvls stck5ths           i=-4 n=10
 #intrvls stck4ths           i=-4 n=2
@@ -565,8 +565,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D♭    | 3  -2 G♭    ]
   abc3 [ 3   0 A♭    | 3   1 E♭    | 3   2 B♭    | 3   3 F     | 3   4 C     | 3   5 G     | 3   6 D     | 3   7 A     | 3   8 E     | 3   9 B     | 3  10 F♯    | 3  -1 D♭    | 3  -2 G♭    | 2   1 A♭    ]
   abc4 [ 3   0 A♭   0| 3   7 A  -11| 3   2 B♭  -3| 3   9 B  -14| 3   4 C   -6| 3  -1 D♭   2| 3   6 D   -9| 3   1 E♭  -1| 3   8 E  -12| 3   3 F   -4| 3  -2 G♭   4| 3  10 F♯ -15| 3   5 G   -7| 2   1 A♭   0]
-   1   |       |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |       | 59049 |   4   |  16   |   2      
-   1   |       |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |       | 32768 |   3   |   9   |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   4   |  16   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |   3   |   9   |   1      
 #intrvls i2Abcs             i=-5 a=11 b=1
 #intrvls stck5ths           i=-5 n=11
 #intrvls stck4ths           i=-5 n=1
@@ -574,8 +574,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G♭    ]
   abc3 [ 3   0 D♭    | 3   1 A♭    | 3   2 E♭    | 3   3 B♭    | 3   4 F     | 3   5 C     | 3   6 G     | 3   7 D     | 3   8 A     | 3   9 E     | 3  10 B     | 3  11 F♯    | 3  -1 G♭    | 2   1 D♭    ]
   abc4 [ 3   0 D♭   0| 3   7 D  -11| 3   2 E♭  -3| 3   9 E  -14| 3   4 F   -6| 3  -1 G♭   2| 3  11 F♯ -17| 3   6 G   -9| 3   1 A♭  -1| 3   8 A  -12| 3   3 B♭  -4| 3  10 B  -15| 3   5 C   -7| 2   1 D♭   0]
-   1   |       |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   4   |   2      
-   1   |       |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |131072 |   3   |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   4   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |131072 |   3   |   1      
    0:P1|  23:d2|  90:m2| 114:A1| 180:d3| 204:M2| 294:m3| 318:A2| 384:d4| 408:M3| 498:P4| 522:A3| 588:d5| 612:A4| 678:d6| 702:P5| 792:m6| 816:A5| 882:d7| 906:M6| 996:m7|1020:A6|1086:d8|1110:M7|1177:A7|1200:P8
 1.00000|       |1.05350|       |       |1.12500|1.18519|       |       |1.26562|1.33333|       |1.40466|1.42383|       |1.50000|1.58025|       |       |1.68750|1.77778|       |       |1.89844|       |2.00000   
 1.00000|       |1.05350|       |       |1.12500|1.18519|       |       |1.26562|1.33333|       |1.40466|       |       |1.50000|1.58025|       |       |1.68750|1.77778|       |1.87289|1.89844|       |2.00000   
@@ -610,8 +610,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    ]
   abc3 [ 3   0 C     | 3   1 G     | 3   2 D     | 3   3 A     | 3   4 E     | 3   5 B     | 3   6 F♯    | 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    | 2   1 C     ]
   abc4 [ 3   0 C    0| 3  -5 D♭   8| 3   2 D   -3| 3  -3 E♭   5| 3   4 E   -6| 3  -1 F    2| 3  -6 G♭  10| 3   6 F♯  -9| 3   1 G   -1| 3  -4 A♭   7| 3   3 A   -4| 3  -2 B♭   4| 3   5 B   -7| 2   1 C    0]
-   1   |       |  256  |       |       |   9   |  32   |       |       |  81   |   4   |       | 1024  |  729  |       |   3   |  128  |       |       |  27   |  16   |       |       |  243  |       |   2      
-   1   |       |  243  |       |       |   8   |  27   |       |       |  64   |   3   |       |  729  |  512  |       |   2   |  81   |       |       |  16   |   9   |       |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  |   4   |  16   |  32   |  128  |  256  | 1024  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  |   3   |   9   |  27   |  81   |  243  |  729  |   1      
 #intrvls i2Abcs             i=1 a=5 b=7
 #intrvls stck5ths           i=1 n=5
 #intrvls stck4ths           i=1 n=7
@@ -619,8 +619,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    ]
   abc3 [ 3   0 G     | 3   1 D     | 3   2 A     | 3   3 E     | 3   4 B     | 3   5 F♯    | 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    | 2   1 G     ]
   abc4 [ 3   0 G    0| 3  -5 A♭   8| 3   2 A   -3| 3  -3 B♭   5| 3   4 B   -6| 3  -1 C    2| 3  -6 D♭  10| 3   1 D   -1| 3  -4 E♭   7| 3   3 E   -4| 3  -2 F    4| 3  -7 G♭  12| 3   5 F♯  -7| 2   1 G    0]
-   1   |       |  256  |       |       |   9   |  32   |       |       |  81   |   4   |       | 1024  |  729  |       |   3   |  128  |       |       |  27   |  16   |       | 4096  |  243  |       |   2      
-   1   |       |  243  |       |       |   8   |  27   |       |       |  64   |   3   |       |  729  |  512  |       |   2   |  81   |       |       |  16   |   9   |       | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   1      
 #intrvls i2Abcs             i=2 a=4 b=8
 #intrvls stck5ths           i=2 n=4
 #intrvls stck4ths           i=2 n=8
@@ -628,8 +628,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    ]
   abc3 [ 3   0 D     | 3   1 A     | 3   2 E     | 3   3 B     | 3   4 F♯    | 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    | 2   1 D     ]
   abc4 [ 3   0 D    0| 3  -5 E♭   8| 3   2 E   -3| 3  -3 F    5| 3  -8 G♭  13| 3   4 F♯  -6| 3  -1 G    2| 3  -6 A♭  10| 3   1 A   -1| 3  -4 B♭   7| 3   3 B   -4| 3  -2 C    4| 3  -7 D♭  12| 2   1 D    0]
-   1   |       |  256  |       |       |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |       |   3   |  128  |       |       |  27   |  16   |       | 4096  |  243  |       |   2      
-   1   |       |  243  |       |       |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |       |   2   |  81   |       |       |  16   |   9   |       | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  |   2      
+   1   |   2   |   8   |  16   |  64   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   1      
 #intrvls i2Abcs             i=3 a=3 b=9
 #intrvls stck5ths           i=3 n=3
 #intrvls stck4ths           i=3 n=9
@@ -637,8 +637,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    ]
   abc3 [ 3   0 A     | 3   1 E     | 3   2 B     | 3   3 F♯    | 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    | 2   1 A     ]
   abc4 [ 3   0 A    0| 3  -5 B♭   8| 3   2 B   -3| 3  -3 C    5| 3  -8 D♭  13| 3  -1 D    2| 3  -6 E♭  10| 3   1 E   -1| 3  -4 F    7| 3  -9 G♭  15| 3   3 F♯  -4| 3  -2 G    4| 3  -7 A♭  12| 2   1 A    0]
-   1   |       |  256  |       |       |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |       |   3   |  128  |       | 32768 |  27   |  16   |       | 4096  |  243  |       |   2      
-   1   |       |  243  |       |       |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |       |   2   |  81   |       | 19683 |  16   |   9   |       | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 |   2      
+   1   |   2   |   8   |  16   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   1      
 #intrvls i2Abcs             i=4 a=2 b=10
 #intrvls stck5ths           i=4 n=2
 #intrvls stck4ths           i=4 n=10
@@ -646,8 +646,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    ]
   abc3 [ 3   0 E     | 3   1 B     | 3   2 F♯    | 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    | 2   1 E     ]
   abc4 [ 3   0 E    0| 3  -5 F    8| 3 -10 G♭  16| 3   2 F♯  -3| 3  -3 G    5| 3  -8 A♭  13| 3  -1 A    2| 3  -6 B♭  10| 3   1 B   -1| 3  -4 C    7| 3  -9 D♭  15| 3  -2 D    4| 3  -7 E♭  12| 2   1 E    0]
-   1   |       |  256  |       | 65536 |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |       |   3   |  128  |       | 32768 |  27   |  16   |       | 4096  |  243  |       |   2      
-   1   |       |  243  |       | 59049 |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |       |   2   |  81   |       | 19683 |  16   |   9   |       | 2187  |  128  |       |   1      
+   1   |   3   |   9   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |   2      
+   1   |   2   |   8   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   1      
 #intrvls i2Abcs             i=5 a=1 b=11
 #intrvls stck5ths           i=5 n=1
 #intrvls stck4ths           i=5 n=11
@@ -655,8 +655,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    ]
   abc3 [ 3   0 B     | 3   1 F♯    | 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    | 2   1 B     ]
   abc4 [ 3   0 B    0| 3  -5 C    8| 3 -10 D♭  16| 3  -3 D    5| 3  -8 E♭  13| 3  -1 E    2| 3  -6 F   10| 3 -11 G♭  18| 3   1 F♯  -1| 3  -4 G    7| 3  -9 A♭  15| 3  -2 A    4| 3  -7 B♭  12| 2   1 B    0]
-   1   |       |  256  |       | 65536 |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  |       | 32768 |  27   |  16   |       | 4096  |  243  |       |   2      
-   1   |       |  243  |       | 59049 |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   |       | 19683 |  16   |   9   |       | 2187  |  128  |       |   1      
+   1   |   3   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |   2      
+   1   |   2   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   1      
 #intrvls i2Abcs             i=6 a=0 b=12
 #intrvls stck5ths           i=6 n=0
 #intrvls stck4ths           i=6 n=12
@@ -664,8 +664,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    ]
   abc3 [ 3   0 F♯    | 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    | 2   1 F♯    ]
   abc4 [ 3   0 F♯   0| 3  -5 G    8| 3 -10 A♭  16| 3  -3 A    5| 3  -8 B♭  13| 3  -1 B    2| 3  -6 C   10| 3 -11 D♭  18| 3  -4 D    7| 3  -9 E♭  15| 3  -2 E    4| 3  -7 F   12| 3 -12 G♭  20| 2   1 F♯   0]
-   1   |       |  256  |       | 65536 |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  |       | 32768 |  27   |  16   |       | 4096  |  243  |1048576|   2      
-   1   |       |  243  |       | 59049 |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   |       | 19683 |  16   |   9   |       | 2187  |  128  |531441 |   1      
+   1   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |1048576|   2      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |531441 |   1      
 #intrvls i2Abcs             i=-1 a=7 b=5
 #intrvls stck5ths           i=-1 n=7
 #intrvls stck4ths           i=-1 n=5
@@ -673,8 +673,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    ]
   abc3 [ 3   0 F     | 3   1 C     | 3   2 G     | 3   3 D     | 3   4 A     | 3   5 E     | 3   6 B     | 3   7 F♯    | 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    | 2   1 F     ]
   abc4 [ 3   0 F    0| 3  -5 G♭   8| 3   7 F♯ -11| 3   2 G   -3| 3  -3 A♭   5| 3   4 A   -6| 3  -1 B♭   2| 3   6 B   -9| 3   1 C   -1| 3  -4 D♭   7| 3   3 D   -4| 3  -2 E♭   4| 3   5 E   -7| 2   1 F    0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  |       | 32768 |  27   |  16   |       | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   |       | 19683 |  16   |   9   |       | 2187  |  128  |531441 |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   4   |  16   |  32   |  128  |  256  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  |   3   |   9   |  27   |  81   |  243  |   1      
 #intrvls i2Abcs             i=-2 a=8 b=4
 #intrvls stck5ths           i=-2 n=8
 #intrvls stck4ths           i=-2 n=4
@@ -682,8 +682,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    ]
   abc3 [ 3   0 B♭    | 3   1 F     | 3   2 C     | 3   3 G     | 3   4 D     | 3   5 A     | 3   6 E     | 3   7 B     | 3   8 F♯    | 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    | 2   1 B♭    ]
   abc4 [ 3   0 B♭   0| 3   7 B  -11| 3   2 C   -3| 3  -3 D♭   5| 3   4 D   -6| 3  -1 E♭   2| 3   6 E   -9| 3   1 F   -1| 3  -4 G♭   7| 3   8 F♯ -12| 3   3 G   -4| 3  -2 A♭   4| 3   5 A   -7| 2   1 B♭   0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   |       | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   |       | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   |       | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   |       | 2187  |  128  |531441 |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   4   |  16   |  32   |  128  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  |   3   |   9   |  27   |  81   |   1      
 #intrvls i2Abcs             i=-3 a=9 b=3
 #intrvls stck5ths           i=-3 n=9
 #intrvls stck4ths           i=-3 n=3
@@ -691,8 +691,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    ]
   abc3 [ 3   0 E♭    | 3   1 B♭    | 3   2 F     | 3   3 C     | 3   4 G     | 3   5 D     | 3   6 A     | 3   7 E     | 3   8 B     | 3   9 F♯    | 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    | 2   1 E♭    ]
   abc4 [ 3   0 E♭   0| 3   7 E  -11| 3   2 F   -3| 3  -3 G♭   5| 3   9 F♯ -14| 3   4 G   -6| 3  -1 A♭   2| 3   6 A   -9| 3   1 B♭  -1| 3   8 B  -12| 3   3 C   -4| 3  -2 D♭   4| 3   5 D   -7| 2   1 E♭   0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   |       | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   |       | 2187  |  128  |531441 |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   4   |  16   |  32   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |   3   |   9   |  27   |   1      
 #intrvls i2Abcs             i=-4 a=10 b=2
 #intrvls stck5ths           i=-4 n=10
 #intrvls stck4ths           i=-4 n=2
@@ -700,8 +700,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D♭    | 3  -2 G♭    ]
   abc3 [ 3   0 A♭    | 3   1 E♭    | 3   2 B♭    | 3   3 F     | 3   4 C     | 3   5 G     | 3   6 D     | 3   7 A     | 3   8 E     | 3   9 B     | 3  10 F♯    | 3  -1 D♭    | 3  -2 G♭    | 2   1 A♭    ]
   abc4 [ 3   0 A♭   0| 3   7 A  -11| 3   2 B♭  -3| 3   9 B  -14| 3   4 C   -6| 3  -1 D♭   2| 3   6 D   -9| 3   1 E♭  -1| 3   8 E  -12| 3   3 F   -4| 3  -2 G♭   4| 3  10 F♯ -15| 3   5 G   -7| 2   1 A♭   0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |       | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |       |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |531441 |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   4   |  16   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |   3   |   9   |   1      
 #intrvls i2Abcs             i=-5 a=11 b=1
 #intrvls stck5ths           i=-5 n=11
 #intrvls stck4ths           i=-5 n=1
@@ -709,8 +709,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G♭    ]
   abc3 [ 3   0 D♭    | 3   1 A♭    | 3   2 E♭    | 3   3 B♭    | 3   4 F     | 3   5 C     | 3   6 G     | 3   7 D     | 3   8 A     | 3   9 E     | 3  10 B     | 3  11 F♯    | 3  -1 G♭    | 2   1 D♭    ]
   abc4 [ 3   0 D♭   0| 3   7 D  -11| 3   2 E♭  -3| 3   9 E  -14| 3   4 F   -6| 3  -1 G♭   2| 3  11 F♯ -17| 3   6 G   -9| 3   1 A♭  -1| 3   8 A  -12| 3   3 B♭  -4| 3  10 B  -15| 3   5 C   -7| 2   1 D♭   0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |531441 |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   4   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |131072 |   3   |   1      
                                                                                                    1                                                                                                     [1] 1
                                                                                               2         3                                                                                                [1 2 3] 3
                                                                                          4         6         9                                                                                           [1 2 3 4 6 9] 6
@@ -918,8 +918,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    ]
   abc3 [ 3   0 F     | 3   1 C     | 3   2 G     | 3   3 D     | 3   4 A     | 3   5 E     | 3   6 B     | 3   7 F♯    | 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    | 2   1 F     ]
   abc4 [ 3   0 F    0| 3  -5 G♭   8| 3   7 F♯ -11| 3   2 G   -3| 3  -3 A♭   5| 3   4 A   -6| 3  -1 B♭   2| 3   6 B   -9| 3   1 C   -1| 3  -4 D♭   7| 3   3 D   -4| 3  -2 E♭   4| 3   5 E   -7| 2   1 F    0]
-   1   |       |   3   |   9   |       |  27   |  81   |       |       |  243  |  729  |       |       | 2187  |       |   4   |  16   |       |       |  32   |  128  |       |       |  256  |       |   2      
-   1   |       |   2   |   8   |       |  16   |  64   |       |       |  128  |  512  |       |       | 2048  |       |   3   |   9   |       |       |  27   |  81   |       |       |  243  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   4   |  16   |  32   |  128  |  256  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  |   3   |   9   |  27   |  81   |  243  |   1      
 #intrvls i2Abcs             i=-2 a=8 b=4
 #intrvls stck5ths           i=-2 n=8
 #intrvls stck4ths           i=-2 n=4
@@ -927,8 +927,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    ]
   abc3 [ 3   0 B♭    | 3   1 F     | 3   2 C     | 3   3 G     | 3   4 D     | 3   5 A     | 3   6 E     | 3   7 B     | 3   8 F♯    | 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    | 2   1 B♭    ]
   abc4 [ 3   0 B♭   0| 3   7 B  -11| 3   2 C   -3| 3  -3 D♭   5| 3   4 D   -6| 3  -1 E♭   2| 3   6 E   -9| 3   1 F   -1| 3  -4 G♭   7| 3   8 F♯ -12| 3   3 G   -4| 3  -2 A♭   4| 3   5 A   -7| 2   1 B♭   0]
-   1   |       |   3   |   9   |       |  27   |  81   |       |       |  243  |  729  |       |       | 2187  |       | 6561  |   4   |  16   |       |  32   |  128  |       |       |   2   |          
-   1   |       |   2   |   8   |       |  16   |  64   |       |       |  128  |  512  |       |       | 2048  |       | 4096  |   3   |   9   |       |  27   |  81   |       |       |   1   |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   4   |  16   |  32   |  128  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  |   3   |   9   |  27   |  81   |   1      
 #intrvls i2Abcs             i=-3 a=9 b=3
 #intrvls stck5ths           i=-3 n=9
 #intrvls stck4ths           i=-3 n=3
@@ -936,8 +936,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    ]
   abc3 [ 3   0 E♭    | 3   1 B♭    | 3   2 F     | 3   3 C     | 3   4 G     | 3   5 D     | 3   6 A     | 3   7 E     | 3   8 B     | 3   9 F♯    | 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    | 2   1 E♭    ]
   abc4 [ 3   0 E♭   0| 3   7 E  -11| 3   2 F   -3| 3  -3 G♭   5| 3   9 F♯ -14| 3   4 G   -6| 3  -1 A♭   2| 3   6 A   -9| 3   1 B♭  -1| 3   8 B  -12| 3   3 C   -4| 3  -2 D♭   4| 3   5 D   -7| 2   1 E♭   0]
-   1   |       |   3   |   9   |       |  27   |  81   |  243  |       |  729  | 2187  |       |       | 6561  |       | 19683 |   4   |  16   |       |  32   |   2   |       |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |  128  |       |  512  | 2048  |       |       | 4096  |       | 16384 |   3   |   9   |       |  27   |   1   |       |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   4   |  16   |  32   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |   3   |   9   |  27   |   1      
 #intrvls i2Abcs             i=-4 a=10 b=2
 #intrvls stck5ths           i=-4 n=10
 #intrvls stck4ths           i=-4 n=2
@@ -945,8 +945,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D♭    | 3  -2 G♭    ]
   abc3 [ 3   0 A♭    | 3   1 E♭    | 3   2 B♭    | 3   3 F     | 3   4 C     | 3   5 G     | 3   6 D     | 3   7 A     | 3   8 E     | 3   9 B     | 3  10 F♯    | 3  -1 D♭    | 3  -2 G♭    | 2   1 A♭    ]
   abc4 [ 3   0 A♭   0| 3   7 A  -11| 3   2 B♭  -3| 3   9 B  -14| 3   4 C   -6| 3  -1 D♭   2| 3   6 D   -9| 3   1 E♭  -1| 3   8 E  -12| 3   3 F   -4| 3  -2 G♭   4| 3  10 F♯ -15| 3   5 G   -7| 2   1 A♭   0]
-   1   |       |   3   |   9   |       |  27   |  81   |  243  |       |  729  | 2187  |       |       | 6561  |       | 19683 | 59049 |   4   |       |  16   |   2   |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |  128  |       |  512  | 2048  |       |       | 4096  |       | 16384 | 32768 |   3   |       |   9   |   1   |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   4   |  16   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |   3   |   9   |   1      
 #intrvls i2Abcs             i=-5 a=11 b=1
 #intrvls stck5ths           i=-5 n=11
 #intrvls stck4ths           i=-5 n=1
@@ -954,8 +954,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G♭    ]
   abc3 [ 3   0 D♭    | 3   1 A♭    | 3   2 E♭    | 3   3 B♭    | 3   4 F     | 3   5 C     | 3   6 G     | 3   7 D     | 3   8 A     | 3   9 E     | 3  10 B     | 3  11 F♯    | 3  -1 G♭    | 2   1 D♭    ]
   abc4 [ 3   0 D♭   0| 3   7 D  -11| 3   2 E♭  -3| 3   9 E  -14| 3   4 F   -6| 3  -1 G♭   2| 3  11 F♯ -17| 3   6 G   -9| 3   1 A♭  -1| 3   8 A  -12| 3   3 B♭  -4| 3  10 B  -15| 3   5 C   -7| 2   1 D♭   0]
-   1   |       |   3   |   9   |       |  27   |  81   |  243  |       |  729  | 2187  | 6561  |       | 19683 |       | 59049 |177147 |   4   |       |   2   |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |  128  |       |  512  | 2048  | 4096  |       | 16384 |       | 32768 |131072 |   3   |       |   1   |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   4   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |131072 |   3   |   1      
 #intrvls i2Abcs             i=0 a=6 b=6
 #intrvls stck5ths           i=0 n=6
 #intrvls stck4ths           i=0 n=6
@@ -963,8 +963,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    ]
   abc3 [ 3   0 C     | 3   1 G     | 3   2 D     | 3   3 A     | 3   4 E     | 3   5 B     | 3   6 F♯    | 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    | 2   1 C     ]
   abc4 [ 3   0 C    0| 3  -5 D♭   8| 3   2 D   -3| 3  -3 E♭   5| 3   4 E   -6| 3  -1 F    2| 3  -6 G♭  10| 3   6 F♯  -9| 3   1 G   -1| 3  -4 A♭   7| 3   3 A   -4| 3  -2 B♭   4| 3   5 B   -7| 2   1 C    0]
-   1   |       |   3   |   9   |       |  27   |  81   |  243  |       |  729  |   4   |  16   |  32   |  128  |       |  256  | 1024  |   2   |       |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |  128  |       |  512  |   3   |   9   |  27   |  81   |       |  243  |  729  |   1   |       |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |  729  |   4   |  16   |  32   |  128  |  256  | 1024  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  |   3   |   9   |  27   |  81   |  243  |  729  |   1      
 #intrvls i2Abcs             i=1 a=5 b=7
 #intrvls stck5ths           i=1 n=5
 #intrvls stck4ths           i=1 n=7
@@ -972,8 +972,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    ]
   abc3 [ 3   0 G     | 3   1 D     | 3   2 A     | 3   3 E     | 3   4 B     | 3   5 F♯    | 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    | 2   1 G     ]
   abc4 [ 3   0 G    0| 3  -5 A♭   8| 3   2 A   -3| 3  -3 B♭   5| 3   4 B   -6| 3  -1 C    2| 3  -6 D♭  10| 3   1 D   -1| 3  -4 E♭   7| 3   3 E   -4| 3  -2 F    4| 3  -7 G♭  12| 3   5 F♯  -7| 2   1 G    0]
-   1   |       |   3   |   9   |       |  27   |  81   |  243  |       |   4   |  16   |  32   |  128  |  256  |       | 1024  | 4096  |   2   |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |  128  |       |   3   |   9   |  27   |  81   |  243  |       |  729  | 2187  |   1   |       |          
+   1   |   3   |   9   |  27   |  81   |  243  |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   1      
 #intrvls i2Abcs             i=2 a=4 b=8
 #intrvls stck5ths           i=2 n=4
 #intrvls stck4ths           i=2 n=8
@@ -981,8 +981,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    ]
   abc3 [ 3   0 D     | 3   1 A     | 3   2 E     | 3   3 B     | 3   4 F♯    | 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    | 2   1 D     ]
   abc4 [ 3   0 D    0| 3  -5 E♭   8| 3   2 E   -3| 3  -3 F    5| 3  -8 G♭  13| 3   4 F♯  -6| 3  -1 G    2| 3  -6 A♭  10| 3   1 A   -1| 3  -4 B♭   7| 3   3 B   -4| 3  -2 C    4| 3  -7 D♭  12| 2   1 D    0]
-   1   |       |   3   |   9   |       |  27   |  81   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  |       | 8192  |   2   |       |          
-   1   |       |   2   |   8   |       |  16   |  64   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |       | 6561  |   1   |       |          
+   1   |   3   |   9   |  27   |  81   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  |   2      
+   1   |   2   |   8   |  16   |  64   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   1      
 #intrvls i2Abcs             i=3 a=3 b=9
 #intrvls stck5ths           i=3 n=3
 #intrvls stck4ths           i=3 n=9
@@ -990,8 +990,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    ]
   abc3 [ 3   0 A     | 3   1 E     | 3   2 B     | 3   3 F♯    | 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    | 2   1 A     ]
   abc4 [ 3   0 A    0| 3  -5 B♭   8| 3   2 B   -3| 3  -3 C    5| 3  -8 D♭  13| 3  -1 D    2| 3  -6 E♭  10| 3   1 E   -1| 3  -4 F    7| 3  -9 G♭  15| 3   3 F♯  -4| 3  -2 G    4| 3  -7 A♭  12| 2   1 A    0]
-   1   |       |   3   |   9   |       |  27   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  |       | 32768 |   2   |          
-   1   |       |   2   |   8   |       |  16   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |       | 19683 |   1   |          
+   1   |   3   |   9   |  27   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 |   2      
+   1   |   2   |   8   |  16   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   1      
 #intrvls i2Abcs             i=4 a=2 b=10
 #intrvls stck5ths           i=4 n=2
 #intrvls stck4ths           i=4 n=10
@@ -999,8 +999,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    ]
   abc3 [ 3   0 E     | 3   1 B     | 3   2 F♯    | 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    | 2   1 E     ]
   abc4 [ 3   0 E    0| 3  -5 F    8| 3 -10 G♭  16| 3   2 F♯  -3| 3  -3 G    5| 3  -8 A♭  13| 3  -1 A    2| 3  -6 B♭  10| 3   1 B   -1| 3  -4 C    7| 3  -9 D♭  15| 3  -2 D    4| 3  -7 E♭  12| 2   1 E    0]
-   1   |       |   3   |   9   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |       |   2   |          
-   1   |       |   2   |   8   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |       |   1   |          
+   1   |   3   |   9   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |   2      
+   1   |   2   |   8   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   1      
 #intrvls i2Abcs             i=5 a=1 b=11
 #intrvls stck5ths           i=5 n=1
 #intrvls stck4ths           i=5 n=11
@@ -1008,8 +1008,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    ]
   abc3 [ 3   0 B     | 3   1 F♯    | 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    | 2   1 B     ]
   abc4 [ 3   0 B    0| 3  -5 C    8| 3 -10 D♭  16| 3  -3 D    5| 3  -8 E♭  13| 3  -1 E    2| 3  -6 F   10| 3 -11 G♭  18| 3   1 F♯  -1| 3  -4 G    7| 3  -9 A♭  15| 3  -2 A    4| 3  -7 B♭  12| 2   1 B    0]
-   1   |       |   3   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |   2   |          
-   1   |       |   2   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   1   |          
+   1   |   3   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |   2      
+   1   |   2   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   1      
 #intrvls i2Abcs             i=6 a=0 b=12
 #intrvls stck5ths           i=6 n=0
 #intrvls stck4ths           i=6 n=12
@@ -1017,8 +1017,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    ]
   abc3 [ 3   0 F♯    | 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    | 2   1 F♯    ]
   abc4 [ 3   0 F♯   0| 3  -5 G    8| 3 -10 A♭  16| 3  -3 A    5| 3  -8 B♭  13| 3  -1 B    2| 3  -6 C   10| 3 -11 D♭  18| 3  -4 D    7| 3  -9 E♭  15| 3  -2 E    4| 3  -7 F   12| 3 -12 G♭  20| 2   1 F♯   0]
-   1   |       |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |1048576|   2      
-   1   |       |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |531441 |   1      
+   1   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |1048576|   2      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |531441 |   1      
    0:P1|  23:d2|  90:m2| 114:A1| 180:d3| 204:M2| 294:m3| 318:A2| 384:d4| 408:M3| 498:P4| 522:A3| 588:d5| 612:A4| 678:d6| 702:P5| 792:m6| 816:A5| 882:d7| 906:M6| 996:m7|1020:A6|1086:d8|1110:M7|1177:A7|1200:P8
 1.00000|       |1.05350|1.06787|       |1.12500|1.18519|       |       |1.26562|1.33333|       |       |1.42383|       |1.50000|1.58025|       |       |1.68750|1.77778|       |       |1.89844|       |2.00000   
 1.00000|       |       |1.06787|       |1.12500|1.18519|       |       |1.26562|1.33333|       |       |1.42383|       |1.50000|1.58025|1.60181|       |1.68750|1.77778|       |       |1.89844|       |2.00000   
@@ -1053,8 +1053,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    ]
   abc3 [ 3   0 F     | 3   1 C     | 3   2 G     | 3   3 D     | 3   4 A     | 3   5 E     | 3   6 B     | 3   7 F♯    | 3  -1 B♭    | 3  -2 E♭    | 3  -3 A♭    | 3  -4 D♭    | 3  -5 G♭    | 2   1 F     ]
   abc4 [ 3   0 F    0| 3  -5 G♭   8| 3   7 F♯ -11| 3   2 G   -3| 3  -3 A♭   5| 3   4 A   -6| 3  -1 B♭   2| 3   6 B   -9| 3   1 C   -1| 3  -4 D♭   7| 3   3 D   -4| 3  -2 E♭   4| 3   5 E   -7| 2   1 F    0]
-   1   |       |  256  | 2187  |       |   9   |  32   |       |       |  81   |   4   |       |       |  729  |       |   3   |  128  |       |       |  27   |  16   |       |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   |       |       |  64   |   3   |       |       |  512  |       |   2   |  81   |       |       |  16   |   9   |       |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   4   |  16   |  32   |  128  |  256  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  |   3   |   9   |  27   |  81   |  243  |   1      
 #intrvls i2Abcs             i=-2 a=8 b=4
 #intrvls stck5ths           i=-2 n=8
 #intrvls stck4ths           i=-2 n=4
@@ -1062,8 +1062,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    ]
   abc3 [ 3   0 B♭    | 3   1 F     | 3   2 C     | 3   3 G     | 3   4 D     | 3   5 A     | 3   6 E     | 3   7 B     | 3   8 F♯    | 3  -1 E♭    | 3  -2 A♭    | 3  -3 D♭    | 3  -4 G♭    | 2   1 B♭    ]
   abc4 [ 3   0 B♭   0| 3   7 B  -11| 3   2 C   -3| 3  -3 D♭   5| 3   4 D   -6| 3  -1 E♭   2| 3   6 E   -9| 3   1 F   -1| 3  -4 G♭   7| 3   8 F♯ -12| 3   3 G   -4| 3  -2 A♭   4| 3   5 A   -7| 2   1 B♭   0]
-   1   |       |  256  | 2187  |       |   9   |  32   |       |       |  81   |   4   |       |       |  729  |       |   3   |  128  | 6561  |       |  27   |  16   |       |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   |       |       |  64   |   3   |       |       |  512  |       |   2   |  81   | 4096  |       |  16   |   9   |       |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   4   |  16   |  32   |  128  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  |   3   |   9   |  27   |  81   |   1      
 #intrvls i2Abcs             i=-3 a=9 b=3
 #intrvls stck5ths           i=-3 n=9
 #intrvls stck4ths           i=-3 n=3
@@ -1071,8 +1071,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    ]
   abc3 [ 3   0 E♭    | 3   1 B♭    | 3   2 F     | 3   3 C     | 3   4 G     | 3   5 D     | 3   6 A     | 3   7 E     | 3   8 B     | 3   9 F♯    | 3  -1 A♭    | 3  -2 D♭    | 3  -3 G♭    | 2   1 E♭    ]
   abc4 [ 3   0 E♭   0| 3   7 E  -11| 3   2 F   -3| 3  -3 G♭   5| 3   9 F♯ -14| 3   4 G   -6| 3  -1 A♭   2| 3   6 A   -9| 3   1 B♭  -1| 3   8 B  -12| 3   3 C   -4| 3  -2 D♭   4| 3   5 D   -7| 2   1 E♭   0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 |       |  81   |   4   |       |       |  729  |       |   3   |  128  | 6561  |       |  27   |  16   |       |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 |       |  64   |   3   |       |       |  512  |       |   2   |  81   | 4096  |       |  16   |   9   |       |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   4   |  16   |  32   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 |   3   |   9   |  27   |   1      
 #intrvls i2Abcs             i=-4 a=10 b=2
 #intrvls stck5ths           i=-4 n=10
 #intrvls stck4ths           i=-4 n=2
@@ -1080,8 +1080,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D♭    | 3  -2 G♭    ]
   abc3 [ 3   0 A♭    | 3   1 E♭    | 3   2 B♭    | 3   3 F     | 3   4 C     | 3   5 G     | 3   6 D     | 3   7 A     | 3   8 E     | 3   9 B     | 3  10 F♯    | 3  -1 D♭    | 3  -2 G♭    | 2   1 A♭    ]
   abc4 [ 3   0 A♭   0| 3   7 A  -11| 3   2 B♭  -3| 3   9 B  -14| 3   4 C   -6| 3  -1 D♭   2| 3   6 D   -9| 3   1 E♭  -1| 3   8 E  -12| 3   3 F   -4| 3  -2 G♭   4| 3  10 F♯ -15| 3   5 G   -7| 2   1 A♭   0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 |       |  81   |   4   |       |       |  729  |       |   3   |  128  | 6561  |       |  27   |  16   | 59049 |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 |       |  64   |   3   |       |       |  512  |       |   2   |  81   | 4096  |       |  16   |   9   | 32768 |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   4   |  16   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |   3   |   9   |   1      
 #intrvls i2Abcs             i=-5 a=11 b=1
 #intrvls stck5ths           i=-5 n=11
 #intrvls stck4ths           i=-5 n=1
@@ -1089,8 +1089,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G♭    ]
   abc3 [ 3   0 D♭    | 3   1 A♭    | 3   2 E♭    | 3   3 B♭    | 3   4 F     | 3   5 C     | 3   6 G     | 3   7 D     | 3   8 A     | 3   9 E     | 3  10 B     | 3  11 F♯    | 3  -1 G♭    | 2   1 D♭    ]
   abc4 [ 3   0 D♭   0| 3   7 D  -11| 3   2 E♭  -3| 3   9 E  -14| 3   4 F   -6| 3  -1 G♭   2| 3  11 F♯ -17| 3   6 G   -9| 3   1 A♭  -1| 3   8 A  -12| 3   3 B♭  -4| 3  10 B  -15| 3   5 C   -7| 2   1 D♭   0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 |       |  81   |   4   |177147 |       |  729  |       |   3   |  128  | 6561  |       |  27   |  16   | 59049 |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 |       |  64   |   3   |131072 |       |  512  |       |   2   |  81   | 4096  |       |  16   |   9   | 32768 |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   4   |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  | 2048  | 4096  | 16384 | 32768 |131072 |   3   |   1      
 #intrvls i2Abcs             i=0 a=6 b=6
 #intrvls stck5ths           i=0 n=6
 #intrvls stck4ths           i=0 n=6
@@ -1098,8 +1098,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    ]
   abc3 [ 3   0 C     | 3   1 G     | 3   2 D     | 3   3 A     | 3   4 E     | 3   5 B     | 3   6 F♯    | 3  -1 F     | 3  -2 B♭    | 3  -3 E♭    | 3  -4 A♭    | 3  -5 D♭    | 3  -6 G♭    | 2   1 C     ]
   abc4 [ 3   0 C    0| 3  -5 D♭   8| 3   2 D   -3| 3  -3 E♭   5| 3   4 E   -6| 3  -1 F    2| 3  -6 G♭  10| 3   6 F♯  -9| 3   1 G   -1| 3  -4 A♭   7| 3   3 A   -4| 3  -2 B♭   4| 3   5 B   -7| 2   1 C    0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 |       |  81   |   4   |177147 | 1024  |  729  |       |   3   |  128  | 6561  |       |  27   |  16   | 59049 |       |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 |       |  64   |   3   |131072 |  729  |  512  |       |   2   |  81   | 4096  |       |  16   |   9   | 32768 |       |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  |   4   |  16   |  32   |  128  |  256  | 1024  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |  512  |   3   |   9   |  27   |  81   |  243  |  729  |   1      
 #intrvls i2Abcs             i=1 a=5 b=7
 #intrvls stck5ths           i=1 n=5
 #intrvls stck4ths           i=1 n=7
@@ -1107,8 +1107,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    ]
   abc3 [ 3   0 G     | 3   1 D     | 3   2 A     | 3   3 E     | 3   4 B     | 3   5 F♯    | 3  -1 C     | 3  -2 F     | 3  -3 B♭    | 3  -4 E♭    | 3  -5 A♭    | 3  -6 D♭    | 3  -7 G♭    | 2   1 G     ]
   abc4 [ 3   0 G    0| 3  -5 A♭   8| 3   2 A   -3| 3  -3 B♭   5| 3   4 B   -6| 3  -1 C    2| 3  -6 D♭  10| 3   1 D   -1| 3  -4 E♭   7| 3   3 E   -4| 3  -2 F    4| 3  -7 G♭  12| 3   5 F♯  -7| 2   1 G    0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 |       |  81   |   4   |177147 | 1024  |  729  |       |   3   |  128  | 6561  |       |  27   |  16   | 59049 | 4096  |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 |       |  64   |   3   |131072 |  729  |  512  |       |   2   |  81   | 4096  |       |  16   |   9   | 32768 | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |  243  |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  |   2      
+   1   |   2   |   8   |  16   |  64   |  128  |   3   |   9   |  27   |  81   |  243  |  729  | 2187  |   1      
 #intrvls i2Abcs             i=2 a=4 b=8
 #intrvls stck5ths           i=2 n=4
 #intrvls stck4ths           i=2 n=8
@@ -1116,8 +1116,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    ]
   abc3 [ 3   0 D     | 3   1 A     | 3   2 E     | 3   3 B     | 3   4 F♯    | 3  -1 G     | 3  -2 C     | 3  -3 F     | 3  -4 B♭    | 3  -5 E♭    | 3  -6 A♭    | 3  -7 D♭    | 3  -8 G♭    | 2   1 D     ]
   abc4 [ 3   0 D    0| 3  -5 E♭   8| 3   2 E   -3| 3  -3 F    5| 3  -8 G♭  13| 3   4 F♯  -6| 3  -1 G    2| 3  -6 A♭  10| 3   1 A   -1| 3  -4 B♭   7| 3   3 B   -4| 3  -2 C    4| 3  -7 D♭  12| 2   1 D    0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |       |   3   |  128  | 6561  |       |  27   |  16   | 59049 | 4096  |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |       |   2   |  81   | 4096  |       |  16   |   9   | 32768 | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |  81   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  |   2      
+   1   |   2   |   8   |  16   |  64   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  |   1      
 #intrvls i2Abcs             i=3 a=3 b=9
 #intrvls stck5ths           i=3 n=3
 #intrvls stck4ths           i=3 n=9
@@ -1125,8 +1125,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    ]
   abc3 [ 3   0 A     | 3   1 E     | 3   2 B     | 3   3 F♯    | 3  -1 D     | 3  -2 G     | 3  -3 C     | 3  -4 F     | 3  -5 B♭    | 3  -6 E♭    | 3  -7 A♭    | 3  -8 D♭    | 3  -9 G♭    | 2   1 A     ]
   abc4 [ 3   0 A    0| 3  -5 B♭   8| 3   2 B   -3| 3  -3 C    5| 3  -8 D♭  13| 3  -1 D    2| 3  -6 E♭  10| 3   1 E   -1| 3  -4 F    7| 3  -9 G♭  15| 3   3 F♯  -4| 3  -2 G    4| 3  -7 A♭  12| 2   1 A    0]
-   1   |       |  256  | 2187  |       |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |       |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |       |   2      
-   1   |       |  243  | 2048  |       |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |       |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |       |   1      
+   1   |   3   |   9   |  27   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 |   2      
+   1   |   2   |   8   |  16   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 |   1      
 #intrvls i2Abcs             i=4 a=2 b=10
 #intrvls stck5ths           i=4 n=2
 #intrvls stck4ths           i=4 n=10
@@ -1134,8 +1134,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    ]
   abc3 [ 3   0 E     | 3   1 B     | 3   2 F♯    | 3  -1 A     | 3  -2 D     | 3  -3 G     | 3  -4 C     | 3  -5 F     | 3  -6 B♭    | 3  -7 E♭    | 3  -8 A♭    | 3  -9 D♭    | 3 -10 G♭    | 2   1 E     ]
   abc4 [ 3   0 E    0| 3  -5 F    8| 3 -10 G♭  16| 3   2 F♯  -3| 3  -3 G    5| 3  -8 A♭  13| 3  -1 A    2| 3  -6 B♭  10| 3   1 B   -1| 3  -4 C    7| 3  -9 D♭  15| 3  -2 D    4| 3  -7 E♭  12| 2   1 E    0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |       |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |       |   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |       |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |       |   1      
+   1   |   3   |   9   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |   2      
+   1   |   2   |   8   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |   1      
 #intrvls i2Abcs             i=5 a=1 b=11
 #intrvls stck5ths           i=5 n=1
 #intrvls stck4ths           i=5 n=11
@@ -1143,8 +1143,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    ]
   abc3 [ 3   0 B     | 3   1 F♯    | 3  -1 E     | 3  -2 A     | 3  -3 D     | 3  -4 G     | 3  -5 C     | 3  -6 F     | 3  -7 B♭    | 3  -8 E♭    | 3  -9 A♭    | 3 -10 D♭    | 3 -11 G♭    | 2   1 B     ]
   abc4 [ 3   0 B    0| 3  -5 C    8| 3 -10 D♭  16| 3  -3 D    5| 3  -8 E♭  13| 3  -1 E    2| 3  -6 F   10| 3 -11 G♭  18| 3   1 F♯  -1| 3  -4 G    7| 3  -9 A♭  15| 3  -2 A    4| 3  -7 B♭  12| 2   1 B    0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |       |   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |       |   1      
+   1   |   3   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |   2      
+   1   |   2   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |   1      
 #intrvls i2Abcs             i=6 a=0 b=12
 #intrvls stck5ths           i=6 n=0
 #intrvls stck4ths           i=6 n=12
@@ -1152,8 +1152,8 @@ Tetractys: .bot=24 .top=10000 a, b, c =  d, e =  d2, e2 =
   abc2 [ 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    ]
   abc3 [ 3   0 F♯    | 3  -1 B     | 3  -2 E     | 3  -3 A     | 3  -4 D     | 3  -5 G     | 3  -6 C     | 3  -7 F     | 3  -8 B♭    | 3  -9 E♭    | 3 -10 A♭    | 3 -11 D♭    | 3 -12 G♭    | 2   1 F♯    ]
   abc4 [ 3   0 F♯   0| 3  -5 G    8| 3 -10 A♭  16| 3  -3 A    5| 3  -8 B♭  13| 3  -1 B    2| 3  -6 C   10| 3 -11 D♭  18| 3  -4 D    7| 3  -9 E♭  15| 3  -2 E    4| 3  -7 F   12| 3 -12 G♭  20| 2   1 F♯   0]
-   1   |       |  256  | 2187  | 65536 |   9   |  32   | 19683 | 8192  |  81   |   4   |177147 | 1024  |  729  |262144 |   3   |  128  | 6561  | 32768 |  27   |  16   | 59049 | 4096  |  243  |1048576|   2      
-   1   |       |  243  | 2048  | 59049 |   8   |  27   | 16384 | 6561  |  64   |   3   |131072 |  729  |  512  |177147 |   2   |  81   | 4096  | 19683 |  16   |   9   | 32768 | 2187  |  128  |531441 |   1      
+   1   |   4   |  16   |  32   |  128  |  256  | 1024  | 4096  | 8192  | 32768 | 65536 |262144 |1048576|   2      
+   1   |   3   |   9   |  27   |  81   |  243  |  729  | 2187  | 6561  | 19683 | 59049 |177147 |531441 |   1      
                                                                                                    1                                                                                                     [1] 1
                                                                                               2         3                                                                                                [1 2 3] 3
                                                                                          4         6         9                                                                                           [1 2 3 4 6 9] 6
@@ -1237,36 +1237,36 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 [ None ,  None , 8:A♭:4, 1:D♭:2,  None ,  None ,  None ]
 [ None , 1:D♭:2, 8:A♭:4,  None ,  None , 5:F :4, 0:C :2]
 #tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-#cmds  _snapshot          snapName='test.184.1.NEW.png' New1
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.1.NEW.png'
+#cmds  _snapshot          snapName='test.240.1.NEW.png' New1
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.1.NEW.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.1.NEW.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.1.NEW.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.1.NEW.png'
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.1.NEW.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.1.NEW.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.1.NEW.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
 #cmds  _snapshot          sp0='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
 #cmds  _snapshot          sp2='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#evnts on_draw            .LOG_ID=184 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
+#evnts on_draw            .LOG_ID=240 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.1.NEW.png
 #evnts on_key_press       BGN  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 #evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       check isParsing k='LCTRL' retv=False
 #evnts on_key_press       Not isParsing k='LCTRL' retv=False
 #evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-#evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017B04B63D00>
+#evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001AF6A203BB0>
 #evnts on_key_press       END  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 #evnts on_key_press       END processing event k='LCTRL' return retv=False
 #evnts on_key_press       BGN  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
@@ -1275,7 +1275,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
 #evnts on_key_press       check isParsing k='LSHIFT' retv=False
 #evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 #evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-#evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017B04B63D00>
+#evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001AF6A203BB0>
 #evnts on_key_press       END  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
 #evnts on_key_press       END processing event k='LSHIFT' return retv=False
 #evnts on_key_press       BGN    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True, 113: True}
@@ -1294,22 +1294,22 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
 #chords dumpLimap            0 0 1 G♯46x        G♯46x        R46RM36      059049 G♯C♯FG♯CF    RM346        0459   G♯CC♯F      
 #chords dumpLimap            0 0 2 C+♭2s4/G♯    C+♭2s4/G♯    ♯5♭24♯5R4    815805 G♯C♯FG♯CF    R♭24♯5       0158   CC♯FG♯      
 #chords dumpLimap            0 0 3 Fmb6/G♯      Fmb6/G♯      m3♯5Rm35R    380370 G♯C♯FG♯CF    Rm35♯5       0378   FG♯CC♯      
-#cmds  _snapshot          snapName='test.184.2.FIN.png' quit 0 save=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.2.FIN.png'
+#cmds  _snapshot          snapName='test.240.2.FIN.png' quit 0 save=0
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.2.FIN.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.2.FIN.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.2.FIN.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.2.FIN.png'
+#utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.2.FIN.png'
 #utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.184.2.FIN.png')
+#utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.240.2.FIN.png')
 #utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.240.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
@@ -1335,13 +1335,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
-#tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.184.csv
+#tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.240.csv
 #utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv'
-#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.184.csv'
+#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.240.csv'
 #utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.184.csv')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.184.csv ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.184.csv)
+#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.240.csv')
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.240.csv ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.240.csv)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0
@@ -1358,7 +1358,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
 #evnts on_key_press       check isParsing k='Q' retv=False
 #evnts on_key_press       Not isParsing k='Q' retv=False
 #evnts on_key_press       Done Not isParsing k='Q' retv=False
-#evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017B04B63D00>
+#evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001AF6A203BB0>
 #evnts on_key_press       END    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={}
 #evnts on_key_press       END processing event k='Q' return retv=False
 #tabs  <module>           OK pyglet.app.run() runstat=None
@@ -1373,13 +1373,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.184.1.NEW.png
 #utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 #utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt'
 #utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.184.txt
+#tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.240.txt
 #utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt'
-#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.184.txt'
+#utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.240.txt'
 #utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.184.txt')
-#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.184.txt ###
-#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.184.txt)
+#utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.240.txt')
+#utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.240.txt ###
+#utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.240.txt)
 #utl   copyFile           OK ret=0
 #utl   copyFile           FINALLY ret=0
 #utl   copyFile           os.system ret=0

@@ -2214,3 +2214,41 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
 #        main()
 ########################################################################################################################################################################################################
 #--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
+
+# P1 M2 M3 P4 P5 M6 M7 P8  m2 m3 m6 m7 
+# Cb Db Eb Fb Gb Ab Bb Cb  C  E  G  B
+# Gb Ab Bb Cb Db Eb F  Gb  G  A  D  E
+# Db Eb F  Gb Ab Bb C  Db  D  E  A  B
+# Ab Bb C  Db Eb F  G  Ab  A  B  E  Gb
+# Eb F  G  Ab Bb C  D  Eb  Fb Gb B  Cb
+# Bb C  D  Eb F  G  A  Bb  B  Db Gb Ab
+# F  G  A  Bb C  D  E  F   Gb Ab Db Eb
+# C  D  E  F  G  A  B  C   Db Eb Ab Bb
+# G  A  B  C  D  E  F# G   Ab Bb Eb F
+# D  E  F# G  A  B  C# D   Eb F  Bb C
+# A  B  C# D  E  F# G# A   A# C  F  G
+# E  F# G# A  B  C# D# E   F  G  C  D
+# B  C# D# E  F# G# A# B   C  D  G  A
+# F# G# A# B  C# D# E# F#  G  A  D  E
+# C# D# E# F# G# A# B# C#  D  E  A  B
+'''
+  0  1  2  3  4  5  6  7  8  9  10 11 12
+  P1 m2 M2 m3 M3 P4 A4 P5 m6 M6 m7 M7 P8 
+7 C♭ C  D♭ D  E♭ F♭ F  G♭ G  A♭ A  B♭ C♭ 7
+6 G♭ G  A♭ A  B♭ C♭ C  D♭ D  E♭ E  F  G♭ 6
+5 D♭ D  E♭ F♭ F  G♭ G  A♭ A  B♭ C♭ C  D♭ 5
+4 A♭ A  B♭ C♭ C  D♭ D  E♭ F♭ F  G♭ G  A♭ 4
+3 E♭ F♭ F  G♭ G  A♭ A  B♭ C♭ C  D♭ D  E♭ 3
+2 B♭ C♭ C  D♭ D  E♭ E  F  G♭ G  A♭ A  B♭ 2
+1 F  G♭ G  A♭ A  B♭ B  C  D♭ D  E♭ E  F  1
+0 C  D♭ D  E♭ E  F  F♯ G  A♭ A  B♭ B  C  0
+1 G  A♭ A  B♭ B  C  C♯ D  E♭ E  F  F♯ G  1
+2 D  E♭ E  F  F♯ G  G♯ A  B♭ B  C  C♯ D  2
+3 A  B♭ B  C  C♯ D  D♯ E  F  F♯ G  G♯ A  3
+4 E  F  F♯ G  G♯ A  A♯ B  C  C♯ D  D♯ E  4
+5 B  C  C♯ D  D♯ E  F  F♯ G  G♯ A  A♯ B  5
+6 F♯ G  G♯ A  A♯ B  C  C♯ D  D♯ E  E♯ F♯ 6
+7 C♯ D  D♯ E  E♯ F♯ G  G♯ A  A♯ B  B♯ C♯ 7
+  P1 m2 M2 m3 M3 P4 A4 P5 m6 M6 m7 M7 P8 
+  0  1  2  3  4  5  6  7  8  9  10 11 12
+'''
