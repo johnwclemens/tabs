@@ -118,7 +118,7 @@ class Pthgrn(ivls.Intonation):
             else:  n, d, k, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_)  ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
             if dbg:
                 ns.append(n)  ;  d2s.append(d)  ;  ks.append(k)  ;  qs.append(q) # os.append(o)
-                self.dmpIvals(i, cksi, ks, d2s)
+                self.dmpIvals(i, cksi, ks)
         if dbg:
 #            self.dmpIvals(len(self.ck2ikm)-1, cksi, os, ks, d2s)
             self.dmpIndices(f'{mm}  k  {mm}{nn} {nn}', u)  ;  self.dmpDataTableLine(u+1)
@@ -189,28 +189,21 @@ class Pthgrn(ivls.Intonation):
         d = ckmap[ck]['DCent']   ;   assert d == self.i2dCent(c),  f'{d=} {self.i2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i # todo assume callers do not want ckmap[ck]['Abcd'] value returned
     ####################################################################################################################################################################################################
-    def fIvals(self, i, data, n): # todo move to base class
+    def fIvals(self, data, n): # todo move to base class
         mm, nn = (Y, Y) if self.csv else (W, Z)   ;   fd = []
-#                                    #           <-----------------1----------------->    <-----------------2----------------->    <-----------------3----------------->    <-----------------4----------------->
-        for j, d in enumerate(data): # j j*100 i Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`   Iv    c     k       d       e       c`
-            if   j==0:                 fd.append(f'{d:x}')           # j
-            elif j==1:                 fd.append(f'{d:4}')           # j*100
-            elif j==2:                 fd.append(f'{d:2} ')          # i
-            elif j==6:                 fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
-            elif j in (12, 18, 24):    fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i not in (0, len(self.ck2ikm)-1) else fd.append(W*7) # d d d
-            elif j in ( 8, 14, 20):    fd.append(f'*{mm}{d:2}  ')    # c` c` c`
-            elif j==26:                fd.append(f'*{mm}{d:2}')      # c`
-            elif j in (5, 11, 17, 23): fd.append(f'@{mm}{d:4}{mm}:') # k k k k
-            elif j in (7, 13, 19, 25): fd.append(f'={mm}{d:5.3f}')   # e e e e
-            elif j in (4, 10, 16, 22): fd.append(f'{d:2}')           # c c c c
-            elif j in (3,  9, 15, 21): # fd.append(f'|  {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
-#                n = ns[0] if j==3 else ns[1] if j==9 else ns[2] if j==15 else ns[3] if j==21 else '??'
-                if   j == 3:   m = self.iv2n(n, d)
-                elif j == 9:   m = self.iv2n(n, d)
-                elif j == 15:  m = self.iv2n(n, d)
-                elif j == 21:  m = self.iv2n(n, d)
-                else:                           m = f'?{j}?' # ;  slog(f'{n=}')
-                fd.append(f'| {m:4} {d:3}')        # Note Iv, Note Iv, Note Iv, Note Iv
+        for j, d in enumerate(data): # j j*100 i Iv    c     k         Iv    c     k         Iv    c     k         Iv    c     k
+            if   j==0:                 fd.append(f'{d:x}')    # j
+            elif j==1:                 fd.append(f'{d:4}')    # j*100
+            elif j==2:                 fd.append(f'{d:2}')    # i
+            elif j in (5, 8, 11, 14): fd.append(f'{mm}{d:5}') # k k k k
+            elif j in (4, 7, 10, 13): fd.append(f'{d:2}')     # c c c c
+            elif j in (3,  6, 9, 12): fd.append(f'| {self.iv2n(n, d):5} {d:4}') # Note Iv, Note Iv, Note Iv, Note Iv
+#                if   j ==  3:  m = self.iv2n(n, d)
+#                elif j ==  6:  m = self.iv2n(n, d)
+#                elif j ==  9:  m = self.iv2n(n, d)
+#                elif j == 12:  m = self.iv2n(n, d)
+#                else:                           m = f'?{j}?' # ;  slog(f'{n=}')
+#                fd.append(f'| {m:5} {d:4}')        # Note Iv, Note Iv, Note Iv, Note Iv
         return fd
 # P1 M2 M3 P4 P5 M6 M7 P8  m2 m3 m6 m7 
 # C♭ Db Eb Fb Gb Ab Bb Cb  C  E  G  B
@@ -280,40 +273,24 @@ m7  B♭  A6  A♯
 M7  B   d8  C♭
 P8  C   A7  B♯
     '''
-    def getNs(self, i):
-        j = i   ;   ns = []
-        while j >= 0 and len(ns) <= 1+i:
-            ck = self.centKs[j]
-            if 'Count' in self.ckmap[ck] and self.ckmap[ck]['Count'] > 0:
-                ns.append(self.ckmap[ck]['Note'])
-            j -= 1
-        return ns
-    def NEW__getNs(self, js):
-        ns = []
-        for j in js:
-            ck = self.centKs[j]
-            if 'Count' in self.ckmap[ck] and self.ckmap[ck]['Count'] > 0:
-                ns.append(self.ckmap[ck]['Note'])
-        return ns
-
     def NEW__dmpIvals(self, h, ks, ns, cs, ds): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   hdrA = ['j', 'j*100', 'i ']  ;  l = math.floor(h/2)
-        hdrB1  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']   ;   eps = self.epsilon()
-        hdrB2  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']    ;   data = []
+        hdrB1  = ['| Note  Iv', f'  c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']   ;   eps = self.epsilon()
+        hdrB2  = ['| Note  Iv', f'  c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']    ;   data = []
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)    ;   hdrs.extend(hdrB2)
         w, x = self.ck2ikm[ks[h]], self.ck2ikm[ks[h-1]]
         if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
         elif h == 12: data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h]]
         elif h == 25: data = [l, l * 100, h, w, cs[h], ks[h], ds[h], eps, cs[h-1], x, cs[h-1], ks[h-1], ds[h-1], eps, cs[h]]
-        fd = self.fIvals(h, data, ns)
+        fd = self.fIvals(data, ns)
         slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 
-    def dmpIvals(self, h, ks, cs, ds): # todo move to base class, but epsilon is an issue
+    def dmpIvals(self, h, ks, cs): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nns = 1
-        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i ']   ;   data = []   ;   hs = []
+        eps, l = self.epsilon(), math.floor(h/2)    ;    hdrA = ['j', 'j*100', 'i']   ;   data = []   ;   hs = []
         m  = l # l-1 if h>=23 else l # m = l-6 if h>=34 else l-5 if h>=28 else l-4 if h>=22 else l-3 if h>=16 else l-2 if h>=10 else l-1 if h>=4 else l
-        hdrB1  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c` ']
-        hdrB2  = ['| Note Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', '  c`']
+        hdrB1  = ['| Note  Iv', f'   c{mm} ', f'  k{mm}']
+        hdrB2  = ['| Note  Iv', f'   c{mm} ', f'  k{mm}']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
         if   h > 2:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
         elif h > 1:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], None
@@ -321,51 +298,51 @@ P8  C   A7  B♯
         else:         w, x, y, z = self.ck2ikm[ks[h]], None,               None,               None
         if   h == 0:   slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
         if nns == 0:
-            if   h ==  0: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  2: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  6: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  8: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 12: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h]]
+            if   h ==  0: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  2: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  6: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  8: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
+            elif h == 12: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i]]
         elif nns == 1:
-            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j]]
-            elif h == 13: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 15: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 17: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 21: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j]]
-            elif h == 23: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
-            elif h == 25: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h ==  3: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h ==  5: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h ==  9: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h == 11: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h == 13: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h == 15: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h == 17: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h == 21: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h == 23: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
+            elif h == 25: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
         elif nns == 2:
-            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h == 13: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 16: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h == 22: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 25: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[h], eps, cs[i], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h == 28: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 31: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], w, cs[h], ks[h], ds[j], eps, cs[j], y, cs[j], ks[j], ds[j], eps, cs[i]]
-            elif h == 34: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], ds[i], eps, cs[h], y, cs[j], ks[j], ds[j], eps, cs[i], w, cs[h], ks[h], ds[h], eps, cs[i]]
-            elif h == 37: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], ds[h], eps, cs[i], x, cs[i], ks[i], ds[i], eps, cs[h]]
+            if   h ==  1: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h]]
+            elif h ==  4: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h], y, cs[j], ks[j]]
+            elif h ==  7: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], y, cs[j], ks[j], w, cs[h], ks[h]]
+            elif h == 10: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h], y, cs[j], ks[j]]
+            elif h == 13: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], y, cs[j], ks[j], w, cs[h], ks[h]]
+            elif h == 16: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h], y, cs[j], ks[j]]
+            elif h == 19: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i], y, cs[j], ks[j]]
+            elif h == 22: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], y, cs[j], ks[j], w, cs[h], ks[h]]
+            elif h == 25: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h], y, cs[j], ks[j]]
+            elif h == 28: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], y, cs[j], ks[j], w, cs[h], ks[h]]
+            elif h == 31: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], w, cs[h], ks[h], y, cs[j], ks[j]]
+            elif h == 34: hs.append(h) ; data = [m, m * 100, h, x, cs[i], ks[i], y, cs[j], ks[j], w, cs[h], ks[h]]
+            elif h == 37: hs.append(h) ; data = [m, m * 100, h, w, cs[h], ks[h], x, cs[i], ks[i]]
         elif nns == 3:
             pass
         if   h in hs:
-            fd = self.fIvals(h, data, self.n) # ns[-1])
+            fd = self.fIvals(data, self.n)
             slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 '''
 j j*100 i  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`
