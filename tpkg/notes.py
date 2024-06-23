@@ -63,12 +63,12 @@ class Notes:#0      1       2       3       4       5       6       7       8   
     NT                 = len(V2I)
 
     @staticmethod
-    def nextN(n, i=1): #todo use ASCII ints ?
+    def nextN(n, i=1):
         m = n[0]  ;  o = ord(m)
         if i == 1:   return m
         match o:
-            case 65 | 66 | 67 | 68 | 69 | 70:  mm = chr(o+1)
-            case 71:                           mm = chr(65)
+            case 65 | 66 | 67 | 68 | 69 | 70:  mm = chr(o+1) # A B C D E F
+            case 71:                           mm = chr(65)  # G
             case   _: mm = '??'
         if i>2:
             return Notes.nextN(mm, i-1)
@@ -77,13 +77,15 @@ class Notes:#0      1       2       3       4       5       6       7       8   
     @staticmethod
     def prevN(n): #todo N/A not used ?
         match n[0]:
-            case 'A': return 'G'
-            case 'B': return 'A'
-            case 'C': return 'B'
-            case 'D': return 'C'
-            case 'E': return 'D'
-            case 'F': return 'E'
-            case 'G': return 'F'
+            case 'A': _ = 'G'
+            case 'B': _ = 'A'
+            case 'C': _ = 'B'
+            case 'D': _ = 'C'
+            case 'E': _ = 'D'
+            case 'F': _ = 'E'
+            case 'G': _ = 'F'
+            case _:   _ = '??'
+        return _
 
     @classmethod
     def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F

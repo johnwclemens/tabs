@@ -203,42 +203,43 @@ class Pthgrn(ivls.Intonation):
     @staticmethod
     def iv2n(n, iv):
         m = n[0]
-        if   iv == 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭')      else '♯'  if n in ('F♯', 'C♯')             else Z
-        elif iv == 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A', 'D', 'G', 'C', 'F', 'B♭', 'E♭')     else '♭♭' if n in ('A♭', 'D♭', 'G♭', 'C♭') else Z
-        elif iv == 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A♭', 'D♭', 'G♭', 'C♭')                  else '♯'  if n in ('E', 'B', 'F♯', 'C♯')   else Z
-        elif iv == 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G', 'C', 'F', 'B♭', 'E♭', 'A♭', 'D♭')   else '♭♭' if n in ('G♭', 'C♭')             else Z
-        elif iv == 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♯' if n in ('D', 'A', 'E', 'B', 'F♯', 'C♯')          else '♭'  if n in ('G♭', 'C♭')             else Z
-        elif iv == 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭') else '♯'  if n == 'C♯'                     else Z
-        elif iv == 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♯' if n in ('C', 'G', 'D', 'A', 'E', 'B', 'F♯')      else '♯♯' if n == 'C♯'                     else Z
-        elif iv == 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('E♭', 'A♭', 'D♭', 'G♭', 'C♭')            else '♯'  if n in ('B', 'F♯', 'C♯', 'G♯')  else Z
-        elif iv == 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'B♭', 'E♭', 'A♭')    else '♭♭' if n in ('D♭', 'G♭', 'C♭')       else Z
-        elif iv == 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♯' if n in ('A', 'B', 'E', 'F♯', 'C♯')               else '♭'  if n in ('D♭', 'G♭', 'C♭')       else Z
-        elif iv == 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C', 'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭')  else '♭♭' if n == 'C♭'                     else Z
-        elif iv == 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♯' if n in ('G', 'D', 'A', 'E', 'B', 'F♯', 'C♯')     else '♭'  if n == 'C♭'                     else Z
-        elif iv == 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭')      else '♯'  if n in ('F♯', 'C♯')             else Z
-        elif iv == 'd2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭♭'
-        elif iv == 'd3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭♭'
-        elif iv == 'd4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭'
-        elif iv == 'd5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭'
-        elif iv == 'd6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭♭'
-        elif iv == 'd7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭♭'
-        elif iv == 'd8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭'
-        elif iv == 'A1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♯'
-        elif iv == 'A7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♯'
-        else:             i = 1  ;  nn = nextN(m, i)  ;  e = '??'
+        match iv:
+            case 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♭♭' if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A', 'D', 'G', 'C', 'F', 'B♭', 'E♭')          else '♭♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭') else '♭♭♭' if n in ('A♭♭', 'D♭♭') else Z
+            case 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭')   else '♭♭' if n in ('A♭♭', 'D♭♭') else '♯'  if n in ('E', 'B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯') else '♯♯' if n in ('E♯', 'B♯')   else Z
+            case 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G', 'C', 'F', 'B♭', 'E♭', 'A♭', 'D♭')        else '♭♭' if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('D', 'A', 'E', 'B', 'F♯', 'C♯', 'G♯')       else '♯♯' if n in ('D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭')      else '♭♭' if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')          else '♯'  if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')             else '♯' if n in ('C', 'G', 'D', 'A', 'E', 'B', 'F♯')         else '♯♯' if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭')    else '♭♭' if n in ('E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯') else '♯♯' if n == 'B♯' else Z
+            case 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'B♭', 'E♭', 'A♭')         else '♭♭' if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭') else '♭♭♭' if n == 'D♭♭' else '♯' if n in ('A♯','E♯', 'B♯') else Z
+            case 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭')  else '♭♭' if n in ('D♭♭',) else '♯' if n in ('A', 'B', 'E', 'F♯', 'C♯', 'G♯', 'D♯')      else '♯♯' if n in ('A♯', 'E♯', 'B♯') else Z
+            case 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C', 'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭')       else '♭♭' if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')       else '♯' if n in ('G', 'D', 'A', 'E', 'B', 'F♯', 'C♯')          else '♯♯' if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♭♭' if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')   else '♯' if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'd2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭♭'
+            case 'd3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭♭'
+            case 'd4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭'
+            case 'd5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭'
+            case 'd6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭♭'
+            case 'd7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭♭'
+            case 'd8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭'
+            case 'A1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♯'
+            case 'A7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♯'
+            case _:     i = 1  ;  nn = nextN(m, i)  ;  e = '??'
         return nn + e
 
     def dmpIvals(self, h, ks, cs): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nns = 1
         l = math.floor(h/2)    ;    hdrA = ['j ', ' j*100 ', ' i ']   ;   data = []   ;   hs = []
         m  = l # l-1 if h>=23 else l # m = l-6 if h>=34 else l-5 if h>=28 else l-4 if h>=22 else l-3 if h>=16 else l-2 if h>=10 else l-1 if h>=4 else l
-        hdrB1  = [f'|{mm}Note{mm}  Ival ', f' Qty ', f' Cent ']
-        hdrB2  = [f'|{mm}Note{mm}  Ival ', f' Qty ', f' Cent ']
+        hdrB1  = [f'|{mm}Note{mm}  Ival ', ' Qty ', ' Cent ']
+        hdrB2  = [f'|{mm}Note{mm}  Ival ', ' Qty ', ' Cent ']
         hdrs   = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
         if   h > 2:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], self.ck2ikm[ks[k]]
         elif h > 1:   w, x, y, z = self.ck2ikm[ks[h]], self.ck2ikm[ks[i]], self.ck2ikm[ks[j]], None
@@ -308,22 +309,36 @@ class Pthgrn(ivls.Intonation):
         slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 
     def dmpIvals2(self):
-        mm, nn, oo, ff, zz = (Y, Y, Y, 3, W) if self.csv else (W, Z, '|', 1, Z)
-        n1s, n2s, ivs = self.COF1[:8], reversed(self.COF2[:7]), list(I4V.values())
-        hdr = f' {zz}{fmtl(ivs, w=5, s=mm, d=Z)}'
+        mm, nn, oo, ff, zz = (Y, Y, Y, 3, W) if self.csv else (W, Z, '|', 1, Z)   ;   ivs = list(I4V.values())   ;   m = 12
+        n1s, n2s = reversed(self.COF1[:m+1]), self.COF2[:m]
+        hdr = f'   {zz}{fmtl(ivs, w=5, s=mm, d=Z)}'
+        slog(f'  {hdr}', p=0, f=ff)
+        for j, n in enumerate(n1s):
+            notes = []
+            for k, v in I4V.items():
+                note = self.iv2n(n, v)
+                notes.append(note)
+            slog(f'{m-j:3}{mm} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
+        for j, n in enumerate(n2s):
+            notes = []
+            for k, v in I4V.items():
+                note = self.iv2n(n, v)
+                notes.append(note)
+            slog(f'{-j-1:3}{mm} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
+        n1s, n2s = self.COF1[:m+1], reversed(self.COF2[:m])   ;   slog(p=0, f=ff)
         slog(f'  {hdr}', p=0, f=ff)
         for j, n in enumerate(n2s):
             notes = []
             for k, v in I4V.items():
                 note = self.iv2n(n, v)
                 notes.append(note)
-            slog(f'{j-7:2}{nn} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
+            slog(f'{j-m:3}{mm} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
         for j, n in enumerate(n1s):
             notes = []
             for k, v in I4V.items():
                 note = self.iv2n(n, v)
                 notes.append(note)
-            slog(f'{j:2}{nn} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
+            slog(f'{j:3}{mm} {fmtl(notes, w=5, d=Z, s=mm)}', p=0, f=ff)
 '''
 j  j*100  i | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent 
 0     0   1 | C      P1     1      0 | D♭♭    d2     0     23
@@ -356,32 +371,8 @@ c  1200  25 | C      P8     1   1200 | B♯     A7     0   1177
  6 F♯    G     G♯    A     A♯    B     B♯    C♯    D     D♯    E     E♯    F♯   
  7 C♯    D     D♯    E     E♯    F♯    F♯♯   G♯    A     A♯    B     B♯    C♯   
 
-j j*100 i | Note  Ival  Qty CentK | Note  Ival  Qty CentK | Note  Ival  Qty CentK | Note  Ival  Qty CentK
-0    0  1 | G     P1     1      0 | A♭♭   d2     0     23
-1  100  3 | A♭    m2     1     90 | G♯    A1     0    114
-2  200  5 | A     M2     1    204 | B♭♭   d3     0    180
-3  300  7 | B♭    m3     1    294 | A♯    A2     0    318
-4  400  9 | B     M3     1    408 | C♭    d4     0    384
-5  500 11 | C     P4     1    498 | B♯    A3     0    522
-6  600 13 | C♯    A4     0    612 | D♭    d5     1    588
-7  700 15 | D     P5     1    702 | E♭♭   d6     0    678
-8  800 17 | E♭    m6     1    792 | D♯    A5     0    816
-9  900 19 | E     M6     1    906 | F♭♭   d7     0    882
-a 1000 21 | F     m7     1    996 | E♯    A6     0   1020
-b 1100 23 | F♯    M7     1   1110 | G♭    d8     1   1086
-c 1200 25 | G     P8     1   1200 | F♯    A7     0   1177
-   [P1    m2    M2    m3    M3    P4    A4    P5    m6    M6    m7    M7   ]
-  0 C     D♭    D     E♭    E     F     F♯    G     A♭    A     B♭    B    
-  1 G     A♭    A     B♭    B     C     C♯    D     E♭    E     F     F♯   
-  2 D     E♭    E     F     F♯    G     G♯    A     B♭    B     C     C♯   
-  3 A     B     B     C     C♯    D     D♯    E     F     F♯    G     G♯   
-  4 E     F     F♯    G     G♯    A     A♯    B     C     C♯    D     D♯   
-  5 B     C     C♯    D     D♯    E     E     F     G     G♯    A     A♯   
-  6 F     G     G♯    A     A♯    B     B     C♯    D     D♯    E     E♯   
-  7 C     D     D♯    E     E♯    F♯    F♯    G♯    A     A♯    B     B    
-
 j j*100 i  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`
-0    0  1  | D♭   P1   1 @    0 :   0.000 = 1.955 *  0   | ?1\9? d2   0 @   23 :         = 1.955 *  1  
+0    0  1  | D♭   P1   1 @    0 :   0.000 = 1.955 *  0   | ?19? d2   0 @   23 :         = 1.955 *  1  
 1  100  3  | D    m2   0 @   90 :         = 1.955 *  1   | D♭   A1   1 @  114 :  13.690 = 1.955 *  0  
 2  200  5  | E♭   M2   1 @  204 :   3.910 = 1.955 *  0   | D    d3   0 @  180 :         = 1.955 *  1  
 3  300  7  | E    m3   0 @  294 :         = 1.955 *  1   | E♭   A2   1 @  318 :  17.600 = 1.955 *  0  

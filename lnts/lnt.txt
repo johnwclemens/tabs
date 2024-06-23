@@ -6,8 +6,10 @@ tabs.py:2054:8: W0127: Assigning the same variable 'p' to itself (self-assigning
 ************* Module tpkg.cmds
 tpkg\cmds.py:522:15: W0718: Catching too general exception BaseException (broad-exception-caught)
 tpkg\cmds.py:532:15: W0718: Catching too general exception BaseException (broad-exception-caught)
-************* Module tpkg.pthgrn
-tpkg\pthgrn.py:192:148: C0303: Trailing whitespace (trailing-whitespace)
+************* Module tpkg.misc
+tpkg\misc.py:228:61: W1401: Anomalous backslash in string: '\9'. String constant might be missing an r prefix. (anomalous-backslash-in-string)
+************* Module tpkg.notes
+tpkg\notes.py:73:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
 ************* Module tpkg.strngs
 tpkg\strngs.py:125:34: E1101: Module 'tpkg.notes' has no 'index' member (no-member)
 ************* Module tpkg.tests
@@ -20,5 +22,5 @@ tpkg\utl.py:276:0: R0911: Too many return statements (10/6) (too-many-return-sta
 tpkg\utl.py:469:11: W0718: Catching too general exception BaseException (broad-exception-caught)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)
+Your code has been rated at 9.98/10 (previous run: 9.97/10, +0.01)
 

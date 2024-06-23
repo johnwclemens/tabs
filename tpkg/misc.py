@@ -224,8 +224,39 @@ D♭♭   C♯    E♭♭  D♯   F♭   E♯   F♯   A♭♭  G♯   B♭♭  
  A7    d8    A6   d7   A5   d6   A4   A3   d4   A2   d3   A1   d2
 B♯     C♭    A♯   B♭♭  G♯   A♭♭  F♯   E♯   F♭   D♯   E♭♭  C♯   D♭♭
 
+j  j*100  i | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent 
+0     0   1 | C      P1     1      0 | D♭♭    d2     0     23
+1   100   3 | D♭     m2     1     90 | C♯     A1     0    114
+2   200   5 | D      M2     1    204 | E♭♭    d3     0    180
+3   300   7 | E♭     m3     1    294 | D♯     A2     0    318
+4   400   9 | E      M3     1    408 | F♭     d4     0    384
+5   500  11 | F      P4     1    498 | E♯     A3     0    522
+6   600  13 | F♯     A4     1    612 | G♭     d5     1    588
+7   700  15 | G      P5     1    702 | A♭♭    d6     0    678
+8   800  17 | A♭     m6     1    792 | G♯     A5     0    816
+9   900  19 | A      M6     1    906 | B♭♭    d7     0    882
+a  1000  21 | B♭     m7     1    996 | A♯     A6     0   1020
+b  1100  23 | B      M7     1   1110 | C♭     d8     0   1086
+c  1200  25 | C      P8     1   1200 | B♯     A7     0   1177
+   P1    m2    M2    m3    M3    P4    A4    P5    m6    M6    m7    M7    P8   
+-7 C♭    D♭♭   D♭    E♭♭   E♭    F♭    F     G♭    A♭♭   A♭    B♭♭   B♭    C♭   
+-6 G♭    A♭♭   A♭    B♭♭   B♭    C♭    C     D♭    E♭♭   E♭    F♭    F     G♭   
+-5 D♭    E♭♭   E♭    F♭    F     G♭    G     A♭    B♭♭   B♭    C♭    C     D♭   
+-4 A♭    B♭♭   B♭    C♭    C     D♭    D     E♭    F♭    F     G♭    G     A♭   
+-3 E♭    F♭    F     G♭    G     A♭    A     B♭    C♭    C     D♭    D     E♭   
+-2 B♭    C♭    C     D♭    D     E♭    E     F     G♭    G     A♭    A     B♭   
+-1 F     G♭    G     A♭    A     B♭    B     C     D♭    D     E♭    E     F    
+ 0 C     D♭    D     E♭    E     F     F♯    G     A♭    A     B♭    B     C    
+ 1 G     A♭    A     B♭    B     C     C♯    D     E♭    E     F     F♯    G    
+ 2 D     E♭    E     F     F♯    G     G♯    A     B♭    B     C     C♯    D    
+ 3 A     B♭    B     C     C♯    D     D♯    E     F     F♯    G     G♯    A    
+ 4 E     F     F♯    G     G♯    A     A♯    B     C     C♯    D     D♯    E    
+ 5 B     C     C♯    D     D♯    E     E♯    F♯    G     G♯    A     A♯    B    
+ 6 F♯    G     G♯    A     A♯    B     B♯    C♯    D     D♯    E     E♯    F♯   
+ 7 C♯    D     D♯    E     E♯    F♯    F♯♯   G♯    A     A♯    B     B♯    C♯   
+
 j j*100 i  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`  | Note Iv  c     k       d       e        c`
-0    0  1  | D♭   P1   1 @    0 :   0.000 = 1.955 *  0   | ?1\9? d2   0 @   23 :         = 1.955 *  1  
+0    0  1  | D♭   P1   1 @    0 :   0.000 = 1.955 *  0   | ?19? d2   0 @   23 :         = 1.955 *  1  
 1  100  3  | D    m2   0 @   90 :         = 1.955 *  1   | D♭   A1   1 @  114 :  13.690 = 1.955 *  0  
 2  200  5  | E♭   M2   1 @  204 :   3.910 = 1.955 *  0   | D    d3   0 @  180 :         = 1.955 *  1  
 3  300  7  | E    m3   0 @  294 :         = 1.955 *  1   | E♭   A2   1 @  318 :  17.600 = 1.955 *  0  
@@ -1338,19 +1369,74 @@ C  F  B♭ E♭ A♭ D♭ G♭ C♭ F♭ B♭♭ E♭♭ A♭♭ D♭♭ G♭♭
 # F# G# A# B  C# D# E# F#
 # C# D# E# F# G# A# B# C#
 
-0    0  1  | C    P1      0 |               |                | D♭♭   d2     23 |
-1  100  3  |                | D♭   m2    90 | C♯   A1    114 |                 |                 | E♭♭♭  dd3    67 |  137
-2  200  5  | D    M2    204 |               |                | E♭♭   d3    180 | C♯♯   AA1   227 |             157 |  247
-3  300  7  |                | E♭   m3   294 | D♯   A2    318 |                 |                 | F♭♭   dd4   271 |  341 |  251
-4  400  9  | E    M3    408 |               |                | F♭    d4    384 | D♯♯   AA2   431 |             361
-5  500 11  | F    P4    498 |               | E♯   A3    522 |                 |                 | G♭♭   dd5   475 |  545 |  451
-6  600 13  |                | G♭   d5   588 | F♯   A4    612 | G♭    d5    588 | E♯♯   AA3   565 |             635
-7  700 15  | G    P5    702 |               |                | A♭♭   d6    678 | F♯♯   AA4   725 |             655 |  749
-8  800 17  |                | A♭   m6   792 | G♯   A5    816 |                 |                 | B♭♭♭  dd7   769 |  839
-9  900 19  | A    M6    906 |               |                | B♭♭   d7    882 | G♯♯   AA5   929 |             859 |  949
-a 1000 21  |                | B♭   m7   996 | A♯   A6   1020 |                 |                 | C♭♭   dd8   973 | 1043
-b 1100 23  | B    M7   1110 |               |                | C♭    d8   1086 | A♯♯  aa6   1133 |            1063
-c 1200 25  | C    P8   1200 |               | B♯   A7   1177 |
+0    0  1 | 0 C    P1      0 |                  |                   |-5 D♭♭   d2     23 |
+1  100  3 |                  |-5 D♭   m2     90 | 0 C♯   A1     114 |                   |                 | E♭♭♭  dd3    67 |  137
+2  200  5 | 2 D    M2    204 |                  |                   |-3 E♭♭   d3    180 | C♯♯   AA1   227 |             157 |  247
+3  300  7 |                  |-3 E♭   m3    294 | 2 D♯   A2     318 |                   |                 | F♭♭   dd4   271 |  341 |  251
+4  400  9 | 4 E    M3    408 |                  |                   |-1 F♭    d4    384 | D♯♯   AA2   431 |             361
+5  500 11 |                  |-1 F    P4    498 | 4 E♯   A3     522 |                   |                 | G♭♭   dd5   475 |  545 |  451
+6  600 13 | 6 F♯   A4    612 |-6 G♭   d5    588 | 6 F♯   A4     612 |-6 G♭    d5    588 | E♯♯   AA3   565 |             635
+7  700 15 | 1 G    P5    702 |                  |                   |-4 A♭♭   d6    678 | F♯♯   AA4   725 |             655 |  749
+8  800 17 |                  |-4 A♭   m6    792 | 1 G♯   A5     816 |                   |                 | B♭♭♭  dd7   769 |  839
+9  900 19 | 3 A    M6    906 |                  |                   |-2 B♭♭   d7    882 | G♯♯   AA5   929 |             859 |  949
+a 1000 21 |                  |-2 B♭   m7    996 | 3 A♯   A6    1020 |                   |                 | C♭♭   dd8   973 | 1043
+b 1100 23 | 5 B    M7   1110 |                  |                   |-0 C♭    d8   1086 | A♯♯  aa6   1133 |            1063
+c 1200 25 |   C    P8   1200 |                  | 5 B♯   A7    1177 |                   |
+
+j  j*100  i |   Note   Ival  Qty  Cent |   Note   Ival  Qty  Cent | Note   Ival  Qty  Cent | Note   Ival  Qty  Cent 
+0     0   1 | 0 C      P1     1      0 |-12 D♭♭    d2     0     23 |          |  E♭♭♭♭
+1   100   3 |-5 D♭     m2     1     90 | 7  C♯     A1     0    114 |-17 E♭♭♭  |  B♯♯
+2   200   5 | 2 D      M2     1    204 |-10 E♭♭    d3     0    180 | 14 C♯♯   |  F♭♭♭
+3   300   7 |-3 E♭     m3     1    294 | 9  D♯     A2     0    318 |-15 F♭♭   |  C♯♯♯
+4   400   9 | 4 E      M3     1    408 |-8  F♭     d4     0    384 | 16 D♯♯   |  G♭♭♭
+5   500  11 |-1 F      P4     1    498 | 11 E♯     A3     0    522 |-13 G♭♭   |  D♯♯♯
+6   600  13 | 6 F♯     A4     1    612 |-6  G♭     d5     1    588 | 18 E♯♯   |  A♭♭♭
+7   700  15 | 1 G      P5     1    702 |-11 A♭♭    d6     0    678 | 13 F♯♯   |  B♭♭♭♭
+8   800  17 |-4 A♭     m6     1    792 | 8  G♯     A5     0    816 |-16 B♭♭♭  |  F♯♯♯
+9   900  19 | 3 A      M6     1    906 |-9  B♭♭    d7     0    882 | 15 G♯♯   |  C♭♭♭
+a  1000  21 |-2 B♭     m7     1    996 | 10 A♯     A6     0   1020 |-14 C♭♭   |  G♯♯♯
+b  1100  23 | 5 B      M7     1   1110 |-7  C♭     d8     0   1086 | 17 A♯♯   |  D♭♭♭
+c  1200  25 | 0 C      P8     1   1200 | 12 B♯     A7     0   1177 |          |  A♯♯♯
+
+    P1    m2    M2    m3    M3    P4    A4    P5    m6    M6    m7    M7    P8  
+-18 A♭♭♭  B♭♭♭♭ B♭♭♭  C♭♭♭  C♭♭   D♭♭♭  D♭♭   E♭♭♭  F♭♭♭  F♭♭   G♭♭♭  G♭♭   A♭♭♭ 
+-17 E♭♭♭  F♭♭♭  F♭♭   G♭♭♭  G♭♭   A♭♭♭  A♭♭   B♭♭♭  C♭♭♭  C♭♭   D♭♭♭  D♭♭   E♭♭♭ 
+-16 B♭♭♭  C♭♭♭  C♭♭   D♭♭♭  D♭♭   E♭♭♭  E♭♭   F♭♭   G♭♭♭  G♭♭   A♭♭♭  A♭♭   B♭♭♭ 
+-15 F♭♭   G♭♭♭  G♭♭   A♭♭♭  A♭♭   B♭♭♭  B♭♭   C♭♭   D♭♭♭  D♭♭   E♭♭♭  E♭♭   F♭♭  
+-14 C♭♭   D♭♭♭  D♭♭   E♭♭♭  E♭♭   F♭♭   F♭    G♭♭   A♭♭♭  A♭♭   B♭♭♭  B♭♭   C♭♭  
+-13 G♭♭   A♭♭♭  A♭♭   B♭♭♭  B♭♭   C♭♭   C♭    D♭♭   E♭♭♭  E♭♭   F♭♭   F♭    G♭♭  
+-12 D♭♭   E♭♭♭  E♭♭   F♭♭   F♭    G♭♭   G♭    A♭♭   B♭♭♭  B♭♭   C♭♭   C♭    D♭♭  
+-11 A♭♭   B♭♭♭  B♭♭   C♭♭   C♭    D♭♭   D♭    E♭♭   F♭♭   F♭    G♭♭   G♭    A♭♭  
+-10 E♭♭   F♭♭   F♭    G♭♭   G♭    A♭♭   A♭    B♭♭   C♭♭   C♭    D♭♭   D♭    E♭♭  
+-9  B♭♭   C♭♭   C♭    D♭♭   D♭    E♭♭   E♭    F♭    G♭♭   G♭    A♭♭   A♭    B♭♭  
+-8  F♭    G♭♭   G♭    A♭♭   A♭    B♭♭   B♭    C♭    D♭♭   D♭    E♭♭   E♭    F♭   
+-7  C♭    D♭♭   D♭    E♭♭   E♭    F♭    F     G♭    A♭♭   A♭    B♭♭   B♭    C♭   
+-6  G♭    A♭♭   A♭    B♭♭   B♭    C♭    C     D♭    E♭♭   E♭    F♭    F     G♭   
+-5  D♭    E♭♭   E♭    F♭    F     G♭    G     A♭    B♭♭   B♭    C♭    C     D♭   
+-4  A♭    B♭♭   B♭    C♭    C     D♭    D     E♭    F♭    F     G♭    G     A♭   
+-3  E♭    F♭    F     G♭    G     A♭    A     B♭    C♭    C     D♭    D     E♭   
+-2  B♭    C♭    C     D♭    D     E♭    E     F     G♭    G     A♭    A     B♭   
+-1  F     G♭    G     A♭    A     B♭    B     C     D♭    D     E♭    E     F    
+ 0  C     D♭    D     E♭    E     F     F♯    G     A♭    A     B♭    B     C    
+ 1  G     A♭    A     B♭    B     C     C♯    D     E♭    E     F     F♯    G    
+ 2  D     E♭    E     F     F♯    G     G♯    A     B♭    B     C     C♯    D    
+ 3  A     B♭    B     C     C♯    D     D♯    E     F     F♯    G     G♯    A    
+ 4  E     F     F♯    G     G♯    A     A♯    B     C     C♯    D     D♯    E    
+ 5  B     C     C♯    D     D♯    E     E♯    F♯    G     G♯    A     A♯    B    
+ 6  F♯    G     G♯    A     A♯    B     B♯    C♯    D     D♯    E     E♯    F♯   
+ 7  C♯    D     D♯    E     E♯    F♯    F♯♯   G♯    A     A♯    B     B♯    C♯   
+ 8  G♯    A     A♯    B     B♯    C♯    C♯♯   D♯    E     E♯    F♯    F♯♯   G♯   
+ 9  D♯    E     E♯    F♯    F♯♯   G♯    G♯♯   A♯    B     B♯    C♯    C♯♯   D♯   
+10  A♯    B     B♯    C♯    C♯♯   D♯    D♯♯   E♯    F♯    F♯♯   G♯    G♯♯   A♯   
+11  E♯    F♯    F♯♯   G#    G##   A#    A♯♯   B♯    B♯♯   C♯♯   G♯♯   D♯♯   E♯   
+12  B♯    C♯    C♯♯   D♯    D♯♯   E♯    E♯♯   F♯♯   F♯♯♯  G♯♯   G♯♯♯  A♯♯   B♯   
+13  F♯♯   G♯    G♯♯   A♯    A♯♯   B♯    B♯♯   C♯♯   C♯♯♯  D♯♯   D♯♯♯  E♯♯   F♯♯  
+14  C♯♯   D♯    D♯♯   E♯    E♯♯   F♯♯   F♯♯♯  G♯♯   G♯♯♯  A♯♯   A♯♯♯  B♯♯   C♯♯  
+15  G♯♯   A#    A♯♯   B♯    B♯♯   C♯♯   C♯♯♯  D♯♯   D♯♯♯  E♯♯   E♯♯♯  F♯♯♯  G♯♯  
+16  D♯♯   E♯    E♯♯   F♯♯   F♯♯♯  G♯♯   G♯♯♯  A♯♯   A♯♯♯  B♯♯   B♯♯♯  C♯♯♯  D♯♯  
+17  A♯♯   B♯    B♯♯   C♯♯   C♯♯♯  D♯♯   D♯♯♯  E♯♯   E♯♯♯  F♯♯♯  F♯♯♯♯ G♯♯♯  A♯♯  
+18  E♯♯   F♯♯   F♯♯♯  G♯♯   G♯♯♯  A♯♯   A♯♯♯  B♯♯   B♯♯♯  C♯♯♯  C♯♯♯♯ D♯♯♯  E♯♯  
+ 
 
 0    0  1  | G    P1      0 |               |                | A♭♭  d2     23
 1  100  3  |                | A♭   m2    90 | G♯   A1    114 |  
