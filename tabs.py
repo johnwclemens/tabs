@@ -506,6 +506,9 @@ class Tabs(pyglet.window.Window):
             pythgrn.setup(o=1)    ;    pythgrn.setup(o=1, csv=1)
             tetract.setup(o=1)    ;    tetract.setup(o=1, csv=1)
             self.pobj = pythgrn
+#            tests.testSlice(intrvls.Intonation)
+#            tests.testSlice(pthgrn.Pthgrn)
+            tests.testSlice(self)
             tests.test_i2nPairs(self)
 #            justint.setup(o=0)    ;    justint.setup(o=0, csv=1)
 #            overtns.setup(o=0)    ;    overtns.setup(o=0, csv=1)

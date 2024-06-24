@@ -200,23 +200,43 @@ class Pthgrn(ivls.Intonation):
             elif j in (5, 8, 11, 14): fd.append(f'{d:5}{zz}')        # Cent
         return fd
 
-    @staticmethod
-    def iv2n(n, iv):
+    def cofi(self, a, b):
+        if a > b:                 a, b = b, a
+        m = len(self.COF_)//2  ;  return self.COF_[m+a:m+b+1]
+#  0   +1   +2    +3    +4    +5     +6    +7    +8    +9     +10    +11    +12     +13    +14   +15     +16     +17     +18     +19     +20     +21     +22     +23      +24      +25      +26     +27      +28      +29      +30       +31       +32       +33       +34
+#['C', 'G', 'D',  'A',  'E',  'B',  'F♯', 'C♯', 'G♯', 'D♯',  'A♯',  'E♯',  'B♯',  'F♯♯', 'C♯♯', 'G♯♯', 'D♯♯',  'A♯♯',  'E♯♯',  'B♯♯',  'F♯♯♯', 'C♯♯♯', 'G♯♯♯', 'D♯♯♯',  'A♯♯♯',  'E♯♯♯',  'B♯♯',  'F♯♯♯♯',  'C♯♯♯♯', 'G♯♯♯♯', 'D♯♯♯♯',  'A♯♯♯♯',  'E♯♯♯♯',  'B♯♯♯♯',  'F♯♯♯♯♯']
+#[     'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭', 'G♭♭', 'C♭♭', 'F♭♭', 'B♭♭♭', 'E♭♭♭', 'A♭♭♭', 'D♭♭♭', 'G♭♭♭', 'C♭♭♭', 'F♭♭♭', 'B♭♭♭♭', 'E♭♭♭♭', 'A♭♭♭♭', 'D♭♭♭♭', 'G♭♭♭♭', 'C♭♭♭♭', 'F♭♭♭♭', 'B♭♭♭♭♭', 'E♭♭♭♭♭', 'A♭♭♭♭♭', 'D♭♭♭♭♭', 'G♭♭♭♭♭']
+#      -1    -2    -3    -4    -5    -6    -7    -8    -9     -10    -11   -12     -13    -14   -15     -16     -17     -18     -19     -20     -21     -22     -23      -24      -25      -26     -27       -28      -29      -30       -31       -32       -33       -34
+#    @staticmethod
+    def iv2n(self, n, iv):
         m = n[0]
         match iv:
-            case 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♭♭' if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A', 'D', 'G', 'C', 'F', 'B♭', 'E♭')          else '♭♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭') else '♭♭♭' if n in ('A♭♭', 'D♭♭') else Z
-            case 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭')   else '♭♭' if n in ('A♭♭', 'D♭♭') else '♯'  if n in ('E', 'B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯') else '♯♯' if n in ('E♯', 'B♯')   else Z
-            case 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G', 'C', 'F', 'B♭', 'E♭', 'A♭', 'D♭')        else '♭♭' if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('D', 'A', 'E', 'B', 'F♯', 'C♯', 'G♯')       else '♯♯' if n in ('D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭')      else '♭♭' if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')          else '♯'  if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')             else '♯' if n in ('C', 'G', 'D', 'A', 'E', 'B', 'F♯')         else '♯♯' if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭')    else '♭♭' if n in ('E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯') else '♯♯' if n == 'B♯' else Z
-            case 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'B♭', 'E♭', 'A♭')         else '♭♭' if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭') else '♭♭♭' if n == 'D♭♭' else '♯' if n in ('A♯','E♯', 'B♯') else Z
-            case 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭')  else '♭♭' if n in ('D♭♭',) else '♯' if n in ('A', 'B', 'E', 'F♯', 'C♯', 'G♯', 'D♯')      else '♯♯' if n in ('A♯', 'E♯', 'B♯') else Z
-            case 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C', 'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭')       else '♭♭' if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯' if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')       else '♯' if n in ('G', 'D', 'A', 'E', 'B', 'F♯', 'C♯')          else '♯♯' if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
-            case 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♭♭' if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')   else '♯' if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+            case 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -2,  -8) else '♯'  if n in self.cofi(  6,  12) else '♭♭'  if n in self.cofi( -9, -12) else Z
+            case 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi(  3,  -3) else '♭♭' if n in self.cofi( -4, -10) else '♭♭♭' if n in self.cofi(-11, -12) else Z
+            case 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -4, -10) else '♯'  if n in self.cofi(  4,  10) else '♭♭'  if n in self.cofi(-11, -12) else '♯♯' if n in self.cofi( 11,  12) else Z
+            case 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -5,   1) else '♯'  if n in self.cofi(  9,  12) else '♭♭'  if n in self.cofi( -6, -12) else Z
+            case 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -6, -12) else '♯'  if n in self.cofi(  2,   8) else '♯♯'  if n in self.cofi(  9,  12) else Z
+            case 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -1,  -7) else '♯'  if n in self.cofi(  7,  12) else '♭♭'  if n in self.cofi( -8, -12) else Z
+            case 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -8, -12) else '♯'  if n in self.cofi(  0,   6) else '♯♯'  if n in self.cofi(  7,  12) else Z
+            case 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -3,  -9) else '♯'  if n in self.cofi(  5,  11) else '♭♭'  if n in self.cofi(-10, -12) else '♯♯'  if n in self.cofi( 12,  12) else Z
+            case 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi(  2,  -4) else '♯'  if n in self.cofi( 10,  12) else '♭♭'  if n in self.cofi( -5, -11) else '♭♭♭' if n in self.cofi(-12, -12) else Z
+            case 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -5, -11) else '♯'  if n in self.cofi(  3,   9) else '♭♭'  if n in self.cofi(-12, -12) else '♯♯'  if n in self.cofi( 10,  12) else Z
+            case 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi(  0,  -6) else '♯'  if n in self.cofi(  8,  12) else '♭♭'  if n in self.cofi( -7, -12) else Z
+            case 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -7, -12) else '♯'  if n in self.cofi(  1,   7) else '♯♯'  if n in self.cofi(  8,  12) else Z
+            case 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in self.cofi( -2,  -8) else '♯'  if n in self.cofi(  6,  12) else '♭♭'  if n in self.cofi( -9, -12) else Z
+#            case 'P1':  i = 1  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♯'  if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯')   else '♭♭'  if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else Z
+#            case 'm2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A', 'D', 'G', 'C', 'F', 'B♭', 'E♭')          else '♭♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭') else '♭♭♭' if n in ('A♭♭', 'D♭♭') else Z
+#            case 'M2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭')   else '♯'  if n in ('E', 'B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯')     else '♭♭'  if n in ('A♭♭', 'D♭♭') else '♯♯' if n in ('E♯', 'B♯') else Z
+#            case 'm3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G', 'C', 'F', 'B♭', 'E♭', 'A♭', 'D♭')        else '♯'  if n in ('D♯', 'A♯', 'E♯', 'B♯')                     else '♭♭'  if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else Z
+#            case 'M3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else '♯'  if n in ('D', 'A', 'E', 'B', 'F♯', 'C♯', 'G♯')       else '♯♯'  if n in ('D♯', 'A♯', 'E♯', 'B♯') else Z
+#            case 'P4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭')      else '♯'  if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯')         else '♭♭'  if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else Z
+#            case 'A4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')             else '♯'  if n in ('C', 'G', 'D', 'A', 'E', 'B', 'F♯')         else '♯♯'  if n in ('C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+#            case 'P5':  i = 5  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭', 'B♭♭')    else '♯'  if n in ('B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯')    else '♭♭'  if n in ('E♭♭', 'A♭♭', 'D♭♭') else '♯♯' if n == 'B♯' else Z
+#            case 'm6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D', 'G', 'C', 'F', 'B♭', 'E♭', 'A♭')         else '♯'  if n in ('A♯','E♯', 'B♯')                            else '♭♭'  if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭') else '♭♭♭' if n == 'D♭♭' else Z
+#            case 'M6':  i = 6  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('D♭', 'G♭', 'C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭')  else '♯'  if n in ('A', 'B', 'E', 'F♯', 'C♯', 'G♯', 'D♯')      else '♭♭'  if n == 'D♭♭' else '♯♯' if n in ('A♯', 'E♯', 'B♯') else Z
+#            case 'm7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C', 'F', 'B♭', 'E♭', 'A♭', 'D♭', 'G♭')       else '♯'  if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯')               else '♭♭'  if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭') else Z
+#            case 'M7':  i = 7  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('C♭', 'F♭', 'B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')       else '♯'  if n in ('G', 'D', 'A', 'E', 'B', 'F♯', 'C♯')        else '♯♯'  if n in ('G♯', 'D♯', 'A♯', 'E♯', 'B♯') else Z
+#            case 'P8':  i = 8  ;  nn = nextN(m, i)  ;  e = '♭' if n in ('B♭', 'E♭', 'A♭', 'D♭', 'G♭', 'C♭', 'F♭')     else '♯'  if n in ('F♯', 'C♯', 'G♯', 'D♯', 'A♯', 'E♯', 'B♯')   else '♭♭'  if n in ('B♭♭', 'E♭♭', 'A♭♭', 'D♭♭')   else Z
             case 'd2':  i = 2  ;  nn = nextN(m, i)  ;  e = '♭♭'
             case 'd3':  i = 3  ;  nn = nextN(m, i)  ;  e = '♭♭'
             case 'd4':  i = 4  ;  nn = nextN(m, i)  ;  e = '♭'
