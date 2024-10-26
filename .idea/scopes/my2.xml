@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="my2" pattern="!ext:*/||file[tab2]:*||file[tab2]:tpkg//*||file[tab2]:tpkg/*" />
+</component>

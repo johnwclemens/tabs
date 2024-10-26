@@ -14,9 +14,8 @@ def ffn(cf): return cf.f_code.co_filename # stack: func file name
 UNICODE       = unic.UNICODE
 SPRSCRPT_INTS = { 0: '\u2070', 1: '\u00B9', 2: '\u00B2', 3: '\u00B3', 4: '\u2074', 5: '\u2075', 6: '\u2076', 7: '\u2077', 8: '\u2078', 9: '\u2079' }
 ROOT_DIR      = os.getenv('ROOT_DIR', 'test')
-PATH          = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH     = PATH.parent / ROOT_DIR
-BASE_NAME     = BASE_PATH.stem
+BASE_PATH      = pathlib.Path.cwd() / ROOT_DIR
+BASE_NAME      = BASE_PATH.stem
 P, L, S, C    =  0,  1,  2,  3
 T, N, I, K    =  4,  5,  6,  7
 M, R, Q, H    =  8,  9, 10, 11
@@ -120,7 +119,7 @@ def memorize(func):
         return result
     return wrapper
 
-def paths():           return BASE_NAME, BASE_PATH, PATH
+def paths():           return BASE_NAME, BASE_PATH
 ########################################################################################################################################################################################################
 def fri(f):            return int(math.floor(f + 0.5))
 def filtA(v, a=W):     return Z.join([ e for e in v if e!=a ])

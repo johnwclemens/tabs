@@ -105,7 +105,7 @@ class Pthgrn(ivls.Intonation):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{self.j=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[self.j][0]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abcd']   ;   q = self.fdvdr(a, ca, b, cb)
-                r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(              a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
+                self.addFmtRs(              a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k, i2         = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)
                 n, m = self.f2nPair(f, b=1, o=0, e=1)   ;   assert m != n,  f'{i=} {ck=} {m=} {n=} {c=} {d=} {k=} {i2=} {f=} {w=}'
                 o    = n
@@ -276,7 +276,7 @@ class Pthgrn(ivls.Intonation):
 
     def dmpIvals(self, h, ks, cs): # todo move to base class, but epsilon is an issue
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   i, j, k = h-1, h-2, h-3    ;   nns = 1
-        l = math.floor(h/2)    ;    hdrA = ['j ', ' j*100 ', ' i ']   ;   data = []   ;   hs = []
+        l = h//2   ;   hdrA = ['j ', ' j*100 ', ' i ']   ;  data = []   ;   hs = []
         m  = l # l-1 if h>=23 else l # m = l-6 if h>=34 else l-5 if h>=28 else l-4 if h>=22 else l-3 if h>=16 else l-2 if h>=10 else l-1 if h>=4 else l
         hdrB1  = [f'|{mm}Note{mm}  Ival ', ' Qty ', ' Cent ']
         hdrB2  = [f'|{mm}Note{mm}  Ival ', ' Qty ', ' Cent ']

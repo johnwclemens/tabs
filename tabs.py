@@ -33,7 +33,7 @@ CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   =  utl.CAT,    utl.CSV,    utl.EVN,   
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  =  utl.CATS,   utl.CSVS,   utl.EVNS,   utl.LOGS,   utl.PNGS,   utl.TEXT,   utl.DATA
 CAT2, CSV2, EVN2, LOG2, PNG2, TXT2, DAT2  = f'_.{CAT}', f'_.{CSV}', f'_.{EVN}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}', f'_.{DAT}'
 CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE    = None, None, None, None
-BASE_NAME,        BASE_PATH,        PATH  = utl.paths()
+BASE_NAME,        BASE_PATH               = utl.paths()
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
 DAT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=DATA, fsfx=DAT,  dbg=0)
 EVN_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN,  dbg=0)
@@ -2158,7 +2158,6 @@ def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)
 def dumpGlobals():
     slog(f'BASE_NAME = {BASE_NAME}', f=2)
     slog(f'argv      = {fmtl(sys.argv, ll=1)}', f=2)
-    slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
 def cleanupOutFiles(file, fp, gfp, sqnp, f):

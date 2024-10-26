@@ -344,7 +344,7 @@ class Intonation:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 v = self.ck2ikm[self.centKs[cki]]  ;  vs.append(v)  ;  cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
             v = self.ck2ikm[rc]  ;  ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  ns.append(n)  ;  vs.append(v)  ;  abcdMap.append(abcd)
-            r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
+            self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if dbg:   self.updCkMap(rc, ckm, n, f, abcd, c, i)
         self.nimap[self.j] = [ckm, tmp[2], abcdMap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
         while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
@@ -480,7 +480,7 @@ Jdx   CK     Knt    Freq    Wavln    Cents    DCent  Note       Abcd       Ival 
 #        if   lr == 4:   return r0s,           r1s, r2s, r3s
 #        if   lr == 5:   return r0s, rAs, rBs,      r2s, r3s
 #        if   lr == 6:   return r0s, rAs, rBs, r1s, r2s, r3s
-        return r0s, rAs, rBs, r1s, r2s, r3s
+#        return r0s, rAs, rBs, r1s, r2s, r3s
     ####################################################################################################################################################################################################
     def fmtRABs(self, a, ca, b, cb, w, rAs, rBs):
         pa = a ** abs(ca)      ;   pb = b ** abs(cb)  ;   dbg = 0 #  ;   p = 2 ** k if k else 1
@@ -493,8 +493,8 @@ Jdx   CK     Knt    Freq    Wavln    Cents    DCent  Note       Abcd       Ival 
     def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
         p = 2 ** k if k else 1   ;   dbg = 0
         pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-        if k is None:     pa = a ** abs(ca)   ;   pb = b ** abs(cb)   ;   v = pa/pb   if pa >= pb else pb/pa   ;   k = utl.NONE
-        else:             pa = a ** ca        ;   pb = b ** cb        ;   v = p*pa*pb
+        if k is not None: pa = a ** ca        ;   pb = b ** cb        ;   v = p*pa*pb
+        else:             pa = a ** abs(ca)   ;   pb = b ** abs(cb)   ;   v = pa/pb   if pa >= pb else pb/pa   ;   k = utl.NONE
         if w >= 9:        ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
         else:             ret = f'{v:^{w}.{w-2}f}' if ist(v, float) else f'{v:^{w}}'
         slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
