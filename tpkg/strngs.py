@@ -39,7 +39,7 @@ Bf0, Bf1, Bf2, Bf3, Bf4, Bf5, Bf6, Bf7, Bf8, Bf9, Bf10 = 'B♭0', 'B♭1', 'B♭
 Cf0, Cf1, Cf2, Cf3, Cf4, Cf5, Cf6, Cf7, Cf8, Cf9, Cf10 = 'C♭0', 'C♭1', 'C♭2', 'C♭3', 'C♭4', 'C♭5', 'C♭6', 'C♭7', 'C♭8', 'C♭9', 'C♭10'
 
 class Strngs:
-    def __init__(self, tune=None, dbg=1):
+    def __init__(self, tune=None, dbg=0):
         if not tune:   tune = ['E', 'A', 'D', 'G', 'B', 'E']
         self.maps           = self._initMaps()
         if dbg:               self.dumpMaps()
@@ -137,7 +137,7 @@ class Strngs:
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} map={fmtm(self.map)}')
         return i
 
-    def tab2nn(self, tab, s, t=None, nic=None, dbg=1, f=-3):
+    def tab2nn(self, tab, s, t=None, nic=None, dbg=0, f=-3):
         assert tab is not None,  f'{tab=} {s=} {t=} {nic=}'
         fn  = self.tab2fn(tab)
         assert fn  is not None,  f'{fn=} {tab=} {s=} {t=} {nic=}'

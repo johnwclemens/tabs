@@ -2,7 +2,7 @@ import operator, os, sys
 import collections, itertools, queue
 from   collections     import Counter
 from   itertools       import accumulate
-from   more_itertools  import consume  # not installed in GitBash's Python
+#from   more_itertools  import consume  #todo pip install
 import pyglet
 import pyglet.font            as pygfont
 import pyglet.image           as pygimg
@@ -723,13 +723,13 @@ class Tabs(pyglet.window.Window):
         self.setJdump(H, 0, why=why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniksC(self, why=Z):
-        self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
-        it = list(itertools.chain(self.A))   ;   consume(consume(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.B))   ;   consume(consume(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.C))   ;   consume(consume(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.D))   ;   consume(consume(self.setJdump(j+A, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        self.dumpTniksSfx(why)
+#    def dumpTniksC(self, why=Z): #todo pip install
+#        self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
+#        it = list(itertools.chain(self.A))   ;   consume(consume(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.B))   ;   consume(consume(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.C))   ;   consume(consume(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.D))   ;   consume(consume(self.setJdump(j+A, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        self.dumpTniksSfx(why)
 
     def dumpTniksD(self, why=Z):
         self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
@@ -850,7 +850,7 @@ class Tabs(pyglet.window.Window):
         if dbg2: # todo fixme some dont handle Sprites
             self.dumpTniksA(f'{why}A')
             self.dumpTniksB(f'{why}B')
-            self.dumpTniksC(f'{why}C')
+#           self.dumpTniksC(f'{why}C') #todo pip install
             self.dumpTniksD(f'{why}D')
             self.dumpTniksE(f'{why}E')
             self.dumpTniksF(f'{why}F')

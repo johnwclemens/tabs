@@ -1,7 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <option name="RIGHT_MARGIN" value="255" />
-    <option name="SOFT_MARGINS" value="100,150,200,250" />
+    <option name="SOFT_MARGINS" value="100,150,200,250,300,400,500" />
     <CsvCodeStyleSettings>
       <option name="TABULARIZE" value="false" />
       <option name="WHITE_SPACES_OUTSIDE_QUOTES" value="false" />
@@ -26,7 +26,7 @@
       <option name="BLANK_LINES_AROUND_METHOD" value="0" />
       <option name="CALL_PARAMETERS_WRAP" value="0" />
       <option name="METHOD_PARAMETERS_WRAP" value="0" />
-      <option name="SOFT_MARGINS" value="100,150,200,250" />
+      <option name="SOFT_MARGINS" value="100,150,200,250,300,400,500" />
     </codeStyleSettings>
   </code_scheme>
 </component>

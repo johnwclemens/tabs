@@ -40,7 +40,7 @@ class Chords:
             assert ist(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
         return tuple(o[2])
     ####################################################################################################################################################################################################
-    def getChordName(self, data, nic, cn, p, l, c, dbg=0):
+    def getChordName(self, data, nic, cn, p, l, c, dbg=1):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
         vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, NT
         mask,          notes,         js        = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP
@@ -244,7 +244,7 @@ class Chords:
             if mapSet:            mapSet[msK].add(tuple(v1))
         return mapSet
 
-    def _dumpOMAP(self, catfile=None, dbg=1):
+    def _dumpOMAP(self, catfile=None, dbg=0):
         file = catfile      if catfile else utl.LOG_FILE    ;   omap, l = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
         name = catfile.name if catfile else None            ;    mapSet = self.getMapSets(omap)       ;   slog(f'BGN {l=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
         for msK, msV in mapSet.items():

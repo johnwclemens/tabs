@@ -65,7 +65,7 @@ class Pthgrn(ivls.Intonation):
         if dbg:      slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ccents
     ####################################################################################################################################################################################################
-    def dmpNiMap(self, ni, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
+    def dmpNiMap(self, ni, x, upd=0, dbg=0): # x=13 or x=9 #todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4
         pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[self.j] #  ;   w2 = '7.2f'
         if dbg and ni==0:  self.dmpIndices(pfx2, x)   ;   self.dmpDataTableLine(x+1)
@@ -97,7 +97,7 @@ class Pthgrn(ivls.Intonation):
             elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}',  p=0, f=ff if self.csv else -3)
         if dbg: self.dmpDataTableLine(x+1)   ;   self.dmpIndices(pfx2, x) if ni == 4 else None
     ####################################################################################################################################################################################################
-    def dmpCkMap(self, u=9, o=0, dbg=1): #todo generalize m2bc ? #fixme reusing arg o ! # ckmap[498,588,612,702][Note] = F,Gb, F#,G
+    def dmpCkMap(self, u=9, o=0, dbg=0): #todo generalize m2bc ? #fixme reusing arg o ! # ckmap[498,588,612,702][Note] = F,Gb, F#,G
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, v, ww, y = self.FREFS[self.j], Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
         ns, fs, ws, vs = [], [], [], []   ;   cs, ds, qs, ks, cksi = [], [], [], [], []  ;  r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   f1 = 0
         sfx = f'{nn}]'  ;  sfxc = f'{nn}]{mm}cents'  ;  sfxf = f'{nn}]{mm}Hz'  ;  sfxw = f'{nn}]{mm}cm'  ;  ckmap = self.ckmap if dbg else self.nimap[self.j][0]

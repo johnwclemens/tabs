@@ -180,7 +180,7 @@ class Just(ivls.Intonation):
         slog(f'{nn}r2s{nn}{nn}{d1}{nn}{fmtl(r2s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}r3s{nn}{nn}{d1}{nn}{fmtl(r3s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
     ####################################################################################################################################################################################################
-    def dmpJust(self, st=0, dbg=1):
+    def dmpJust(self, st=0, dbg=0):
         f0 = self.FREFS[self.j]  ;  M3 = Notes.V2I['M3']   ;   a, b = 5, 3   ;   self.j += 2 # todo fixme note freq hack
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
         slog(f'BGN Just Intonation Series {self.i=:2} {self.m=:2} {self.j=:2} {self.k=:2} {st=} {self.csv=} {dbg=}', p=0, f=ff)

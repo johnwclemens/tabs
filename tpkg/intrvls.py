@@ -179,10 +179,10 @@ class Intonation:
         r, j = self.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
         return r, j
 
-    def abcs(self, a, b, i=0, dbg=1): # (n5ths, n4ths, index)
+    def abcs(self, a, b, i=0, dbg=0): # (n5ths, n4ths, index)
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 2)
-        abc1   = self.stck5ths(a, i, dbg=1)
-        abc2   = self.stck4ths(b, i, dbg=1)
+        abc1   = self.stck5ths(a, i, dbg=0)
+        abc2   = self.stck4ths(b, i, dbg=0)
         abc3   = [ self.stackI(3, 0, i) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(self.stackI(2, 1, i))
         abc4   = sorted([(z[0], z[1], z[2], self.ac2r(z[0], z[1])[1]) for z in abc3], key=lambda z: self.ac2r(z[0], z[1])[0])
         abcLst = [abc1, abc2, abc3, abc4]
@@ -305,8 +305,8 @@ class Intonation:
                 slog(f'P2B 0-7{x=:1}  {self.fim(Z)} {self.csv=} : {i=}',       p=pp) if dbg else None
                 self._setup(i, u=u, o=o2, dbg=dbg)
     ####################################################################################################################################################################################################
-    def dmpNiMap( self, ni, x, upd=0, dbg=1): pass
-    def dmpCkMap( self, u=9, o=0, dbg=1):     pass
+    def dmpNiMap( self, ni, x, upd=0, dbg=0): pass
+    def dmpCkMap( self, u=9, o=0, dbg=0):     pass
 
     def dmpCkMap2(self):
         ks = []   ;   x = 8   ;   w = f'^{x}'   ;   o = '|'
@@ -330,7 +330,7 @@ class Intonation:
     @staticmethod
     def fabc(abc):                return [ fmtl(e, w=[2,3,2,3], d=Z) for e in abc ]
     ####################################################################################################################################################################################################
-    def _setup(self, j, u=9, o=0, dbg=1):
+    def _setup(self, j, u=9, o=0, dbg=0):
         x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[self.j], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         self.k = 0   ;   self.o = Z  ;  self.n = Notes.i2n()[self.j % NT]   ;   k = 6 - j if j > 6 else j
         if dbg: slog(f'BGN {self.fim()} {j=} {k=} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff)  ;  self.dmpIndices(pfx, x)  ;  self.dmpDataTableLine(x+1)
@@ -368,7 +368,7 @@ class Intonation:
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)   ;   self.dmpDataTableLine(x+1)
         self.dmpMaps(u, o=o, dbg=dbg)  ;  slog(f'END {self.fim()} {j=} {k=} {u=} {o=} {self.csv=} {dbg=}', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
-    def dmpMaps(self, u, o, dbg=1):
+    def dmpMaps(self, u, o, dbg=0):
         if dbg:
             self.dmpNiMap(0, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(1, x=13, upd=1, dbg=dbg)
@@ -386,7 +386,7 @@ class Intonation:
             self.chckIvls(                       )
             self.chckIvl2(                       )
         else:
-            assert u in (12, 13), f'{u=} {self.fim()} {o=} {dbg=} {self.csv=}'
+            assert u in (9, 12, 13), f'{u=} {self.fim()} {o=} {dbg=} {self.csv=}'
             self.dmpNiMap(  4, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(     u=u,  o=o,   dbg=dbg)
         self.ckmap = self.reset_ckmap() # fixme call this once @ end of dmpMaps() --> todo wrap in a try:except:finally or a with/as clause:

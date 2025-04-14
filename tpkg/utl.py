@@ -293,7 +293,7 @@ def fmta(args):
         t.append(f'{fmtl(v, d=Z)} ')
     return Z.join(t)
 ########################################################################################################################################################################################################
-def parseCmdLine(argv, dbg=1, f=0):
+def parseCmdLine(argv, dbg=0, f=0):
     options, key, vals, argc = {}, Z, [], len(argv)
     if dbg: slog(f'argv={fmtl(argv[1:])}', f=f)  ;  slog(argv[0], f=f)
     for j in range(1, argc):
@@ -445,7 +445,7 @@ def path2str(po, dbg=0):
     if dbg:  slog(f'{p}', f=2)
     return p
 
-def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
+def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=0, f=-3):
     if dbg: slog(f'{baseName =:12} {path2str(basePath) = }', f=f)
     if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
@@ -454,7 +454,7 @@ def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
     if dbg: slog(f'{fileName =:12} {filePath = }', f=f)
     return  filePath
 
-def copyFile(src, trg, dbg=1, f=-3):
+def copyFile(src, trg, dbg=0, f=-3):
     if dbg: slog(f'{path2str(src)=}', f=f)
     if dbg: slog(f'{path2str(trg)=}', f=f)
     if dbg: slog(f'{src=}', f=f)
